@@ -1,32 +1,26 @@
 <!DOCTYPE html>
-<html lang="{{ site.lang | default: "en-US" }}">
-  <head>
-    <meta charset='utf-8'>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="{{ '/assets/css/style.css?v=' | append: site.github.build_revision | relative_url }}">
-    {% include head-custom.html %}
+<html lang="ru">
+{% include head.html %}
 
-{% seo %}
-  </head>
-
-  <body>
-
+<body>
+  <div id="wrapper">
     <header>
-      <div class="container">
-        <a id="a-title" href="{{ '/' | relative_url }}">
-          <h1>{{ site.title | default: site.github.repository_name }}</h1>
-        </a>
-        <h2>{{ site.description | default: site.github.project_tagline }}</h2>
-
-        <section id="downloads">
-          {% if site.show_downloads %}
-            <a href="{{ site.github.zip_url }}" class="btn">Download as .zip</a>
-            <a href="{{ site.github.tar_url }}" class="btn">Download as .tar.gz</a>
-          {% endif %}
-          <a href="{{ site.github.repository_url }}" class="btn btn-github"><span class="icon"></span>View on GitHub</a>
-        </section>
-      </div>
+        <p align="center">
+            +--------------------------+<br>
+            |.------------------------.|<br>
+            ||&nbsp;<a href="{{ "/index-ru" | prepend: site.baseurl | replace: '//', '/' }}">kee_reel@blog</a>:~$ cd&nbsp;&nbsp;&nbsp;&nbsp;||<br>
+            ||&nbsp;<a href="{{ "/c-ru" | prepend: site.baseurl | replace: '//', '/' }}">си</a>&nbsp;<a href="{{ "/python-ru" | prepend: site.baseurl | replace: '//', '/' }}">python</a>&nbsp;<a href="{{ "/terminal-ru" | prepend: site.baseurl | replace: '//', '/' }}">терминал</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;||<br>
+            ||&nbsp;<a href="{{ "/opengl-cpp-ru" | prepend: site.baseurl | replace: '//', '/' }}">opengl</a>&nbsp;<a href="{{ "/sql-ru" | prepend: site.baseurl | replace: '//', '/' }}">sql</a>&nbsp;<a href="{{ "/network-ru" | prepend: site.baseurl | replace: '//', '/' }}">сети</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;||<br>
+            ||&nbsp;<a href="{{ "/links-ru" | prepend: site.baseurl | replace: '//', '/' }}">ссылки</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;||<br>
+            ||&nbsp;<a href="{{ "/plag-ru" | prepend: site.baseurl | replace: '//', '/' }}">мой_проект</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="{{ "/about-ru" | prepend: site.baseurl | replace: '//', '/' }}">обо_мне</a>&nbsp;||<br>
+            |.------------------------.|<br>
+            +-::--------------------::-+<br>
+            .--------------------------.<br>
+            &nbsp;//&nbsp;/ooooooooooooooooooooo\\&nbsp;\\&nbsp;<br>
+            &nbsp;//&nbsp;/ooooooooooooooooooooooo\\&nbsp;\\&nbsp;<br>
+            //------------------------------\\<br>
+            \\------------------------------//<br>
+        </p>
     </header>
 
     <div class="container">
@@ -34,5 +28,9 @@
         {{ content }}
       </section>
     </div>
-  </body>
+  </div>
+
+  {% include footer.html %}
+</body>
+
 </html>
