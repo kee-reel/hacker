@@ -375,7 +375,7 @@ int* fill_arr(int n)
 
 int main()
 {
-	int *A = fill_arr(&A, 5);
+	int *A = fill_arr(5);
 	// Не забываем предохраняться от NULL
 	if(A == NULL)
 		return 0;

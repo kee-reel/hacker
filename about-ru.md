@@ -7,6 +7,7 @@ title: About
 
 * Telegram -- [@kee_reel](https://t.me/kee_reel)
 * Почта -- c4rb0n_unit@protonmail.com
+* GitHub -- [github.com/kee-reel](https://github.com/kee-reel)
 * Mastodon -- [mastodon.ml/@keereel](https://mastodon.ml/@keereel)
 * Codewars -- [codewars.com/users/kee-reel](https://www.codewars.com/users/kee-reel)
 * Habrahabr -- [habr.com/en/users/curunir/posts](https://habr.com/en/users/curunir/posts)

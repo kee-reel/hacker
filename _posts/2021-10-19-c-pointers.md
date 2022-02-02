@@ -28,8 +28,12 @@ lang: ru
 Давай создадим указатель на переменную:
 
 ```c
+// Обычная int переменная
 int treasure = 777;
-int* treasure_map = &treasure;
+// Указатель на int переменную (на это указывает * после типа int)
+int* treasure_map;
+// Записываем адрес int переменной в указатель treasure_map
+treasure_map = &treasure;
 printf("treasure: %d\n", treasure);
 printf("coordinates of treasure: %p\n", &treasure);
 printf("coordinates in treasure_map: %p\n", treasure_map);

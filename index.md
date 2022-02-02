@@ -1,19 +1,13 @@
 ---
-layout: main
+layout: default
 ---
-<p align="center">
-+--------------------------+<br>
-|.------------------------.|<br>
-||&nbsp;<a href="{{ "/" | prepend: site.baseurl | replace: '//', '/' }}">kee_reel@blog</a>:~$ lang&nbsp;&nbsp;||<br>
-||&nbsp;<a href="{{ "/index-en" | prepend: site.baseurl | replace: '//', '/' }}">english</a>&nbsp;<a href="{{ "/index-ru" | prepend: site.baseurl | replace: '//', '/' }}">русский</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;||<br>
-||&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;||<br>
-||&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;||<br>
-||&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;||<br>
-|.------------------------.|<br>
-+-::--------------------::-+<br>
-.--------------------------.<br>
-&nbsp;//&nbsp;/ooooooooooooooooooooo\\&nbsp;\\&nbsp;<br>
-&nbsp;//&nbsp;/ooooooooooooooooooooooo\\&nbsp;\\&nbsp;<br>
-//------------------------------\\<br>
-\\------------------------------//<br>
-</p>
+
+# Привет (＾◡＾)っ
+
+Это мой личный сайт, на котором я выкладываю различные обучающие статьи по темам, в которых разбираюсь. Я активно работаю над ним, и периодически добавляю новые материалы.
+
+Если хочешь предложить какую-то тему или просто спросить что-то -- найди мои контакты в разделе [обо\_мне](/about-ru) и напиши мне. Я буду рад с тобой пообщаться!
+
+Переход между разделами сайта производится через "ноутбук" в шапке сайта.
+
+# Развлекайся! (ﾉ> ◇ \<)ﾉ

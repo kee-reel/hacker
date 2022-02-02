@@ -3,6 +3,15 @@ layout: default-en
 title: About
 ---
 
+Contacts:
+* Telegram -- [@kee_reel](https://t.me/kee_reel)
+* Mail -- c4rb0n_unit@protonmail.com
+* GitHub -- [github.com/kee-reel](https://github.com/kee-reel)
+* Masodon -- [mastodon.ml/@keereel](https://mastodon.ml/@keereel)
+* Habrahabr -- [habr.com/en/users/curunir/posts](https://habr.com/en/users/curunir/posts)
+* Codewars -- [codewars.com/users/curunir](https://www.codewars.com/users/curunir)
+* Steam -- [steamcommunity.com/id/keereeel/](https://steamcommunity.com/id/keereeel)
+
 Education:
 * Bachelor (4 years):
     * University: BSTU "Voenmech"
@@ -31,13 +40,6 @@ Hobbies:
 * Running
 * Cycling
 * Roleplaying games (DnD, Vampires the Masquerade)
-
-Contacts:
-* Telegram -- [@kee_reel](https://t.me/kee_reel)
-* Mail -- c4rb0n_unit@protonmail.com
-* Masodon -- [mastodon.ml/@keereel](https://mastodon.ml/@keereel)
-* Habrahabr -- [habr.com/en/users/curunir/posts](https://habr.com/en/users/curunir/posts)
-* Codewars -- [codewars.com/users/curunir](https://www.codewars.com/users/curunir)
 
 ![Codewars Badge](https://www.codewars.com/users/kee-reel/badges/large)
 
