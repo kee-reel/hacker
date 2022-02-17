@@ -17,15 +17,13 @@ body {
   background: $body-background url("../assets/bkg.png") 0 0;
   color: $body-foreground;
   font-size: 16px;
-  line-height: 1.5;
   font-family: Monaco, "Bitstream Vera Sans Mono", "Lucida Console", Terminal, monospace;
 }
 
 /* General & 'Reset' Stuff */
 
 .container {
-  width: 90%;
-  max-width: 1000px;
+  width: 75%;
   margin: 0 auto;
 }
 
@@ -152,7 +150,7 @@ blockquote {
 }
 
 pre {
-  background: rgba(0, 0, 0, 0.9);
+  background: #1b1b1b;
   border: 1px solid rgba(255, 255, 255, 0.15);
   padding: 10px;
   font-size: 16px;

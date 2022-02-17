@@ -2,18 +2,59 @@
 	display: flex; 
 	justify-content: space-between;
 	gap: 0px 0px; 
-	width: 60%;
+	min-height: 85px;
 	margin: 40px auto;
 }
-.source_text { }
-.test_log { }
+.source_text {
+	background: #1b1b1b;
+	width: 65%;
+	min-height: 200px;
+	border: 1px #333 solid;
+}
+.test_data {
+	width: 30%;
+	border: 1px #333 solid;
+}
+.test_data_tab {
+	width: 100%;
+	border: none;
+	margin: 0;
+	padding: 3px;
+}
+.test_data_tab_active {
+	background: #1b1b1b;
+	color: white;
+}
+.test_data_tabs {
+	display: flex;
+	justify-content: space-between;
+	height: 7%;
+}
+.test_data_sections {
+	display: flex;
+	height: 93%;
+}
+.test_log {
+	font-size: 12pt;
+	width: 100%;
+	color: white;
+	border: none;
+	min-height: 200px;
+	padding: 10px;
+	margin: 0;
+}
 .login {
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
+	width: 100%;
 	align-items: center;
+	min-height: 200px;
+	background: #1b1b1b;
+	padding: 10px;
 }
 .login_label {
+	color: white;
 	margin-bottom: 5px
 }
 .login_field {
@@ -44,6 +85,15 @@
 }
 .hidden {
 	display: none;
+}
+.pending_test {
+	background: #1b1b1b;
+}
+.passed_test {
+	background: #0b8e00;
+}
+.failed_test {
+	background: #a20000;
 }
 
 .editing, .highlighting {

@@ -8,7 +8,7 @@ author:
 baseurl: /
 
 source: .
-destination: ./_site
+destination: /var/www/html/_site
 permalink: /:title
 #paginate: 10
 #paginate_path: /page/:num/
@@ -21,10 +21,11 @@ defaults:
     values:
       layout: "post"
 
+kramdown:
+    auto_ids: true
+
 future: true
 plugins:
-  - jekyll-seo-tag
-#  - jekyll-paginate
   - jekyll-sitemap
 
 # Custom variables
