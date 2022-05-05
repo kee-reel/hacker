@@ -11,7 +11,8 @@ title: About
 * Mastodon -- [mastodon.ml/@keereel](https://mastodon.ml/@keereel)
 * Codewars -- [codewars.com/users/kee-reel](https://www.codewars.com/users/kee-reel)
 * Habrahabr -- [habr.com/en/users/curunir/posts](https://habr.com/en/users/curunir/posts)
-* Steam -- [steamcommunity.com/id/keereeel/](https://steamcommunity.com/id/keereeel)
+* Steam -- [steamcommunity.com/id/keereeel](https://steamcommunity.com/id/keereeel)
+* GOG -- [gog.com/u/kee-reel](https://www.gog.com/u/kee-reel)
 
 ## Образование
 
@@ -36,7 +37,7 @@ title: About
     * Проект: игра [World of Warships Legends](https://wowslegends.com/)
     * Занимался портированием проекта на XBox One, Xbox Series X, PS4, PS5
     * Разрабатывал мета-игровые системы на C++/Python: внутриигровой магазин, ежедневные задачи, нотификации, матчмейкер
-* С сентября 2021 я работаю в Балтийском Государственном Техническом Университете "Военмех" преподавателем курсов: теоретические основы информатики, C и OpenGL
+* С сентября 2021 я работаю в Балтийском Государственном Техническом Университете "Военмех" преподавателем курсов: теоретические основы информатики, C/C++ и OpenGL
 
 ## Профессиональные навыки
 
@@ -46,33 +47,19 @@ title: About
 | С/C++ | 👍 | 6 лет решения прикладных задач на работе + [большой pet-project](/plag-ru) |
 | Qt | 👍 | 2 года на работе + [большой pet-project](/plag-ru) |
 | SQL | 👌 | Периодически писал несложные запросы для работы и [pet-project](/plag-ru)'а |
-| Unity3D | 👌 | 3 года в среднем проекте, но уже давно не практиковался |
+| Unity3D | 👌 | 3 года активной разработки |
 | Linux/Bash | ❤️| 5 лет использую только Linux, умею шаманить, люблю автоматизацию на Bash |
-| Go | 🎓 | Изучаю, очень понравился |
-
-## Увлечения
-
-* Чтение фантастических, филосовских или научно-популярных книг (классики уже начитался)
-* Ролевые игры: DnD, Vampires the Masquerade
-* Бег
-* Велосипед
-* Скалолазание
+| Go | 👌 | Есть [средней сложности pet-project](https://github.com/kee-reel/LATE) |
+| NASM | 🎓 | Читал книгу, писал программы -- могу перевести Си в ассемблер без компилятора |
+| Lua | 👌 | Написал транслятор с Brainfuck |
 
 ## Любимая музыка
 
-Лёгкое инди чтобы расслабиться
 <iframe style="border: 0; width: 100%; height: 120px;" src="https://bandcamp.com/EmbeddedPlayer/album=1115961286/size=large/bgcol=2b2b29/linkcol=4a8f42/tracklist=false/artwork=small/transparent=true/" seamless><a href="https://menitrust.bandcamp.com/album/oncle-jazz">Oncle Jazz by Men I Trust</a></iframe>
 
-Меланхоличная электроника чтобы подумать
 <iframe style="border: 0; width: 100%; height: 120px;" src="https://bandcamp.com/EmbeddedPlayer/album=2309932254/size=large/bgcol=2b2b29/linkcol=2ebd35/tracklist=false/artwork=small/track=4208802191/transparent=true/" seamless><a href="https://sidewalksandskeletons.bandcamp.com/album/white-light">WHITE LIGHT by Sidewalks and Skeletons</a></iframe>
 
-Спокойная электроника чтобы войти в состояние потока
-<iframe style="border: 0; width: 100%; height: 120px;" src="https://bandcamp.com/EmbeddedPlayer/album=535895036/size=large/bgcol=2b2b29/linkcol=4a8f42/tracklist=false/artwork=small/transparent=true/" seamless><a href="https://skytwohigh.bandcamp.com/album/--4">東京に忘れた夢 by SkyTwoHigh</a></iframe>
-
-Мощные гитарные запилы чтобы зарядиться энергией
 <iframe style="border: 0; width: 100%; height: 120px;" src="https://bandcamp.com/EmbeddedPlayer/album=365385341/size=large/bgcol=2b2b29/linkcol=4a8f42/tracklist=false/artwork=small/track=342734637/transparent=true/" seamless><a href="https://dancewiththedead.bandcamp.com/album/the-shape">THE SHAPE by DANCE WITH THE DEAD</a></iframe>
-
-> Привёл только самые ходовые мотивы, полный список будет побольше
 
 ## Любимые YouTube видео
 

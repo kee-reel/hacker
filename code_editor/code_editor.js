@@ -262,7 +262,7 @@ function get_cookie_token() {
 }
 
 async function get_task_data(token, is_folder) {
-	const resp = await fetch(`https://kee-reel.com/cyber-cat?token=${token}&folders=${is_folder}`)
+	const resp = await fetch(`https://kee-reel.com/cyber-cat/v2?token=${token}&folders=${is_folder}`)
 	return await resp.json()
 }
 
@@ -281,7 +281,7 @@ async function get_token(email, pass) {
 		}
 		return null;
 	}
-	const resp = await fetch(`https://kee-reel.com/cyber-cat/login?email=${email}&pass=${pass}`)
+	const resp = await fetch(`https://kee-reel.com/cyber-cat/v2/login?email=${email}&pass=${pass}`)
 	return await resp.json()
 }
 
@@ -292,14 +292,14 @@ async function send_test(task_id, source_text) {
 	formData.append('task_id', task_id);
 	formData.append('source_text', source_text);
 
-	const resp = await fetch(`https://kee-reel.com/cyber-cat?token=${token}`, {method: 'POST', body: formData});
+	const resp = await fetch(`https://kee-reel.com/cyber-cat/v2?token=${token}`, {method: 'POST', body: formData});
 	return await resp.json();
 }
 
 async function get_task_template(task_id) {
 	var token = await get_token();
 
-	const resp = await fetch(`https://kee-reel.com/cyber-cat/template?task_id=${task_id}&token=${token}`);
+	const resp = await fetch(`https://kee-reel.com/cyber-cat/v2/template?task_id=${task_id}&token=${token}`);
 	return await resp.json();
 }
 

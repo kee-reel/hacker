@@ -17,7 +17,7 @@ title: Проект PLAG
 
 Если интересно, то вот [статья](/plag-about-ru) с подробностями.
 
-Можно почитать мою [статью](habr.com/ru/post/340018) про это приложение на Хабре, там я привожу больше конкретики.
+Можно почитать мою [статью](https://habr.com/ru/post/340018) про это приложение на Хабре, там я привожу больше конкретики.
 
 Ссылка на репозиторий: [gitlab.com/kee-reel/PLAG](https://gitlab.com/kee-reel/PLAG)
 
@@ -28,8 +28,6 @@ title: Проект PLAG
     {% if post.tag == 'plag' and post.lang == 'ru'%}
         <li>
             <h2><a href="{{ post.url | prepend: site.baseurl | replace: '//', '/' }}">{{ post.title }}</a></h2>
-            <time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date_to_string }}</time>
-            <p>{{ post.content | strip_html | truncatewords:20 }}</p>
         </li>
     {% endif %}
 {% endfor %}

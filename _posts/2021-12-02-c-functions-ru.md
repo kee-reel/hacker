@@ -7,140 +7,62 @@ lang: ru
 
 Функция (function) -- это механизм, позволяющий вынести часть логики программы в отдельный блок, который можно многократно исполнять из разных мест прогаммы.
 
-Вот пример использования функции в программке, которая спрашивает у пользователя некоторые данные и даёт советы (сомнительного качества):
+Вот пример использования функции в программке, которая складывает, возводит в квадрат и выводит на экран целые числа:
 
 ```c
 #include <stdio.h>
-// Определил индексы для каждого ответа, чтобы было легче читать код
-#define AGE 0
-#define LIKES_C 1
-#define ICE_CREAM 2
 
-int get_response(int min_response, int max_response)
+int add(int a, int b)
 {
-	int response;
-	char is_ok;
-	do {
-		scanf("%d", &response);
-		is_ok = response >= min_response && response <= max_response;
-		if(!is_ok)
-			printf("Your response must be in range [%d, %d]\n", min_response, max_response);
-	} while(!is_ok);
-	return response;
+	int result = a + b;
+	return result;
+}
+
+int square(int value)
+{
+	int result = value * value;
+	return result;
+}
+
+void show_result(int result)
+{
+	printf("Result: %d\n", result);
 }
 
 int main()
 {
-	int responses[3];
-	printf("Your age (from 1 to 124): ");
-	responses[AGE] = get_response(1, 124);
+	int result = 0;
 
-	printf("Rate how much do you like C programming language (from 1 to 10): ");
-	responses[LIKES_C] = get_response(1, 10);
+	result = add(2, 2);
+	show_result(result); // Result: 4
 
-	printf("How many times a week do you eat ice cream (from 1 to 7): ");
-	responses[ICE_CREAM] = get_response(1, 7);
+	result = square(4);
+	show_result(result); // Result: 16
 
-	printf("Suggestions:\n");
-	if(responses[ICE_CREAM] >= 5)
-		printf("Please, stop eating so much ice cream - it's bad for your health!\n");
-	else if(responses[ICE_CREAM] >= 3 && responses[AGE] > 70)
-		printf("Eating too much sugar could increase chance of getting diabetes in your age!\n");
-
-	if(responses[LIKES_C] < 5)
-		printf("Come on, C could be fun and also it's awesome base for excelent programmer career! You should reconsider!\n");
-	else
-		printf("High five!\n");
+	result = add(result, square(2));
+	show_result(result); // Result: 20
 }
 ```
 
 Это называется **определением** функции (в следующем разделе разберём подробно):
 
 ```c
-int get_response(int min_response, int max_response)
+int add(int a, int b)
 {
-	int response;
-	char is_ok;
-	do {
-		scanf("%d", &response);
-		is_ok = response >= min_response && response <= max_response;
-		if(!is_ok)
-			printf("Your response must be in range [%d, %d]\n", min_response, max_response);
-	} while(!is_ok);
-	return response;
+	int result = a + b;
+	return result;
 }
 ```
 
 Это называется **вызовом** функции:
 
 ```python
-get_response(1, 10)
+add(2, 2)
 ```
 
-Если бы я не использовал функцию, то код выглядел бы так (скопировал код из функции в места её вызова):
-
-```c
-#include <stdio.h>
-// Определил индексы для каждого ответа, чтобы было легче читать код
-#define AGE 0
-#define LIKES_C 1
-#define ICE_CREAM 2
-
-int main()
-{
-	char is_ok;
-	int response;
-	int responses[3];
-	printf("Your age (from 1 to 124): ");
-	do {
-		scanf("%d", &response);
-		is_ok = response >= 1 && response <= 124;
-		if(!is_ok)
-			printf("Your response must be in range [1, 124]\n");
-	} while(!is_ok);
-	responses[AGE] = response;
-
-	printf("Rate how much do you like C programming language (from 1 to 10): ");
-	do {
-		scanf("%d", &response);
-		is_ok = response >= 1 && response <= 10;
-		if(!is_ok)
-			printf("Your response must be in range [1, 10]\n");
-	} while(!is_ok);
-	responses[LIKES_C] = response;
-
-	printf("How many times a week do you eat ice cream (from 1 to 7): ");
-	do {
-		scanf("%d", &response);
-		is_ok = response >= 1 && response <= 7;
-		if(!is_ok)
-			printf("Your response must be in range [1, 7]\n");
-	} while(!is_ok);
-	responses[ICE_CREAM] = response;
-
-	printf("Suggestions:\n");
-	if(responses[ICE_CREAM] >= 5)
-		printf("Please, stop eating so much ice cream - it's bad for your health!\n");
-	else if(responses[ICE_CREAM] >= 3 && responses[AGE] > 70)
-		printf("Eating too much sugar could increase chance of getting diabetes in your age!\n");
-
-	if(responses[LIKES_C] < 5)
-		printf("Come on, C could be fun and also it's awesome base for excelent programmer career! You should reconsider!\n");
-	else
-		printf("High five!\n");
-}
+```python
+square(2)
 ```
-
-ААААА, больно читать!
-
-Тут сразу вылезает несколько проблем:
-
-* Если я захочу в дальнейшем добавить ещё десять вопросов, то мне надо будет скопировать-вставить эти блоки ввода 10 раз
-* Если после этого я захочу изменить вид сообщения, которое выводится при вводе числа не в указанных пределах, то мне придётся изменить это сообщение во **ВСЕХ** местах
-* Если мне надо будет починить ошибку в этом блоке кода, который дублируется, мне надо будет исправить её во **ВСЕХ** местах
-* Читать такой код стало на порядок сложнее -- подобный код (в котором много дублирования) называется говно-кодом (код низкого качества)
-
-Чтобы избежать этих проблем, вовремя выноси дублирующийся код в функции -- хороший код должен читаться как хорошая книга.
 
 Давай посмотрим как это делать и из чего состоит функция.
 
@@ -149,17 +71,10 @@ int main()
 В прошлом разделе я использовал такую функцию:
 
 ```c
-int get_response(int min_response, int max_response)
+int add(int a, int b)
 {
-	int response;
-	char is_ok;
-	do {
-		scanf("%d", &response);
-		is_ok = response >= min_response && response <= max_response;
-		if(!is_ok)
-			printf("Your response must be in range [%d, %d]\n", min_response, max_response);
-	} while(!is_ok);
-	return response;
+	int result = a + b;
+	return result;
 }
 ```
 
@@ -167,13 +82,13 @@ int get_response(int min_response, int max_response)
 
 ### Название функции
 
-* В примере это "get\_response". 
+* В примере это "add". 
 * Имя, которое мы будем писать чтобы вызвать эту функцию.
 * Требования к имени функции такие же, как к имени переменной.
 
 ### Параметры (аргументы) функции
 
-* В примере это два int параметра "min\_response" и "max\_response".
+* В примере это два int параметра "a" и "b".
 * Параметры, которые мы будем передавать в функцию для того, чтобы она что-то с нимим сделала.
 * Параметры являются локальными переменными, которым присваисваиваются значения, переданные в функицю.
 * Требования к имени параметра такие же, как к имени переменной.
@@ -184,9 +99,9 @@ int get_response(int min_response, int max_response)
 * В этом примере это "int" в начале строчки.
 * Значение, которое функция возвращает в то место, откуда её вызвали.
 * Тип возвращаемого значения может быть любым.
-* В примере функция возвращает int значение в место вызова (в месте вызова это значение записывается в массив responses).
+* В примере функция возвращает int значение в место вызова.
 * Очень часто переменные просто исполняются, и не возвращают никаких значний -- в этом случае надо использовать тип возвращаемого значения void.
-* Чтобы вернуть значение, надо написать "return ЗНАЧЕНИЕ;" (в случае void простос "return;") -- эта операция завершает выполнение функции и программа продолжает выполняться в месте вызова функции.
+* Чтобы вернуть значение, надо написать "return ЗНАЧЕНИЕ;" (в случае void просто "return;") -- эта операция завершает выполнение функции и программа продолжает выполняться в месте вызова функции.
 
 # Определение (прототип) и реализация функции
 

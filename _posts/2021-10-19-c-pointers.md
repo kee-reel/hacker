@@ -32,7 +32,7 @@ lang: ru
 int treasure = 777;
 // Указатель на int переменную (на это указывает * после типа int)
 int* treasure_map;
-// Записываем адрес int переменной в указатель treasure_map
+// Записываем адрес int переменной treasure в указатель treasure_map
 treasure_map = &treasure;
 printf("treasure: %d\n", treasure);
 printf("coordinates of treasure: %p\n", &treasure);
