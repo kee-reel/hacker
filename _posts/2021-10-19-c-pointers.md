@@ -308,30 +308,29 @@ int treasure = 777;
 int* int_treasure_map = &treasure;
 char* char_treasure_map = ((char*)&treasure);
 printf("treasure: %d\n", treasure);
+// treasure: 777
 printf("address in int_treasure_map: %p\n", int_treasure_map);
+// address in int_treasure_map: 0x7ffe5123e044
 printf("address in char_treasure_map: %p\n", char_treasure_map);
+// address in char_treasure_map: 0x7ffe5123e044
 printf("value by int_treasure_map: %d\n", *int_treasure_map);
+// value by int_treasure_map: 777
 printf("value by char_treasure_map+0: %d\n", *char_treasure_map);
+// value by char_treasure_map+0: 9
 printf("value by char_treasure_map+1: %d\n", *(char_treasure_map+1));
+// value by char_treasure_map+1: 3
 // А могу ещё и в переменную засунуть
 char* char_treasure_map_2 = ((char*)&treasure) + 2;
 printf("value by char_treasure_map+2: %d\n", *char_treasure_map_2);
+// value by char_treasure_map+2: 0
 // А могу ещё вот так на 1 вперёд сдвинуть
 char_treasure_map_2++;
 printf("value by char_treasure_map+3: %d\n", *char_treasure_map_2);
+// value by char_treasure_map+3: 0
 // А могу в обратную сторону сдвинуть
 char_treasure_map_2 -= 3;
 printf("value by char_treasure_map+0: %d\n", *char_treasure_map_2);
-/* Вывод:
-treasure: 777
-address in int_treasure_map: 0x7ffe5123e044
-address in char_treasure_map: 0x7ffe5123e044
-value by int_treasure_map: 777
-value by char_treasure_map+0: 9
-value by char_treasure_map+1: 3
-value by char_treasure_map+2: 0
-value by char_treasure_map+3: 0
-value by char_treasure_map+0: 9 */
+// value by char_treasure_map+0: 9
 ```
 
 ![Адресная арифметика](/assets/images/c-pointers-arithmetic.png)

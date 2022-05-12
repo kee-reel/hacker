@@ -188,7 +188,7 @@ def time_handler():
 
 ```python
 # Добавь это в начало файла
-import datetime
+from datetime import datetime
 
 @app.route('/time')
 def time_handler():
