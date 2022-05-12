@@ -112,7 +112,7 @@ def hello_world():
 
 @app.route('/test')
 def this_is_test_handler_func():
-	return '<H1 color="red">test</H1>'
+	return '<H1 style="color:red;">test</H1>'
 
 app.run(port=1234)
 ```
