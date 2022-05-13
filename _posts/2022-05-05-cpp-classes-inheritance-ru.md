@@ -74,6 +74,8 @@ public:
     Cat(float fluffiness, int weight, int age) :
         Animal(weight, age, 15),
         m_fluffiness(fluffiness)
+    {}
+    void talk()
     {
         std::cout << "Mew mew" << std::endl;
     }
@@ -92,6 +94,8 @@ public:
     Horse(float speed, int weight, int age) :
         Animal(weight, age, 30),
         m_speed(speed)
+    {}
+    void talk()
     {
         std::cout << "Pfrrr" << std::endl;
     }
@@ -106,8 +110,9 @@ private:
 };
 ```
 
-Особенности:
+Особенности обращения с конструкторами и деструкторами при наследовании:
 
+* Конструкторы и деструкторы не наследуются
 * Параметры конструкторов могут различаться -- например, у меня в констукторах `Cat` и `Horse` нет параметра `max_age`, и я передаю в конструктор `Animal` фиксированное значение, в зависимости от типа животного
 * Если явно не вызывать конструктор базового класса из конструктора наследника, то будет вызван конструктор базового класса без параметров. Если у базового класса нет конструктора без параметров, то будет ошибка компиляции
 * При создании объекта сначала вызывается конструктор родителя, то есть порядок такой: `родитель->наследник->наследник_наследника->...`
@@ -119,8 +124,10 @@ private:
 int main()
 {
     Cat a1(0.8, 7, 13);
+    a1.talk();
     // Mew mew
     Horse a2(18, 268, 4);
+    a2.talk();
     // Pfrrr
     std::cout << "Cat is old: " << a1.is_old() << std::endl <<
     // Cat is old: 1
@@ -131,13 +138,13 @@ int main()
         "Cat will shed about " << (a1.shed_weight() * 365) << " kg of hair in a year" << std::endl <<
     // Cat will shed about 29.2 kg of hair in a year
         "Horse will travel 100km in about " << a2.travel_time(100) << " hours" << std::endl;
-    // Horse will travel 100km in about 5.55556 hours
+    // Horse will travel 100km in about 20.8333 hours
 }
 ```
 
 То есть у наших кошки и лошади всё так же можно вызвать методы `is_old()` и `is_bigger_than()`, но при этом, у каждого из них есть свои уникальные методы `shed_weight()` и `travel_time()`.
 
-### Специцикатор доступа protected
+### Спецификатор доступа protected
 
 И это касается не только методов -- поля `m_weight`, `m_age` и `m_max_age` тоже могут быть унаследованы -- то есть мы сможем их использовать в `Cat` и `Horse`.
 
@@ -159,7 +166,7 @@ int main()
     {
         float peak_age = m_max_age / 2;
         float age_multiplier = 1 - fabs(peak_age - m_age) / peak_age;
-        return (distance / m_speed) * age_multiplier;
+        return distance / (m_speed * age_multiplier);
     }
 ```
 
@@ -245,230 +252,265 @@ class Cat : private Animal {
 
 `protected` и `private` наследование используется в экзотических случаях, и я не буду их рассматривать в рамках этой статьи. Просто используй `public`, пока не захочешь погрузиться глубже в C++.
 
-> Если не указывать тип наследования, то по умолчанию он будет `private` -- не забывай всегда писать `public`.
+> Если не указывать тип наследования, то по умолчанию он будет `private`, поэтому не забывай всегда писать `public`.
 
-# Виртуальные методы
+# Наследник наследника и переопределение методов
 
-Давай добавим `public` метод `talk()` в классы `Cat` и `Horse`, и уберём вывод строки из конструктора:
+Если программа очень сложная, то иерархия наследования может сильно разрастаться.
+
+Например, мы пишем программу, которая будет производить сложную симуляцию поведения животных, и нам обязательно надо разделить поведение домашних и уличных кошек:
 
 ```cpp
-class Cat : public Animal
+// Домашняя кошка
+class DomesticCat : public Cat
 {
-public:
-    Cat(float fluffiness, int weight, int age) :
-        Animal(weight, age, 15),
-        m_fluffiness(fluffiness)
+    DomesticCat(float fluffiness, int weight, int age) :
+        Cat(fluffines, weight, age)
     {}
-    ...
     void talk()
     {
-        std::cout << "Mew mew" << std::endl;
+        std::cout << "Prrr prrrr" << std::endl;
     }
-    ...
 };
-
-class Horse : public Animal
+// Уличная кошка
+class StrayCat : public Cat
 {
-public:
-    Horse(float speed, int weight, int age) :
-        Animal(weight, age, 30),
-        m_speed(speed)
+    StrayCat(float fluffiness, int weight, int age) :
+        Cat(fluffines, weight, age)
     {}
-    ...
     void talk()
     {
-        std::cout << "Pfrrr" << std::endl;
+        std::cout << "Shchhhhhhhhh" << std::endl;
     }
-    ...
 };
 ```
 
-Теперь можно узнать как делает кошечка и лошадка:
+Теперь эти классы будут отличаться от поведения родительского класса `Cat`:
 
 ```cpp
 int main()
 {
-    Cat a1(0.8, 7, 13, 15);
-    Horse a2(18, 268, 4, 25);
-    a1.talk();
+    Cat c(0.8, 7, 13);
+    c.talk();
     // Mew mew
-    a2.talk();
-    // Pfrrr
+    DomesticCat d(0.8, 7, 13);
+    d.talk();
+    // Prrr prrrr
+    StrayCat s(0.8, 7, 13);
+    s.talk();
+    // Shchhhhhhhhh
 }
 ```
 
-А что если мы захотим открыть питомник для животных? Для этого нам придётся хранить объекты вроде `Cat` и `Animal` в массиве:
+Таким образом, мы унаследовались от класса `Cat`, который, в свою очередь, наследуется от `Animal`.
+
+Также, в классах `DomesticCat` и `StrayCat` мы переопределили метод `talk()` родительского класса `Cat`.
+
+Однако, у нас есть проблема -- из-за того, что максимальный возраст кошки определён в `Cat`, мы не можем его указать в `DomesticCat` и `StrayCat`. В следующем разделе мы исправим эту проблему.
+
+# Diamond problem, проблема перекрёстного наследования
+
+Ситуация -- генетики скрестили между собой птицу и лошадь, и получили пегаса:
 
 ```cpp
-int main()
+class Bird : public Animal
 {
-    int count;
-    std::cin >> count;
-    Cat **cat_array = new Cat*[count];
-    std::cin >> count;
-    Horse **horse_array = new Horse*[count];
-    ...
-```
-
-Ой, это под каждый новый класс, наследованный от `Animal` создавать по массиву? А можно всех в один засунуть?
-
-Можно:
-
-```cpp
-// Вспомогательные функции для ввода значений
-int get_float(const char *name)
-{
-    std::cout << name << ": ";
-    int field;
-    std::cin >> field;
-    return field;
-}
-// Когда пройдём шаблоны, это можно будет записать без дублирования кода
-float get_int(const char *name)
-{
-    std::cout << name << ": ";
-    float field;
-    std::cin >> field;
-    return field;
-}
-
-int main()
-{
-    int count = get_int("count");
-    Animal **animals = new Animal*[count];
-    for(int i = 0; i < count; i++)
+public:
+    Bird(float max_height, int weight, int age) :
+        Animal(weight, age, 8),
+        m_max_height(max_height)
+    {}
+    void talk()
     {
-        int animal_type = get_int("animal type (0 - cat, 1 - horse)");
-        if(animal_type < 0 || animal_type > 1)
-        {
-            std::cout << "Wrong animal type, try again" << std::endl;
-            i--; // Вычитаем 1, чтобы следующая итерация прибавила 1 и мы остались на том же i
-            continue;
-        }
-        Animal *a;
-        int weight = get_int("weight");
-        int age = get_int("age");
-        switch(animal_type)
-        {
-            case 0: {
-                float fluffiness = get_float("fluffiness");
-                a = new Cat(fluffiness, weight, age);
-            } break;
-            case 1: {
-                float speed = get_float("speed");
-                a = new Horse(speed, weight, age);
-            }
-        }
-        animals[i] = a;
+        std::cout << "Tweet tweet" << std::endl;
     }
-    // После этого все животные "скажут" что-то
-    for(int i = 0; i < count; i++)
-        animals[i]->talk();
+    // Может ли летать на такой высоте
+    bool can_fly(float height)
+    {
+        return m_max_height >= height;
+    }
+private:
+    // Максимальная высота полёта
+    float m_max_height;
+};
+
+class Pegasus : public Horse, public Bird
+{
+public:
+    Pegasus(float speed, int flight_height, int weight, int age) :
+        Horse(speed, weight, age),
+        Bird(flight_height, weight, age)
+    {}
+    // Я не хочу переопределять метод talk(), потому что пегас 
+    // должен "говорить" как так же, как класс Horse
+};
+```
+
+Давай создадим объект класса `Pegasus`:
+
+```cpp
+int main()
+{
+    Pegasus p(10, 10, 10, 10);
+    p.talk();
 }
 ```
 
-При компиляции вылезет такая ошибка:
+При компиляции вылезет ошибка:
 
 ```
 animal.cpp: In function ‘int main()’:
-animal.cpp:121:21: error: ‘class Animal’ has no member named ‘talk’
-  121 |         animals[i]->talk();
-      |                     ^~~~
+animal.cpp:120:7: error: request for member ‘talk’ is ambiguous
+120 |     p.talk();
+    |       ^~~~
+animal.cpp:12:10: note: candidates are: ‘void Animal::talk()’
+ 12 |     void talk()
+    |          ^~~~
+animal.cpp:83:10: note:                 ‘void Bird::talk()’
+ 83 |     void talk()
+    |          ^~~~
+animal.cpp:60:10: note:                 ‘void Horse::talk()’
+ 60 |     void talk()
+    |          ^~~~
 ```
 
-Он ругается, что `Animal` не знает такого метода. Ну да, у нас же в массиве лежат `Animal*`, а там такого метода нет.
+Компилятор говорит, что он не может разобраться чей же метод `talk()` мы хотим вызывать -- `Animal::talk()`, `Bird::talk()` или `Horse::talk()`?
 
-Хмм, ну давай попробуем добавить ему этот метод:
+Эта проблема называется **"Diamond inheritance problem"** -- на наш можно перевести как **"Проблема алмазного наследования"**.
+
+Алмаз тут используется в переносном смысле, чтобы описать форму иерархии наследования, когда класс `Pegasus`, наследуется от `Horse` и `Bird`, которые, в свою очередь наследуются от `Animal`:
+
+![]()
+
+Если такая ситуация возникает, то, скорее всего, мы неправильно организовали саму иерархию наследования.
+
+Как же нам поступить?
+
+Одним из выходов, является выделение общих признаков для классов `Animal`, `Horse` и `Bird` в отдельные классы: `Aging` (стареющее), `Weight` (вес), `Walking` (ходячее), `Flying` (летающее), `Talking` (разговаривающее).
 
 ```cpp
-class Animal
+class Aging
 {
 public:
-    ...
+    Aging(int age, int max_age) :
+        m_age(age),
+        m_max_age(max_age)
+    {}
+    // Можем узнать старое ли это что-то
+    bool is_old()
+    {
+        return m_age > m_max_age * 0.75;
+    }
+private:
+    int m_age;
+    int m_max_age;
+};
+
+class Weight
+{
+public:
+    Weight(int weight) :
+        m_weight(weight)
+    {}
+    bool is_bigger_than(Weight &other)
+    {
+        return m_weight > other.m_weight;
+    }
+private:
+    int m_weight;
+};
+
+class Walking
+{
+public:
+    Walking(float speed) :
+        m_speed(speed)
+    {}
+    float travel_time(float distance)
+    {
+        return distance / m_speed;
+    }
+private:
+    float m_speed;
+};
+
+class Flying
+{
+public:
+    Flying(float max_height) :
+        m_max_height(max_height)
+    {}
+    bool can_fly(float height)
+    {
+        return m_max_height >= height;
+    }
+private:
+    // Максимальная высота полёта
+    float m_max_height;
+};
+
+#include <cstring>
+class Talking
+{
+public:
+    Talking(const char *phrase)
+    {
+        m_phrase = new char[strlen(phrase)+1];
+        strcpy(m_phrase, phrase);
+    }
+    ~Talking()
+    {
+        delete[] m_phrase;
+    }
     void talk()
     {
-        std::cout << "Abstract animal" << std::endl;
+        std::cout << m_phrase << std::endl;
     }
-    ...
+private:
+    char* m_phrase;
 };
-```
 
-Теперь всё скомпилируется:
+class Pegasus : public Aging, public Weight, public Walking, public Flying, public Talking
+{
+public:
+    Pegasus(float speed, int height, int weight, int age) :
+        Aging(age, 50),
+        Weight(weight),
+        Walking(speed),
+        Flying(height),
+        Talking("Pfrrrr")
+    {}
+};
 
-```
-count: 2
-animal type (0 - cat, 1 - horse): 1weight: 150
-age: 14
-speed: 17
-animal type (0 - cat, 1 - horse): 0
-weight: 4
-age: 1
-fluffiness: 0.9
-Abstract animal
-Abstract animal
-```
-
-Так, почему выводит "Abstract animal"? `Cat` и `Horse` не перезаписали метод `talk()`?
-
-Давай попробуем добавить явное приведение к типу `Cat` и вызовем методы `talk()` и `shed_weight()`:
-
-```cpp
-    ...
-    for(int i = 0; i < count; i++)
-    {
-        std::cout << "Animal #" << i << std::endl;
-        ((Cat*)animals[i])->talk();
-        "Cat will shed " << ((Cat*)animals[i])->shed_weight() << " kg of hair in a day" << std::endl;
-    }
+int main()
+{
+    Pegasus p(10, 10, 10, 10);
+    p.talk();
 }
 ```
 
-Получится такой вывод:
+Да, теперь мы починили проблему, но какой ценой...
 
-```
-count: 2
-animal type (0 - cat, 1 - horse): 0weight: 1
-age: 0
-fluffiness: 1
-animal type (0 - cat, 1 - horse): 1
-weight: 140
-age: 15
-speed: 30
-Animal #0
-Mew mew
-Cat will shed 0.1 kg of hair in a day
-Animal #1
-Mew mew
-Cat will shed 1.5 kg of hair in a day
-```
-
-Воу, теперь они все мяукают, даже лошадь! А если привести к типу `Horse*`?
-
-```cpp
-    ...
-    for(int i = 0; i < count; i++)
-    {
-        std::cout << "Animal #" << i << std::endl;
-        ((Horse*)animals[i])->talk();
-        "Horse will cover 1km in " << ((Horse*)animals[i])->travel_time(1) << " hours" << std::endl;
-    }
-}
-```
+В программировании, как и в жизни, не бывает идеальных решений -- здесь, мы решили одну проблему, но создали другую -- наследование сильно усложнилось.
 
 # [](#header-1)Заключение
 
 Итого, мы изучили:
 
 * Наследование
-* Родительский класс
-* Дочерний класс
-* Конструктор родительского класса
-* Переопределение метода
+* **Родительский класс** aka. **Базовый класс** aka. **Родитель**
+* **Дочерний класс** aka. **Наследник** aka. **Ребёнок**
+* Конструкторы и деструкторы в наследовании:
+    * Конструкторы и деструкторы не наследуются
+    * Параметры конструкторов могут различаться
+    * Если не вызовем вручную, то вызовется конструктор базового класса без параметров
+    * Порядок вызова конструкторов: `родитель->наследник->наследник_наследника->...`
+    * Порядок вызова деструкторов: `...->наследник_наследника->наследник->родитель`
+* `protected` -- доступ только из самого класса или его наследников
+* `public` наследование берёт всё как есть, `protected` и `private` наследование -- изменяют модификаторы доступа
 
 И, ещё раз, смысл наследования:
 
 ### Тебе не надо дублировать одинаковую логику в разных классах -- логика пишется один раз в родительском классе, и переиспользуется во всех дочерних классах.
 
 Если что -- пиши, я помогу и постараюсь объяснить лучше.
-
-Если ты ещё полон сил, то вернись к [статье про ООП](/python-classes-oop-ru), и продолжи постижение ООП.
