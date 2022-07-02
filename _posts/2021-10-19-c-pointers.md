@@ -35,19 +35,18 @@ int* treasure_map;
 // Записываем адрес int переменной treasure в указатель treasure_map
 treasure_map = &treasure;
 printf("treasure: %d\n", treasure);
+// treasure: 777
 printf("coordinates of treasure: %p\n", &treasure);
+// coordinates of treasure: 0x7ffe461b4bec
 printf("coordinates in treasure_map: %p\n", treasure_map);
-/* Вывод:
-treasure: 777
-coordinates of treasure: 0x7ffe461b4bec
-coordinates in treasure_map: 0x7ffe461b4bec */
+// coordinates in treasure_map: 0x7ffe461b4bec
 ```
 
 Давай разберём что вывела программа:
 
 * "treasure: 777" -- значение нашей переменной (клад)
 * "coordinates of treasure: 0x7ffe461b4bec" -- адрес переменной (координаты клада)
-* "coordinates in treasure_map: 0x7ffe461b4bec" -- значение указателя (координаты, записанные в карте)
+* "coordinates in treasure\_map: 0x7ffe461b4bec" -- значение указателя (координаты, записанные в карте)
 
 А почему адрес так выглядит?
 
@@ -115,7 +114,7 @@ cooridnates in treasure_map: 0x7ffe461b4bec
 treasure by coordinates in treasure_map: 777 */
 ```
 
-То есть, чтобы получить значение по адресу, который хранится в указателе, надо указать звёздочку "*" перед именем указателя.
+То есть, чтобы получить значение по адресу, который хранится в указателе, надо указать звёздочку "\*" перед именем указателя.
 
 > Операция получения значения по указателю называется разыменованием.
 
@@ -129,11 +128,10 @@ treasure by coordinates in treasure_map: 777 */
 int treasure = 777;
 int* treasure_map = &treasure;
 printf("treasure: %d\n", treasure);
+// treasure: 777
 *treasure_map = 666;
 printf("new treasure: %d\n", treasure);
-/* Вывод:
-treasure: 777
-new treasure: 666 */
+// new treasure: 666
 ```
 
 # Карта, которая является сокровищем
@@ -145,12 +143,12 @@ new treasure: 666 */
 ```c
 int* p_x;
 p_x = &p_x;
-printf("%p %X %d\n", p_x, *p_x, *p_x);
-// Вывод: 0x7ffd164172d0 164172D0 373387984
+printf("%p %d\n", p_x, *p_x);
+// 0x7ffd164172d0 373387984
 
 *p_x = 255;
-printf("%p\n", p_x);
-// Вывод: 0x7ffd000000ff
+printf("%p %d\n", p_x);
+// 0x7ffd000000ff 255
 // Теперь нельзя выводить значение через *p_x, потому что
 // он указывает на несуществующий адрес FF.
 ```
@@ -170,16 +168,15 @@ int treasure = 777;
 int* my_map = &treasure;
 int* friend_map = my_map;
 printf("treasure: %d\n", treasure);
+// treasure: 777
 printf("coordinates in my_map: %p\n", my_map);
+// coordinates in my_map: 0x7ffc7cac03a4
 printf("treasure by my_map: %d\n", *my_map);
+// treasure by my_map: 777
 printf("coordinates in friend_map: %p\n", friend_map);
+// coordinates in friend_map: 0x7ffc7cac03a4
 printf("treasure by friend_map: %d\n", *friend_map);
-/* Вывод:
-treasure: 777
-coordinates in my_map: 0x7ffc7cac03a4
-treasure by my_map: 777
-coordinates in friend_map: 0x7ffc7cac03a4
-treasure by friend_map: 777 */
+// treasure by friend_map: 777
 ```
 
 # Карта с координатами другой карты
@@ -200,19 +197,18 @@ int treasure = 777;
 int* map_A = &treasure;
 int** map_B = &map_A;
 printf("coordinates in map_B: %p\n", map_B);
+// coordinates in map_B: 0x7ffe82475c28
 printf("coordinates of map_A: %p\n", &map_A);
+// coordinates of map_A: 0x7ffe82475c28
 printf("coordinates in map_A: %p\n", *map_B);
+// coordinates in map_A: 0x7ffe82475c24
 printf("coordinates of treasure: %p\n", &treasure);
+// coordinates of treasure: 0x7ffe82475c24
 printf("treasure: %d\n", **map_B);
-/* Вывод:
-coordinates in map_B: 0x7ffe82475c28
-coordinates of map_A: 0x7ffe82475c28
-coordinates in map_A: 0x7ffe82475c24
-coordinates of treasure: 0x7ffe82475c24
-treasure: 777 */
+// treasure: 777
 ```
 
-Вот эта последняя строчка, где написано "**map_B" -- самая сложная. Здесь, мы идём по координатам из карты "В", находим карту "А", и уже по карте "А", достаём клад.
+Вот эта последняя строчка, где написано "\*\*map\_B" -- самая сложная. Здесь, мы идём по координатам из карты "В", находим карту "А", и уже по карте "А", достаём клад.
 
 # Разные типы указателей
 
@@ -222,7 +218,7 @@ treasure: 777 */
 
 ### Кусочек переменной
 
-Допустим у тебя есть int указатель на int переменную -- а что, если у тебя будет char указатель на эту же переменную?
+Допустим у тебя есть int указатель на int переменную -- а что, если у тебя будет char указатель на int переменную?
 
 ```c
 int treasure = 777;
@@ -230,23 +226,22 @@ int* int_treasure_map = &treasure;
 // Явное приведение int* к char*, чтобы компилятор не ругался
 char* char_treasure_map = (char*)&treasure;
 printf("treasure: %d\n", treasure);
+// treasure: 777
 printf("address in int_treasure_map: %p\n", int_treasure_map);
+// address in int_treasure_map: 0x7ffd9ec2e014
 printf("address in char_treasure_map: %p\n", char_treasure_map);
+// address in char_treasure_map: 0x7ffd9ec2e014
 printf("value by int_treasure_map: %d\n", *int_treasure_map);
+// value by int_treasure_map: 777
 printf("value by char_treasure_map: %d\n", *char_treasure_map);
-/* Вывод:
-treasure: 777
-address in int_treasure_map: 0x7ffd9ec2e014
-address in char_treasure_map: 0x7ffd9ec2e014
-value by int_treasure_map: 777
-value by char_treasure_map: 9 */
+// value by char_treasure_map: 9
 ```
 
 ![Разные типы указателей](/assets/images/c-pointers-different-types.png)
 
 Помнишь, я упомянал до этого про порядок байт? В этом примере мы увидели вживую что это такое.
 
-У меня получилось, что char_treasure_map вернул нам значение первого байта int переменной treasure. Почему только первый байт? Потому что это указатель на char, а char занимает 1 байт.
+У меня получилось, что char\_treasure\_map вернул нам значение первого байта int переменной treasure. Почему только первый байт? Потому что это указатель на char, а char занимает 1 байт.
 
 Если бы у меня был порядок байт не "от младшего к старшему", а "от старшего к младшему", то мне вернулось бы значение 0, так как первыми байтами числа были старшие байты (а там первые два байта это нули).
 
@@ -267,7 +262,7 @@ printf("Interpret x as float: %f\nInterpret x as int: %d\n", x, *p_x);
 // Interpret x as int: 777
 ```
 
-Изначально мы присвоили в переменную "x" значение 777 как во float переменную -- в память оно и записалось в вещественном представлении. Затем, мы присвоили значение 777 по int указателю "p_x" -- туда, куда указывает "p_x" (в переменную "x") мы записали его в целочисленном представлении. 
+Изначально мы присвоили в переменную "x" значение 777 как во float переменную -- в память оно и записалось в вещественном представлении. Затем, мы присвоили значение 777 по int указателю "p\_x" -- туда, куда указывает "p\_x" (в переменную "x") мы записали его в целочисленном представлении. 
 
 Вот наглядная демострация того, как выглядят разные представления числа 777:
 

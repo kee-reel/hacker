@@ -1,6 +1,6 @@
 ---
 title: C++. Наследование классов
-published: false
+published: true
 tag: cpp
 lang: ru
 ---

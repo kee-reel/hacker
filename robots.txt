@@ -1,2 +1,3 @@
 User-agent: *
 Disallow: /about.html
+Disallow: /about-ru.html
