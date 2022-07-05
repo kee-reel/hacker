@@ -1,0 +1,12 @@
+{{ define "main" }}
+<h1> {{ .Title }} </h1>
+{{ .Content }}
+<ul>
+    {{ $list_title := printf "%s. " .Title }}
+    {{ range .Pages.ByDate }}
+        <li>
+            <h3><a href="{{ .Permalink }}">{{ replace .Title $list_title "" }}</a></h3>
+        </li>
+    {{ end }}
+</ul>
+{{ end }}

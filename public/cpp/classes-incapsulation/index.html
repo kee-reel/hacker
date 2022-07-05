@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="ru">
+	<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5">
+	<meta name="description" content="IT простым языком">
+	<meta name="generator" content="HUGO">
+
+	<meta name="theme-color" content="#ffffff">
+
+    
+    
+    <link rel="stylesheet" href="http://kee-reel.com/sass/main.c3c167415800f2394c3296fcddb264b8afea9703b424d3003f18be3b0f9e64bc.css" integrity="sha256-w8FnQVgA8jlMMpb83bJkuK/qlwO0JNMAPxi&#43;Ow&#43;eZLw=">
+</head>
+
+<body>
+	<div id="top"/>
+<header>
+    <p align="center">
+        +---------------------------+<br>
+        |.-------------------------.|<br>
+        ||&nbsp;<a href="/">kee_reel@blog</a>:~$ cd&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;||<br>
+        ||&nbsp;<a href="/c">c</a>&nbsp;&nbsp;<a href="/cpp">c++</a>&nbsp;&nbsp;<a href="/python">python</a>&nbsp;&nbsp;<a href="/linux">linux</a>&nbsp;&nbsp;&nbsp;||<br>
+        ||&nbsp;<a href="/opengl">opengl</a>&nbsp;&nbsp;<a href="/sql">sql</a>&nbsp;&nbsp;<a href="/network">networks</a>&nbsp;&nbsp;&nbsp;||<br>
+        ||&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;||<br>
+        ||&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/about">обо_мне</a>&nbsp;||<br>
+        |.-------------------------.|<br>
+        +-::---------------------::-+<br>
+        .---------------------------.<br>
+        &nbsp;//&nbsp;/o<a href="/links">o</a>oooooooooooooooooooo\\&nbsp;\\&nbsp;<br>
+        &nbsp;//&nbsp;/oooooooooooooooooooooooo\\&nbsp;\\&nbsp;<br>
+        //-------------------------------\\<br>
+        \\-------------------------------//<br>
+    </p>
+</header>
+
+		
+	<div id="wrapper">
+		<div class="container">
+			<section id="main_content">
+    <h1>C&#43;&#43;. Инкапсуляция</h1>
+    
+    
+        <h3>Время чтения: 12 мин</h3>
+    
+    <blockquote>
+<p>Я буду основываться на коде, приведённом в основной <a href="/cpp-classes">статье</a> про классы.</p>
+</blockquote>
+<p><strong>Инкапсуляция</strong> &ndash; позволяет скрыть детали реализации.</p>
+<p>Ты когда-нибудь пробовал разобрать свой телефон или ноутбук? Это очень сложный процесс, который как-будто специально сделан максимально трудоёмким для пользователя. Зачем это нужно его создателям?</p>
+<p><img src="/assets/images/laptop-repair.png" alt="Разбор ноутбука"></p>
+<p>Если бы это было очень просто, то ты бы мог залезть &ldquo;просто посмотреть&rdquo; и случайно что-то сломать в этом сложном устройстве.</p>
+<p>Так вот на программирование это переносится идеально. Только вместо устройства здесь твои классы, а вместо пользователя другие разработчики.</p>
+<p>Если ты не затруднишь доступ к чувствительным местам своих классов, то есть хорошая вероятность, что другой разработчик чего-то в нём не поймёт и сломает всё к чертям :)</p>
+<p>В рамках этой статьи я рассмотрю инкапсуляцию &ndash; способ сокрытия переменных и методов от шаловливых ручек разработчиков.</p>
+<h1 id="проблема-доступа-ко-внутренним-переменным">Проблема доступа ко внутренним переменным</h1>
+<p>Напомню то, как я объявлял класс до этого:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Coffee</span>
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span><span style="color:#f92672">:</span>
+</span></span><span style="display:flex;"><span>	Coffee(<span style="color:#66d9ef">const</span> <span style="color:#66d9ef">char</span> <span style="color:#f92672">*</span>type, <span style="color:#66d9ef">int</span> temperature, <span style="color:#66d9ef">int</span> volume) {...}
+</span></span><span style="display:flex;"><span>	<span style="color:#f92672">~</span>Coffee() {...}
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">void</span> <span style="color:#a6e22e">drink</span>(<span style="color:#66d9ef">int</span> ml_to_drink) {...}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">char</span> <span style="color:#f92672">*</span>m_type;
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">int</span> m_temperature;
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">int</span> m_volume;
+</span></span><span style="display:flex;"><span>};
+</span></span></code></pre></div><p>Если я создам объект этого класса, то я смогу вызвать любой метод и обратиться к любому полю:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>()
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>	Coffee public_coffee(<span style="color:#e6db74">&#34;latte&#34;</span>, <span style="color:#ae81ff">30</span>, <span style="color:#ae81ff">100</span>);
+</span></span><span style="display:flex;"><span>	public_coffee.drink(<span style="color:#ae81ff">100</span>);
+</span></span><span style="display:flex;"><span>	public_coffee.m_type <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;random_shit&#34;</span>;
+</span></span><span style="display:flex;"><span>	public_coffee.m_temperature <span style="color:#f92672">=</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">666</span>;
+</span></span><span style="display:flex;"><span>	public_coffee.m_volume <span style="color:#f92672">=</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">100</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>В этом примере всё, кроме создания класса и вызова метода <code>drink()</code> ломает поведение программы. Да, ты можешь сказать, что это очень странные действия, и так никто не будет делать. А что если я приведу такую ситуацию:</p>
+<ul>
+<li>На работе, при решении какой-то задачи, ты написал класс Coffee, но не защитил внутренние поля</li>
+<li>Какого-то другого программиста попросили решить задачу с помощью твоего класса Coffee</li>
+<li>Он должен:
+<ul>
+<li>Создать объект</li>
+<li>Считать с клавиатуры число</li>
+<li>&ldquo;Выпить&rdquo; считанный объём кофе</li>
+</ul>
+</li>
+</ul>
+<p>Вот как он это сделал:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>()
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>	Coffee public_coffee(<span style="color:#e6db74">&#34;latte&#34;</span>, <span style="color:#ae81ff">30</span>, <span style="color:#ae81ff">100</span>);
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">int</span> ml_to_drink;
+</span></span><span style="display:flex;"><span>	std<span style="color:#f92672">::</span>cin <span style="color:#f92672">&gt;&gt;</span> ml_to_drink;
+</span></span><span style="display:flex;"><span>	public_coffee.m_volume <span style="color:#f92672">-=</span> ml_to_drink;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>Уже видишь проблему? Из-за того, что он не воспользовался методом <code>drink()</code>, вполне возможна ситуация, что <code>m_volume</code> уйдёт в отрицательные значения.</p>
+<h1 id="спецификаторы-доступа">Спецификаторы доступа</h1>
+<p>Скорее всего ты уже давно заметил, что в объявлении класса написан какой-то <code>public</code> &ndash; что это значит?</p>
+<p><code>public</code> это спецификатор доступа. Спецификатор доступа определяет, кто может обращаться к указанным полям и методам.</p>
+<p>В С++ существует три спецификатора доступа:</p>
+<ul>
+<li>public &ndash; к полям и методам объекта можно обращаться откуда угодно</li>
+<li>private &ndash; к полям и методам объекта можно обращаться только внутри методов класса</li>
+<li>protected &ndash; к полям и методам объекта можно обращаться внутри методов класса и классов-наследников</li>
+</ul>
+<p><code>protected</code> мы разберём в статье про наследование, а пока давай сфокусируемся на <code>public</code> и <code>private</code>.</p>
+<p>Вернёмся к проблеме, которую создал другой программист:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>()
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>	Coffee public_coffee(<span style="color:#e6db74">&#34;latte&#34;</span>, <span style="color:#ae81ff">30</span>, <span style="color:#ae81ff">100</span>);
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">int</span> ml_to_drink;
+</span></span><span style="display:flex;"><span>	std<span style="color:#f92672">::</span>cin <span style="color:#f92672">&gt;&gt;</span> ml_to_drink;
+</span></span><span style="display:flex;"><span>	public_coffee.m_volume <span style="color:#f92672">-=</span> ml_to_drink;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>Сейчас, поле <code>m_volume</code> у нас <code>public</code>, но нам ничего не мешает сделать его <code>private</code>:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Coffee</span>
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span><span style="color:#f92672">:</span>
+</span></span><span style="display:flex;"><span>	Coffee(<span style="color:#66d9ef">const</span> <span style="color:#66d9ef">char</span> <span style="color:#f92672">*</span>type, <span style="color:#66d9ef">int</span> temperature, <span style="color:#66d9ef">int</span> volume) {...} <span style="color:#75715e">// всё ещё public
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	<span style="color:#f92672">~</span>Coffee() {...} <span style="color:#75715e">// всё ещё public
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	<span style="color:#66d9ef">void</span> <span style="color:#a6e22e">drink</span>(<span style="color:#66d9ef">int</span> ml_to_drink) {...} <span style="color:#75715e">// всё ещё public
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">private</span><span style="color:#f92672">:</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">char</span> <span style="color:#f92672">*</span>m_type; <span style="color:#75715e">// теперь private
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	<span style="color:#66d9ef">int</span> m_temperature; <span style="color:#75715e">// теперь private
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	<span style="color:#66d9ef">int</span> m_volume; <span style="color:#75715e">// теперь private
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>};
+</span></span></code></pre></div><p>После занесения полей под <code>private</code>, при попытке написать такой код, другой программист поймает ошибку компиляции:</p>
+<pre tabindex="0"><code>main.cpp: In function ‘int main()’:
+main.cpp:52:23: error: ‘int Coffee::m_volume’ is private within this context
+52 |		 public_coffee.m_volume -= ml_to_drink;
+   |					   ^~~~~~~~
+main.cpp:45:13: note: declared private here
+45 |		 int m_volume;
+   |			 ^~~~~~~~
+</code></pre><p>Теперь, мы не оставили ему выбора, кроме как нормально изменить объём, вызвав метод <code>drink</code>:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>()
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>	Coffee public_coffee(<span style="color:#e6db74">&#34;latte&#34;</span>, <span style="color:#ae81ff">30</span>, <span style="color:#ae81ff">100</span>);
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">int</span> ml_to_drink;
+</span></span><span style="display:flex;"><span>	std<span style="color:#f92672">::</span>cin <span style="color:#f92672">&gt;&gt;</span> ml_to_drink;
+</span></span><span style="display:flex;"><span>	public_coffee.drink(ml_to_drink);
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><blockquote>
+<p>Если ты всё ещё сомневаешься, что кто-то будет делать глупые вещи, то представь, что у этого программиста выдалась бессонная ночь, у него проблемы в семье и сегодня дедлайн &ndash; ему лишь бы сделать. Всякое бывает в жизни, так что лучше перестраховаться.</p>
+</blockquote>
+<h1 id="вызов-метода-из-другого-метода">Вызов метода из другого метода</h1>
+<p>Иногда, методы по своей функциональности могут быть очень похожи &ndash; в этих случаях очень удобно вызывать метод из другого метода. И при этом не важно &ndash; <code>public</code> это или <code>private</code> &ndash; все поля и <strong>методы</strong> класса доступны внутри методов класса.</p>
+<p>Например, у меня есть метод <code>drink</code>, уменьшающий объём на произвольное количество миллилитров, и метод <code>sip</code> (маленький глоток), уменьшающий объём на 15 миллилитров.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Coffee</span> {
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span><span style="color:#f92672">:</span>
+</span></span><span style="display:flex;"><span>	Coffee(<span style="color:#66d9ef">const</span> <span style="color:#66d9ef">char</span> <span style="color:#f92672">*</span>type, <span style="color:#66d9ef">int</span> temperature, <span style="color:#66d9ef">int</span> volume) {...}
+</span></span><span style="display:flex;"><span>	<span style="color:#f92672">~</span>Coffee() {...}
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">void</span> <span style="color:#a6e22e">drink</span>(<span style="color:#66d9ef">int</span> ml_to_drink)
+</span></span><span style="display:flex;"><span>	{
+</span></span><span style="display:flex;"><span>		<span style="color:#75715e">// Проверка, чтобы последний глоток кофе не вычел больше, чем осталось
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>		ml_to_drink <span style="color:#f92672">=</span> m_volume <span style="color:#f92672">&gt;</span> ml_to_drink <span style="color:#f92672">?</span> ml_to_drink : m_volume;
+</span></span><span style="display:flex;"><span>		m_volume <span style="color:#f92672">-=</span> ml_to_drink;;
+</span></span><span style="display:flex;"><span>		std<span style="color:#f92672">::</span>cout <span style="color:#f92672">&lt;&lt;</span> <span style="color:#e6db74">&#34;Drank &#34;</span> <span style="color:#f92672">&lt;&lt;</span> ml_to_drink <span style="color:#f92672">&lt;&lt;</span> <span style="color:#e6db74">&#34;ml of &#34;</span> <span style="color:#f92672">&lt;&lt;</span> m_type <span style="color:#f92672">&lt;&lt;</span> <span style="color:#e6db74">&#34;.&#34;</span> <span style="color:#f92672">&lt;&lt;</span> std<span style="color:#f92672">::</span>endl;
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">void</span> <span style="color:#a6e22e">sip</span>()
+</span></span><span style="display:flex;"><span>	{
+</span></span><span style="display:flex;"><span>		<span style="color:#75715e">// Такая же проверка
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>		<span style="color:#66d9ef">int</span> ml_to_drink <span style="color:#f92672">=</span> m_volume <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">15</span> <span style="color:#f92672">?</span> <span style="color:#ae81ff">15</span> <span style="color:#f92672">:</span> m_volume;
+</span></span><span style="display:flex;"><span>		m_volume <span style="color:#f92672">-=</span> ml_to_drink;;
+</span></span><span style="display:flex;"><span>		std<span style="color:#f92672">::</span>cout <span style="color:#f92672">&lt;&lt;</span> <span style="color:#e6db74">&#34;Drank &#34;</span> <span style="color:#f92672">&lt;&lt;</span> ml_to_drink <span style="color:#f92672">&lt;&lt;</span> <span style="color:#e6db74">&#34;ml of &#34;</span> <span style="color:#f92672">&lt;&lt;</span> m_type <span style="color:#f92672">&lt;&lt;</span> <span style="color:#e6db74">&#34;.&#34;</span> <span style="color:#f92672">&lt;&lt;</span> std<span style="color:#f92672">::</span>endl;
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">private</span><span style="color:#f92672">:</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">char</span> <span style="color:#f92672">*</span>m_type;
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">int</span> m_temperature;
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">int</span> m_volume;
+</span></span><span style="display:flex;"><span>};
+</span></span></code></pre></div><p>В методе <code>sip</code> можно воспользоваться уже готовой функциональностью метода <code>drink</code>, чтобы не писать по 100 раз одно и то же:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Coffe</span> {
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span><span style="color:#f92672">:</span>
+</span></span><span style="display:flex;"><span>	Coffee(<span style="color:#66d9ef">const</span> <span style="color:#66d9ef">char</span> <span style="color:#f92672">*</span>type, <span style="color:#66d9ef">int</span> temperature, <span style="color:#66d9ef">int</span> volume) {...}
+</span></span><span style="display:flex;"><span>	<span style="color:#f92672">~</span>Coffee() {...}
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">void</span> <span style="color:#a6e22e">drink</span>(<span style="color:#66d9ef">int</span> ml_to_drink)
+</span></span><span style="display:flex;"><span>	{
+</span></span><span style="display:flex;"><span>		<span style="color:#75715e">// Проверка, чтобы последний глоток кофе не вычел больше, чем осталось
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>		ml_to_drink <span style="color:#f92672">=</span> m_volume <span style="color:#f92672">&gt;</span> ml_to_drink <span style="color:#f92672">?</span> ml_to_drink : m_volume;
+</span></span><span style="display:flex;"><span>		m_volume <span style="color:#f92672">-=</span> ml_to_drink;;
+</span></span><span style="display:flex;"><span>		std<span style="color:#f92672">::</span>cout <span style="color:#f92672">&lt;&lt;</span> <span style="color:#e6db74">&#34;Drank &#34;</span> <span style="color:#f92672">&lt;&lt;</span> ml_to_drink <span style="color:#f92672">&lt;&lt;</span> <span style="color:#e6db74">&#34;ml of &#34;</span> <span style="color:#f92672">&lt;&lt;</span> m_type <span style="color:#f92672">&lt;&lt;</span> <span style="color:#e6db74">&#34;.&#34;</span> <span style="color:#f92672">&lt;&lt;</span> std<span style="color:#f92672">::</span>endl;
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">void</span> <span style="color:#a6e22e">sip</span>()
+</span></span><span style="display:flex;"><span>	{
+</span></span><span style="display:flex;"><span>		drink(<span style="color:#ae81ff">15</span>);
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">private</span><span style="color:#f92672">:</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">char</span> <span style="color:#f92672">*</span>m_type;
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">int</span> m_temperature;
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">int</span> m_volume;
+</span></span><span style="display:flex;"><span>};
+</span></span></code></pre></div><p>Удобно, правда? *sip*</p>
+<h1 id="приватные-методы">Приватные методы</h1>
+<p>Иногда, в нескольких методах может дублироваться какой-то код &ndash; тогда его можно вынести в приватный метод.</p>
+<p>Например, у меня есть метод <code>drink</code>, уменьшающий объём, и метод <code>refill</code> (наполнить), увеличивающий объём.</p>
+<p>При этом, у меня добавится <strong>новое поле</strong> <code>m_max_volume</code>, которое ограничивает макисмальный объём кружки.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Coffee</span> {
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span><span style="color:#f92672">:</span>
+</span></span><span style="display:flex;"><span>	Coffee(<span style="color:#66d9ef">const</span> <span style="color:#66d9ef">char</span> <span style="color:#f92672">*</span>type, <span style="color:#66d9ef">int</span> temperature, <span style="color:#66d9ef">int</span> volume, <span style="color:#66d9ef">int</span> max_volume) {...}
+</span></span><span style="display:flex;"><span>	<span style="color:#f92672">~</span>Coffee() {...}
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">void</span> <span style="color:#a6e22e">drink</span>(<span style="color:#66d9ef">int</span> ml_to_drink)
+</span></span><span style="display:flex;"><span>	{
+</span></span><span style="display:flex;"><span>		<span style="color:#75715e">// Проверка, чтобы последний глоток кофе не вычел больше, чем осталось
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>		ml_to_drink <span style="color:#f92672">=</span> m_volume <span style="color:#f92672">&gt;</span> ml_to_drink <span style="color:#f92672">?</span> ml_to_drink : m_volume;
+</span></span><span style="display:flex;"><span>		m_volume <span style="color:#f92672">-=</span> ml_to_drink;;
+</span></span><span style="display:flex;"><span>		std<span style="color:#f92672">::</span>cout <span style="color:#f92672">&lt;&lt;</span> <span style="color:#e6db74">&#34;Drank &#34;</span> <span style="color:#f92672">&lt;&lt;</span> ml_to_drink <span style="color:#f92672">&lt;&lt;</span> <span style="color:#e6db74">&#34;ml of &#34;</span> <span style="color:#f92672">&lt;&lt;</span> m_type <span style="color:#f92672">&lt;&lt;</span> <span style="color:#e6db74">&#34;.&#34;</span> <span style="color:#f92672">&lt;&lt;</span> std<span style="color:#f92672">::</span>endl;
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">void</span> <span style="color:#a6e22e">refill</span>(<span style="color:#66d9ef">int</span> ml_to_refill)
+</span></span><span style="display:flex;"><span>	{
+</span></span><span style="display:flex;"><span>		<span style="color:#75715e">// Проверка, чтобы наполнение кружки не наполнило больше, чем возможно
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>		ml_to_refill <span style="color:#f92672">=</span> (m_max_volume <span style="color:#f92672">-</span> m_volume) <span style="color:#f92672">&gt;</span> ml_to_refill <span style="color:#f92672">?</span> ml_to_refill : (m_max_volume <span style="color:#f92672">-</span> m_volume);
+</span></span><span style="display:flex;"><span>		m_volume <span style="color:#f92672">+=</span> ml_to_refill;;
+</span></span><span style="display:flex;"><span>		std<span style="color:#f92672">::</span>cout <span style="color:#f92672">&lt;&lt;</span> <span style="color:#e6db74">&#34;Refilled &#34;</span> <span style="color:#f92672">&lt;&lt;</span> ml_to_refill <span style="color:#f92672">&lt;&lt;</span> <span style="color:#e6db74">&#34;ml of &#34;</span> <span style="color:#f92672">&lt;&lt;</span> m_type <span style="color:#f92672">&lt;&lt;</span> <span style="color:#e6db74">&#34;.&#34;</span> <span style="color:#f92672">&lt;&lt;</span> std<span style="color:#f92672">::</span>endl;
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">private</span><span style="color:#f92672">:</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">char</span> <span style="color:#f92672">*</span>m_type;
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">int</span> m_temperature;
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">int</span> m_volume;
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">int</span> m_max_volume;
+</span></span><span style="display:flex;"><span>};
+</span></span></code></pre></div><p>Я бы мог вынести логику изменения объёма кофе в отдельный метод:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Coffee</span> {
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span><span style="color:#f92672">:</span>
+</span></span><span style="display:flex;"><span>	Coffee(<span style="color:#66d9ef">const</span> <span style="color:#66d9ef">char</span> <span style="color:#f92672">*</span>type, <span style="color:#66d9ef">int</span> temperature, <span style="color:#66d9ef">int</span> volume, <span style="color:#66d9ef">int</span> max_volume) {...}
+</span></span><span style="display:flex;"><span>	<span style="color:#f92672">~</span>Coffee() {...}
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">void</span> <span style="color:#a6e22e">drink</span>(<span style="color:#66d9ef">int</span> ml_to_drink)
+</span></span><span style="display:flex;"><span>	{
+</span></span><span style="display:flex;"><span>		change_volume(<span style="color:#f92672">-</span>ml_to_drink);
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">void</span> <span style="color:#a6e22e">refill</span>(<span style="color:#66d9ef">int</span> ml_to_refill)
+</span></span><span style="display:flex;"><span>	{
+</span></span><span style="display:flex;"><span>		change_volume(ml_to_refill);
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">private</span><span style="color:#f92672">:</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">void</span> change_volume(<span style="color:#66d9ef">int</span> change_ml)
+</span></span><span style="display:flex;"><span>	{
+</span></span><span style="display:flex;"><span>		m_volume <span style="color:#f92672">+=</span> change_ml;
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">if</span>(m_volume <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">0</span>)
+</span></span><span style="display:flex;"><span>			m_volume <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">else</span> <span style="color:#a6e22e">if</span>(m_volume <span style="color:#f92672">&gt;</span> m_max_volume)
+</span></span><span style="display:flex;"><span>			m_volume <span style="color:#f92672">=</span> m_max_volume;
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">else</span>
+</span></span><span style="display:flex;"><span>			m_volume <span style="color:#f92672">+=</span> ml_to_drink;
+</span></span><span style="display:flex;"><span>		std<span style="color:#f92672">::</span>cout <span style="color:#f92672">&lt;&lt;</span> (change_ml <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">?</span> <span style="color:#e6db74">&#34;Drank&#34;</span> <span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;Refilled&#34;</span>) <span style="color:#f92672">&lt;&lt;</span> change_ml <span style="color:#f92672">&lt;&lt;</span> <span style="color:#e6db74">&#34;ml of &#34;</span> <span style="color:#f92672">&lt;&lt;</span> m_type <span style="color:#f92672">&lt;&lt;</span> <span style="color:#e6db74">&#34;.&#34;</span> <span style="color:#f92672">&lt;&lt;</span> std<span style="color:#f92672">::</span>endl;
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">private</span><span style="color:#f92672">:</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">char</span> <span style="color:#f92672">*</span>m_type;
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">int</span> m_temperature;
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">int</span> m_volume;
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">int</span> m_max_volume;
+</span></span><span style="display:flex;"><span>};
+</span></span></code></pre></div><p>Таким образом, я сделал приватный метод, который позволит другим методам удобно и безопасно изменять переменную <code>m_volume</code>.</p>
+<p>На будущее запомни &ndash; если один из методов используется только твоими методами, то делай его приватным. Это облегчит процесс изучения твоего класса другими программистами &ndash; обычно они вчитываются только в публичные методы.</p>
+<p>И последнее &ndash; я написал <code>private</code> два раза, хотя достаточно только первого, перед методом <code>change_volume</code>. Я это обычно делаю для того, чтобы визуально разделить объявления методов и полей. Если тебе такое не нравится, то можешь писать спецификатор доступа только один раз.</p>
+<h1 id="структуры-и-спецификатор-доступа-по-умолчанию">Структуры и спецификатор доступа по умолчанию</h1>
+<p>Помнишь, в языке Си были структуры? Вот так с ними можно было работать:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;stdio.h&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">struct</span> Person {
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">int</span> age;
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">char</span> name[<span style="color:#ae81ff">50</span>];
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">char</span> last_name[<span style="color:#ae81ff">50</span>];
+</span></span><span style="display:flex;"><span>};
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>(<span style="color:#66d9ef">int</span> argc, <span style="color:#66d9ef">char</span> <span style="color:#f92672">*</span>argv[])
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">struct</span> Person p;
+</span></span><span style="display:flex;"><span>	scanf(<span style="color:#e6db74">&#34;%d%s%s&#34;</span>, <span style="color:#f92672">&amp;</span>p.age, <span style="color:#f92672">&amp;</span>p.name, <span style="color:#f92672">&amp;</span>p.last_name);
+</span></span><span style="display:flex;"><span>	<span style="color:#75715e">// 10 ivan ivanovich
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	p.age <span style="color:#f92672">+=</span> <span style="color:#ae81ff">10</span>;
+</span></span><span style="display:flex;"><span>	strcat(p.name, <span style="color:#e6db74">&#34;XXX&#34;</span>);
+</span></span><span style="display:flex;"><span>	strcat(p.last_name, <span style="color:#e6db74">&#34;YYY&#34;</span>);
+</span></span><span style="display:flex;"><span>	printf(<span style="color:#e6db74">&#34;%d %s %s</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, p.age, p.name, p.last_name);
+</span></span><span style="display:flex;"><span>	<span style="color:#75715e">// 20 ivanXXX ivanovichYYY
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	<span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>} 
+</span></span></code></pre></div><p>Ничего не напоминает? ;)</p>
+<p>Да, структуры это классы без методов! Или всё-таки с методами?</p>
+<p>Давай перейдём на C++ и попробуем добавить метод в структуру:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;iostream&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;cstring&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">struct</span> <span style="color:#a6e22e">Person</span> {
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">int</span> age;
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">char</span> name[<span style="color:#ae81ff">50</span>];
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">char</span> last_name[<span style="color:#ae81ff">50</span>];
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">void</span> <span style="color:#a6e22e">read</span>()
+</span></span><span style="display:flex;"><span>	{
+</span></span><span style="display:flex;"><span>		std<span style="color:#f92672">::</span>cin <span style="color:#f92672">&gt;&gt;</span> age <span style="color:#f92672">&gt;&gt;</span> name <span style="color:#f92672">&gt;&gt;</span> last_name;
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">void</span> <span style="color:#a6e22e">print</span>()
+</span></span><span style="display:flex;"><span>	{
+</span></span><span style="display:flex;"><span>		std<span style="color:#f92672">::</span>cout <span style="color:#f92672">&lt;&lt;</span> age <span style="color:#f92672">&lt;&lt;</span> name <span style="color:#f92672">&lt;&lt;</span> last_name;
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>};
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>(<span style="color:#66d9ef">int</span> argc, <span style="color:#66d9ef">char</span> <span style="color:#f92672">*</span>argv[])
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>	Person p;
+</span></span><span style="display:flex;"><span>	p.read();
+</span></span><span style="display:flex;"><span>	<span style="color:#75715e">// 10 ivan ivanovich
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	p.age <span style="color:#f92672">+=</span> <span style="color:#ae81ff">10</span>;
+</span></span><span style="display:flex;"><span>	strcat(p.name, <span style="color:#e6db74">&#34;XXX&#34;</span>);
+</span></span><span style="display:flex;"><span>	strcat(p.last_name, <span style="color:#e6db74">&#34;YYY&#34;</span>);
+</span></span><span style="display:flex;"><span>	p.print();
+</span></span><span style="display:flex;"><span>	<span style="color:#75715e">// 20 ivanXXX ivanovichYYY
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	<span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>} 
+</span></span></code></pre></div><p>Сработало&hellip; А в чём же тогда разница???</p>
+<p>А в том, что в <code>struct</code> по умолчанию спецификатор доступа это <code>public</code>, а в <code>class</code> это <code>private</code>. Давай попробуем в коде выше заменить <code>struct</code> на <code>class</code>.</p>
+<p>При компиляции возникнет 5 ошибок &ndash; на каждое обращение к полю или методу объекта &ldquo;p&rdquo;. Одна из них:</p>
+<pre tabindex="0"><code>main.c: In function ‘int main(int, char**)’:
+main.c:16:11: error: ‘void Person::read()’ is private within this context
+   16 |	 p.read();
+	  |	 ~~~~~~^~
+main.c:7:10: note: declared private here
+	7 |	 void read()
+	  |		  ^~~~
+</code></pre><p>То есть, если мы пишем <code>class</code>, то компилятор сам вставляет <code>private</code> на первой строчке определения класса.</p>
+<p>Мораль такая &ndash; что <code>struct</code>, что <code>class</code> &ndash; в C++ ничем кроме спецификатора доступа не отличаются.</p>
+<p>Несмотря на всё это, <code>struct</code> обычно содержит только поля, и туда не добавляются методы.</p>
+<blockquote>
+<p>Я понимаю твоё замешательство, но <code>struct</code> так работает из-за того, что C++ поддерживает обратную совместимость с Си.</p>
+</blockquote>
+<h1 id="friend">friend</h1>
+<p>Иногда возникает необходимость закрыть доступ к полям/методам для всех <strong>кроме</strong> определённой функции или класса.</p>
+<p>Давай рассмотрим на примере &ndash; я хочу сделать функцию (не метод!), которая будет выводить информацию по всем полям класса Coffee:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">print_info</span>(Coffee <span style="color:#f92672">&amp;</span>cup)
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>	std<span style="color:#f92672">::</span>out <span style="color:#f92672">&lt;&lt;</span> <span style="color:#f92672">&lt;&lt;</span> <span style="color:#e6db74">&#34;Cup of &#34;</span> cup.m_type <span style="color:#f92672">&lt;&lt;</span> <span style="color:#f92672">&lt;&lt;</span> <span style="color:#e6db74">&#34; coffee: volume (&#34;</span> <span style="color:#f92672">&lt;&lt;</span> cup.m_volume <span style="color:#f92672">&lt;&lt;</span> 
+</span></span><span style="display:flex;"><span>		<span style="color:#e6db74">&#34;/&#34;</span> <span style="color:#f92672">&lt;&lt;</span> cup.m_max_volume <span style="color:#f92672">&lt;&lt;</span> <span style="color:#e6db74">&#34;)ml, temperature &#34;</span> <span style="color:#f92672">&lt;&lt;</span> cup.m_temperature <span style="color:#f92672">&lt;&lt;</span> std<span style="color:#f92672">::</span>endl;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>Эта функция обращается к <code>private</code> полям класса, так что при компиляции вылезет куча ошибок такого вида:</p>
+<pre tabindex="0"><code>main.cpp: In function ‘void print_info(Coffee&amp;)’:
+main.cpp:17:35: error: ‘char* Coffee::m_type’ is private within this context
+17 |	 std::cout &lt;&lt; &#34;Cup of &#34; &lt;&lt; cup.m_type &lt;&lt; &#34; coffee: volume (&#34; &lt;&lt; cup.m_volume &lt;&lt;
+   |								   ^~~~~~
+</code></pre><p>Ну да, всё правильно &ndash; мы не можем обращаться к этим полям, потому что они <code>private</code>.</p>
+<p>Однако, если мы хотим дать <strong>функции print_info</strong> возможность обращаться к <code>private</code> (и <code>protected</code>) полям класса Coffe, то мы можем это сделать, добавив в определение класса такую строчку:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">print_info</span>(Coffee <span style="color:#f92672">&amp;</span>cup) {...}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Coffee</span> {
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span><span style="color:#f92672">:</span>
+</span></span><span style="display:flex;"><span>	Coffee(<span style="color:#66d9ef">const</span> <span style="color:#66d9ef">char</span> <span style="color:#f92672">*</span>type, <span style="color:#66d9ef">int</span> temperature, <span style="color:#66d9ef">int</span> volume, <span style="color:#66d9ef">int</span> max_volume) {...}
+</span></span><span style="display:flex;"><span>	<span style="color:#f92672">~</span>Coffee() {...}
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">void</span> <span style="color:#a6e22e">drink</span>(<span style="color:#66d9ef">int</span> ml_to_drink) {...}
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">void</span> <span style="color:#a6e22e">refill</span>(<span style="color:#66d9ef">int</span> ml_to_refill) {...}
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">private</span><span style="color:#f92672">:</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">void</span> change_volume(<span style="color:#66d9ef">int</span> change_ml) {...}
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">private</span><span style="color:#f92672">:</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">char</span> <span style="color:#f92672">*</span>m_type;
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">int</span> m_temperature;
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">int</span> m_volume;
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">int</span> m_max_volume;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">friend</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">print_info</span>(Coffee <span style="color:#f92672">&amp;</span>cup);
+</span></span><span style="display:flex;"><span>};
+</span></span></code></pre></div><p>Теперь код скомпилируется без ошибок, и можно будет попробовать вызвать функцию <code>print_info</code>:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>(<span style="color:#66d9ef">int</span> argc, <span style="color:#66d9ef">char</span> <span style="color:#f92672">*</span>argv[])
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>	Coffee cup(<span style="color:#e6db74">&#34;americano&#34;</span>, <span style="color:#ae81ff">50</span>, <span style="color:#ae81ff">75</span>, <span style="color:#ae81ff">100</span>);
+</span></span><span style="display:flex;"><span>	print_info(cup);
+</span></span><span style="display:flex;"><span>	<span style="color:#75715e">// Cup of americano coffee: volume (75/100)ml, temperature 50
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	<span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>} 
+</span></span></code></pre></div><p>На самом деле, такую функцию лучше было бы сделать методом, но есть пример функции, которую можно сделать только через <code>friend</code> &ndash; функция для потокового ввода/вывода.</p>
+<h3 id="переопределение-функции-потокового-вводавывода">Переопределение функции потокового ввода/вывода</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span>std<span style="color:#f92672">::</span>ostream<span style="color:#f92672">&amp;</span> <span style="color:#66d9ef">operator</span><span style="color:#f92672">&lt;&lt;</span>(std<span style="color:#f92672">::</span>ostream <span style="color:#f92672">&amp;</span>out, Coffee <span style="color:#f92672">&amp;</span>cup)
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>	out <span style="color:#f92672">&lt;&lt;</span> <span style="color:#f92672">&lt;&lt;</span> <span style="color:#e6db74">&#34;Cup of &#34;</span> cup.m_type <span style="color:#f92672">&lt;&lt;</span> <span style="color:#f92672">&lt;&lt;</span> <span style="color:#e6db74">&#34; coffee: volume (&#34;</span> <span style="color:#f92672">&lt;&lt;</span> cup.m_volume <span style="color:#f92672">&lt;&lt;</span> 
+</span></span><span style="display:flex;"><span>		<span style="color:#e6db74">&#34;/&#34;</span> <span style="color:#f92672">&lt;&lt;</span> cup.m_max_volume <span style="color:#f92672">&lt;&lt;</span> <span style="color:#e6db74">&#34;)ml, temperature &#34;</span> <span style="color:#f92672">&lt;&lt;</span> cup.m_temperature <span style="color:#f92672">&lt;&lt;</span> std<span style="color:#f92672">::</span>endl;
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">return</span> out;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>std<span style="color:#f92672">::</span>istream<span style="color:#f92672">&amp;</span> <span style="color:#66d9ef">operator</span><span style="color:#f92672">&gt;&gt;</span>(std<span style="color:#f92672">::</span>istream <span style="color:#f92672">&amp;</span>in, Coffee <span style="color:#f92672">&amp;</span>cup)
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>	in <span style="color:#f92672">&gt;&gt;</span> cup.m_volume <span style="color:#f92672">&gt;&gt;</span> cup.m_max_volume <span style="color:#f92672">&gt;&gt;</span> cup.m_temperature;
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">return</span> in;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>Ээээ&hellip; Что это за заклинание?</p>
+<p>Давай разберёмся:</p>
+<ul>
+<li><code>std::ostream</code> &ndash; это класс, который занимается организацией потокового вывода, объект этого класса ты уже встречал &ndash; это <code>std::cout</code></li>
+<li><code>std::istream</code> &ndash; это класс, который занимается организацией потокового ввода, и его ты встречал &ndash; это <code>std::cin</code></li>
+<li><code>operator&lt;&lt;</code> &ndash; это функция, которая вызывается не через имя (как, например, <code>print_info</code>), а через использование оператора <code>&lt;&lt;</code> (дальше увидим)</li>
+<li><code>operator&gt;&gt;</code> &ndash; а эта функция вызывается через использование оператора <code>&gt;&gt;</code></li>
+<li>У обоих функций по два параметра &ndash; объект класса, который работает с потовым вводом/выводом, и объект класса Coffee</li>
+<li>Они возвращают сами себя, чтобы можно было объединять вызов таких функций в цепочки, каждый раз заново вызывая эту же функцию, но для нового значения: <code>std::cout &lt;&lt; a &lt;&lt; b &lt;&lt; c;</code></li>
+</ul>
+<blockquote>
+<p>Да, операторы могут быть не только методами класса, но и отдельными функциями.</p>
+</blockquote>
+<p>Вот как эти функции будут использоваться:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>(<span style="color:#66d9ef">int</span> argc, <span style="color:#66d9ef">char</span> <span style="color:#f92672">*</span>argv[])
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>	Coffee cup(<span style="color:#e6db74">&#34;americano&#34;</span>, <span style="color:#ae81ff">50</span>, <span style="color:#ae81ff">75</span>, <span style="color:#ae81ff">100</span>);
+</span></span><span style="display:flex;"><span>	<span style="color:#75715e">// ! Видишь, функция вызывается через оператор &lt;&lt;
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	std<span style="color:#f92672">::</span>cout <span style="color:#f92672">&lt;&lt;</span> cup;
+</span></span><span style="display:flex;"><span>	<span style="color:#75715e">// Cup of americano coffee: volume (75/100)ml, temperature 50
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	<span style="color:#75715e">// ! Ввожу 10 20 30
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	std<span style="color:#f92672">::</span>cin <span style="color:#f92672">&gt;&gt;</span> cup;
+</span></span><span style="display:flex;"><span>	std<span style="color:#f92672">::</span>cout <span style="color:#f92672">&lt;&lt;</span> cup;
+</span></span><span style="display:flex;"><span>	<span style="color:#75715e">// Cup of americano coffee: volume (10/20)ml, temperature 30
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	<span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>} 
+</span></span></code></pre></div><blockquote>
+<p>Раскрою странное знание: я мог бы вызвать функции не через оператор, а через имя функции вот так: <code>operator&gt;&gt;(std::cin, cup)</code> и <code>operator&lt;&lt;(std::cout, cup)</code>, но так никто обычно не делает.</p>
+</blockquote>
+<p>Смотри-ка, теперь вводить и выводить информацию стало проще! Но мы забыли про главное &ndash; сказать что они <code>friend</code> для Coffee:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span>std<span style="color:#f92672">::</span>ostream<span style="color:#f92672">&amp;</span> <span style="color:#66d9ef">operator</span><span style="color:#f92672">&lt;&lt;</span>(std<span style="color:#f92672">::</span>ostream <span style="color:#f92672">&amp;</span>out, Coffee <span style="color:#f92672">&amp;</span>cup) {...}
+</span></span><span style="display:flex;"><span>std<span style="color:#f92672">::</span>istream<span style="color:#f92672">&amp;</span> <span style="color:#66d9ef">operator</span><span style="color:#f92672">&gt;&gt;</span>(std<span style="color:#f92672">::</span>istream <span style="color:#f92672">&amp;</span>in, Coffee <span style="color:#f92672">&amp;</span>cup) {...}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Coffee</span> {
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span><span style="color:#f92672">:</span>
+</span></span><span style="display:flex;"><span>	Coffee(<span style="color:#66d9ef">const</span> <span style="color:#66d9ef">char</span> <span style="color:#f92672">*</span>type, <span style="color:#66d9ef">int</span> temperature, <span style="color:#66d9ef">int</span> volume, <span style="color:#66d9ef">int</span> max_volume) {...}
+</span></span><span style="display:flex;"><span>	<span style="color:#f92672">~</span>Coffee() {...}
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">void</span> <span style="color:#a6e22e">drink</span>(<span style="color:#66d9ef">int</span> ml_to_drink) {...}
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">void</span> <span style="color:#a6e22e">refill</span>(<span style="color:#66d9ef">int</span> ml_to_refill) {...}
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">private</span><span style="color:#f92672">:</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">void</span> change_volume(<span style="color:#66d9ef">int</span> change_ml) {...}
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">private</span><span style="color:#f92672">:</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">char</span> <span style="color:#f92672">*</span>m_type;
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">int</span> m_temperature;
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">int</span> m_volume;
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">int</span> m_max_volume;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">friend</span> std<span style="color:#f92672">::</span>ostream<span style="color:#f92672">&amp;</span> <span style="color:#66d9ef">operator</span><span style="color:#f92672">&lt;&lt;</span>(std<span style="color:#f92672">::</span>ostream <span style="color:#f92672">&amp;</span>out, Coffee <span style="color:#f92672">&amp;</span>cup);
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">friend</span> std<span style="color:#f92672">::</span>istream<span style="color:#f92672">&amp;</span> <span style="color:#66d9ef">operator</span><span style="color:#f92672">&gt;&gt;</span>(std<span style="color:#f92672">::</span>istream <span style="color:#f92672">&amp;</span>in, Coffee <span style="color:#f92672">&amp;</span>cup);
+</span></span><span style="display:flex;"><span>};
+</span></span></code></pre></div><p>Вот, так то лучше!</p>
+<h3 id="friend-class">friend class</h3>
+<p>И ещё &ndash; я не буду рассматривать во всех красках, но ещё мы можем разрешать доступ к <code>private</code> полям/методам своего класса другим классам:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Vending</span> {...}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Coffee</span> {
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span><span style="color:#f92672">:</span>
+</span></span><span style="display:flex;"><span>	Coffee(<span style="color:#66d9ef">const</span> <span style="color:#66d9ef">char</span> <span style="color:#f92672">*</span>type, <span style="color:#66d9ef">int</span> temperature, <span style="color:#66d9ef">int</span> volume, <span style="color:#66d9ef">int</span> max_volume) {...}
+</span></span><span style="display:flex;"><span>	<span style="color:#f92672">~</span>Coffee() {...}
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">void</span> <span style="color:#a6e22e">drink</span>(<span style="color:#66d9ef">int</span> ml_to_drink) {...}
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">void</span> <span style="color:#a6e22e">refill</span>(<span style="color:#66d9ef">int</span> ml_to_refill) {...}
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">private</span><span style="color:#f92672">:</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">void</span> change_volume(<span style="color:#66d9ef">int</span> change_ml) {...}
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">private</span><span style="color:#f92672">:</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">char</span> <span style="color:#f92672">*</span>m_type;
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">int</span> m_temperature;
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">int</span> m_volume;
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">int</span> m_max_volume;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">friend</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Vending</span>;
+</span></span><span style="display:flex;"><span>};
+</span></span></code></pre></div><p>Класс <code>Vending</code> сможет обратиться к любым полям/методам класса <code>Coffee</code>. Это используется в исключительных случаях, о которых мы возможно поговорим в будущем &ndash; сейчас просто отложи это в памяти.</p>
+<h1 id="header-1заключение"><a href="#header-1"></a>Заключение</h1>
+<p>Итого, мы изучили:</p>
+<ul>
+<li>Инкапсуляция (сокрытие деталей реализации)</li>
+<li>Спецификаторы доступа
+<ul>
+<li>public &ndash; все могут</li>
+<li>private &ndash; только сам класс</li>
+<li>protected &ndash; только сам класс и его наследники (узнаем в статье про наследование)</li>
+</ul>
+</li>
+<li>Вызов метода из метода &ndash; обобщай и властвуй</li>
+<li>Приватный метод &ndash; выносим общий код во внутренний метод</li>
+<li>Спецификатор доступа по умолчанию &ndash; <code>struct</code>-<code>public</code>, <code>class</code>-<code>private</code></li>
+<li>friend &ndash; разрешаем доступ функции/классу к приватным полям/классам своего класса</li>
+<li>Операторы потокового ввода/вывода &ndash; удобный способ вводить/выводить информацию о классе</li>
+</ul>
+<p>Если что &ndash; пиши, я помогу и постараюсь объяснить лучше.</p>
+<p>Дальше я сделаю небольшую интерлюдию &ndash; расскажу про заголовочные файлы и зачем разделять определение класса и его реализацию.</p>
+
+
+			</section>
+		</div>
+	</div>
+
+    <footer>
+    <a href="http://kee-reel.com/cpp/classes-incapsulation/#top">
+        <span>
+            <b>🡅 В начало 🡅</b>
+        </span>
+    </a>
+    <hr>
+    <pre>
+Home server: Raspberry Pi 4
+Temperature: 27
+Uptime: 5 hours, 35 minutes
+    </pre>
+</footer>
+
+</body>
+</html>

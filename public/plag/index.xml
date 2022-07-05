@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Проект PLAG on </title>
+    <link>http://kee-reel.com/plag/</link>
+    <description>Recent content in Проект PLAG on </description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Sun, 05 Jun 2022 00:00:00 +0000</lastBuildDate><atom:link href="http://kee-reel.com/plag/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>How to start</title>
+      <link>http://kee-reel.com/plag/intro/</link>
+      <pubDate>Sun, 05 Jun 2022 00:00:00 +0000</pubDate>
+      
+      <guid>http://kee-reel.com/plag/intro/</guid>
+      <description>Plugin development framework for PLAG Prereqisits:
+Qt 6.1.2 GCC (with CMake) QtCreator 4.x Bash Git Clone repo of main application:
+git clone https://gitlab.com/c4rb0n_un1t/PLAG.git Go into PLAG folder and clone framework for plugins development:
+cd PLAG git clone https://gitlab.com/c4rb0n_un1t/PLAGins.git Go into PLAGins folder and run plugin solution generation script (from PLUGins folder):
+cd PLAGins ./Scripts/generate_plugin_code.sh With this script you can generate base for any plugin.
+Let&amp;rsquo;s start with logic-only plugin &amp;ndash; it will provide only C++ interface without GUI (we will add GUI later).</description>
+    </item>
+    
+    <item>
+      <title>О проекте</title>
+      <link>http://kee-reel.com/plag/about/</link>
+      <pubDate>Sat, 04 Jun 2022 00:00:00 +0000</pubDate>
+      
+      <guid>http://kee-reel.com/plag/about/</guid>
+      <description>На протяжении последних пяти лет я в свободное время работаю над проектом своей мечты. Вот основная идея:
+Приложение, которое способно заменить всех конкурентов в своей области применения, должно подстраиваться под каждого пользователя. Вроде не самая сложная мысль, но реализация этой идеи встречается не так часто &amp;ndash; в большинстве приложений пользователю доступен только заранее определённый набор функций.
+Однако, есть и приложения, которые позволяют изменять набор своих функций:
+Различные редакторы (кода, графики, моделей, уровней) &amp;ndash; в них есть плагины, которые добавляют новые инструменты и возможности Моды для компьютерных игр &amp;ndash; моды для Skyrim, которые могут кардинально изменить геймплей, и вообще сообщество NexusMods, где выкладывается очень много модов для различных игр Расширения браузера &amp;ndash; Google Chrome, Firefox, Safari Плагины в конструкторах сайтов &amp;ndash; Wordpress, Wix Такой богатый ассортимент расширений обычно появляется тогда, когда разработчики основного приложения позволяют сторонним разработчикам добавлять расширения.</description>
+    </item>
+    
+  </channel>
+</rss>

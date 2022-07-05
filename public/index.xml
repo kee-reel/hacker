@@ -1,0 +1,508 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title></title>
+    <link>http://kee-reel.com/</link>
+    <description>Recent content on </description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Sun, 05 Jun 2022 00:00:00 +0000</lastBuildDate><atom:link href="http://kee-reel.com/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>How to start</title>
+      <link>http://kee-reel.com/plag/intro/</link>
+      <pubDate>Sun, 05 Jun 2022 00:00:00 +0000</pubDate>
+      
+      <guid>http://kee-reel.com/plag/intro/</guid>
+      <description>Plugin development framework for PLAG Prereqisits:
+Qt 6.1.2 GCC (with CMake) QtCreator 4.x Bash Git Clone repo of main application:
+git clone https://gitlab.com/c4rb0n_un1t/PLAG.git Go into PLAG folder and clone framework for plugins development:
+cd PLAG git clone https://gitlab.com/c4rb0n_un1t/PLAGins.git Go into PLAGins folder and run plugin solution generation script (from PLUGins folder):
+cd PLAGins ./Scripts/generate_plugin_code.sh With this script you can generate base for any plugin.
+Let&amp;rsquo;s start with logic-only plugin &amp;ndash; it will provide only C++ interface without GUI (we will add GUI later).</description>
+    </item>
+    
+    <item>
+      <title>О проекте</title>
+      <link>http://kee-reel.com/plag/about/</link>
+      <pubDate>Sat, 04 Jun 2022 00:00:00 +0000</pubDate>
+      
+      <guid>http://kee-reel.com/plag/about/</guid>
+      <description>На протяжении последних пяти лет я в свободное время работаю над проектом своей мечты. Вот основная идея:
+Приложение, которое способно заменить всех конкурентов в своей области применения, должно подстраиваться под каждого пользователя. Вроде не самая сложная мысль, но реализация этой идеи встречается не так часто &amp;ndash; в большинстве приложений пользователю доступен только заранее определённый набор функций.
+Однако, есть и приложения, которые позволяют изменять набор своих функций:
+Различные редакторы (кода, графики, моделей, уровней) &amp;ndash; в них есть плагины, которые добавляют новые инструменты и возможности Моды для компьютерных игр &amp;ndash; моды для Skyrim, которые могут кардинально изменить геймплей, и вообще сообщество NexusMods, где выкладывается очень много модов для различных игр Расширения браузера &amp;ndash; Google Chrome, Firefox, Safari Плагины в конструкторах сайтов &amp;ndash; Wordpress, Wix Такой богатый ассортимент расширений обычно появляется тогда, когда разработчики основного приложения позволяют сторонним разработчикам добавлять расширения.</description>
+    </item>
+    
+    <item>
+      <title>C&#43;&#43;. Полиморфизм, виртуальные и абстрактные методы</title>
+      <link>http://kee-reel.com/cpp/classes-polymorhism-ru/</link>
+      <pubDate>Fri, 13 May 2022 00:00:00 +0000</pubDate>
+      
+      <guid>http://kee-reel.com/cpp/classes-polymorhism-ru/</guid>
+      <description>Давай добавим public метод talk() в классы Cat и Horse, и уберём вывод строки из конструктора:
+class Cat : public Animal { public: Cat(float fluffiness, int weight, int age) : Animal(weight, age, 15), m_fluffiness(fluffiness) {} ... void talk() { std::cout &amp;lt;&amp;lt; &amp;#34;Mew mew&amp;#34; &amp;lt;&amp;lt; std::endl; } ... }; class Horse : public Animal { public: Horse(float speed, int weight, int age) : Animal(weight, age, 30), m_speed(speed) {} ... void talk() { std::cout &amp;lt;&amp;lt; &amp;#34;Pfrrr&amp;#34; &amp;lt;&amp;lt; std::endl; } .</description>
+    </item>
+    
+    <item>
+      <title>C&#43;&#43;. Наследование классов</title>
+      <link>http://kee-reel.com/cpp/classes-inheritance-ru/</link>
+      <pubDate>Thu, 05 May 2022 00:00:00 +0000</pubDate>
+      
+      <guid>http://kee-reel.com/cpp/classes-inheritance-ru/</guid>
+      <description>Наследование &amp;ndash; позволяет связать разные классы в иерархию таким образом, что мы можем в классе наследнике переиспользовать поля и методы, объявленные в родительском классе.
+Давай сначала посмотрим на примере &amp;ndash; допустим, у меня есть класс Animal:
+class Animal { public: // Конструктор с параметрами Animal(int weight, int age, int max_age) : m_weight(weight), m_age(age), m_max_age(max_age) {} // Можем узнать старое ли это животное bool is_old() { return m_age &amp;gt; m_max_age * 0.</description>
+    </item>
+    
+    <item>
+      <title>C&#43;&#43;. Инкапсуляция</title>
+      <link>http://kee-reel.com/cpp/classes-incapsulation/</link>
+      <pubDate>Sun, 03 Apr 2022 00:00:00 +0000</pubDate>
+      
+      <guid>http://kee-reel.com/cpp/classes-incapsulation/</guid>
+      <description>Я буду основываться на коде, приведённом в основной статье про классы.
+Инкапсуляция &amp;ndash; позволяет скрыть детали реализации.
+Ты когда-нибудь пробовал разобрать свой телефон или ноутбук? Это очень сложный процесс, который как-будто специально сделан максимально трудоёмким для пользователя. Зачем это нужно его создателям?
+Если бы это было очень просто, то ты бы мог залезть &amp;ldquo;просто посмотреть&amp;rdquo; и случайно что-то сломать в этом сложном устройстве.
+Так вот на программирование это переносится идеально.</description>
+    </item>
+    
+    <item>
+      <title>C&#43;&#43;. Конструкторы, оператор присваивания и деструктор</title>
+      <link>http://kee-reel.com/cpp/classes-constructors/</link>
+      <pubDate>Sun, 20 Mar 2022 00:00:00 +0000</pubDate>
+      
+      <guid>http://kee-reel.com/cpp/classes-constructors/</guid>
+      <description>Я буду основываться на коде, приведённом в основной статье про классы.
+В основной статье я показал как создать класс и конструктор для него:
+class Coffee { public: Coffee(const char *type, int temperature, int volume) { m_temperature = temperature; m_volume = volume; // Выделяем память под строку m_type = (char*)malloc(strlen(type)); // Копируем type в m_type strcpy(m_type, type); } ... Разница между инициализацией и присваиванием Прежде чем мы пойдём дальше, я хочу показать один принципиальный момент.</description>
+    </item>
+    
+    <item>
+      <title>C&#43;&#43;. Переопределение операторов</title>
+      <link>http://kee-reel.com/cpp/classes-operators/</link>
+      <pubDate>Sat, 19 Mar 2022 00:00:00 +0000</pubDate>
+      
+      <guid>http://kee-reel.com/cpp/classes-operators/</guid>
+      <description>Прежде чем я расскажу про операторы в классах, давай я приведу пример, от которого будем отталкиваться.
+Я буду основываться на коде, приведённом в основной статье про классы.
+Например, я хочу добавить возможность переливать кофе из одной кружки в другую (ты очень любишь кофе, а твой друг не допил).
+Я мог бы добавить в класс Coffee новый метод pour (англ. &amp;ndash; налить):
+void pour(Coffee &amp;amp;other_cup) { // Сравниваем адреса объектов, чтобы понять что это разные объекты if(this == &amp;amp;other_cup) { std::cout &amp;lt;&amp;lt; &amp;#34;Can&amp;#39;t pour one cup into itself!</description>
+    </item>
+    
+    <item>
+      <title>C&#43;&#43;. Классы</title>
+      <link>http://kee-reel.com/cpp/classes/</link>
+      <pubDate>Tue, 15 Mar 2022 00:00:00 +0000</pubDate>
+      
+      <guid>http://kee-reel.com/cpp/classes/</guid>
+      <description>Основной особенностью C++ являются классы &amp;ndash; без них, C++ практичеси ничем бы не отличался от Си.
+Прежде чем мы перейдём к использованию классов, я расскажу откуда классы взялись &amp;ndash; про объектно-ориентированное программирование.
+Объектно-ориентированное программирование (ООП) &amp;ndash; подход к написанию программ при котором:
+Программа представляется в виде набора объектов и связей между ними Все объекты являются экземплярами классов Классы образуют иерархию наследования (про это в другой статье) Сейчас расскажу подробно что это всё значит.</description>
+    </item>
+    
+    <item>
+      <title>C&#43;&#43;. Различия между C и C&#43;&#43;</title>
+      <link>http://kee-reel.com/cpp/intro/</link>
+      <pubDate>Wed, 16 Feb 2022 00:00:00 +0000</pubDate>
+      
+      <guid>http://kee-reel.com/cpp/intro/</guid>
+      <description>Чтобы программировать на C++ необходимо сперва научиться программировать на C. Почему так?
+Это не новый язык, который придётся заново изучать &amp;ndash; C++ является расширением языка C, и всё, что ты изучил в курсе C, тебе пригодится и в C++. Однако, какие-то моменты там теперь можно писать иначе &amp;ndash; я покажу какие.
+Если ты не знаешь C, то ты не сможешь изучить C++. Начни с языка C.
+Давай вспомним что же ты изучил в курсе C:</description>
+    </item>
+    
+    <item>
+      <title>C. Файлы</title>
+      <link>http://kee-reel.com/c/files-ru/</link>
+      <pubDate>Mon, 13 Dec 2021 00:00:00 +0000</pubDate>
+      
+      <guid>http://kee-reel.com/c/files-ru/</guid>
+      <description>Файл (file) &amp;ndash; это абстракция, поддерживаемая операционной системой, позволяющая работать с данными, записанными на внешних носителях (магнитная запись на жёстком диске, флеш память на SSD или флешке).
+Таким образом, работая с файлами, мы работаем с операционной системой, которая, в свою очередь, работает с драйверами физического устройства.
+Я очень упрощаю что там происходит &amp;ndash; если хочешь понять как это на самом деле устроено, можешь почитать Э. Танненбаум &amp;ldquo;Операционные системы&amp;rdquo;, глава &amp;ldquo;Файловые системы&amp;rdquo;.</description>
+    </item>
+    
+    <item>
+      <title>Python. Первый проект. Регистрация</title>
+      <link>http://kee-reel.com/python/web-reg-and-auth/</link>
+      <pubDate>Wed, 08 Dec 2021 00:00:00 +0000</pubDate>
+      
+      <guid>http://kee-reel.com/python/web-reg-and-auth/</guid>
+      <description>Эта статья из цикла статей &amp;ldquo;Первый проект&amp;rdquo;, в которых я шаг за шагом показываю как разработать систему, близкую по сложности к реальной.
+В этой статье я реализую регистрацию, а в следующей &amp;ndash; авторизацию по логину/паролю. Для фреймворка Flask уже есть готовое решение для этой задачи: flask_login. С целью постижения глубинной природы вещей, я покажу как реализовать это самому, без использования сторонних библиотек.
+Новые endpoint&amp;rsquo;ы Расширю простейший веб-сервер и добавлю двe новых конечных точки (endpont):</description>
+    </item>
+    
+    <item>
+      <title>Python. Первый проект</title>
+      <link>http://kee-reel.com/python/first-project/</link>
+      <pubDate>Fri, 03 Dec 2021 00:00:00 +0000</pubDate>
+      
+      <guid>http://kee-reel.com/python/first-project/</guid>
+      <description>В этой статье я приведу пример задачи на ООП и покажу как её решить. После этого я дам несколько самостоятельных заданий.
+Читаем ТЗ Представляем ситуацию &amp;ndash; ты пришёл работать в компанию, которая занимается продажей обучающих курсов. До тебя никто не занимался автоматизацией, и все задачи выполнялись вручную.
+Директор даёт тебе такое техническое задание:
+Создать сайт, на котором пользователи смогут зарегистрироваться Зарегистрированный пользователь может оплатить курс Оплата курса на данном этапе не встроена в сайт, и пользователь напрямую связывается с сотрудником компании Сотрудник компании может зайти на сайт под своим профилем, и отметить какой курс был куплен каким пользователем После оплаты пользователь может просматривать материалы курса Курс состоит из N занятий Каждое занятие является произвольной веб-страницей Кажется сложным, поэтому давай сначала продумаем архитектуру нашей системы.</description>
+    </item>
+    
+    <item>
+      <title>C. Функции</title>
+      <link>http://kee-reel.com/c/functions-ru/</link>
+      <pubDate>Thu, 02 Dec 2021 00:00:00 +0000</pubDate>
+      
+      <guid>http://kee-reel.com/c/functions-ru/</guid>
+      <description>Функция (function) &amp;ndash; это механизм, позволяющий вынести часть логики программы в отдельный блок, который можно многократно исполнять из разных мест прогаммы.
+Вот пример использования функции в программке, которая складывает, возводит в квадрат и выводит на экран целые числа:
+#include &amp;lt;stdio.h&amp;gt; int add(int a, int b) { int result = a + b; return result; } int square(int value) { int result = value * value; return result; } void show_result(int result) { printf(&amp;#34;Result: %d\n&amp;#34;, result); } int main() { int result = 0; result = add(2, 2); show_result(result); // Result: 4 result = square(4); show_result(result); // Result: 16 result = add(result, square(2)); show_result(result); // Result: 20 } Это называется определением функции (в следующем разделе разберём подробно):</description>
+    </item>
+    
+    <item>
+      <title>C. Массивы</title>
+      <link>http://kee-reel.com/c/arrays/</link>
+      <pubDate>Thu, 04 Nov 2021 00:00:00 +0000</pubDate>
+      
+      <guid>http://kee-reel.com/c/arrays/</guid>
+      <description>Массив (array) &amp;ndash; это непрерывная последовательность байт, хранящих множество значений определённого типа.
+Проще &amp;ndash; переменная хранит какое-то значение, а массив хранит множество переменных.
+В прошлой статье мы со всех сторон рассмотрели указатели &amp;ndash; тут то они нам и пригодятся!
+Массив объявляется так:
+int arr[3]; Здесь:
+int &amp;ndash; это тип значений, которые хранятся в массиве arr &amp;ndash; указатель на первый элемент массива [3] &amp;ndash; размер массива Прежде чем мы начнём заполнять значения, давай посмотрим как переменная и массив хранятся в памяти:</description>
+    </item>
+    
+    <item>
+      <title>Python. Основы веб-сервера Flask</title>
+      <link>http://kee-reel.com/python/web-server/</link>
+      <pubDate>Sat, 23 Oct 2021 00:00:00 +0000</pubDate>
+      
+      <guid>http://kee-reel.com/python/web-server/</guid>
+      <description>Представь, что ты написал скрипт, который может пригодиться кому-то кроме тебя &amp;ndash; как им поделиться?
+У тебя есть три варианта:
+Выложить исходный код в открытый доступ (например на GitHub) &amp;ndash; для этого пользователь твоей программы должен уметь запускать Python скрипты. Подготовить исполняемый файл (например через PyInstaller) &amp;ndash; скрипт будет готов к запуску, и пользователь сможет запустить его как обычное приложение. Развернуть веб-сервер, на котором будет исполняться твоя программа &amp;ndash; любой пользователь сможет воспользоваться ей через браузер.</description>
+    </item>
+    
+    <item>
+      <title>Компьютерные сети. Общение браузера с сервером</title>
+      <link>http://kee-reel.com/network/server/</link>
+      <pubDate>Fri, 22 Oct 2021 00:00:00 +0000</pubDate>
+      
+      <guid>http://kee-reel.com/network/server/</guid>
+      <description>Компьютерные сети насквозь пронизывают наше общество, я не буду описывать насколько важна их роль.
+В этой статье я дам немного теории, а затем рассмотрю весь процесс общения браузера с сервером.
+Давай разберёмся что такое сервер. У этого слова есть два значения: сервер-компьютер и сервер-программа.
+Сервер как компьютер Сервер &amp;ndash; компьютер, с постоянным подключением к сети интернет и глобальным IP.
+IP адрес IP &amp;ndash; адрес устройства в компьютерной сети.
+IP состоит из 4-х чисел в промежутке от 0 до 255, разделённых точкой &amp;ndash; например 188.</description>
+    </item>
+    
+    <item>
+      <title>C. Указатели</title>
+      <link>http://kee-reel.com/c/pointers/</link>
+      <pubDate>Tue, 19 Oct 2021 00:00:00 +0000</pubDate>
+      
+      <guid>http://kee-reel.com/c/pointers/</guid>
+      <description>Указатель (pointer) &amp;ndash; это переменная, в которой хранится адрес на какую-то ячейку памяти.
+Обычно, все боятся C и C++ из-за указателей &amp;ndash; они кажутся чем-то непонятным и очень приближённым к тому, как устроен компьютер.
+Однако, мне кажется, что даже такую сложную концепцию можно объяснить на аналогиях из реальной жизни, что значительно упростит понимание.
+Ищем клад Представь себе, что ты искатель клада &amp;ndash; без чего не обходится ни один поиск клада? Правильно, без карты!</description>
+    </item>
+    
+    <item>
+      <title>SQL. Основы и установка окружения</title>
+      <link>http://kee-reel.com/sql/intro/</link>
+      <pubDate>Tue, 12 Oct 2021 00:00:00 +0000</pubDate>
+      
+      <guid>http://kee-reel.com/sql/intro/</guid>
+      <description>Привет, в этой статье я расскажу что такое SQL, и зачем он нужен и как его применять.
+Наверно не стоит объяснять, что вся наша цивилизация держится на информации &amp;ndash; чем больше больше у тебя ценной информации, тем больше у тебя возможноcтей.
+Скорее всего, ты хранишь и используешь для личных нужд небольшие объёмы структурированной информации &amp;ndash; пара списков &amp;ldquo;TO DO&amp;rdquo; здесь, пара документов с идеями там &amp;ndash; её объёмы не выходят за несколько гигабайт.</description>
+    </item>
+    
+    <item>
+      <title>OpenGL/C&#43;&#43;. Первое окно</title>
+      <link>http://kee-reel.com/opengl/first-window/</link>
+      <pubDate>Sun, 03 Oct 2021 00:00:00 +0000</pubDate>
+      
+      <guid>http://kee-reel.com/opengl/first-window/</guid>
+      <description>В этой статье я расскажу как происходит инициализация OpenGL и создаётся окно в котором мы будем всё отрисовывать.
+В прошлой статье я рассказал как настроить окружение и запустить самый простой проект &amp;ndash; продолжу с того, на чём остановился.
+В левой части экрана ты можешь увидеть список всех проектов &amp;ndash; найди там проект &amp;ldquo;tutorial01_first_window&amp;rdquo; и открой файл &amp;ldquo;tutorial01.cpp&amp;rdquo;.
+Там ты увидишь код, который инициализирует все библиотеки и создаёт окно &amp;ndash; давай разберём по порядку.</description>
+    </item>
+    
+    <item>
+      <title>OpenGL/C&#43;&#43;. Установка окружения</title>
+      <link>http://kee-reel.com/opengl/environment-setup/</link>
+      <pubDate>Sun, 03 Oct 2021 00:00:00 +0000</pubDate>
+      
+      <guid>http://kee-reel.com/opengl/environment-setup/</guid>
+      <description>В этой статье я расскажу как подготовить окружение для изучения OpenGL на C++.
+Сразу скажу &amp;ndash; я опираюсь на материалы сайта opengl-tutorial.org. Можешь прямо сейчас перейти туда, и узнать там всё то же самое.
+Для чего тогда дублировать материал и писать одно и то же? У меня есть 3 причины:
+Мой pull-request с исправлениями в русской локализации, на момент написания этой статьи висит уже месяц &amp;ndash; похоже владелец сайта подзабил на свой проект Из-за того, что автор сайта подзабил на свой проект, некоторая информация уже устарела (в QtCreator теперь есть нативная поддержка CMake, и установка из-за этого ускоряется в разы) Так я лучше разберусь в материале, так как для написания хорошей статьи придётся закопаться поглубже в предмет Установка на Windows Если никогда не ставил драйверы для видеокарты &amp;ndash; поставь сейчас.</description>
+    </item>
+    
+    <item>
+      <title>C. Циклы</title>
+      <link>http://kee-reel.com/c/loops-ru/</link>
+      <pubDate>Thu, 30 Sep 2021 00:00:00 +0000</pubDate>
+      
+      <guid>http://kee-reel.com/c/loops-ru/</guid>
+      <description>Цикл (loop) &amp;ndash; это механизм, позволяющий выполнить множество схожих действий.
+В языке си есть три вида циклов:
+for while do while Цикл for Вот пример определения цикла для решения задачи &amp;ldquo;выводим все чётные числа от 1 до n (не включительно)&amp;rdquo;:
+int n; scanf(&amp;#34;%d&amp;#34;, &amp;amp;n); for(int i = 1; i &amp;lt; n; i++) { if(i % 2 == 0) { printf(&amp;#34;%d\n&amp;#34;, i); } } Давай разберём из чего состоит цикл.
+Создание временной переменной int i = 1; Этот код выполняется перед стартом цикла &amp;ndash; обычно в нём создаётся временная переменная, которая будет использована внутри цикла.</description>
+    </item>
+    
+    <item>
+      <title>Python. Инкапсуляция</title>
+      <link>http://kee-reel.com/python/classes-incapsulation/</link>
+      <pubDate>Thu, 30 Sep 2021 00:00:00 +0000</pubDate>
+      
+      <guid>http://kee-reel.com/python/classes-incapsulation/</guid>
+      <description>Эта статья является составной частью статьи про ООП &amp;ndash; если ты хочешь понять всю картину, то лучше начать с неё.
+Инкапсуляция &amp;ndash; позволяет скрыть детали реализации.
+Ты когда-нибудь пробовал разобрать свой телефон или ноутбук? Это очень сложный процесс, который как-будто специально сделан максимально трудоёмким для пользователя. Зачем это нужно его создателям?
+Если бы это было очень просто, то ты бы мог залезть &amp;ldquo;просто посмотреть&amp;rdquo; и случайно что-то сломать в этом сложном устройстве.</description>
+    </item>
+    
+    <item>
+      <title>Python. Наследование классов</title>
+      <link>http://kee-reel.com/python/classes-inheritance/</link>
+      <pubDate>Thu, 30 Sep 2021 00:00:00 +0000</pubDate>
+      
+      <guid>http://kee-reel.com/python/classes-inheritance/</guid>
+      <description>Эта статья является составной частью статьи про ООП &amp;ndash; если ты хочешь понять всю картину, то лучше начать с неё.
+Наследование &amp;ndash; позволяет связать разные классы в иерархию таким образом, что мы можем в старших классах определить базовые функции, и переиспользовать их во всех классах наследниках.
+Вот пример наследования:
+У нас есть базовый класс Seat:
+class Seat: def __init__(self, seat): self.seat = seat def take_a_seat(self): desc = self.get_description() print(f&amp;#39;Ты сел на {desc}&amp;#39;) def get_description(self): return f&amp;#39;сиденье из {self.</description>
+    </item>
+    
+    <item>
+      <title>Python. Полиморфизм</title>
+      <link>http://kee-reel.com/python/classes-polymorphism/</link>
+      <pubDate>Thu, 30 Sep 2021 00:00:00 +0000</pubDate>
+      
+      <guid>http://kee-reel.com/python/classes-polymorphism/</guid>
+      <description>Эта статья является составной частью статьи про ООП &amp;ndash; если ты хочешь понять всю картину, то лучше начать с неё.
+Полиморфизм в классах Полиморфизм &amp;ndash; позволяет единообразно работать с методами разных классов, наследованных от одного родительского класса.
+Объясняю на примере &amp;ndash; перед тобой стоит три машины с коробкой-автоматом от разных производителей:
+class Car: def __init__(self, manufacturer, horse_powers): def._manufacturer = manufacturer self._horse_powers = horse_powers def turn_on(self): print(f&amp;#39;Ты запустил двигатель у {def.</description>
+    </item>
+    
+    <item>
+      <title>Python. Принципы ООП</title>
+      <link>http://kee-reel.com/python/classes-oop/</link>
+      <pubDate>Thu, 23 Sep 2021 00:00:00 +0000</pubDate>
+      
+      <guid>http://kee-reel.com/python/classes-oop/</guid>
+      <description>В объектно-ориентированном программировании есть 3 основных принципа:
+Наследование Позволяет связать разные классы в иерархию таким образом, что мы можем в старших классах определить базовые функции, и переиспользовать их во всех классах наследниках.
+Чтобы узнать более подробно перейди к отдельной статье про наследование.
+Инкапсуляция Позволяет скрыть детали реализации.
+Чтобы узнать более подробно перейди к отдельной статье про инкапсуляцию.
+Полиморфизм Позволяет единообразно работать с методами разных классов, наследованных от одного родительского класса.</description>
+    </item>
+    
+    <item>
+      <title>Python. Классы</title>
+      <link>http://kee-reel.com/python/classes/</link>
+      <pubDate>Wed, 22 Sep 2021 00:00:00 +0000</pubDate>
+      
+      <guid>http://kee-reel.com/python/classes/</guid>
+      <description>Прежде чем мы перейдём к использованию классов, я расскажу откуда классы взялись &amp;ndash; про объектно-ориентированное программирование.
+Объектно-ориентированное программирование (ООП) &amp;ndash; подход к написанию программ при котором:
+Программа представляется в виде набора объектов и связей между ними Все объекты являются экземплярами классов Классы образуют иерархию наследования (про это в следующей статье) Сейчас расскажу подробно что это всё значит.
+Объект В реальном мире мы с тобой постоянно взаимодействуем с какими-то объектами: стул, стол, кружка, телефон и т.</description>
+    </item>
+    
+    <item>
+      <title>C. Условия</title>
+      <link>http://kee-reel.com/c/conditions-ru/</link>
+      <pubDate>Thu, 16 Sep 2021 00:00:00 +0000</pubDate>
+      
+      <guid>http://kee-reel.com/c/conditions-ru/</guid>
+      <description>Условие (condition) &amp;ndash; это механизм, позволяющий выполнить действие, только если выполняется определённое условие.
+Вот пример определения условия:
+int x; scanf(&amp;#34;%d&amp;#34;, &amp;amp;x); if(x &amp;gt; 100) { printf(&amp;#34;Число %d больше 100\n&amp;#34;, x); } else if(x == 100) { printf(&amp;#34;Число %d равно 100\n&amp;#34;, x); } else { printf(&amp;#34;Число %d меньше 100\n&amp;#34;, x); } Чтобы лучше понять что происходит, я нарисую блок-схему.
+Блок-схема &amp;ndash; это просто графическая схема, которая описывает какой-то алгоритм. С её помощью можно описать сам алгоритм, не заморачиваясь с написанием программы на каком-либо языке программирования.</description>
+    </item>
+    
+    <item>
+      <title>C. Операторы</title>
+      <link>http://kee-reel.com/c/operators-ru/</link>
+      <pubDate>Sat, 11 Sep 2021 00:00:00 +0000</pubDate>
+      
+      <guid>http://kee-reel.com/c/operators-ru/</guid>
+      <description>Оператор &amp;ndash; это штука, с помощью которой можно совершить операцию (сложение, вычитание и т.д.)
+Существует два вида операторов:
+Унарные &amp;ndash; для операций над одной переменной Бинарные &amp;ndash; для операций над двумя переменными Есть ещё тернарный (с тремя переменными), но про него мы вспомним, когда будем говорить про условия (if, else).
+Бинарные операторы Начнём с бинарных, потому что они роднее и понятнее:
+Сложение: + Вычитание: - Умножение: * Деление: / Остаток от деления: % Необходимо учитывать, что у операторов разные приоритеты применения &amp;ndash; например, классический пример:</description>
+    </item>
+    
+    <item>
+      <title>C. Переменные</title>
+      <link>http://kee-reel.com/c/variables-ru/</link>
+      <pubDate>Fri, 10 Sep 2021 00:00:00 +0000</pubDate>
+      
+      <guid>http://kee-reel.com/c/variables-ru/</guid>
+      <description>Одним из ключевых понятий в программировании является понятие переменная.
+Переменные хранят значения, используемые в программе.
+Типы переменных Переменные могут быть следующих типов:
+char &amp;ndash; целое число, которое занимает 1 байт int &amp;ndash; целое число, которое занимает 4 байта float &amp;ndash; вещественное число, которое занимает 4 байта double &amp;ndash; вещественное число, которое занимает 8 байт В зависимости от компилятора и разрядности системы (x64 или x86) размер типа int может занимать 2, 4 или 8 байт.</description>
+    </item>
+    
+    <item>
+      <title>C. Введение</title>
+      <link>http://kee-reel.com/c/intro-ru/</link>
+      <pubDate>Tue, 07 Sep 2021 00:00:00 +0000</pubDate>
+      
+      <guid>http://kee-reel.com/c/intro-ru/</guid>
+      <description>В этой статье я расскажу что такое языки программирования и в частности про C.
+Сразу скажу, я сторонник обучения сверху-вниз &amp;ndash; сначала объясняю глобально, а потом перехожу к частностям. Это помогает построить в голове карту предметной области, при помощи которой тебе будет проще в будущем систематизировать свои знания.
+Что такое язык программирования Язык программирования &amp;ndash; это язык на котором можно описать последовательность инструкций в том виде, в котором его сможет прочитать компьютер.</description>
+    </item>
+    
+    <item>
+      <title>Python. Функции</title>
+      <link>http://kee-reel.com/python/functions/</link>
+      <pubDate>Sat, 28 Aug 2021 00:00:00 +0000</pubDate>
+      
+      <guid>http://kee-reel.com/python/functions/</guid>
+      <description>Функция (function) &amp;ndash; это механизм, позволяющий вынести часть логики программы в отдельный блок, который можно многократно исполнять из разных мест прогаммы.
+Вот пример определения функции:
+# def -- сокращённо от слова define (определить) # У функции может не быть параметров: def someFunctionName(): value = 5 # return (вернуть) - оператор, который возвращает переданное значение в место вызова функции return value + 2 # Всё, что находится после return не будет исполнено, так как после return программа выйдет # из функции, и продолжит исполнение в месте вызова функции print(&amp;#39;This will never be printed&amp;#39;) # У функции может быть несколько параметров def anotherFunctionName(functionParameter1, functionParameter2): # Внутри функций можно вызывать другие функции value = someFunctionName() # Вернёт 7 result = (functionParameter1 + functionParameter2) * 10 return result a = 3 # Чтобы вызвать функцию необходимо написать её имя, а затем в круглых скобках указать её параметры # Количество и позиции параметров должны быть такими же, как в определении функции b = someFunctionName() # Вернёт 7 c = anotherFunctionName(a, b) # Вернёт 180 print(c) # Вывод: # 100 Это называется определением функции:</description>
+    </item>
+    
+    <item>
+      <title>Python. Циклы</title>
+      <link>http://kee-reel.com/python/loops/</link>
+      <pubDate>Sat, 21 Aug 2021 00:00:00 +0000</pubDate>
+      
+      <guid>http://kee-reel.com/python/loops/</guid>
+      <description>Цикл (loop) &amp;ndash; это механизм, позволяющий описать выполнение множества одинаковых действий.
+Есть две разновидности циклов:
+for while Цикл for Вот пример определения цикла for:
+some_list = [1, 2, 3, 4, 5, 0] # Читается как: для каждого значения value в some_list выполнить for value in some_list: # value это временная переменная, которая создаётся при входе в цикл # Ты можешь назвать её как угодно, не обязательно value -- например, если бы список назывался students, то я бы назвал переменную student # В эту переменную по очереди забираются значения из списка some_list print(value) # Вывод: # 1 # 2 # 3 # 4 # 5 # 0 Вместо some_list может быть любой контейнер &amp;ndash; для списка и кортежа цикл будет проходить по значениям, а для словаря цикл будет проходить по всем ключам:</description>
+    </item>
+    
+    <item>
+      <title>Python. Условия</title>
+      <link>http://kee-reel.com/python/conditions/</link>
+      <pubDate>Fri, 20 Aug 2021 00:00:00 +0000</pubDate>
+      
+      <guid>http://kee-reel.com/python/conditions/</guid>
+      <description>Условие (condition) &amp;ndash; это механизм, позволяющий выполнить действие, только если выполняется определённое условие.
+Вот пример определения условия:
+this_is_true = True this_is_false = False condition_message = &amp;#39;Condition: &amp;#39; if this_is_false: condition_message += &amp;#39;one&amp;#39; elif this_is_true or this_is_false: condition_message += &amp;#39;two&amp;#39; elif this_is_true: condition_message += &amp;#39;three&amp;#39; else: condition_message += &amp;#39;four&amp;#39; print(condition_message) # Вывод: # Condition: two Давай разберём:
+Секция под if (если) исполнится если указанное условие истинно. Все секции в Python отделяются отступом: табуляцией &amp;ldquo;Tab&amp;rdquo; или равным количеством пробелов.</description>
+    </item>
+    
+    <item>
+      <title>Python. Контейнеры</title>
+      <link>http://kee-reel.com/python/containers/</link>
+      <pubDate>Tue, 17 Aug 2021 00:00:00 +0000</pubDate>
+      
+      <guid>http://kee-reel.com/python/containers/</guid>
+      <description>Контейнеры это незаменимый инструмент, при работе с наборами данных &amp;ndash; давай их изучим. Существуют следующие типы контейнеров:
+Списки Кортежи Словари Списки Зачастую, тебе не хватает переменной, чтобы вместить все данные &amp;ndash; например, тебе нужно посчитать среднюю оценку для всей группы в университете по какому-то предмету (человек 25, например). Ты мог бы создать переменные (&amp;ldquo;student_1&amp;rdquo;, &amp;ldquo;student_2&amp;rdquo;, &amp;ldquo;student_3&amp;rdquo; и так далее), но это была бы очень монотонная и занудная работа.
+К счастью разработчики очень ленивые, и давно придумали решение этой проблемы &amp;ndash; список (list).</description>
+    </item>
+    
+    <item>
+      <title>Python. Переменные и операции с ними</title>
+      <link>http://kee-reel.com/python/variables-and-operations/</link>
+      <pubDate>Mon, 16 Aug 2021 00:00:00 +0000</pubDate>
+      
+      <guid>http://kee-reel.com/python/variables-and-operations/</guid>
+      <description>Одним из ключевых понятий в программировании является понятие &amp;ldquo;переменная&amp;rdquo;.
+Переменные хранят значения, используемые в программе.
+Типы переменных Значения могут быть следующих типов:
+bool &amp;ndash; булевое значение (boolean). Может принимать значение True (истина) или False (ложь) int &amp;ndash; целочислое число (integer). Например: 0, 55, -66 float &amp;ndash; вещественное число. Например: 0.123, 5.55555, -6.62156 str &amp;ndash; строка (string). Например: &amp;lsquo;это&amp;rsquo;, &amp;lsquo;пример любой&amp;rsquo;, &amp;lsquo;строки!&amp;rsquo; Вот пример определения переменных в Python:
+is_car_in_motion = True kilometers_per_second = 85 fuel_left = 0.</description>
+    </item>
+    
+    <item>
+      <title>Python. Введение</title>
+      <link>http://kee-reel.com/python/intro/</link>
+      <pubDate>Sun, 15 Aug 2021 00:00:00 +0000</pubDate>
+      
+      <guid>http://kee-reel.com/python/intro/</guid>
+      <description>В этой статье я расскажу что такое языки программирования и в частности про Python.
+Сразу скажу, я сторонник обучения сверху-вниз &amp;ndash; сначала объясняю глобально, а потом перехожу к частностям. Это помогает построить в голове карту предметной области, при помощи которой тебе будет проще в будущем систематизировать свои знания.
+Что такое язык программирования Язык программирования &amp;ndash; это язык на котором можно описать последовательность инструкций в том виде, в котором его сможет прочитать компьютер.</description>
+    </item>
+    
+    <item>
+      <title>Linux. Основы работы с командной строкой</title>
+      <link>http://kee-reel.com/linux/basics/</link>
+      <pubDate>Wed, 11 Aug 2021 00:00:00 +0000</pubDate>
+      
+      <guid>http://kee-reel.com/linux/basics/</guid>
+      <description>Скорее всего ты читаешь этот текст в окне браузера, а значит используешь графическую оболочку при работе с операционной системой. Сейчас ты открываешь окна и кликаешь курсором на кнопки и иконки приложений, но так было не всегда.
+50 лет назад все пользователи компьютера видели перед собой примерно такую картину:
+Представь, например, что даже какая-нибудь Евлампия Сергеевна из отдела бухгалтерии работала через командную строку, чтобы сформировать квартальный отчёт.
+Окей, раньше просто не было графических интерфейсов, и у Евлампии Сергеевны не было альтернатив &amp;ndash; сейчас то зачем с этим заморачиваться?</description>
+    </item>
+    
+    <item>
+      <title>Python. Установка окружения</title>
+      <link>http://kee-reel.com/python/environment-setup/</link>
+      <pubDate>Wed, 11 Aug 2021 00:00:00 +0000</pubDate>
+      
+      <guid>http://kee-reel.com/python/environment-setup/</guid>
+      <description>Для того, чтобы начать разрабатывать на Python, давай установим все необходимые инструменты разработки.
+Сперва установи сам Python, а затем мы с тобой посмотрим на два инструмента разработки:
+Командная строка + текстовый редактор IDE PyCharm Установка Открой официальный сайт Python и скачай установщик для своей операционной системы: https://www.python.org/downloads/
+Установка на всех операционных системах стандартная, должна пройти без проблем.
+Если проблемы всё же возникли, то напиши мне &amp;ndash; я помогу и дополню описание этого шага.</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>http://kee-reel.com/404/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://kee-reel.com/404/</guid>
+      <description>404 This page does not exist...</description>
+    </item>
+    
+    <item>
+      <title>About</title>
+      <link>http://kee-reel.com/about/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://kee-reel.com/about/</guid>
+      <description>Контакты Telegram &amp;ndash; @kee_reel Почта &amp;ndash; c4rb0n_unit@protonmail.com GitHub &amp;ndash; github.com/kee-reel Mastodon &amp;ndash; mastodon.ml/@keereel Codewars &amp;ndash; codewars.com/users/kee-reel Habrahabr &amp;ndash; habr.com/en/users/curunir/posts Steam &amp;ndash; steamcommunity.com/id/keereeel GOG &amp;ndash; gog.com/u/kee-reel Образование Бакалавриат (4 года): Университет: БГТУ &amp;ldquo;Военмех&amp;rdquo; Направление: &amp;ldquo;Информационные системы и технологии&amp;rdquo; Тема диплома: &amp;ldquo;Разработка системы управления персональной информацией&amp;rdquo; Магистратура (2 года): Университет: БГТУ &amp;ldquo;Военмех&amp;rdquo; Направление: &amp;ldquo;Программная инженерия&amp;rdquo; Тема диссертации: &amp;ldquo;Исследование процессов модульной разработки компонентов программного обеспечения личностно-ориентированных информационных систем&amp;rdquo; Опыт 3 года работал в АО НИИ Синвент: Проект: тренажёр для водителей на подвижной платформе Разрабатывал виртуальное окружение и симуляцию поведения машины на Unity3D Разрабатывал приложение для удалённого управления симуляцией на C++/Qt: смена погодных условий, запуск заданий, введение неисправностей машины 3 года работал в Wargaming Saint Petersburg: Проект: игра World of Warships Legends Занимался портированием проекта на XBox One, Xbox Series X, PS4, PS5 Разрабатывал мета-игровые системы на C++/Python: внутриигровой магазин, ежедневные задачи, нотификации, матчмейкер 2021/2022 учебный год работал преподавателем в Балтийском Государственном Техническом Университете &amp;ldquo;Военмех&amp;rdquo;.</description>
+    </item>
+    
+    <item>
+      <title>C. Установка окружения</title>
+      <link>http://kee-reel.com/c/environment-setup-ru/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://kee-reel.com/c/environment-setup-ru/</guid>
+      <description>Для того, чтобы начать разрабатывать на C, давай установим все необходимые инструменты разработки.
+Сперва установим компилятор C, а затем мы с тобой посмотрим на два инструмента разработки:
+Командная строка + текстовый редактор IDE Установка Открой официальный сайт Python и скачай установщик для своей операционной системы: https://www.python.org/downloads/
+Установка на всех операционных системах стандартная, должна пройти без проблем.
+Если проблемы всё же возникли, то напиши мне &amp;ndash; я помогу и дополню описание этого шага.</description>
+    </item>
+    
+    <item>
+      <title>Ссылки на классные ресурсы</title>
+      <link>http://kee-reel.com/links/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://kee-reel.com/links/</guid>
+      <description>https://github.com/danistefanovic/build-your-own-x &amp;ndash; репозиторий, в котором собрана куча ссылок на материалы, описывающие как с нуля разработать различные системы, от 3D-рендеринга до веб сервера https://refactoring.guru/ &amp;ndash; отличный сайт, содержащий объяснения различных паттернов проектирования программ с ООП &amp;ndash; если ты освоил основы языка программирования, то это следующая ступень https://learnopengl.com/ &amp;ndash; супер сайт с полным курсом изучения OpenGL, от основ до продвинутых техник (в курсе используется C++) https://ohshitgit.com &amp;ndash; полезный и смешной сайт, на котором собраны пути решения самых распространённых проблем с Git&amp;rsquo;ом https://sci-hub.</description>
+    </item>
+    
+  </channel>
+</rss>

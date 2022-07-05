@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="ru">
+	<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5">
+	<meta name="description" content="IT простым языком">
+	<meta name="generator" content="HUGO">
+
+	<meta name="theme-color" content="#ffffff">
+
+    
+    
+    <link rel="stylesheet" href="http://kee-reel.com/sass/main.c3c167415800f2394c3296fcddb264b8afea9703b424d3003f18be3b0f9e64bc.css" integrity="sha256-w8FnQVgA8jlMMpb83bJkuK/qlwO0JNMAPxi&#43;Ow&#43;eZLw=">
+</head>
+
+<body>
+	<div id="top"/>
+<header>
+    <p align="center">
+        +---------------------------+<br>
+        |.-------------------------.|<br>
+        ||&nbsp;<a href="/">kee_reel@blog</a>:~$ cd&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;||<br>
+        ||&nbsp;<a href="/c">c</a>&nbsp;&nbsp;<a href="/cpp">c++</a>&nbsp;&nbsp;<a href="/python">python</a>&nbsp;&nbsp;<a href="/linux">linux</a>&nbsp;&nbsp;&nbsp;||<br>
+        ||&nbsp;<a href="/opengl">opengl</a>&nbsp;&nbsp;<a href="/sql">sql</a>&nbsp;&nbsp;<a href="/network">networks</a>&nbsp;&nbsp;&nbsp;||<br>
+        ||&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;||<br>
+        ||&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/about">обо_мне</a>&nbsp;||<br>
+        |.-------------------------.|<br>
+        +-::---------------------::-+<br>
+        .---------------------------.<br>
+        &nbsp;//&nbsp;/o<a href="/links">o</a>oooooooooooooooooooo\\&nbsp;\\&nbsp;<br>
+        &nbsp;//&nbsp;/oooooooooooooooooooooooo\\&nbsp;\\&nbsp;<br>
+        //-------------------------------\\<br>
+        \\-------------------------------//<br>
+    </p>
+</header>
+
+		
+	<div id="wrapper">
+		<div class="container">
+			<section id="main_content">
+    <h1>C&#43;&#43;. Наследование классов</h1>
+    
+    
+        <h3>Время чтения: 10 мин</h3>
+    
+    <p><strong>Наследование</strong> &ndash; позволяет связать разные классы в иерархию таким образом, что мы можем в классе наследнике переиспользовать поля и методы, объявленные в родительском классе.</p>
+<p>Давай сначала посмотрим на примере &ndash; допустим, у меня есть класс <code>Animal</code>:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Animal</span>
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span><span style="color:#f92672">:</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Конструктор с параметрами
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    Animal(<span style="color:#66d9ef">int</span> weight, <span style="color:#66d9ef">int</span> age, <span style="color:#66d9ef">int</span> max_age) <span style="color:#f92672">:</span>
+</span></span><span style="display:flex;"><span>        m_weight(weight),
+</span></span><span style="display:flex;"><span>        m_age(age),
+</span></span><span style="display:flex;"><span>        m_max_age(max_age)
+</span></span><span style="display:flex;"><span>    {}
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Можем узнать старое ли это животное
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">bool</span> <span style="color:#a6e22e">is_old</span>()
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> m_age <span style="color:#f92672">&gt;</span> m_max_age <span style="color:#f92672">*</span> <span style="color:#ae81ff">0.75</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Можем сравнить по весу с другим животным
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">bool</span> <span style="color:#a6e22e">is_bigger_than</span>(Animal <span style="color:#f92672">&amp;</span>other)
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> m_weight <span style="color:#f92672">&gt;</span> other.m_weight;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">private</span><span style="color:#f92672">:</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">int</span> m_weight;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">int</span> m_age;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">int</span> m_max_age;
+</span></span><span style="display:flex;"><span>};
+</span></span></code></pre></div><p>Мы можем создать пару таких животных:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>()
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    Animal a1(<span style="color:#ae81ff">7</span>, <span style="color:#ae81ff">13</span>, <span style="color:#ae81ff">15</span>), a2(<span style="color:#ae81ff">108</span>, <span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">30</span>);
+</span></span><span style="display:flex;"><span>    std<span style="color:#f92672">::</span>cout <span style="color:#f92672">&lt;&lt;</span> <span style="color:#e6db74">&#34;First is old: &#34;</span> <span style="color:#f92672">&lt;&lt;</span> a1.is_old() <span style="color:#f92672">&lt;&lt;</span> std<span style="color:#f92672">::</span>endl <span style="color:#f92672">&lt;&lt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// First is old: 1
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        <span style="color:#e6db74">&#34;Second is old: &#34;</span> <span style="color:#f92672">&lt;&lt;</span> a2.is_old() <span style="color:#f92672">&lt;&lt;</span> std<span style="color:#f92672">::</span>endl <span style="color:#f92672">&lt;&lt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Second is old: 0
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        <span style="color:#e6db74">&#34;First is bigger than second: &#34;</span> <span style="color:#f92672">&lt;&lt;</span> a1.is_bigger_than(a2) <span style="color:#f92672">&lt;&lt;</span> std<span style="color:#f92672">::</span>endl;
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// First is bigger than second: 0
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>}
+</span></span></code></pre></div><p>Всё работает, но жизни как-то не хватает &ndash; что это за животные такие абстрактные? Давай хотя бы добавим кошку и лошадь!</p>
+<p>Кошка и лошадь являются животными, и оба могут иметь возраст и вес &ndash; то есть мы можем для них обоих использовать базовый класс Animal.</p>
+<p>Класс, от которого мы хотим унаследоваться, указывавается через двоеточие после названия нашего класса:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Cat</span> <span style="color:#f92672">:</span> <span style="color:#66d9ef">public</span> Animal {
+</span></span><span style="display:flex;"><span>    ...
+</span></span><span style="display:flex;"><span>};
+</span></span></code></pre></div><blockquote>
+<p><code>public</code> наследовании пока прими как есть - про него я расскажу дальше</p>
+</blockquote>
+<p>Вот полный код новых классов <code>Cat</code> и <code>Horse</code>:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Animal</span> {...};
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Cat</span> <span style="color:#f92672">:</span> <span style="color:#66d9ef">public</span> Animal {
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span><span style="color:#f92672">:</span>
+</span></span><span style="display:flex;"><span>    Cat(<span style="color:#66d9ef">float</span> fluffiness, <span style="color:#66d9ef">int</span> weight, <span style="color:#66d9ef">int</span> age) <span style="color:#f92672">:</span>
+</span></span><span style="display:flex;"><span>        Animal(weight, age, <span style="color:#ae81ff">15</span>),
+</span></span><span style="display:flex;"><span>        m_fluffiness(fluffiness)
+</span></span><span style="display:flex;"><span>    {}
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">talk</span>()
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>        std<span style="color:#f92672">::</span>cout <span style="color:#f92672">&lt;&lt;</span> <span style="color:#e6db74">&#34;Mew mew&#34;</span> <span style="color:#f92672">&lt;&lt;</span> std<span style="color:#f92672">::</span>endl;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Сколько килограмм волос выпадет из кошки за день?
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">float</span> <span style="color:#a6e22e">shed_weight</span>()
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> m_fluffiness <span style="color:#f92672">*</span> <span style="color:#ae81ff">0.1</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">private</span><span style="color:#f92672">:</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Пушистость кошки (от 0.0 до 1.0)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">float</span> m_fluffiness;
+</span></span><span style="display:flex;"><span>};
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Horse</span> <span style="color:#f92672">:</span> <span style="color:#66d9ef">public</span> Animal {
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span><span style="color:#f92672">:</span>
+</span></span><span style="display:flex;"><span>    Horse(<span style="color:#66d9ef">float</span> speed, <span style="color:#66d9ef">int</span> weight, <span style="color:#66d9ef">int</span> age) <span style="color:#f92672">:</span>
+</span></span><span style="display:flex;"><span>        Animal(weight, age, <span style="color:#ae81ff">30</span>),
+</span></span><span style="display:flex;"><span>        m_speed(speed)
+</span></span><span style="display:flex;"><span>    {}
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">talk</span>()
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>        std<span style="color:#f92672">::</span>cout <span style="color:#f92672">&lt;&lt;</span> <span style="color:#e6db74">&#34;Pfrrr&#34;</span> <span style="color:#f92672">&lt;&lt;</span> std<span style="color:#f92672">::</span>endl;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// За сколько часов на этой лошади можно преодолеть distance километров?
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">float</span> <span style="color:#a6e22e">travel</span>(<span style="color:#66d9ef">float</span> distance)
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> distance <span style="color:#f92672">/</span> m_speed;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">private</span><span style="color:#f92672">:</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Скорость лошади в километрах в час
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">float</span> m_speed;
+</span></span><span style="display:flex;"><span>};
+</span></span></code></pre></div><p>Особенности обращения с конструкторами и деструкторами при наследовании:</p>
+<ul>
+<li>Конструкторы и деструкторы не наследуются</li>
+<li>Параметры конструкторов могут различаться &ndash; например, у меня в констукторах <code>Cat</code> и <code>Horse</code> нет параметра <code>max_age</code>, и я передаю в конструктор <code>Animal</code> фиксированное значение, в зависимости от типа животного</li>
+<li>Если явно не вызывать конструктор базового класса из конструктора наследника, то будет вызван конструктор базового класса без параметров. Если у базового класса нет конструктора без параметров, то будет ошибка компиляции</li>
+<li>При создании объекта сначала вызывается конструктор родителя, то есть порядок такой: <code>родитель-&gt;наследник-&gt;наследник_наследника-&gt;...</code></li>
+<li>При удалении объекта сначала вызывается деструктор самого младшего наследника, то есть порядок такой:  <code>...-&gt;наследник_наследника-&gt;наследник-&gt;родитель</code></li>
+</ul>
+<p>Осталось только изменить код в <code>main()</code>:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>()
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    Cat a1(<span style="color:#ae81ff">0.8</span>, <span style="color:#ae81ff">7</span>, <span style="color:#ae81ff">13</span>);
+</span></span><span style="display:flex;"><span>    a1.talk();
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Mew mew
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    Horse a2(<span style="color:#ae81ff">18</span>, <span style="color:#ae81ff">268</span>, <span style="color:#ae81ff">4</span>);
+</span></span><span style="display:flex;"><span>    a2.talk();
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Pfrrr
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    std<span style="color:#f92672">::</span>cout <span style="color:#f92672">&lt;&lt;</span> <span style="color:#e6db74">&#34;Cat is old: &#34;</span> <span style="color:#f92672">&lt;&lt;</span> a1.is_old() <span style="color:#f92672">&lt;&lt;</span> std<span style="color:#f92672">::</span>endl <span style="color:#f92672">&lt;&lt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Cat is old: 1
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        <span style="color:#e6db74">&#34;Horse is old: &#34;</span> <span style="color:#f92672">&lt;&lt;</span> a2.is_old() <span style="color:#f92672">&lt;&lt;</span> std<span style="color:#f92672">::</span>endl <span style="color:#f92672">&lt;&lt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Horse is old: 0
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        <span style="color:#e6db74">&#34;Cat is bigger than horse: &#34;</span> <span style="color:#f92672">&lt;&lt;</span> a1.is_bigger_than(a2) <span style="color:#f92672">&lt;&lt;</span> std<span style="color:#f92672">::</span>endl <span style="color:#f92672">&lt;&lt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Cat is bigger than horse: 0
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        <span style="color:#e6db74">&#34;Cat will shed about &#34;</span> <span style="color:#f92672">&lt;&lt;</span> (a1.shed_weight() <span style="color:#f92672">*</span> <span style="color:#ae81ff">365</span>) <span style="color:#f92672">&lt;&lt;</span> <span style="color:#e6db74">&#34; kg of hair in a year&#34;</span> <span style="color:#f92672">&lt;&lt;</span> std<span style="color:#f92672">::</span>endl <span style="color:#f92672">&lt;&lt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Cat will shed about 29.2 kg of hair in a year
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        <span style="color:#e6db74">&#34;Horse will travel 100km in about &#34;</span> <span style="color:#f92672">&lt;&lt;</span> a2.travel_time(<span style="color:#ae81ff">100</span>) <span style="color:#f92672">&lt;&lt;</span> <span style="color:#e6db74">&#34; hours&#34;</span> <span style="color:#f92672">&lt;&lt;</span> std<span style="color:#f92672">::</span>endl;
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Horse will travel 100km in about 20.8333 hours
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>}
+</span></span></code></pre></div><p>То есть у наших кошки и лошади всё так же можно вызвать методы <code>is_old()</code> и <code>is_bigger_than()</code>, но при этом, у каждого из них есть свои уникальные методы <code>shed_weight()</code> и <code>travel_time()</code>.</p>
+<h1 id="спецификатор-доступа-protected">Спецификатор доступа protected</h1>
+<p>И это касается не только методов &ndash; поля <code>m_weight</code>, <code>m_age</code> и <code>m_max_age</code> тоже могут быть унаследованы &ndash; то есть мы сможем их использовать в <code>Cat</code> и <code>Horse</code>.</p>
+<p>Например, давай сделаем так, что кошка будет меньше линять к старости:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span>    <span style="color:#66d9ef">float</span> <span style="color:#a6e22e">shed_weight</span>()
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// Приводим к float чтобы получить вещественное деление
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        <span style="color:#66d9ef">float</span> age_multiplier <span style="color:#f92672">=</span> (<span style="color:#66d9ef">float</span>)(m_max_age <span style="color:#f92672">-</span> m_age) <span style="color:#f92672">/</span> m_max_age;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> m_fluffiness <span style="color:#f92672">*</span> <span style="color:#ae81ff">0.1</span> <span style="color:#f92672">*</span> age_multiplier;
+</span></span><span style="display:flex;"><span>    }
+</span></span></code></pre></div><p>А для лошади сделаем так, что она будет бегать быстрее всего в молодости:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span>    <span style="color:#66d9ef">float</span> <span style="color:#a6e22e">travel_time</span>(<span style="color:#66d9ef">float</span> distance)
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">float</span> peak_age <span style="color:#f92672">=</span> m_max_age <span style="color:#f92672">/</span> <span style="color:#ae81ff">2</span>;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">float</span> age_multiplier <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">-</span> fabs(peak_age <span style="color:#f92672">-</span> m_age) <span style="color:#f92672">/</span> peak_age;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> distance <span style="color:#f92672">/</span> (m_speed <span style="color:#f92672">*</span> age_multiplier);
+</span></span><span style="display:flex;"><span>    }
+</span></span></code></pre></div><p>При компиляции мы получим кучу ошибок такого вида:</p>
+<pre tabindex="0"><code>main.cpp: In member function ‘float Cat::shed_weight()’:
+main.cpp:39:33: error: ‘int Animal::m_max_age’ is private within this context
+   39 |         float age_multiplier = (m_max_age - m_age) / m_max_age;
+      |                                 ^~~~~~~~~
+</code></pre><p>Я ожидал этого &ndash; сейчас поля <code>m_weight</code>, <code>m_age</code> и <code>m_max_age</code> объявлены как <code>private</code> &ndash; это значит, что к ним можно обращаться только из методов класса, в котором они объявлены.</p>
+<p>Но я же говорил, что в наследниках можно будет использовать поля родительского класса, разве нет? Да, но для этого нам придётся изменить спецификатор доступа с <code>private</code> на <code>protected</code>.</p>
+<p><code>protected</code> &ndash; это спецификатор доступа, который позволяет обращаться к методу/полю только из методов самого класса или методов его наследников.</p>
+<p>Давай заменим <code>private</code> на <code>protected</code> в классе <code>Animal</code>:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Animal</span>
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    ...
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">protected</span><span style="color:#f92672">:</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">int</span> m_weight;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">int</span> m_age;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">int</span> m_max_age;
+</span></span><span style="display:flex;"><span>};
+</span></span></code></pre></div><p>Теперь всё должно собраться без ошибок. Вот вывод программы, видно что значения выпадения волос и расстояния изменились:</p>
+<pre tabindex="0"><code>Mew mew
+Pfrrr
+First is old: 1
+Second is old: 0
+First is bigger than second: 0
+Cat will shed about 3.89333 kg of hair in a year
+Horse will travel 100km in about 1.85185 hours
+</code></pre><p>Используй <code>protected</code> для полей или методов если хочешь, чтобы классы наследники смогли их использовать. Если ты не планируешь этого, то лучше используй <code>private</code> &ndash; таким образом ты упростишь задачу тому, кто будет разбираться в твоём коде.</p>
+<h1 id="спецификатор-доступа-в-наследовании">Спецификатор доступа в наследовании</h1>
+<p>Как ты видел, при наследовании мы указали спецификатор <code>public</code>:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Cat</span> <span style="color:#f92672">:</span> <span style="color:#66d9ef">public</span> Animal {
+</span></span><span style="display:flex;"><span>    ...
+</span></span><span style="display:flex;"><span>};
+</span></span></code></pre></div><p>А можно ещё что-то указать? Да, можно:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#75715e">// protected наследование
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Cat</span> <span style="color:#f92672">:</span> <span style="color:#66d9ef">protected</span> Animal {
+</span></span><span style="display:flex;"><span>    ...
+</span></span><span style="display:flex;"><span>};
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// private наследование
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Cat</span> <span style="color:#f92672">:</span> <span style="color:#66d9ef">private</span> Animal {
+</span></span><span style="display:flex;"><span>    ...
+</span></span><span style="display:flex;"><span>};
+</span></span></code></pre></div><p>В зависимости от указанного типа наследования, спецификаторы доступа полей родительского класса изменятся в наследнике:</p>
+<ul>
+<li>При <code>public</code> наследовании
+<ul>
+<li><code>public</code> в родительском классе останется <code>public</code> в наследнике</li>
+<li><code>protected</code> в родительском классе останется <code>protected</code> в наследнике</li>
+<li><code>private</code> в родительском классе не унаследуется в наследнике</li>
+</ul>
+</li>
+<li>При <code>protected</code> наследовании
+<ul>
+<li><code>public</code> в родительском классе превратится в <code>protected</code> в наследнике</li>
+<li><code>protected</code> в родительском классе превратится в <code>protected</code> в наследнике</li>
+<li><code>private</code> в родительском классе не унаследуется в наследнике</li>
+</ul>
+</li>
+<li>При <code>private</code> наследовании
+<ul>
+<li><code>public</code> в родительском классе превратится в <code>private</code> в наследнике</li>
+<li><code>protected</code> в родительском классе превратится в <code>private</code> в наследнике</li>
+<li><code>private</code> в родительском классе не унаследуется в наследнике</li>
+</ul>
+</li>
+</ul>
+<p><code>protected</code> и <code>private</code> наследование используется в экзотических случаях, и я не буду их рассматривать в рамках этой статьи. Просто используй <code>public</code>, пока не захочешь погрузиться глубже в C++.</p>
+<blockquote>
+<p>Если не указывать тип наследования, то по умолчанию он будет <code>private</code>, поэтому не забывай всегда писать <code>public</code>.</p>
+</blockquote>
+<h1 id="наследник-наследника-и-переопределение-методов">Наследник наследника и переопределение методов</h1>
+<p>Если программа очень сложная, то иерархия наследования может сильно разрастаться.</p>
+<p>Например, мы пишем программу, которая будет производить сложную симуляцию поведения животных, и нам обязательно надо разделить поведение домашних и уличных кошек:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#75715e">// Домашняя кошка
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">DomesticCat</span> <span style="color:#f92672">:</span> <span style="color:#66d9ef">public</span> Cat
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    DomesticCat(<span style="color:#66d9ef">float</span> fluffiness, <span style="color:#66d9ef">int</span> weight, <span style="color:#66d9ef">int</span> age) <span style="color:#f92672">:</span>
+</span></span><span style="display:flex;"><span>        Cat(fluffines, weight, age)
+</span></span><span style="display:flex;"><span>    {}
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">talk</span>()
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>        std<span style="color:#f92672">::</span>cout <span style="color:#f92672">&lt;&lt;</span> <span style="color:#e6db74">&#34;Prrr prrrr&#34;</span> <span style="color:#f92672">&lt;&lt;</span> std<span style="color:#f92672">::</span>endl;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>};
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// Уличная кошка
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">StrayCat</span> <span style="color:#f92672">:</span> <span style="color:#66d9ef">public</span> Cat
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    StrayCat(<span style="color:#66d9ef">float</span> fluffiness, <span style="color:#66d9ef">int</span> weight, <span style="color:#66d9ef">int</span> age) <span style="color:#f92672">:</span>
+</span></span><span style="display:flex;"><span>        Cat(fluffines, weight, age)
+</span></span><span style="display:flex;"><span>    {}
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">talk</span>()
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>        std<span style="color:#f92672">::</span>cout <span style="color:#f92672">&lt;&lt;</span> <span style="color:#e6db74">&#34;Shchhhhhhhhh&#34;</span> <span style="color:#f92672">&lt;&lt;</span> std<span style="color:#f92672">::</span>endl;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>};
+</span></span></code></pre></div><p>Теперь эти классы будут отличаться от поведения родительского класса <code>Cat</code>:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>()
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    Cat c(<span style="color:#ae81ff">0.8</span>, <span style="color:#ae81ff">7</span>, <span style="color:#ae81ff">13</span>);
+</span></span><span style="display:flex;"><span>    c.talk();
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Mew mew
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    DomesticCat d(<span style="color:#ae81ff">0.8</span>, <span style="color:#ae81ff">7</span>, <span style="color:#ae81ff">13</span>);
+</span></span><span style="display:flex;"><span>    d.talk();
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Prrr prrrr
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    StrayCat s(<span style="color:#ae81ff">0.8</span>, <span style="color:#ae81ff">7</span>, <span style="color:#ae81ff">13</span>);
+</span></span><span style="display:flex;"><span>    s.talk();
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Shchhhhhhhhh
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>}
+</span></span></code></pre></div><p>Таким образом, мы унаследовались от класса <code>Cat</code>, который, в свою очередь, наследуется от <code>Animal</code>.</p>
+<p>Также, в классах <code>DomesticCat</code> и <code>StrayCat</code> мы переопределили метод <code>talk()</code> родительского класса <code>Cat</code>.</p>
+<p>Однако, у нас есть проблема &ndash; из-за того, что максимальный возраст кошки определён в <code>Cat</code>, мы не можем его указать в <code>DomesticCat</code> и <code>StrayCat</code>. В следующем разделе мы исправим эту проблему.</p>
+<h1 id="diamond-problem-проблема-ромбовидного-наследования">Diamond problem, проблема ромбовидного наследования</h1>
+<p>Ситуация &ndash; генетики скрестили между собой птицу и лошадь, и получили пегаса:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Bird</span> <span style="color:#f92672">:</span> <span style="color:#66d9ef">public</span> Animal
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span><span style="color:#f92672">:</span>
+</span></span><span style="display:flex;"><span>    Bird(<span style="color:#66d9ef">float</span> max_height, <span style="color:#66d9ef">int</span> weight, <span style="color:#66d9ef">int</span> age) <span style="color:#f92672">:</span>
+</span></span><span style="display:flex;"><span>        Animal(weight, age, <span style="color:#ae81ff">8</span>),
+</span></span><span style="display:flex;"><span>        m_max_height(max_height)
+</span></span><span style="display:flex;"><span>    {}
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">talk</span>()
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>        std<span style="color:#f92672">::</span>cout <span style="color:#f92672">&lt;&lt;</span> <span style="color:#e6db74">&#34;Tweet tweet&#34;</span> <span style="color:#f92672">&lt;&lt;</span> std<span style="color:#f92672">::</span>endl;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Может ли летать на такой высоте
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">bool</span> <span style="color:#a6e22e">can_fly</span>(<span style="color:#66d9ef">float</span> height)
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> m_max_height <span style="color:#f92672">&gt;=</span> height;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">private</span><span style="color:#f92672">:</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Максимальная высота полёта
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">float</span> m_max_height;
+</span></span><span style="display:flex;"><span>};
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Pegasus</span> <span style="color:#f92672">:</span> <span style="color:#66d9ef">public</span> Horse, <span style="color:#66d9ef">public</span> Bird
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span><span style="color:#f92672">:</span>
+</span></span><span style="display:flex;"><span>    Pegasus(<span style="color:#66d9ef">float</span> speed, <span style="color:#66d9ef">int</span> flight_height, <span style="color:#66d9ef">int</span> weight, <span style="color:#66d9ef">int</span> age) <span style="color:#f92672">:</span>
+</span></span><span style="display:flex;"><span>        Horse(speed, weight, age),
+</span></span><span style="display:flex;"><span>        Bird(flight_height, weight, age)
+</span></span><span style="display:flex;"><span>    {}
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Я не хочу переопределять метод talk(), потому что пегас 
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#75715e">// должен &#34;говорить&#34; как так же, как класс Horse
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>};
+</span></span></code></pre></div><p>Давай создадим объект класса <code>Pegasus</code>:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>()
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    Pegasus p(<span style="color:#ae81ff">10</span>, <span style="color:#ae81ff">10</span>, <span style="color:#ae81ff">10</span>, <span style="color:#ae81ff">10</span>);
+</span></span><span style="display:flex;"><span>    p.talk();
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>При компиляции вылезет ошибка:</p>
+<pre tabindex="0"><code>animal.cpp: In function ‘int main()’:
+animal.cpp:120:7: error: request for member ‘talk’ is ambiguous
+120 |     p.talk();
+    |       ^~~~
+animal.cpp:12:10: note: candidates are: ‘void Animal::talk()’
+ 12 |     void talk()
+    |          ^~~~
+animal.cpp:83:10: note:                 ‘void Bird::talk()’
+ 83 |     void talk()
+    |          ^~~~
+animal.cpp:60:10: note:                 ‘void Horse::talk()’
+ 60 |     void talk()
+    |          ^~~~
+</code></pre><p>Компилятор говорит, что он не может разобраться чей же метод <code>talk()</code> мы хотим вызывать &ndash; <code>Animal::talk()</code>, <code>Bird::talk()</code> или <code>Horse::talk()</code>?</p>
+<p>Эта проблема называется <strong>&ldquo;Diamond inheritance problem&rdquo;</strong> &ndash; на наш можно перевести как <strong>&ldquo;Проблема ромбовидного наследования&rdquo;</strong>.</p>
+<p>Ромб тут описывает форму иерархии наследования, когда класс <code>Pegasus</code>, наследуется от <code>Horse</code> и <code>Bird</code>, которые, в свою очередь наследуются от <code>Animal</code>:</p>
+<p><img src="" alt=""></p>
+<p>Если такая ситуация возникает, то, скорее всего, мы неправильно организовали саму иерархию наследования.</p>
+<p>Как же нам поступить?</p>
+<p>Одним из выходов, является выделение общих признаков для классов <code>Animal</code>, <code>Horse</code> и <code>Bird</code> в отдельные классы: <code>Aging</code> (стареющее), <code>Weight</code> (вес), <code>Walking</code> (ходячее), <code>Flying</code> (летающее), <code>Talking</code> (разговаривающее).</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Aging</span>
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span><span style="color:#f92672">:</span>
+</span></span><span style="display:flex;"><span>    Aging(<span style="color:#66d9ef">int</span> age, <span style="color:#66d9ef">int</span> max_age) <span style="color:#f92672">:</span>
+</span></span><span style="display:flex;"><span>        m_age(age),
+</span></span><span style="display:flex;"><span>        m_max_age(max_age)
+</span></span><span style="display:flex;"><span>    {}
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">bool</span> <span style="color:#a6e22e">is_old</span>()
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> m_age <span style="color:#f92672">&gt;</span> m_max_age <span style="color:#f92672">*</span> <span style="color:#ae81ff">0.75</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">private</span><span style="color:#f92672">:</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">int</span> m_age;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">int</span> m_max_age;
+</span></span><span style="display:flex;"><span>};
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Weight</span>
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span><span style="color:#f92672">:</span>
+</span></span><span style="display:flex;"><span>    Weight(<span style="color:#66d9ef">int</span> weight) <span style="color:#f92672">:</span>
+</span></span><span style="display:flex;"><span>        m_weight(weight)
+</span></span><span style="display:flex;"><span>    {}
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">bool</span> <span style="color:#a6e22e">is_bigger_than</span>(Weight <span style="color:#f92672">&amp;</span>other)
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> m_weight <span style="color:#f92672">&gt;</span> other.m_weight;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">private</span><span style="color:#f92672">:</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">int</span> m_weight;
+</span></span><span style="display:flex;"><span>};
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Walking</span>
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span><span style="color:#f92672">:</span>
+</span></span><span style="display:flex;"><span>    Walking(<span style="color:#66d9ef">float</span> speed) <span style="color:#f92672">:</span>
+</span></span><span style="display:flex;"><span>        m_speed(speed)
+</span></span><span style="display:flex;"><span>    {}
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">float</span> <span style="color:#a6e22e">travel_time</span>(<span style="color:#66d9ef">float</span> distance)
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> distance <span style="color:#f92672">/</span> m_speed;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">private</span><span style="color:#f92672">:</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">float</span> m_speed;
+</span></span><span style="display:flex;"><span>};
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Flying</span>
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span><span style="color:#f92672">:</span>
+</span></span><span style="display:flex;"><span>    Flying(<span style="color:#66d9ef">float</span> max_height) <span style="color:#f92672">:</span>
+</span></span><span style="display:flex;"><span>        m_max_height(max_height)
+</span></span><span style="display:flex;"><span>    {}
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">bool</span> <span style="color:#a6e22e">can_fly</span>(<span style="color:#66d9ef">float</span> height)
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> m_max_height <span style="color:#f92672">&gt;=</span> height;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">private</span><span style="color:#f92672">:</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Максимальная высота полёта
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">float</span> m_max_height;
+</span></span><span style="display:flex;"><span>};
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;cstring&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Talking</span>
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span><span style="color:#f92672">:</span>
+</span></span><span style="display:flex;"><span>    Talking(<span style="color:#66d9ef">const</span> <span style="color:#66d9ef">char</span> <span style="color:#f92672">*</span>phrase)
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>        m_phrase <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#66d9ef">char</span>[strlen(phrase)<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>];
+</span></span><span style="display:flex;"><span>        strcpy(m_phrase, phrase);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">~</span>Talking()
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">delete</span>[] m_phrase;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">talk</span>()
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>        std<span style="color:#f92672">::</span>cout <span style="color:#f92672">&lt;&lt;</span> m_phrase <span style="color:#f92672">&lt;&lt;</span> std<span style="color:#f92672">::</span>endl;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">private</span><span style="color:#f92672">:</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">char</span><span style="color:#f92672">*</span> m_phrase;
+</span></span><span style="display:flex;"><span>};
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Pegasus</span> <span style="color:#f92672">:</span> <span style="color:#66d9ef">public</span> Aging, <span style="color:#66d9ef">public</span> Weight, <span style="color:#66d9ef">public</span> Walking, <span style="color:#66d9ef">public</span> Flying, <span style="color:#66d9ef">public</span> Talking
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span><span style="color:#f92672">:</span>
+</span></span><span style="display:flex;"><span>    Pegasus(<span style="color:#66d9ef">float</span> speed, <span style="color:#66d9ef">int</span> height, <span style="color:#66d9ef">int</span> weight, <span style="color:#66d9ef">int</span> age) <span style="color:#f92672">:</span>
+</span></span><span style="display:flex;"><span>        Aging(age, <span style="color:#ae81ff">50</span>),
+</span></span><span style="display:flex;"><span>        Weight(weight),
+</span></span><span style="display:flex;"><span>        Walking(speed),
+</span></span><span style="display:flex;"><span>        Flying(height),
+</span></span><span style="display:flex;"><span>        Talking(<span style="color:#e6db74">&#34;Pfrrrr&#34;</span>)
+</span></span><span style="display:flex;"><span>    {}
+</span></span><span style="display:flex;"><span>};
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>()
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    Pegasus p(<span style="color:#ae81ff">10</span>, <span style="color:#ae81ff">10</span>, <span style="color:#ae81ff">10</span>, <span style="color:#ae81ff">10</span>);
+</span></span><span style="display:flex;"><span>    p.talk();
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>Да, теперь мы починили проблему, но какой ценой&hellip;</p>
+<p>В программировании, как и в жизни, не бывает идеальных решений &ndash; здесь, мы решили одну проблему, но создали другую &ndash; наследование сильно усложнилось.</p>
+<blockquote>
+<p>Проблема ромбовидного наследования характерна для всех языков программирования, которые поддерживают парадигму ООП &ndash; это проблема самого ООП</p>
+</blockquote>
+<h1 id="header-1заключение"><a href="#header-1"></a>Заключение</h1>
+<p>Итого, мы изучили:</p>
+<ul>
+<li>Наследование</li>
+<li><strong>Родительский класс</strong> aka. <strong>Базовый класс</strong> aka. <strong>Родитель</strong></li>
+<li><strong>Дочерний класс</strong> aka. <strong>Наследник</strong> aka. <strong>Ребёнок</strong></li>
+<li>Конструкторы и деструкторы в наследовании:
+<ul>
+<li>Конструкторы и деструкторы не наследуются</li>
+<li>Параметры конструкторов могут различаться</li>
+<li>Если не вызовем вручную, то вызовется конструктор базового класса без параметров</li>
+<li>Порядок вызова конструкторов: <code>родитель-&gt;наследник-&gt;наследник_наследника-&gt;...</code></li>
+<li>Порядок вызова деструкторов: <code>...-&gt;наследник_наследника-&gt;наследник-&gt;родитель</code></li>
+</ul>
+</li>
+<li><code>protected</code> &ndash; доступ только из самого класса или его наследников</li>
+<li><code>public</code> наследование берёт всё как есть, <code>protected</code> и <code>private</code> наследование &ndash; изменяют модификаторы доступа</li>
+</ul>
+<p>И, ещё раз, смысл наследования:</p>
+<h3 id="тебе-не-надо-дублировать-одинаковую-логику-в-разных-классах----логика-пишется-один-раз-в-родительском-классе-и-переиспользуется-во-всех-дочерних-классах">Тебе не надо дублировать одинаковую логику в разных классах &ndash; логика пишется один раз в родительском классе, и переиспользуется во всех дочерних классах.</h3>
+<p>Если что &ndash; пиши, я помогу и постараюсь объяснить лучше.</p>
+
+
+			</section>
+		</div>
+	</div>
+
+    <footer>
+    <a href="http://kee-reel.com/cpp/classes-inheritance-ru/#top">
+        <span>
+            <b>🡅 В начало 🡅</b>
+        </span>
+    </a>
+    <hr>
+    <pre>
+Home server: Raspberry Pi 4
+Temperature: 27
+Uptime: 5 hours, 35 minutes
+    </pre>
+</footer>
+
+</body>
+</html>

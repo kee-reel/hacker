@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="ru">
+	<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5">
+	<meta name="description" content="IT простым языком">
+	<meta name="generator" content="HUGO">
+
+	<meta name="theme-color" content="#ffffff">
+
+    
+    
+    <link rel="stylesheet" href="http://kee-reel.com/sass/main.c3c167415800f2394c3296fcddb264b8afea9703b424d3003f18be3b0f9e64bc.css" integrity="sha256-w8FnQVgA8jlMMpb83bJkuK/qlwO0JNMAPxi&#43;Ow&#43;eZLw=">
+</head>
+
+<body>
+	<div id="top"/>
+<header>
+    <p align="center">
+        +---------------------------+<br>
+        |.-------------------------.|<br>
+        ||&nbsp;<a href="/">kee_reel@blog</a>:~$ cd&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;||<br>
+        ||&nbsp;<a href="/c">c</a>&nbsp;&nbsp;<a href="/cpp">c++</a>&nbsp;&nbsp;<a href="/python">python</a>&nbsp;&nbsp;<a href="/linux">linux</a>&nbsp;&nbsp;&nbsp;||<br>
+        ||&nbsp;<a href="/opengl">opengl</a>&nbsp;&nbsp;<a href="/sql">sql</a>&nbsp;&nbsp;<a href="/network">networks</a>&nbsp;&nbsp;&nbsp;||<br>
+        ||&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;||<br>
+        ||&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/about">обо_мне</a>&nbsp;||<br>
+        |.-------------------------.|<br>
+        +-::---------------------::-+<br>
+        .---------------------------.<br>
+        &nbsp;//&nbsp;/o<a href="/links">o</a>oooooooooooooooooooo\\&nbsp;\\&nbsp;<br>
+        &nbsp;//&nbsp;/oooooooooooooooooooooooo\\&nbsp;\\&nbsp;<br>
+        //-------------------------------\\<br>
+        \\-------------------------------//<br>
+    </p>
+</header>
+
+		
+	<div id="wrapper">
+		<div class="container">
+			<section id="main_content">
+    <h1>C. Файлы</h1>
+    
+    
+        <h3>Время чтения: 11 мин</h3>
+    
+    <p>Файл (file) &ndash; это абстракция, поддерживаемая операционной системой, позволяющая работать с данными, записанными на внешних носителях (магнитная запись на жёстком диске, флеш память на SSD или флешке).</p>
+<p>Таким образом, работая с файлами, мы работаем с операционной системой, которая, в свою очередь, работает с драйверами физического устройства.</p>
+<p><img src="/assets/images/c-file-descriptor.png" alt="Дескриптор файла"></p>
+<blockquote>
+<p>Я очень упрощаю что там происходит &ndash; если хочешь понять как это на самом деле устроено, можешь почитать Э. Танненбаум &ldquo;Операционные системы&rdquo;, глава &ldquo;Файловые системы&rdquo;.</p>
+</blockquote>
+<p>На картинке, между файлом и драйвером я указал некий <strong>дескриптор</strong>.</p>
+<p><strong>Дескриптор</strong> &ndash; идентификатор, предоставляемый операционной системой, при указании которого можно производить операции чтения/записи в определённый файл.</p>
+<p>А как производить эти операции чтения/записи? Сначала надо открыть файл.</p>
+<blockquote>
+<p>Описание ВСЕХ функций, которые я буду тут использовать, можно найти <a href="https://www.cplusplus.com/reference/cstdio/">здесь</a> или в любой другой части интернета.</p>
+</blockquote>
+<h1 id="открываем-файл">Открываем файл</h1>
+<p><strong>fopen</strong> &ndash; функция, обращающаяся к операционной системе, чтобы получить дескриптор файла с указанными именем. Кроме имени файла, необходимо указать режимом работы с ним.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span>FILE <span style="color:#f92672">*</span>f <span style="color:#f92672">=</span> fopen(<span style="color:#e6db74">&#34;some-file.txt&#34;</span>, <span style="color:#e6db74">&#34;r&#34;</span>);
+</span></span></code></pre></div><h3 id="имя-файла">Имя файла</h3>
+<p>Файл всегда ищется в той папке, из которой была запущена программа. Если необходимо указать файл, находящийся в другой папке, то нужно указать его с помощью абсолютного или относительного пути.</p>
+<ul>
+<li>
+<p>Абсолютный (полный) путь: &ldquo;D:/some-folder/some-file.txt&rdquo; &ndash; указание диска и всех папок</p>
+</li>
+<li>
+<p>Относительный путь: &ldquo;../some-folder/some-file.txt&rdquo; &ndash; используя символ &ldquo;..&rdquo; можно подняться на уровень выше (выйти из текущей папки). Обычно используется если необходимый файл находится на том же диске в соседней/родительской папке. Символов &ldquo;..&rdquo; можно указывать столько, сколько необходимо: &ldquo;../../../../some-file.txt&rdquo;</p>
+</li>
+</ul>
+<blockquote>
+<p>Знание про абсолютный и относительный пути пригодится тебе в любом языке и любой операционной системе &ndash; запомни это.</p>
+</blockquote>
+<h3 id="режим-работы-с-файлом">Режим работы с файлом</h3>
+<p>Всего есть 3 основных режима:</p>
+<ul>
+<li>&ldquo;r&rdquo; &ndash; чтение. Открываем существующий файл и вычитываем оттуда данные.</li>
+<li>&ldquo;w&rdquo; &ndash; запись. Создаём новый файл (если такой уже есть, то перезаписываем его) и записываем туда данные.</li>
+<li>&ldquo;a&rdquo; &ndash; запись в конец. Открываем существующий файл (если файла ещё нет, то создаём его) и записываем данные в конец файла.</li>
+</ul>
+<p>К этим режимам можно дописать &ldquo;+&rdquo;, чтобы разблокировать возможность чтения для &ldquo;w&rdquo; и &ldquo;a&rdquo;, и возможность записи для &ldquo;r&rdquo;.</p>
+<p>Вот табличка, в которой я собрал все комбинации</p>
+<table>
+<thead>
+<tr>
+<th>Режим</th>
+<th>Чтение</th>
+<th>Запись</th>
+<th>Создать новый файл (если нет)</th>
+<th>Очистить содержимое</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>&ldquo;r&rdquo;</td>
+<td>+</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td>&ldquo;w&rdquo;</td>
+<td>-</td>
+<td>+</td>
+<td>+</td>
+<td>+</td>
+</tr>
+<tr>
+<td>&ldquo;a&rdquo;</td>
+<td>-</td>
+<td>+</td>
+<td>+</td>
+<td>-</td>
+</tr>
+<tr>
+<td>&ldquo;r+&rdquo;</td>
+<td>+</td>
+<td>+</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td>&ldquo;w+&rdquo;</td>
+<td>+</td>
+<td>+</td>
+<td>+</td>
+<td>+</td>
+</tr>
+<tr>
+<td>&ldquo;a+&rdquo;</td>
+<td>+</td>
+<td>+</td>
+<td>+</td>
+<td>-</td>
+</tr>
+</tbody>
+</table>
+<p>Их не нужно запоминать &ndash; обычно все пользуются:</p>
+<ul>
+<li>&ldquo;r&rdquo; при чтении</li>
+<li>&ldquo;w&rdquo; при записи</li>
+<li>&ldquo;r+&rdquo; при чтении/записи</li>
+</ul>
+<p>Но если в какой-то ситуации тебе понадобится что-то другое &ndash; не стесняйся экспериментировать.</p>
+<h1 id="закрываем-файл">Закрываем файл</h1>
+<p><strong>fclose</strong> &ndash; функция принимает дескриптор открытого файла, и закрывает его, записывая все данные из буффера.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span>fclose(f);
+</span></span></code></pre></div><p>Стоп, что за буффер?</p>
+<h3 id="file----это-не-дескриптор">FILE &ndash; это не дескриптор</h3>
+<p>Я был не до конца честен, когда говорил, что FILE &ndash; это дескриптор файла. На самом деле, FILE это обёртка над настоящим дескриптором.</p>
+<p>Чтобы получить <strong>настоящий</strong> дескриптор, в зависимости от операционной системы, надо использовать функции:</p>
+<ul>
+<li>Linux: <a href="https://www.tutorialspoint.com/unix_system_calls/open.htm">open</a> из &ldquo;fcntl.h&rdquo;</li>
+<li>Windows: <a href="https://www.digitalmars.com/rtl/io.html#_open">_open</a> из &ldquo;io.h&rdquo;</li>
+</ul>
+<p>Обёртка над дескриптором FILE поддерживает:</p>
+<ul>
+<li>Буфферизацию &ndash; то есть не сразу записывает все данные в файл, а ждёт пока накопится достаточное количество данных во временном буффере (который хранится в оперативной памяти)</li>
+<li>Отслеживание позиции &ndash; благодаря этому мы можем удобно узнать дошли ли мы до конца файла при чтении</li>
+<li>Обработку ошибок &ndash; можно узнать произошла ли ошибка при выполнении чтения/записи с помощью функции <a href="https://www.cplusplus.com/reference/cstdio/ferror/">ferror</a></li>
+</ul>
+<blockquote>
+<p>Подробнее про разницу между FILE и дескриптором можно прочитать <a href="https://stackoverflow.com/questions/2423628/whats-the-difference-between-a-file-descriptor-and-file-pointer">тут</a>.</p>
+</blockquote>
+<h3 id="закрываем-file">Закрываем FILE</h3>
+<p>Окей, с закрытием FILE разобрались &ndash; при закрытии в файл записывается буффер.</p>
+<p>Когда это делать? Когда закончили работать с файлом.</p>
+<p>Что будет если это не сделать?</p>
+<p>Если программа завершается как обычно, то ничего плохого не произойдёт &ndash; перед закрытием наша программа запишет буффер в файл и закроет дескриптор файла.</p>
+<p>В случае, если программа упадёт до закрытия FILE &ndash; в файл ничего не запишется, так как буффер не успел записаться в файл. Однако дескриптор закроется, но не программой, а операционной системой (потому что получившая его программа умерла). Вот пример такой ситуации:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;stdio.h&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>()
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">char</span> <span style="color:#f92672">*</span>text <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Some text to fill the file</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">And some more text&#34;</span>;
+</span></span><span style="display:flex;"><span>	FILE <span style="color:#f92672">*</span>f <span style="color:#f92672">=</span> fopen(<span style="color:#e6db74">&#34;some-file.txt&#34;</span>, <span style="color:#e6db74">&#34;w&#34;</span>);
+</span></span><span style="display:flex;"><span>	<span style="color:#75715e">// Записываем текст в FILE
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	fprintf(f, <span style="color:#e6db74">&#34;%s&#34;</span>, text);
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">char</span> <span style="color:#f92672">*</span>x <span style="color:#f92672">=</span> NULL;
+</span></span><span style="display:flex;"><span>	<span style="color:#75715e">// Обращаемся к нулевому указателю (падаем)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	<span style="color:#f92672">*</span>x <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>	<span style="color:#75715e">// Не доходим до закрытия файла, и файл остаётся пустым т.к. мы его открыли через &#34;w&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	fclose(f);
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>Если бы мы закрыли файл до падения, то всё было бы хорошо в этом случае. В общем &ndash; всегда следи за закрытием.</p>
+<blockquote>
+<p>Можно записать буффер в файл до закрытия с помощью функции <a href="https://www.cplusplus.com/reference/cstdio/fflush/">fflush</a>. Если я вызвал бы её до падения в программе выше, то данные бы записались в файл.</p>
+</blockquote>
+<h1 id="чтениезапись-в-файл">Чтение/запись в файл</h1>
+<p>Для записи в файл в библиотеке &ldquo;stdio.h&rdquo; есть ряд функций:</p>
+<ul>
+<li>fprintf &ndash; записываем текст в файл, указывая строку форматирования (как в обычном printf)</li>
+<li>fputc &ndash; записать один char в файл</li>
+<li>fputs &ndash; записать строку (всё до &lsquo;\0&rsquo;) в файл</li>
+<li>fwrite &ndash; записать массив значений (с указанным размером элемента и количеством элементов) в файл</li>
+</ul>
+<p>Для записи там есть альтер-эго таких же функции:</p>
+<ul>
+<li>fscanf &ndash; считываем текст из файла, указывая строку форматирования (как в обычном scanf)</li>
+<li>fgetc &ndash; считать один char из файла</li>
+<li>fgets &ndash; считать строку из файла. Считывается всё до конца файла или символа переноса строки &lsquo;\n&rsquo;. Символ переноса строки включается в результирующую строку</li>
+<li>fread &ndash; считать массив значений (с указанным размером элемента и количеством элементов) из файла</li>
+</ul>
+<p>Давайте я напишу программу, которая &ldquo;шифрует&rdquo; все символы в файле, а потом &ldquo;дешифрует&rdquo; их.</p>
+<p>&ldquo;Шифрованием&rdquo; у меня будет смещение кода символа на 1, а &ldquo;дешифрацией&rdquo; &ndash; смещение кода символа на -1.</p>
+<p>При этом, будет необходимое условие &ndash; в начале файла должен стоять символ &lsquo;0&rsquo;.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;stdio.h&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;stdlib.h&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;string.h&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>()
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>	FILE <span style="color:#f92672">*</span>f <span style="color:#f92672">=</span> fopen(<span style="color:#e6db74">&#34;some-file.txt&#34;</span>, <span style="color:#e6db74">&#34;r+&#34;</span>);
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">if</span>(f <span style="color:#f92672">==</span> NULL)
+</span></span><span style="display:flex;"><span>	{
+</span></span><span style="display:flex;"><span>		printf(<span style="color:#e6db74">&#34;Can&#39;t open file&#34;</span>);
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>	<span style="color:#75715e">// Если первый символ 0 - файл дешифрован, а если 1 - зашифрован
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	<span style="color:#66d9ef">char</span> is_encrypted <span style="color:#f92672">=</span> fgetc(f) <span style="color:#f92672">==</span> <span style="color:#e6db74">&#39;1&#39;</span>;
+</span></span><span style="display:flex;"><span>	<span style="color:#75715e">// Возвращаем указатель позиции файла назад на первый символ
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	<span style="color:#75715e">// fgetc и fputc смещают указатель позиции на 1 символ
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	fseek(f, <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>, SEEK_CUR);
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">char</span> c <span style="color:#f92672">=</span> fgetc(f);
+</span></span><span style="display:flex;"><span>	<span style="color:#75715e">// Файл закончился?
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	<span style="color:#66d9ef">while</span>(<span style="color:#f92672">!</span>feof(f))
+</span></span><span style="display:flex;"><span>	{
+</span></span><span style="display:flex;"><span>		<span style="color:#75715e">// Смещаемся назад из-за fgetc
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>		fseek(f, <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>, SEEK_CUR);
+</span></span><span style="display:flex;"><span>		<span style="color:#75715e">// Если зашифрован - расшифровываем, расшифрован - зашифровывааем
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>		c <span style="color:#f92672">+=</span> is_encrypted <span style="color:#f92672">?</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span> <span style="color:#f92672">:</span> <span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>		<span style="color:#75715e">// Перезаписываем символ, который перед этим прочитали
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>		<span style="color:#75715e">// Смещаем указатель позиции на один вперёд
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>		fputc(c, f);
+</span></span><span style="display:flex;"><span>		<span style="color:#75715e">// Вызываем fseek, чтобы можно было переключиться с записи на чтение
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>		fseek(f, <span style="color:#ae81ff">0</span>, SEEK_CUR);
+</span></span><span style="display:flex;"><span>		<span style="color:#75715e">// Читаем следующий символ, смещаем указатель позиции вперёд
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>		c <span style="color:#f92672">=</span> fgetc(f);
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>	fclose(f);
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>Такой файл:</p>
+<pre tabindex="0"><code>0Some text to fill the file
+And some more textþ
+</code></pre><p>Программа изменяет так:</p>
+<pre tabindex="0"><code>1Tpnf!ufyu!up!gjmm!uif!gjmfBoe!tpnf!npsf!ufyuÿ
+</code></pre><p>При повторном запуске программы, файл возвращает исходный вид.</p>
+<blockquote>
+<p>Если что, это &ldquo;шифрование&rdquo; сможет защитить только от человека, который не является IT-специалистом. В настоящем шифровании каждый символ шифруется с использованием сложных криптографических алгоритмов и длинного уникального секретного ключа (один из них &ndash; алгоритм <a href="https://hackernoon.com/how-does-rsa-work-f44918df914b">RSA</a>).</p>
+</blockquote>
+<p>Так, в этой программе я использовал какие-то функции <strong>feof</strong> и <strong>fseek</strong> &ndash; что это?</p>
+<h1 id="навигация-по-файлу">Навигация по файлу</h1>
+<p>Благодаря обёртке FILE, у нас есть возможность перемещаться по файлу, смещая указатель позиции файла.</p>
+<h3 id="изначальная-позиция">Изначальная позиция</h3>
+<p>У каждого FILE есть свой указатель позиции файла, изначальная позиция которого зависит от режима работы с файлом, который мы использовали:</p>
+<ul>
+<li>&ldquo;r&rdquo; и &ldquo;w&rdquo; &ndash; начало файла</li>
+<li>&ldquo;a&rdquo; &ndash; конец файла</li>
+</ul>
+<p>После этого, при чтении/записи указатель позиции будет смещаться вперёд на:</p>
+<ul>
+<li>1 символ для fgetc и fputc</li>
+<li>Количество символов строки для fgets и fputs</li>
+<li>Количество символов форматированного ввода/вывода для fscanf и fprintf</li>
+<li>(Размер_элемента * количество_элементов) символов для fread и fwrite</li>
+</ul>
+<h3 id="сдвигаем-позицию">Сдвигаем позицию</h3>
+<p>Также, есть функция <strong>fseek</strong>, которая смещает текущий указатель позиции на указанное количество символов, относительно некоторой позиции.</p>
+<p>&ldquo;Некоторая позиция&rdquo; также указывается параметром:</p>
+<ul>
+<li>SEEK_CUR &ndash; текущая позиция</li>
+<li>SEEK_SET &ndash; начало файла</li>
+<li>SEEK_END &ndash; конец файла</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#75715e">// На 1 назад
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>fseek(f, <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>, SEEK_CUR);
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// На начало
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>fseek(f, <span style="color:#ae81ff">0</span>, SEEK_SET);
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// В конец
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>fseek(f, <span style="color:#ae81ff">0</span>, SEEK_END);
+</span></span></code></pre></div><p><strong>ВАЖНО:</strong> кроме перемещения по файлу, необходимо вызывать fseek, если ты хочешь переключиться с режима чтения на режим записи, в комбинированных режимах, вроде &ldquo;r+&rdquo;, &ldquo;w+&rdquo; и &ldquo;a+&rdquo;. В программе выше я для этого вызываю fseek без смещения.</p>
+<blockquote>
+<p>Значение текущего указателя позиции можно получить через функцию ftell</p>
+</blockquote>
+<h3 id="проверяем-что-дошли-до-конца-файла">Проверяем, что дошли до конца файла</h3>
+<p>Для проверки того, что мы дошли до конца файла, необходимо вызвать функцию <strong>feof</strong>.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#66d9ef">while</span>(<span style="color:#f92672">!</span>feof(f))
+</span></span></code></pre></div><p>Эта функция возвращает 1, если указатель позиции дошёл до конца файла.</p>
+<p>feof вернёт 1 только в случае, если мы перед этим вызвали функцию чтения, которая дошла до конца файла (fgetc, fgets, fscanf, fread).</p>
+<p>Это происходит из-за того, что функция чтения, при упирании в конец файла, выставляет флажок &ldquo;достигли конца файла&rdquo;, который и проверяет функция feof.</p>
+<p>Также, при вызове функций чтения, по возвращаемому значению можно понять что мы дошли до конца файла:</p>
+<ul>
+<li>fgetc &ndash; вернёт -1, если дошли до конца файла; вместо -1 в этом случае используется константа EOF (End Of File)</li>
+</ul>
+<blockquote>
+<p>Обычно fget возвращает код символа от 0 до 255</p>
+</blockquote>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#66d9ef">char</span> c <span style="color:#f92672">=</span> fgetc(f);
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">if</span>(c <span style="color:#f92672">==</span> EOF)
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// ...
+</span></span></span></code></pre></div><ul>
+<li>fgets &ndash; вернёт NULL</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#66d9ef">char</span> str[<span style="color:#ae81ff">100</span>];
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">if</span>(fgets(str, <span style="color:#ae81ff">100</span>, f) <span style="color:#f92672">==</span> NULL)
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// ...
+</span></span></span></code></pre></div><ul>
+<li>fscanf &ndash; вернёт количество считанных элементов, отличающееся от требуемого (упёрлись в конец файла)</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#66d9ef">char</span> str[<span style="color:#ae81ff">2</span>];
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> x;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> count <span style="color:#f92672">=</span> fscanf(f, <span style="color:#e6db74">&#34;%c %c %d&#34;</span>, str, str<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>, <span style="color:#f92672">&amp;</span>x);
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">if</span>(count <span style="color:#f92672">!=</span> <span style="color:#ae81ff">3</span>)
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// ...
+</span></span></span></code></pre></div><ul>
+<li>fread &ndash; вернёт количество считанных элементов, отличающееся от требуемого (упёрлись в конец файла)</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#66d9ef">char</span> str[<span style="color:#ae81ff">100</span>];
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> count <span style="color:#f92672">=</span> fread(str, <span style="color:#66d9ef">sizeof</span>(<span style="color:#66d9ef">char</span>), <span style="color:#ae81ff">100</span>, f);
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">if</span>(count <span style="color:#f92672">!=</span> <span style="color:#ae81ff">100</span>)
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// ...
+</span></span></span></code></pre></div><h1 id="бинарные-файлы">Бинарные файлы</h1>
+<p>Это последняя тема, которую я хочу объяснить.</p>
+<p>У функции <strong>fopen</strong> есть ещё один режим работы &ndash; бинарный файл.</p>
+<p>Для того, чтобы открыть файл в бинарном виде, надо указать &ldquo;b&rdquo; в конце строки, определяющей режим работы с файлом:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span>FILE <span style="color:#f92672">*</span>f <span style="color:#f92672">=</span> fopen(<span style="color:#e6db74">&#34;some-file.txt&#34;</span>, <span style="color:#e6db74">&#34;r+b&#34;</span>);
+</span></span></code></pre></div><p>Режим работы при этом может быть любым.</p>
+<p>Что это меняет?</p>
+<p>Теперь мы работаем с файлом не как с текстом, а как с набором байт.</p>
+<p>То есть, я могу создать массив int, записать его в файл, а потом считать оттуда:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#66d9ef">int</span> arr[<span style="color:#ae81ff">5</span>] <span style="color:#f92672">=</span> {<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">8</span>, <span style="color:#ae81ff">16</span>};
+</span></span><span style="display:flex;"><span>FILE <span style="color:#f92672">*</span>f <span style="color:#f92672">=</span> fopen(<span style="color:#e6db74">&#34;some-file.txt&#34;</span>, <span style="color:#e6db74">&#34;wb&#34;</span>);
+</span></span><span style="display:flex;"><span>fwrite(arr, <span style="color:#66d9ef">sizeof</span>(<span style="color:#66d9ef">int</span>), <span style="color:#ae81ff">5</span>, f);
+</span></span><span style="display:flex;"><span>fclose(f);
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// Представим что я это делаю в другой программе, для эффектности
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">int</span> new_arr[<span style="color:#ae81ff">5</span>];
+</span></span><span style="display:flex;"><span>f <span style="color:#f92672">=</span> fopen(<span style="color:#e6db74">&#34;some-file.txt&#34;</span>, <span style="color:#e6db74">&#34;rb&#34;</span>);
+</span></span><span style="display:flex;"><span>fread(new_arr, <span style="color:#66d9ef">sizeof</span>(<span style="color:#66d9ef">int</span>), <span style="color:#ae81ff">5</span>, f);
+</span></span><span style="display:flex;"><span>fclose(f);
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">5</span>; i<span style="color:#f92672">++</span>)
+</span></span><span style="display:flex;"><span>	printf(<span style="color:#e6db74">&#34;%d &#34;</span>, new_arr[i]);
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// Вывод программы: 1 2 4 8 16
+</span></span></span></code></pre></div><p>Возможно ты думаешь, что в файле сейчас записано что-то вроде &ldquo;1 2 4 8 16&rdquo;, но нет &ndash; там такое:</p>
+<p><img src="/assets/images/c-binary-file.png" alt="Текст бинарного файла"></p>
+<p>Оно выглядит так странно из-за того, что текстовый редактор не может нормально отобразить бинарные данные &ndash; он пытается прочитать коды символов.</p>
+<p>Чтобы реально узнать что там лежит, необходимо воспользоваться редактором, который может отображать бинарные данные. Вот как содержимое выглядит через такой редактор:</p>
+<p><img src="/assets/images/c-binary-file-hex.png" alt="Данные в бинарном файле"></p>
+<p>Обычно они называются hex-editor, потому что отображают данные в шеснадцатеричной системе счисления. Посмотрев на данные в представлении этого редактора, можно заметить что наши 5 int&rsquo;ов лежат там как ни в чём не бывало.</p>
+<p>Зачем вообще это надо? Почему нельзя хранить всё как текст?</p>
+<p>Представь, что я захочу сохранить unsigned int число 4294967295:</p>
+<ul>
+<li>В бинарном файле это число всё так же займёт 4 байта (FF FF FF FF)</li>
+<li>В текстовом файле это число займёт 10 байт (в этом числе 10 символов) + дополнительная нагрузка при чтении данных, так как надо перевести строку в unsigned int</li>
+</ul>
+<blockquote>
+<p>Про хранение вещественных чисел я вообще молчу</p>
+</blockquote>
+<p>Если численные данные в базах данных хранились бы текстом, то понадобилось бы в 2+ раз больше дата-центров.</p>
+<p>В общем, если пользователю не надо напрямую взаимодействовать с текстом в файле, то бинарные файлы &ndash; это отличный вариант.</p>
+<h1 id="faq">FAQ</h1>
+<h3 id="как-работать-с-русскимим-символами">Как работать с русскимим символами?</h3>
+<p>Надо добавить поддержку русской локализации:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;stdio.h&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;locale.h&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>()
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    SetConsoleCP(<span style="color:#ae81ff">1251</span>);
+</span></span><span style="display:flex;"><span>    SetConsoleOutputCP(<span style="color:#ae81ff">1251</span>); 
+</span></span><span style="display:flex;"><span>    setlocale(LC_ALL, <span style="color:#e6db74">&#34;Rus&#34;</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// ...
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>И убедись, что ты сохраняешь файл в кодировке &ldquo;windows 1251&rdquo; &ndash; обычно файлы сохраняются в кодировке UTF-8. Так как кодировка UTF-8 двухбайтная (каждый символ кодируется двумя байтами), ты не сможешь работать с нимми как обычно.</p>
+<h3 id="как-перевести-строку-в-число">Как перевести строку в число?</h3>
+<p><a href="https://www.cplusplus.com/reference/cstdlib/">Здесь</a> можешь посмотреть документацию к различным функциям перевода строки в число:</p>
+<ul>
+<li>atoi() &ndash; строка в int</li>
+<li>atof() &ndash; строка в double</li>
+<li>atol() &ndash; строка в long int</li>
+</ul>
+<p>Функции strtof, strtod, strtol и подобные, тоже переводят строку в число, но обладают расширенной функциональностью &ndash; смотри в документацию.</p>
+<blockquote>
+<p>Обратное преобразование возможно через sprintf и fprintf.</p>
+</blockquote>
+<h3 id="можно-ли-удалить-из-файла-какие-то-символыслова">Можно ли удалить из файла какие-то символы/слова?</h3>
+<p>Нет, нельзя &ndash; это можно сделать одним из двух способов:</p>
+<ul>
+<li>Считать файл во временный буффер, удалить из буффера слова/символы и перезаписать файл с флагом &ldquo;w&rdquo; новым содержимым</li>
+<li>Создать временный файл, считывать символы/слова из исходного файла, записывать (если символ/слово подходит) во временный файл, в конце <a href="https://www.cplusplus.com/reference/cstdio/remove/">удалить</a> исходный файл и <a href="https://www.cplusplus.com/reference/cstdio/rename/">переименовать</a> временный так, чтобы он назывался как исходный.</li>
+</ul>
+<p>Вот пример использования первого способа, для решения задачи &ldquo;удалить слово mother из файла&rdquo;:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span>FILE <span style="color:#f92672">*</span>f <span style="color:#f92672">=</span> fopen(<span style="color:#e6db74">&#34;input.txt&#34;</span>, <span style="color:#e6db74">&#34;r+&#34;</span>);
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">if</span>(f <span style="color:#f92672">==</span> NULL)
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">char</span> buf[<span style="color:#ae81ff">1000</span>];
+</span></span><span style="display:flex;"><span>size_t len <span style="color:#f92672">=</span> fread(buf, <span style="color:#66d9ef">sizeof</span>(<span style="color:#66d9ef">char</span>), <span style="color:#ae81ff">1000</span>, f);
+</span></span><span style="display:flex;"><span>fclose(f);
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// Открываем с &#34;w&#34;, чтобы отчистить файл
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>f <span style="color:#f92672">=</span> fopen(<span style="color:#e6db74">&#34;input.txt&#34;</span>, <span style="color:#e6db74">&#34;w&#34;</span>);
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">char</span> <span style="color:#f92672">*</span>target_word <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;mother&#34;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> target_word_len <span style="color:#f92672">=</span> strlen(target_word);
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> target_word_i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> len; i<span style="color:#f92672">++</span>)
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>	<span style="color:#75715e">// Если символ не из ключевого слова
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	<span style="color:#66d9ef">if</span>(buf[i] <span style="color:#f92672">!=</span> target_word[target_word_i])
+</span></span><span style="display:flex;"><span>	{
+</span></span><span style="display:flex;"><span>		<span style="color:#75715e">// Если до этого были символы, входящие в ключевое символы -- записываем в файл
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>		<span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> j <span style="color:#f92672">=</span> target_word_i; j <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span>; j<span style="color:#f92672">--</span>)
+</span></span><span style="display:flex;"><span>			fputc(buf[i<span style="color:#f92672">-</span>j], f);
+</span></span><span style="display:flex;"><span>		<span style="color:#75715e">// Записываем текущий символ
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>		fputc(buf[i], f);
+</span></span><span style="display:flex;"><span>		target_word_i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">continue</span>;
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>	<span style="color:#75715e">// Увеличиваем индекс символа в ключевом слове
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	target_word_i<span style="color:#f92672">++</span>;
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">if</span>(target_word_i <span style="color:#f92672">==</span> target_word_len)
+</span></span><span style="display:flex;"><span>	{
+</span></span><span style="display:flex;"><span>		<span style="color:#75715e">// Если дошли до последнего символа в ключевом слове -- сбрасываем индекс
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>		target_word_i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>fclose(f);
+</span></span></code></pre></div><h3 id="как-изменить-символы-в-файле">Как изменить символы в файле?</h3>
+<p>Открыть файл в режиме &ldquo;r+&rdquo;, считывать, смещаться fseek&rsquo;ом на символ назад, записывать новое значение.</p>
+<p>В главе &ldquo;Чтение/запись в файл&rdquo; есть пример.</p>
+<h1 id="header-1заключение"><a href="#header-1"></a>Заключение</h1>
+<p>Итого, ты узнал что такое:</p>
+<ul>
+<li>Файл</li>
+<li>Дескриптор</li>
+<li>Открытие файла</li>
+<li>Закрытие файла</li>
+<li>FILE &ndash; это обёртка надо дескриптором</li>
+<li>Функции чтения и записи</li>
+<li>Перемещение указателя позиции по файлу</li>
+<li>Определение конца файла</li>
+<li>Бинарные файлы</li>
+</ul>
+<p>Поздравляю, это супер-круто! Это сложная тема, и скорее всего всё сразу не уляжется в голове &ndash; попробуй написать пару программ, перечитать непонятные места и отдохнуть.</p>
+<p>Дальше будут структуры данных.</p>
+
+
+			</section>
+		</div>
+	</div>
+
+    <footer>
+    <a href="http://kee-reel.com/c/files-ru/#top">
+        <span>
+            <b>🡅 В начало 🡅</b>
+        </span>
+    </a>
+    <hr>
+    <pre>
+Home server: Raspberry Pi 4
+Temperature: 27
+Uptime: 5 hours, 35 minutes
+    </pre>
+</footer>
+
+</body>
+</html>

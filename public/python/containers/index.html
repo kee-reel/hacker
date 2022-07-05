@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="ru">
+	<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5">
+	<meta name="description" content="IT простым языком">
+	<meta name="generator" content="HUGO">
+
+	<meta name="theme-color" content="#ffffff">
+
+    
+    
+    <link rel="stylesheet" href="http://kee-reel.com/sass/main.c3c167415800f2394c3296fcddb264b8afea9703b424d3003f18be3b0f9e64bc.css" integrity="sha256-w8FnQVgA8jlMMpb83bJkuK/qlwO0JNMAPxi&#43;Ow&#43;eZLw=">
+</head>
+
+<body>
+	<div id="top"/>
+<header>
+    <p align="center">
+        +---------------------------+<br>
+        |.-------------------------.|<br>
+        ||&nbsp;<a href="/">kee_reel@blog</a>:~$ cd&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;||<br>
+        ||&nbsp;<a href="/c">c</a>&nbsp;&nbsp;<a href="/cpp">c++</a>&nbsp;&nbsp;<a href="/python">python</a>&nbsp;&nbsp;<a href="/linux">linux</a>&nbsp;&nbsp;&nbsp;||<br>
+        ||&nbsp;<a href="/opengl">opengl</a>&nbsp;&nbsp;<a href="/sql">sql</a>&nbsp;&nbsp;<a href="/network">networks</a>&nbsp;&nbsp;&nbsp;||<br>
+        ||&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;||<br>
+        ||&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/about">обо_мне</a>&nbsp;||<br>
+        |.-------------------------.|<br>
+        +-::---------------------::-+<br>
+        .---------------------------.<br>
+        &nbsp;//&nbsp;/o<a href="/links">o</a>oooooooooooooooooooo\\&nbsp;\\&nbsp;<br>
+        &nbsp;//&nbsp;/oooooooooooooooooooooooo\\&nbsp;\\&nbsp;<br>
+        //-------------------------------\\<br>
+        \\-------------------------------//<br>
+    </p>
+</header>
+
+		
+	<div id="wrapper">
+		<div class="container">
+			<section id="main_content">
+    <h1>Python. Контейнеры</h1>
+    
+    
+        <h3>Время чтения: 8 мин</h3>
+    
+    <p>Контейнеры это незаменимый инструмент, при работе с наборами данных &ndash; давай их изучим. Существуют следующие типы контейнеров:</p>
+<ul>
+<li>Списки</li>
+<li>Кортежи</li>
+<li>Словари</li>
+</ul>
+<h1 id="header-1списки"><a href="#header-1"></a>Списки</h1>
+<p>Зачастую, тебе не хватает переменной, чтобы вместить все данные &ndash; например, тебе нужно посчитать среднюю оценку для всей группы в университете по какому-то предмету (человек 25, например). Ты мог бы создать переменные (&ldquo;student_1&rdquo;, &ldquo;student_2&rdquo;, &ldquo;student_3&rdquo; и так далее), но это была бы очень монотонная и занудная работа.</p>
+<p>К счастью разработчики очень ленивые, и давно придумали решение этой проблемы &ndash; <strong>список</strong> (list).</p>
+<h3 id="header-3создание"><a href="#header-3"></a>Создание</h3>
+<p>Создание списка выглядит вот так:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>student_marks <span style="color:#f92672">=</span> [<span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">5</span>]
+</span></span></code></pre></div><p>Также, ты можешь создать список пустым, чтобы потом его наполнить:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>student_marks <span style="color:#f92672">=</span> []
+</span></span></code></pre></div><p>В списке могут содержаться значения любых типов (даже другие списки):</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>student_marks <span style="color:#f92672">=</span> [<span style="color:#ae81ff">1</span>, <span style="color:#e6db74">&#39;2&#39;</span>, <span style="color:#e6db74">&#39;Three&#39;</span>, [<span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">11.2</span>]]
+</span></span></code></pre></div><blockquote>
+<p>student_marks это переменная &ndash; получается, что в переменных могут храниться не только обычные типы (числа и строки), но и списки, и много чего ещё. Это как раз и является проявлением динамической типизации, про которую я говорил во <a href="/python-intro-ru">вводной статье</a>. Вот <a href="https://habr.com/ru/post/308484/">мощная статья</a>, если хочешь глубже понять что такое динамическая типизация.</p>
+</blockquote>
+<h3 id="header-3вывод-значений"><a href="#header-3"></a>Вывод значений</h3>
+<p>Чтобы вывести значения списка, можно просто передать его в print():</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>student_marks <span style="color:#f92672">=</span> [<span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">5</span>]
+</span></span><span style="display:flex;"><span>print(student_marks)
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Вывод будет такой:</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># [2, 3, 4, 5]</span>
+</span></span></code></pre></div><h3 id="header-3наполнение"><a href="#header-3"></a>Наполнение</h3>
+<p>После того, как список создан, в него можно добавлять новые элементы:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>student_marks<span style="color:#f92672">.</span>append(<span style="color:#ae81ff">4</span>)
+</span></span></code></pre></div><p>Можно вставлять в произвольное место в массиве (тут используется индекс &ndash; про него будет сказано ниже):</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># 2 - индекс, куда надо вставить</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 4 - значение</span>
+</span></span><span style="display:flex;"><span>student_marks<span style="color:#f92672">.</span>insert(<span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">4</span>)
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Так можно вставить в начало списка</span>
+</span></span><span style="display:flex;"><span>student_marks<span style="color:#f92672">.</span>insert(<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">4</span>)
+</span></span></code></pre></div><p>А также можно добавлять в конец элементы других списков:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>another_marks <span style="color:#f92672">=</span> [<span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">5</span>]
+</span></span><span style="display:flex;"><span>student_marks<span style="color:#f92672">.</span>extend(another_marks)
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Или так</span>
+</span></span><span style="display:flex;"><span>student_marks <span style="color:#f92672">+=</span> another_marks
+</span></span></code></pre></div><h3 id="header-3функции-для-работы-со-списками"><a href="#header-3"></a>Функции для работы со списками</h3>
+<p>В Python существуют встроенные функции для работы со списками:</p>
+<ul>
+<li>sum(твой-список) &ndash; сумма элементов списка</li>
+<li>len(твой-список) &ndash; количество элементов списка</li>
+<li>sorted(твой-список) &ndash; создать новый список, отсортированный по возрастанию</li>
+</ul>
+<p>Вернёмся к задаче поиска средней оценки по группе. Вот так может выглядеть решение:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>student_marks <span style="color:#f92672">=</span> [<span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">5</span>]
+</span></span><span style="display:flex;"><span>average_mark <span style="color:#f92672">=</span> sum(student_marks) <span style="color:#f92672">/</span> len(student_marks)
+</span></span><span style="display:flex;"><span>print(average_mark)
+</span></span></code></pre></div><p>А что, если мы захотим достать самую высокую оценку, и самую низкую оценку?</p>
+<p>Нууу, сначала мы отсортируем список:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>student_marks <span style="color:#f92672">=</span> [<span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">5</span>]
+</span></span><span style="display:flex;"><span>student_marks <span style="color:#f92672">=</span> sorted(student_marks)
+</span></span></code></pre></div><blockquote>
+<p>По умолчанию списки сортируются по возрастанию. Если нужно отсортирвать его по убыванию, то надо вызвать эту функцию так:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>student_marks <span style="color:#f92672">=</span> sorted(student_marks, reverse<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>)
+</span></span></code></pre></div><p>Мы указали <strong>опциональный параметр функции</strong> &ndash; мы дойдём до этого в статье по функциям.</p>
+</blockquote>
+<p>А теперь надо достать самую низкую (в начале списка), и самую высокую оценку (в конце списка). Чтобы понять как это сделать, надо сначала объяснить эту шутку: &ldquo;Ты спросила на каком месте у меня работа. Я сказал, что на первом. Ты ушла, хлопнув дверью, так и не узнав, что ты у меня на нулевом&rdquo;.</p>
+<h3 id="header-3индексы-списка"><a href="#header-3"></a>Индексы списка</h3>
+<p><img src="/assets/images/list-indexing.png" alt="Индексы списка"></p>
+<p>В то время, как нормальные люди считают порядковый номер элемента (первый, второй, третий&hellip;) &ndash; программисты считают смещение от первого элемента списка (на ноль, на один, на два).</p>
+<blockquote>
+<p>Смещение от первого элемента называется <strong>индекс</strong>.</p>
+</blockquote>
+<p>То есть чтобы получить первый элемент списка, нужно взять элемент по индексу <strong>0</strong>:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>print(student_marks[<span style="color:#ae81ff">0</span>]) <span style="color:#75715e"># 2</span>
+</span></span></code></pre></div><p>А чтобы взять последний элемент, нужно взять элемент по индексу <strong>(количество элементов)-1</strong>, потому что мы начали считать с 0:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>print(student_marks[len(student_marks) <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>]) <span style="color:#75715e"># 5</span>
+</span></span></code></pre></div><p><strong>Внимание!</strong> Следи чтобы индекс не выходил за пределы списка &ndash; это приведёт к ошибке при исполнении программы:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>x <span style="color:#f92672">=</span> [<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span>]
+</span></span><span style="display:flex;"><span>x[<span style="color:#ae81ff">3</span>]
+</span></span><span style="display:flex;"><span>Traceback (most recent call last):
+</span></span><span style="display:flex;"><span>  File <span style="color:#e6db74">&#34;&lt;stdin&gt;&#34;</span>, line <span style="color:#ae81ff">1</span>, <span style="color:#f92672">in</span> <span style="color:#f92672">&lt;</span>module<span style="color:#f92672">&gt;</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">IndexError</span>: list index out of range
+</span></span></code></pre></div><p>Используя индекс, можно перезаписать произвольный элемент списка:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>student_mark[<span style="color:#ae81ff">1</span>] <span style="color:#f92672">=</span> <span style="color:#ae81ff">5</span> <span style="color:#75715e"># Заменили значение второго элемента на 5</span>
+</span></span></code></pre></div><p>Если указывать отрицательное значение, то индекс будет считаться с конца:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>student_mark[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>] <span style="color:#f92672">=</span> <span style="color:#ae81ff">2</span> <span style="color:#75715e"># Заменили значение последнего элемента на 2</span>
+</span></span><span style="display:flex;"><span>student_mark[<span style="color:#f92672">-</span><span style="color:#ae81ff">2</span>] <span style="color:#f92672">=</span> <span style="color:#ae81ff">5</span> <span style="color:#75715e"># Заменили значение второго с конца элемента на 5</span>
+</span></span></code></pre></div><blockquote>
+<p>На самом деле индексация в списках устроена несколько иначе &ndash; <a href="http://itnotesblog.ru/note.php?id=178">здесь</a> можно почитать немного теории (а потом там идёт реализация на C++).</p>
+</blockquote>
+<h3 id="header-3слайсы"><a href="#header-3"></a>Слайсы</h3>
+<p>Ты можешь &ldquo;разрезать&rdquo; список на более маленькие списки с помощью <strong>слайсов</strong> (можно перевести как ломтик, кусочек, отрезанная часть).</p>
+<p>Исходный массив:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>student_marks <span style="color:#f92672">=</span> [<span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">5</span>]
+</span></span></code></pre></div><ul>
+<li>При задании слайса, ты указываешь индекс элемента, &ldquo;от&rdquo; которого начинается слайс, и индекс элемента, &ldquo;до&rdquo; которого нужно сделать слайс</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>student_marks[<span style="color:#ae81ff">0</span>:<span style="color:#ae81ff">3</span>] <span style="color:#75715e"># [5, 3, 2]</span>
+</span></span></code></pre></div><ul>
+<li>Если индекс &ldquo;от&rdquo; не указан, то будет взят слайс от начала списка до индекса &ldquo;до&rdquo;</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>student_marks[:<span style="color:#ae81ff">2</span>] <span style="color:#75715e"># [5, 3]</span>
+</span></span></code></pre></div><ul>
+<li>Если не указан индекс &ldquo;до&rdquo; то будет взят слайс от индекса &ldquo;от&rdquo; до последнего элемента списка</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>student_marks[<span style="color:#ae81ff">1</span>:] <span style="color:#75715e"># [3, 2, 4, 3, 5]</span>
+</span></span></code></pre></div><ul>
+<li>Если в слайсе не указаны границы, то слайс будет таким же, как список</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>student_marks[:] <span style="color:#75715e"># [5, 3, 2, 4, 3, 5]</span>
+</span></span></code></pre></div><h3 id="header-3задание-на-закрепление"><a href="#header-3"></a>Задание на закрепление</h3>
+<p>Создай список со значениями плотности населения (человек на квадратный километр) в 7 самых больших странах мира:</p>
+<ul>
+<li>Россия: 8,56</li>
+<li>Канада: 3,5</li>
+<li>Китай: 139</li>
+<li>США: 32</li>
+<li>Бразилия: 23,6</li>
+<li>Австралия: 2,8</li>
+<li>Индия: 357</li>
+</ul>
+<p>Задания:</p>
+<ul>
+<li>Вычисли среднюю плотность населения по этим странам</li>
+<li>Выведи самую низкую плотность</li>
+<li>Выведи самую высокую плотность</li>
+<li>Выведи список из 3 самых больших значений плотности (это про слайсы)</li>
+</ul>
+<h1 id="header-1кортежи"><a href="#header-1"></a>Кортежи</h1>
+<p>Кортеж (tuple) &ndash; это список, который нельзя изменять. Кортеж более эффективно использует память, поэтому его лучше использовать, когда у тебя есть наборы значений, которые точно не будут меняться (например кортеж, в котором перечислены планеты Солнечной системы или дни недели).</p>
+<p>Пример создания кортежа:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>days_of_week <span style="color:#f92672">=</span> (<span style="color:#e6db74">&#39;Понедельник&#39;</span>, <span style="color:#e6db74">&#39;Вторник&#39;</span>, <span style="color:#e6db74">&#39;Среда&#39;</span>, <span style="color:#e6db74">&#39;Четверг&#39;</span>, <span style="color:#e6db74">&#39;Пятница&#39;</span>, <span style="color:#e6db74">&#39;Суббота&#39;</span>, <span style="color:#e6db74">&#39;Воскресенье&#39;</span>)
+</span></span></code></pre></div><p>В кортеже также могут содержаться значения любых типов:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>some_tuple <span style="color:#f92672">=</span> (<span style="color:#e6db74">&#39;1&#39;</span>, <span style="color:#ae81ff">2</span>, [<span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">4</span>], <span style="color:#ae81ff">5.5</span>)
+</span></span></code></pre></div><p>Значения кортежа можно доставать через индекс, но перезаписывать их нельзя:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>x <span style="color:#f92672">=</span> (<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span>)
+</span></span><span style="display:flex;"><span>x[<span style="color:#ae81ff">1</span>] <span style="color:#75715e"># 2</span>
+</span></span><span style="display:flex;"><span>x[<span style="color:#ae81ff">1</span>] <span style="color:#f92672">=</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">2</span> <span style="color:#75715e"># ОШИБКА</span>
+</span></span></code></pre></div><p>Так как ты не можешь изменять кортеж, функции добавления элемента в конец (append) и добавления списка в конец (extend) использовать нельзя &ndash; в остальном поведение такое же как и у списков (индексы, слайсы и функции для работы со списками).</p>
+<h1 id="header-1словари"><a href="#header-1"></a>Словари</h1>
+<p><strong>Словарь</strong> (dict) &ndash; это список, в котором хранятся пары ключ-значение. Ключ при этом должен быть <strong>уникальным</strong> и <strong>неизменяемым</strong>.</p>
+<blockquote>
+<p>На самом деле словари в Python это хэш-таблицы &ndash; в них ОЧЕНЬ быстро происходит поиск значений. Вот про них <a href="https://highload.today/chto-takoe-khesh-tablitsy-i-kak-oni-rabotayut/">на русском</a> (там мало информации) и <a href="https://www.thedshandbook.com/hash-tables/">на английском</a> (отличная статья).</p>
+</blockquote>
+<h3 id="header-3создание-1"><a href="#header-3"></a>Создание</h3>
+<p>Словарь создаётся так:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>students <span style="color:#f92672">=</span> {
+</span></span><span style="display:flex;"><span>	<span style="color:#e6db74">&#39;Иванов Иван Иванович&#39;</span>: <span style="color:#ae81ff">4</span>,
+</span></span><span style="display:flex;"><span>	<span style="color:#e6db74">&#39;Сергеев Сергей Сергеевич&#39;</span>: <span style="color:#ae81ff">3</span>,
+</span></span><span style="display:flex;"><span>	<span style="color:#e6db74">&#39;Максимов Максим Максимович&#39;</span>: <span style="color:#ae81ff">5</span>,
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>Также ключом может быть число (например уникальный ID пользователя), а значением вообще список:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>ids <span style="color:#f92672">=</span> {
+</span></span><span style="display:flex;"><span>	<span style="color:#ae81ff">102</span>: [<span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">4</span>],
+</span></span><span style="display:flex;"><span>	<span style="color:#ae81ff">103</span>: [<span style="color:#ae81ff">3</span>],
+</span></span><span style="display:flex;"><span>	<span style="color:#ae81ff">105</span>: [<span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">4</span>],
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>Благодаря свойству неизменности, кортежи тоже могут быть ключами, наравне с числами и строками. Например:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>numbers <span style="color:#f92672">=</span> {
+</span></span><span style="display:flex;"><span>	(<span style="color:#e6db74">&#39;One&#39;</span>, <span style="color:#ae81ff">1</span>) : <span style="color:#e6db74">&#39;Un&#39;</span>,
+</span></span><span style="display:flex;"><span>	(<span style="color:#e6db74">&#39;Two&#39;</span>, <span style="color:#ae81ff">2</span>) : <span style="color:#e6db74">&#39;Deux&#39;</span>,
+</span></span><span style="display:flex;"><span>	(<span style="color:#e6db74">&#39;Three&#39;</span>, <span style="color:#ae81ff">3</span>) : <span style="color:#e6db74">&#39;Trois&#39;</span>
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>Или другой словарь:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># Ключ - имя, значение - словарь {ключ - предмет, значение - оценка}</span>
+</span></span><span style="display:flex;"><span>students <span style="color:#f92672">=</span> {
+</span></span><span style="display:flex;"><span>	<span style="color:#e6db74">&#39;Иванов Иван Иванович&#39;</span>: {
+</span></span><span style="display:flex;"><span>		<span style="color:#e6db74">&#39;Основы Python&#39;</span>: <span style="color:#ae81ff">4</span>,
+</span></span><span style="display:flex;"><span>		<span style="color:#e6db74">&#39;Философия&#39;</span>: <span style="color:#ae81ff">4</span>,
+</span></span><span style="display:flex;"><span>	},
+</span></span><span style="display:flex;"><span>	<span style="color:#e6db74">&#39;Сергеев Сергей Сергеевич&#39;</span>: {
+</span></span><span style="display:flex;"><span>		<span style="color:#e6db74">&#39;Основы Python&#39;</span>: <span style="color:#ae81ff">3</span>,
+</span></span><span style="display:flex;"><span>		<span style="color:#e6db74">&#39;Философия&#39;</span>: <span style="color:#ae81ff">5</span>,
+</span></span><span style="display:flex;"><span>	},
+</span></span><span style="display:flex;"><span>	<span style="color:#e6db74">&#39;Максимов Максим Максимович&#39;</span>: {
+</span></span><span style="display:flex;"><span>		<span style="color:#e6db74">&#39;Основы Python&#39;</span>: <span style="color:#ae81ff">5</span>,
+</span></span><span style="display:flex;"><span>		<span style="color:#e6db74">&#39;Философия&#39;</span>: <span style="color:#ae81ff">3</span>,
+</span></span><span style="display:flex;"><span>	},
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>Также в словаре могут быть значения разных типов (это редко пригождается):</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>some_dict <span style="color:#f92672">=</span> {
+</span></span><span style="display:flex;"><span>	<span style="color:#ae81ff">1</span>: <span style="color:#e6db74">&#39;1&#39;</span>,
+</span></span><span style="display:flex;"><span>	<span style="color:#e6db74">&#39;1&#39;</span>: <span style="color:#ae81ff">1</span>,
+</span></span><span style="display:flex;"><span>	(<span style="color:#ae81ff">3</span>, <span style="color:#e6db74">&#39;1&#39;</span>): [<span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">1</span>, <span style="color:#e6db74">&#39;1&#39;</span>]
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>Как можно заметить, словари уже позволяют описывать довольно сложные наборы данных, в отличии от всего, что мы ранее рассматривали.</p>
+<h3 id="header-3вывод-значений-1"><a href="#header-3"></a>Вывод значений</h3>
+<p>Чтобы вывести значения словаря, можно просто передать его в print():</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>students <span style="color:#f92672">=</span> {
+</span></span><span style="display:flex;"><span>	<span style="color:#e6db74">&#39;Иванов Иван Иванович&#39;</span>: {
+</span></span><span style="display:flex;"><span>		<span style="color:#e6db74">&#39;Основы Python&#39;</span>: <span style="color:#ae81ff">4</span>,
+</span></span><span style="display:flex;"><span>		<span style="color:#e6db74">&#39;Философия&#39;</span>: <span style="color:#ae81ff">4</span>,
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>print(students)
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Вывод будет такой:</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># {&#39;Иванов Иван Иванович&#39;: {&#39;Основы Python&#39;: 4, &#39;Философия&#39;: 4}}</span>
+</span></span></code></pre></div><h3 id="header-3получение-значения-по-ключу"><a href="#header-3"></a>Получение значения по ключу</h3>
+<p>Так как ключ в словаре является уникальным, мы всегда можем получить из словаря нужное значение, зная ключ. Получение значения по ключу выглядит так же, как получение значения из списка по индексу &ndash; лишь с той разнцей, что мы передаём ключ:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>print(students[<span style="color:#e6db74">&#39;Иванов Иван Иванович&#39;</span>])
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Выведет:</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># {&#39;Основы Python&#39;: 4, &#39;Философия&#39;: 4}</span>
+</span></span></code></pre></div><h3 id="header-3добавление-значения-в-словарь"><a href="#header-3"></a>Добавление значения в словарь</h3>
+<p>Чтобы добавить в словарь новое значение, необходимо указать нужный ключ:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># Записываем оценки по предметам для студента</span>
+</span></span><span style="display:flex;"><span>students[<span style="color:#e6db74">&#39;Семёнов Семён Семёнович&#39;</span>] <span style="color:#f92672">=</span> {<span style="color:#e6db74">&#39;Основы Python&#39;</span>: <span style="color:#ae81ff">3</span>, <span style="color:#e6db74">&#39;Философия&#39;</span>: <span style="color:#ae81ff">3</span>}
+</span></span></code></pre></div><p>Если ты укажешь уже существующий в словаре ключ, то ты <strong>перезапишешь</strong> старое значение по этому ключу.</p>
+<h3 id="header-3функции-для-работы-со-словарями"><a href="#header-3"></a>Функции для работы со словарями</h3>
+<p>Ты можешь использовать следующие функции, для работы со словарями:</p>
+<ul>
+<li>len(твой-список) &ndash; количество элементов словаря</li>
+<li>list(твой-список.keys()) &ndash; получить список ключей словаря</li>
+<li>list(твой-список.values()) &ndash; получить список значений словаря</li>
+<li>list(твой-список.items()) &ndash; получить список пар ключ-значение словаря</li>
+</ul>
+<blockquote>
+<p>Получение списка ключей, значений и пар ключ-значение обёрнуто в list() из-за того, что функции возвращают не &ldquo;чистые&rdquo; списки, а нечто другое. Пока что давай опустим что это такое, и просто используем функции как я написал.</p>
+</blockquote>
+<p>Вот примеры использования:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>students <span style="color:#f92672">=</span> {
+</span></span><span style="display:flex;"><span>	<span style="color:#e6db74">&#39;Иванов Иван Иванович&#39;</span>: <span style="color:#ae81ff">4</span>,
+</span></span><span style="display:flex;"><span>	<span style="color:#e6db74">&#39;Сергеев Сергей Сергеевич&#39;</span>: <span style="color:#ae81ff">3</span>,
+</span></span><span style="display:flex;"><span>	<span style="color:#e6db74">&#39;Максимов Максим Максимович&#39;</span>: <span style="color:#ae81ff">5</span>,
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>len(students) <span style="color:#75715e"># 3</span>
+</span></span><span style="display:flex;"><span>list(students<span style="color:#f92672">.</span>keys()) <span style="color:#75715e"># [&#39;Иванов Иван Иванович&#39;, &#39;Сергеев Сергей Сергеевич&#39;, &#39;Максимов Максим Максимович&#39;]</span>
+</span></span><span style="display:flex;"><span>list(students<span style="color:#f92672">.</span>values()) <span style="color:#75715e"># [4, 3, 5]</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Обрати внимание, что каждая пара ключ-значение это кортеж из двух элементов -- ключа и значения.</span>
+</span></span><span style="display:flex;"><span>list(students<span style="color:#f92672">.</span>items()) <span style="color:#75715e"># [(&#39;Иванов Иван Иванович&#39;, 4), (&#39;Сергеев Сергей Сергеевич&#39;, 3), (&#39;Максимов Максим Максимович&#39;, 5)]</span>
+</span></span></code></pre></div><h3 id="header-3задание-на-закрепление-1"><a href="#header-3"></a>Задание на закрепление</h3>
+<p>Создай словарь, где ключом является название планеты, а значением дистанция до Солнца в километрах:</p>
+<ul>
+<li>Меркурий: 57910006</li>
+<li>Венера: 108199995</li>
+<li>Земля: 149599951</li>
+<li>Марс: 227939920</li>
+<li>Юпитер: 778330257</li>
+<li>Сатурн: 1429400028</li>
+<li>Уран: 2870989228</li>
+<li>Нептун: 4504299579</li>
+</ul>
+<p>Задания:</p>
+<ul>
+<li>Вычисли среднее расстояние до Солнца, учитывая все планеты</li>
+<li>Выведи отсортированный список названий всех планет (функция sorted() умеет сортировать не только числа)</li>
+<li>Вычисли во сколько раз Нептун дальше от Солнца, чем Земля</li>
+</ul>
+<h1 id="header-1заключение"><a href="#header-1"></a>Заключение</h1>
+<p>Итого, мы изучили:</p>
+<ul>
+<li>Контейнеры</li>
+<li>Списки (создание, наполнение, функции для работы, индексы, слайсы)</li>
+<li>Кортежи</li>
+<li>Словари (ключ-значение, перезаписывание при наполнении)</li>
+</ul>
+<p>Гигантский объём новой информации, да? Но ничего, ты делаешь офигенные успехи!</p>
+<p>Если что &ndash; пиши, я помогу и постараюсь объяснить лучше.</p>
+<p>Дальше мы рассмотрим основу логики в программировании &ndash; <a href="/python-conditions-ru">условия</a>.</p>
+
+
+			</section>
+		</div>
+	</div>
+
+    <footer>
+    <a href="http://kee-reel.com/python/containers/#top">
+        <span>
+            <b>🡅 В начало 🡅</b>
+        </span>
+    </a>
+    <hr>
+    <pre>
+Home server: Raspberry Pi 4
+Temperature: 27
+Uptime: 5 hours, 35 minutes
+    </pre>
+</footer>
+
+</body>
+</html>

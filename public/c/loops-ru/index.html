@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="ru">
+	<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5">
+	<meta name="description" content="IT простым языком">
+	<meta name="generator" content="HUGO">
+
+	<meta name="theme-color" content="#ffffff">
+
+    
+    
+    <link rel="stylesheet" href="http://kee-reel.com/sass/main.c3c167415800f2394c3296fcddb264b8afea9703b424d3003f18be3b0f9e64bc.css" integrity="sha256-w8FnQVgA8jlMMpb83bJkuK/qlwO0JNMAPxi&#43;Ow&#43;eZLw=">
+</head>
+
+<body>
+	<div id="top"/>
+<header>
+    <p align="center">
+        +---------------------------+<br>
+        |.-------------------------.|<br>
+        ||&nbsp;<a href="/">kee_reel@blog</a>:~$ cd&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;||<br>
+        ||&nbsp;<a href="/c">c</a>&nbsp;&nbsp;<a href="/cpp">c++</a>&nbsp;&nbsp;<a href="/python">python</a>&nbsp;&nbsp;<a href="/linux">linux</a>&nbsp;&nbsp;&nbsp;||<br>
+        ||&nbsp;<a href="/opengl">opengl</a>&nbsp;&nbsp;<a href="/sql">sql</a>&nbsp;&nbsp;<a href="/network">networks</a>&nbsp;&nbsp;&nbsp;||<br>
+        ||&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;||<br>
+        ||&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/about">обо_мне</a>&nbsp;||<br>
+        |.-------------------------.|<br>
+        +-::---------------------::-+<br>
+        .---------------------------.<br>
+        &nbsp;//&nbsp;/o<a href="/links">o</a>oooooooooooooooooooo\\&nbsp;\\&nbsp;<br>
+        &nbsp;//&nbsp;/oooooooooooooooooooooooo\\&nbsp;\\&nbsp;<br>
+        //-------------------------------\\<br>
+        \\-------------------------------//<br>
+    </p>
+</header>
+
+		
+	<div id="wrapper">
+		<div class="container">
+			<section id="main_content">
+    <h1>C. Циклы</h1>
+    
+    
+        <h3>Время чтения: 5 мин</h3>
+    
+    <p>Цикл (loop) &ndash; это механизм, позволяющий выполнить множество схожих действий.</p>
+<p>В языке си есть три вида циклов:</p>
+<ul>
+<li>for</li>
+<li>while</li>
+<li>do while</li>
+</ul>
+<h1 id="цикл-for">Цикл for</h1>
+<p>Вот пример определения цикла для решения задачи &ldquo;выводим все чётные числа от 1 до n (не включительно)&rdquo;:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#66d9ef">int</span> n;
+</span></span><span style="display:flex;"><span>scanf(<span style="color:#e6db74">&#34;%d&#34;</span>, <span style="color:#f92672">&amp;</span>n);
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>; i <span style="color:#f92672">&lt;</span> n; i<span style="color:#f92672">++</span>)
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span>(i <span style="color:#f92672">%</span> <span style="color:#ae81ff">2</span> <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>)
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>        printf(<span style="color:#e6db74">&#34;%d</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, i);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>Давай разберём из чего состоит цикл.</p>
+<h3 id="создание-временной-переменной">Создание временной переменной</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
+</span></span></code></pre></div><p>Этот код выполняется <strong>перед</strong> стартом цикла &ndash; обычно в нём создаётся временная переменная, которая будет использована внутри цикла.</p>
+<h3 id="условие-завершения">Условие завершения</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span>i <span style="color:#f92672">&lt;</span> n;
+</span></span></code></pre></div><p>Этот код исполняется перед каждым исполнением тела цикла, и возвращает <strong>булевое</strong> значение.</p>
+<p>В этом примере временная переменная i сравнивается с введённым числом n.</p>
+<p>Допустим, мы ввели число 10 &ndash; условие будет верно до тех пор, пока i меньше 10. В момент, когда выражение в условии вернёт значение ложь &ndash; цикл закончится.</p>
+<h3 id="инкремент-временной-переменной">Инкремент временной переменной</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span>i<span style="color:#f92672">++</span>
+</span></span></code></pre></div><p>Здесь обычно пишется инкремент временной переменной. Благодаря этому коду цикл изменяет значение i после прохода каждого цикла.</p>
+<h3 id="тело-цикла">Тело цикла</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span>(i <span style="color:#f92672">%</span> <span style="color:#ae81ff">2</span> <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>)
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>        printf(<span style="color:#e6db74">&#34;%d</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, i);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>Обычно, здесь пишется код, который как-то использует временные переменные &ndash; здесь это переменная i, которая используется для проверки на делимость.</p>
+<h3 id="всё-вместе">Всё вместе</h3>
+<p>Ещё раз напишу код с циклом и добавлю дополнительные логи (вывод сообщений), чтобы лучше понять что происходит:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#66d9ef">int</span> n;
+</span></span><span style="display:flex;"><span>scanf(<span style="color:#e6db74">&#34;%d&#34;</span>, <span style="color:#f92672">&amp;</span>n);
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>; i <span style="color:#f92672">&lt;</span> n; i<span style="color:#f92672">++</span>)
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span>(i <span style="color:#f92672">%</span> <span style="color:#ae81ff">2</span> <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>)
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>        printf(<span style="color:#e6db74">&#34;%d</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, i);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>Таким образом, последовательность применения выражений внутри определения цикла такова:</p>
+<ol>
+<li>Создание временной переменной:</li>
+</ol>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
+</span></span></code></pre></div><p>Переходим к шагу 2.</p>
+<ol start="2">
+<li>Проверка условия:</li>
+</ol>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span>i <span style="color:#f92672">&lt;</span> n;
+</span></span></code></pre></div><p>Если значение равно:</p>
+<ul>
+<li>истина &ndash; переходим к шагу 3</li>
+<li>ложь &ndash; переходим к шагу 5.</li>
+</ul>
+<ol start="3">
+<li>Исполнение тела цикла:</li>
+</ol>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span>(i <span style="color:#f92672">%</span> <span style="color:#ae81ff">2</span> <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>)
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>        printf(<span style="color:#e6db74">&#34;%d</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, i);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>Переходим к шагу 4.</p>
+<ol start="4">
+<li>Инкремент временной переменной:</li>
+</ol>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span>i<span style="color:#f92672">++</span>
+</span></span></code></pre></div><p>Переходим к шагу 2.</p>
+<ol start="5">
+<li>Конец цикла.</li>
+</ol>
+<p>Вот что выведет эта программа (если введём 10 с клавиатуры):</p>
+<pre tabindex="0"><code>2
+4
+6
+8
+</code></pre><p>Видишь, строка &ldquo;Проход цикла:&rdquo; заканчивается на 8-ке, потому что когда i становится 10, условие i &lt; n не выполняется, и цикл завершается.</p>
+<h1 id="цикл-while">Цикл while</h1>
+<p>Если ты разобрался с циклом for, то с while у тебя не возникнет проблем &ndash; он намного легче.</p>
+<p>Вот как он выглядит (я описал с его помощью ту же задачу, что и выше):</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#66d9ef">int</span> x;
+</span></span><span style="display:flex;"><span>scanf(<span style="color:#e6db74">&#34;%d&#34;</span>, <span style="color:#f92672">&amp;</span>x);
+</span></span><span style="display:flex;"><span>printf(<span style="color:#e6db74">&#34;Поиск делителей числа %d&#34;</span>, x);
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> div <span style="color:#f92672">=</span> <span style="color:#ae81ff">2</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">while</span>(div <span style="color:#f92672">&lt;</span> x)
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    printf(<span style="color:#e6db74">&#34;Проход цикла: %d</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, div);
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span>(x <span style="color:#f92672">%</span> div <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>)
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>        printf(<span style="color:#e6db74">&#34;Нашли делитель: %d</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, div);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    div<span style="color:#f92672">++</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>Здесь нужно описать только условие, которое будет проверяться перед проходом каждого цикла. Создание временной переменной и инкремент я просто перенёс в соответствующие места.</p>
+<p>Вывод программы будет таким же.</p>
+<blockquote>
+<p>Очень важно не забывать про инкремент при использовании цикла while! Я уже и не упомню сколько раз у меня получался бесконечный цикл (условие цикла всегда истинно), из-за отсутствия инкремента переменной &ndash; она оставалась на начальном значении, и цикл бесконечно молотил впустую.</p>
+</blockquote>
+<h1 id="цикл-do-while">Цикл do while</h1>
+<p>Те же яйца, только сбоку &ndash; в цикле while проверка условия производится перед исполнением тела цикла, а в цикле do while &ndash; проверка производится после тела цикла.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#66d9ef">int</span> x;
+</span></span><span style="display:flex;"><span>scanf(<span style="color:#e6db74">&#34;%d&#34;</span>, <span style="color:#f92672">&amp;</span>x);
+</span></span><span style="display:flex;"><span>printf(<span style="color:#e6db74">&#34;Поиск делителей числа %d&#34;</span>, x);
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> div <span style="color:#f92672">=</span> <span style="color:#ae81ff">2</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">if</span>(div <span style="color:#f92672">&gt;=</span> x)
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">do</span>
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    printf(<span style="color:#e6db74">&#34;Проход цикла: %d</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, div);
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span>(x <span style="color:#f92672">%</span> div <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>)
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>        printf(<span style="color:#e6db74">&#34;Нашли делитель: %d</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, div);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    div<span style="color:#f92672">++</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">while</span>(div <span style="color:#f92672">&lt;</span> x);
+</span></span></code></pre></div><p>Вроде бы ничего особо не изменилось, но я зачем-то добавил проверку:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#66d9ef">if</span>(div <span style="color:#f92672">&gt;=</span> x)
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>Объясняю зачем &ndash; из-за того, что условие цикла проверится только после прохождения тела цикла, мне надо убедиться что введённое пользователем число подходит под условие div &lt; x.</p>
+<p>Представь что этого дополнительного условия нет &ndash; если пользователь введёт -10:</p>
+<ul>
+<li>Тело цикла начнёт выполняться</li>
+<li>Мы напишем &ldquo;Проход цикла: 2&rdquo;</li>
+<li>Мы найдём делитель -10 при dev == 2, и напишем &ldquo;Нашли делитель: 2&rdquo;</li>
+<li>И только после этого дойдём до проверки div &lt; x (-10 &lt; 2), которая вернёт ложь</li>
+</ul>
+<p>А это уже баг!</p>
+<blockquote>
+<p>Баг (от агл. bug &ndash; жук) &ndash; это жаргонный термин в программировании, обозначающее ошибку при написании программы, которая привела к нежелательному поведению.
+Есть <a href="https://ru.wikipedia.org/wiki/%D0%9F%D1%80%D0%BE%D0%B3%D1%80%D0%B0%D0%BC%D0%BC%D0%BD%D0%B0%D1%8F_%D0%BE%D1%88%D0%B8%D0%B1%D0%BA%D0%B0#%D0%AD%D1%82%D0%B8%D0%BC%D0%BE%D0%BB%D0%BE%D0%B3%D0%B8%D1%8F_%D1%82%D0%B5%D1%80%D0%BC%D0%B8%D0%BD%D0%B0_%C2%AB%D0%B1%D0%B0%D0%B3%C2%BB">версия</a>, что впервые в отношении программной ошибки это термин применили в 1947 году, когда нашли вполне реального &ldquo;жука&rdquo; в реле вычислительной машины:
+<img src="/assets/images/first-bug.png" alt="Первый баг"></p>
+</blockquote>
+<h1 id="прерывание-цикла-и-пропуск-итерации">Прерывание цикла и пропуск итерации</h1>
+<p>В языке Си (а также в C++, Python, JS, Go и прочих языках) есть способ прервать выполнение цикла и пропустить текущую итерацию.</p>
+<h3 id="break">break</h3>
+<p><strong>break</strong> позволяет <strong>выйти</strong> из цикла раньше времени.</p>
+<p>Например, у нас задача &ldquo;вывести 10 чётных чисел от 1 до 100&rdquo;:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#66d9ef">int</span> count <span style="color:#f92672">=</span> <span style="color:#ae81ff">10</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>; i <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">100</span>; i<span style="color:#f92672">++</span>)
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span>(i <span style="color:#f92672">%</span> <span style="color:#ae81ff">2</span> <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>)
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>        count<span style="color:#f92672">--</span>;
+</span></span><span style="display:flex;"><span>        printf(<span style="color:#e6db74">&#34;%d</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, i);
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span>(count <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>)
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">break</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h3 id="continue">continue</h3>
+<p><strong>continue</strong> позволяет пропустить <strong>текущую итерацию</strong>, и сразу начать следующую (произойдёт инкремент временной переменной).</p>
+<p>Задача &ldquo;на заданном промежутке посчитать сумму нечётных чисел и вычесть из неё сумму чисел делящихся на 3&rdquo;:</p>
+<p>Та же задача &ldquo;вывести 10 чётных чисел от 1 до 100&rdquo;:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#66d9ef">int</span> count <span style="color:#f92672">=</span> <span style="color:#ae81ff">10</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>; i <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">100</span>; i<span style="color:#f92672">++</span>)
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span>(i <span style="color:#f92672">%</span> <span style="color:#ae81ff">2</span> <span style="color:#f92672">!=</span> <span style="color:#ae81ff">0</span>)
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">continue</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    count<span style="color:#f92672">--</span>;
+</span></span><span style="display:flex;"><span>    printf(<span style="color:#e6db74">&#34;%d</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, i);
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span>(count <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>)
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">break</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>Обычно continue используется для сокращения уровня вложенности условий в цикле.</p>
+<h1 id="вложенные-циклы">Вложенные циклы</h1>
+<p>Внутри одного цикла, ты можешь запускать ещё циклы. Задача &ldquo;вывести N простых чисел&rdquo;:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#66d9ef">int</span> N;
+</span></span><span style="display:flex;"><span>scanf(<span style="color:#e6db74">&#34;%d&#34;</span>, <span style="color:#f92672">&amp;</span>N);
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// Пока N больше нуля
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">2</span>; N <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span>; i<span style="color:#f92672">++</span>)
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    printf(<span style="color:#e6db74">&#34;%d</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, i);
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">char</span> is_prime_number <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Для всех j от 2 до i
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> j <span style="color:#f92672">=</span> <span style="color:#ae81ff">2</span>; j <span style="color:#f92672">&lt;</span> i; j<span style="color:#f92672">++</span>)
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// Простое число может делиться только на 1 и на само себя.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        <span style="color:#75715e">// Если делится на что-то ещё, то оно не простое.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        <span style="color:#66d9ef">if</span>(i <span style="color:#f92672">%</span> j <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>)
+</span></span><span style="display:flex;"><span>        {
+</span></span><span style="display:flex;"><span>            is_prime_number <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">break</span>;
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span>(is_prime_number)
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>        printf(<span style="color:#e6db74">&#34;%d</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, i);
+</span></span><span style="display:flex;"><span>        N<span style="color:#f92672">--</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>То есть мы для каждого числа i создаём цикл, в котором пытаемся его поделить на все числа от 2 до i.</p>
+<h1 id="задание-на-закрепление">Задание на закрепление</h1>
+<p>Для всех числел на промежутке [2, N] (N вводится с клавиатуры), найти сумму квадратов чётных чисел и разделить её на их количество.</p>
+<h1 id="header-1заключение"><a href="#header-1"></a>Заключение</h1>
+<p>Итого, ты изучил:</p>
+<ul>
+<li>Цикл for</li>
+<li>Цикл while</li>
+<li>Цикл do while</li>
+<li>Прерывание цикла (break)</li>
+<li>Пропуск итерации (continue)</li>
+<li>Вложенные циклы</li>
+</ul>
+<p>С помощью циклов можно уже решать довольно сложные задачи &ndash; обходить большие массивы данных (про это будет потом), вычислять приближённые значения математических функций, искать числа с определёнными свойствами (например найти 1000 простых числел) и мнооогое другое.</p>
+<p>Если что &ndash; пиши, я помогу и постараюсь объяснить лучше.</p>
+<p>Дальше мы рассмотрим то, как можно структурировать твои программы &ndash; функции.</p>
+
+
+			</section>
+		</div>
+	</div>
+
+    <footer>
+    <a href="http://kee-reel.com/c/loops-ru/#top">
+        <span>
+            <b>🡅 В начало 🡅</b>
+        </span>
+    </a>
+    <hr>
+    <pre>
+Home server: Raspberry Pi 4
+Temperature: 27
+Uptime: 5 hours, 35 minutes
+    </pre>
+</footer>
+
+</body>
+</html>

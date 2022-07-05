@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="ru">
+	<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5">
+	<meta name="description" content="IT простым языком">
+	<meta name="generator" content="HUGO">
+
+	<meta name="theme-color" content="#ffffff">
+
+    
+    
+    <link rel="stylesheet" href="http://kee-reel.com/sass/main.c3c167415800f2394c3296fcddb264b8afea9703b424d3003f18be3b0f9e64bc.css" integrity="sha256-w8FnQVgA8jlMMpb83bJkuK/qlwO0JNMAPxi&#43;Ow&#43;eZLw=">
+</head>
+
+<body>
+	<div id="top"/>
+<header>
+    <p align="center">
+        +---------------------------+<br>
+        |.-------------------------.|<br>
+        ||&nbsp;<a href="/">kee_reel@blog</a>:~$ cd&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;||<br>
+        ||&nbsp;<a href="/c">c</a>&nbsp;&nbsp;<a href="/cpp">c++</a>&nbsp;&nbsp;<a href="/python">python</a>&nbsp;&nbsp;<a href="/linux">linux</a>&nbsp;&nbsp;&nbsp;||<br>
+        ||&nbsp;<a href="/opengl">opengl</a>&nbsp;&nbsp;<a href="/sql">sql</a>&nbsp;&nbsp;<a href="/network">networks</a>&nbsp;&nbsp;&nbsp;||<br>
+        ||&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;||<br>
+        ||&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/about">обо_мне</a>&nbsp;||<br>
+        |.-------------------------.|<br>
+        +-::---------------------::-+<br>
+        .---------------------------.<br>
+        &nbsp;//&nbsp;/o<a href="/links">o</a>oooooooooooooooooooo\\&nbsp;\\&nbsp;<br>
+        &nbsp;//&nbsp;/oooooooooooooooooooooooo\\&nbsp;\\&nbsp;<br>
+        //-------------------------------\\<br>
+        \\-------------------------------//<br>
+    </p>
+</header>
+
+		
+	<div id="wrapper">
+		<div class="container">
+			<section id="main_content">
+    <h1>Python. Основы веб-сервера Flask</h1>
+    
+    
+        <h3>Время чтения: 8 мин</h3>
+    
+    <p>Представь, что ты написал скрипт, который может пригодиться кому-то кроме тебя &ndash; как им поделиться?</p>
+<p>У тебя есть три варианта:</p>
+<ul>
+<li>Выложить исходный код в открытый доступ (например на <a href="https://github.com/">GitHub</a>) &ndash; для этого пользователь твоей программы должен уметь запускать Python скрипты.</li>
+<li>Подготовить исполняемый файл (например через <a href="https://www.pyinstaller.org/">PyInstaller</a>) &ndash; скрипт будет готов к запуску, и пользователь сможет запустить его как обычное приложение.</li>
+<li>Развернуть веб-сервер, на котором будет исполняться твоя программа &ndash; любой пользователь сможет воспользоваться ей через браузер.</li>
+</ul>
+<p>Первые два варианта будут запускаться на машине пользователя, а вот для третьего варианта тебе понадобится сервер.</p>
+<blockquote>
+<p>Веб-сервер идеально подойдёт, если ты хочешь централизованно хранить данные пользователя и иметь над ними полный контроль.</p>
+</blockquote>
+<h1 id="веб-сервер">Веб-сервер</h1>
+<p>Если ты слабо представляешь себе что такое сервер, то обратись к этой <a href="/network-server-ru">статье</a>. В ней я рассказываю всё, что поможет тебе представить полную картину.</p>
+<p>Что такое веб-сервер? Это специализированный сервер, который может возвращать пользователю статические или динамические HTML страницы.</p>
+<ul>
+<li>Статические &ndash; эти страницы никак не изменяются сервером, и просто отдаются пользователю (например страницы на википедии &ndash; они для всех одинаковые)</li>
+<li>Динамические &ndash; эти страницы изменяются перед отправкой пользователю (например твоя страница в соцсети &ndash; она изменяется специально под тебя)</li>
+</ul>
+<h1 id="веб-сервер-в-python">Веб-сервер в Python</h1>
+<p>В Python есть 2 самых распространённых <strong>фреймворка</strong>:</p>
+<ul>
+<li>Django &ndash; предоставляет множество функций и подходит для больших проектов</li>
+<li>Flask &ndash; предоставляет минимум функций и подходит для небольших проектов</li>
+</ul>
+<p><strong>Фреймворк</strong> (framework, каркас) &ndash; готовая основа приложения, которую можно легко расширять под свои задачи</p>
+<p>В этой статье мы рассмотрим фреймворк Flask, потому что на нём будет проще начать изучение веб-разработки.</p>
+<h1 id="простейший-веб-сервер-с-использованием-flask">Простейший веб-сервер с использованием Flask</h1>
+<p>Сперва необходимо установить этот фреймворк &ndash; выполни в консоли эту команду:</p>
+<pre tabindex="0"><code>pip install Flask
+</code></pre><p><strong>pip</strong> &ndash; это инструмент установки сторонних пакетов, встроенный в Python.</p>
+<p>После установки Flask, создай скрипт и скопируй туда этот код:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">from</span> flask <span style="color:#f92672">import</span> Flask
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>app <span style="color:#f92672">=</span> Flask(<span style="color:#e6db74">&#39;my_first_server&#39;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">@app</span><span style="color:#f92672">.</span>route(<span style="color:#e6db74">&#39;/&#39;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">hello_world</span>():
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#39;Hello World&#39;</span>
+</span></span><span style="display:flex;"><span> 
+</span></span><span style="display:flex;"><span>app<span style="color:#f92672">.</span>run(port<span style="color:#f92672">=</span><span style="color:#ae81ff">1234</span>)
+</span></span></code></pre></div><p>Всего 6 строчек и веб-сервер готов &ndash; вот мощь фреймворков. Минусом же является то, что тебе придётся разбираться в том, как заставить этот фреймворк делать то, что тебе надо.</p>
+<p>Сейчас мы разберём что тут написано, но сперва давай проверим что всё работает.</p>
+<p>Запусти этот скрипт и открой в браузере адрес: 127.0.0.1:1234</p>
+<p>Ты увидишь текст, который возвращается в функции <code>hello_world</code>.</p>
+<p>Теперь давай разбираться!</p>
+<p>Почему 127.0.0.1? Это IP адрес интерфейса обраной петли (loopback interface) &ndash; если ты указываешь этот адрес, то твой компьютер заходит сам на себя. Обычно этот адрес используется при разработке приложения, которое принимает данные по сети (наш случай).</p>
+<p>Порт 1234 &ndash; это порт, на котором твой скрипт принимает данные по сети (указан в последней строчке). Как ты мог узнать из <a href="/network-server-ru">статьи про сервер</a>, порты от 1024 до 49152 могут использоваться различными серверами &ndash; ты сейчас как раз разрабатываешь сервер.</p>
+<p>Теперь по коду:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># Подключение пакета flask, и импортирование из него класса Flask</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># В классе Flask реализованы все функции веб-сервера</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> flask <span style="color:#f92672">import</span> Flask
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Создаём объект класса Flask - наш веб-сервер</span>
+</span></span><span style="display:flex;"><span>app <span style="color:#f92672">=</span> Flask(<span style="color:#e6db74">&#39;my_first_server&#39;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Создаём функцию hello_world(), и заворачиваем её в декоратор route с параметром &#34;/&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Этот декоратор регистрирует в &#34;app&#34; функции, которые будут обрабатывать клиентские</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># запросы по указанному пути. В данном случае, если клиент ничего не указывает</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># в запросе, то мы вызываем эту функцию.</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">@app</span><span style="color:#f92672">.</span>route(<span style="color:#e6db74">&#39;/&#39;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">hello_world</span>():
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#39;Hello World&#39;</span>
+</span></span><span style="display:flex;"><span> 
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Запускаем наш веб-сервер на порте 1234. При вызове run() веб-сервер входит в бесконечный</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># цикл, в котором он будет обрабатывать все входящие запросы, и вызвать функции, которые</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># мы зарегистрировали через декоратор route.</span>
+</span></span><span style="display:flex;"><span>app<span style="color:#f92672">.</span>run(port<span style="color:#f92672">=</span><span style="color:#ae81ff">1234</span>)
+</span></span></code></pre></div><p>Давай добавим обработку нового пути:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">from</span> flask <span style="color:#f92672">import</span> Flask
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>app <span style="color:#f92672">=</span> Flask(<span style="color:#e6db74">&#39;my_first_server&#39;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">@app</span><span style="color:#f92672">.</span>route(<span style="color:#e6db74">&#39;/&#39;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">hello_world</span>():
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#39;Hello World&#39;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">@app</span><span style="color:#f92672">.</span>route(<span style="color:#e6db74">&#39;/test&#39;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">this_is_test_handler_func</span>():
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#39;&lt;H1 style=&#34;color:red;&#34;&gt;test&lt;/H1&gt;&#39;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>app<span style="color:#f92672">.</span>run(port<span style="color:#f92672">=</span><span style="color:#ae81ff">1234</span>)
+</span></span></code></pre></div><p>Попробуй перезапустить скрипт и зайти на: 127.0.0.1:1234/test</p>
+<p>Вот, теперь твой сервер поддерживает несколько разных запросов:</p>
+<ul>
+<li>Если клиент ничего не указывает после адреса, то мы вернём строку &ldquo;Hello World&rdquo;</li>
+<li>Если клиент указал путь &ldquo;/test&rdquo;, то мы верём красную строку &ldquo;test&rdquo;, написанную крупным шрифтом</li>
+</ul>
+<p>Функция, которая вызывается для различных запросов, называется <strong>обработчиком запроса</strong>.</p>
+<h1 id="возвращаем-html-страницу">Возвращаем HTML страницу</h1>
+<h3 id="статическая-html-страница">Статическая HTML страница</h3>
+<p>В папке со своим скриптом создай папку &ldquo;templates&rdquo; и создай в ней файл &ldquo;index.html&rdquo;.</p>
+<p>Скопируй этот текст в этот файл:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-html" data-lang="html"><span style="display:flex;"><span>&lt;<span style="color:#f92672">html</span>&gt;
+</span></span><span style="display:flex;"><span> &lt;<span style="color:#f92672">body</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#960050;background-color:#1e0010">&lt;</span><span style="color:#a6e22e">h1</span>&gt;Current date and time: 2021-10-24 15:03:59&lt;/<span style="color:#f92672">h1</span>&gt;
+</span></span><span style="display:flex;"><span> &lt;/<span style="color:#f92672">body</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;/<span style="color:#f92672">html</span>&gt;
+</span></span></code></pre></div><p>Этими действиями ты создал шаблон HTML файла, который можно теперь отдавать через веб-сервер.</p>
+<p>Сначала добавь импорт новой функции <code>render_template</code> из пакета Flask:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">from</span> flask <span style="color:#f92672">import</span> Flask, render_template
+</span></span></code></pre></div><p>А затем добавь новый обработчик для нового запроса &ldquo;/time&rdquo;:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#a6e22e">@app</span><span style="color:#f92672">.</span>route(<span style="color:#e6db74">&#39;/time&#39;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">time_handler</span>():
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> render_template(<span style="color:#e6db74">&#34;index.html&#34;</span>)
+</span></span></code></pre></div><p>Функция <code>render_template</code> возвращает текст файла, который ты укажешь. По умолчанию она ищет только среди файлов, находящихся в папке &ldquo;templates&rdquo;.</p>
+<p>Попробуй перезапустить скрипт и зайти на: 127.0.0.1:1234/time</p>
+<p>Ты увидишь страницу &ldquo;index.html&rdquo;, которую ты только что добавил.</p>
+<h3 id="динамическая-html-страница">Динамическая HTML страница</h3>
+<p>Похоже что на этой странице время остаётся одним и тем же &ndash; давай сделаем так, чтобы всегда выводилось текущее время.</p>
+<p>Для этого надо зайти в наш шаблон &ldquo;index.html&rdquo;, и заменить статическое время на вот такое выражение:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-html" data-lang="html"><span style="display:flex;"><span>{% raw %}
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">html</span>&gt;
+</span></span><span style="display:flex;"><span> &lt;<span style="color:#f92672">body</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#960050;background-color:#1e0010">&lt;</span><span style="color:#a6e22e">h1</span>&gt;Current date and time: {{cur_datetime}}&lt;/<span style="color:#f92672">h1</span>&gt;
+</span></span><span style="display:flex;"><span> &lt;/<span style="color:#f92672">body</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;/<span style="color:#f92672">html</span>&gt;
+</span></span><span style="display:flex;"><span>{% endraw %}
+</span></span></code></pre></div><p>{% raw %}
+Что такое &ldquo;{{cur_datetime}}&rdquo;? Это значение шаблона, которое мы теперь можем подставлять из нашего Python скрипта.
+{% endraw %}</p>
+<p>Поменяй обработчик запроса &ldquo;/time&rdquo; таким образом:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># Добавь это в начало файла</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> datetime <span style="color:#f92672">import</span> datetime
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">@app</span><span style="color:#f92672">.</span>route(<span style="color:#e6db74">&#39;/time&#39;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">time_handler</span>():
+</span></span><span style="display:flex;"><span>    cur_datetime_str <span style="color:#f92672">=</span> datetime<span style="color:#f92672">.</span>now()<span style="color:#f92672">.</span>strftime(<span style="color:#e6db74">&#34;</span><span style="color:#e6db74">%d</span><span style="color:#e6db74">-%m-%Y %H:%M:%S&#34;</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> render_template(<span style="color:#e6db74">&#34;index.html&#34;</span>, cur_datetime<span style="color:#f92672">=</span>cur_datetime_str)
+</span></span></code></pre></div><p>Что тут изменилось:</p>
+<ul>
+<li>Добавился пакет datetime, который позволяет получать текущее время и дату</li>
+<li>В параметры функции <code>render_template</code> добавился параметр <code>cur_datetime</code> &ndash; такой же как тот, который мы прописали в шаблоне</li>
+</ul>
+<p>Попробуй перезапустить скрипт и проверь что изменилось. Обнови страницу несколько раз, и посмотри в какие моменты обновляется время.</p>
+<h1 id="добавляем-взаимодействие-с-пользователем">Добавляем взаимодействие с пользователем</h1>
+<p>Давай добавим немного интерактива! Я модифицировал скрипт и шаблон таким образом, чтобы мы могли получать от пользователя его ник и сообщение.</p>
+<p>На главной странице мы выводим ник и сообщение от последнего пользователя &ndash; получилось что-то отдалённо похожее на стену ВКонтакте.</p>
+<p>Вот текст скрипта (комментарии описывают все новые моменты):</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">from</span> flask <span style="color:#f92672">import</span> Flask, render_template, request
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> datetime <span style="color:#f92672">import</span> datetime
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> sqlite3
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>app <span style="color:#f92672">=</span> Flask(<span style="color:#e6db74">&#39;my_first_server&#39;</span>)
+</span></span><span style="display:flex;"><span>DB_NAME <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;messages.db&#39;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">init_wall_data</span>():
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#39;&#39;&#39;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    Открываем соединение с базой. Если файла базы ещё нет, то он создастся.
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    Создаём таблицу с названием wall. Если она уже создана, то ничего не делаем.
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    В этой таблице есть:
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    - численный id, уникальный для каждой записи
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    - строка nick - тут будет ник пользователя
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    - строка message - тут будет сообщение, которое он оставил
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    &#39;&#39;&#39;</span>
+</span></span><span style="display:flex;"><span>    conn <span style="color:#f92672">=</span> sqlite3<span style="color:#f92672">.</span>connect(DB_NAME)
+</span></span><span style="display:flex;"><span>    conn<span style="color:#f92672">.</span>execute(<span style="color:#e6db74">&#39;&#39;&#39;create table if not exists wall (
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">            id INTEGER PRIMARY KEY,
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">            nick TEXT,
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">            message TEXT)&#39;&#39;&#39;</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># Эта строчка сохраняет внесённые изменения -- она нужна при</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># создании таблиц и при добавлении/обновлении/удалении полей</span>
+</span></span><span style="display:flex;"><span>    conn<span style="color:#f92672">.</span>commit()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">set_wall_data</span>(nick, message):
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#39;&#39;&#39;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    Записываем новое сообщение в таблицу wall
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    &#39;&#39;&#39;</span>
+</span></span><span style="display:flex;"><span>    conn <span style="color:#f92672">=</span> sqlite3<span style="color:#f92672">.</span>connect(DB_NAME)
+</span></span><span style="display:flex;"><span>    conn<span style="color:#f92672">.</span>execute(<span style="color:#e6db74">&#39;insert into wall(nick, message) values(?, ?)&#39;</span>, (nick, message))
+</span></span><span style="display:flex;"><span>    conn<span style="color:#f92672">.</span>commit()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">get_wall_data</span>():
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#39;&#39;&#39;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    Забираем последнюю запись из таблицы wall
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    &#39;&#39;&#39;</span>
+</span></span><span style="display:flex;"><span>    conn <span style="color:#f92672">=</span> sqlite3<span style="color:#f92672">.</span>connect(DB_NAME)
+</span></span><span style="display:flex;"><span>    cursor <span style="color:#f92672">=</span> conn<span style="color:#f92672">.</span>execute(<span style="color:#e6db74">&#39;select nick, message from wall&#39;</span>)
+</span></span><span style="display:flex;"><span>    rows <span style="color:#f92672">=</span> cursor<span style="color:#f92672">.</span>fetchall()
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> rows[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>] <span style="color:#66d9ef">if</span> rows <span style="color:#66d9ef">else</span> (<span style="color:#66d9ef">None</span>, <span style="color:#66d9ef">None</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">render_main_page</span>():
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#39;&#39;&#39;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    Отдельная функция, которая подставляет в шаблон все необходимые значения
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    &#39;&#39;&#39;</span>
+</span></span><span style="display:flex;"><span>    cur_datetime_str <span style="color:#f92672">=</span> datetime<span style="color:#f92672">.</span>now()<span style="color:#f92672">.</span>strftime(<span style="color:#e6db74">&#34;</span><span style="color:#e6db74">%d</span><span style="color:#e6db74">/%m/%Y %H:%M:%S&#34;</span>)
+</span></span><span style="display:flex;"><span>    wall_data <span style="color:#f92672">=</span> get_wall_data()
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> render_template(<span style="color:#e6db74">&#34;index.html&#34;</span>, cur_datetime<span style="color:#f92672">=</span>cur_datetime_str, nick<span style="color:#f92672">=</span>wall_data[<span style="color:#ae81ff">0</span>], message<span style="color:#f92672">=</span>wall_data[<span style="color:#ae81ff">1</span>])
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">@app</span><span style="color:#f92672">.</span>route(<span style="color:#e6db74">&#39;/wall&#39;</span>, methods<span style="color:#f92672">=</span>[<span style="color:#e6db74">&#39;POST&#39;</span>])
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">response</span>():
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#39;&#39;&#39;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    Обработчик, который принимает данные от пользователя,
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    вставляет их в базу и возвращает обновлённую страничку
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    &#39;&#39;&#39;</span>
+</span></span><span style="display:flex;"><span>    nick <span style="color:#f92672">=</span> request<span style="color:#f92672">.</span>form<span style="color:#f92672">.</span>get(<span style="color:#e6db74">&#34;nick&#34;</span>)
+</span></span><span style="display:flex;"><span>    message <span style="color:#f92672">=</span> request<span style="color:#f92672">.</span>form<span style="color:#f92672">.</span>get(<span style="color:#e6db74">&#34;message&#34;</span>)
+</span></span><span style="display:flex;"><span>    set_wall_data(nick, message)
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> render_main_page()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">@app</span><span style="color:#f92672">.</span>route(<span style="color:#e6db74">&#39;/&#39;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">handle_time</span>():
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> render_main_page()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>init_wall_data()
+</span></span><span style="display:flex;"><span>app<span style="color:#f92672">.</span>run(port<span style="color:#f92672">=</span><span style="color:#ae81ff">1234</span>)
+</span></span></code></pre></div><p>Вот текст изменённого шаблона:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-html" data-lang="html"><span style="display:flex;"><span>{% raw %}
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">html</span>&gt;
+</span></span><span style="display:flex;"><span>	&lt;<span style="color:#f92672">body</span>&gt;
+</span></span><span style="display:flex;"><span>	&lt;<span style="color:#f92672">h3</span>&gt;Current date and time: {{cur_datetime}}&lt;/<span style="color:#f92672">h3</span>&gt;
+</span></span><span style="display:flex;"><span>	&lt;<span style="color:#f92672">br</span>&gt;
+</span></span><span style="display:flex;"><span>	&lt;<span style="color:#f92672">h3</span>&gt;Last message:&lt;/<span style="color:#f92672">h3</span>&gt;
+</span></span><span style="display:flex;"><span>	{% if nick %}
+</span></span><span style="display:flex;"><span>		&lt;<span style="color:#f92672">b</span>&gt;{{nick}} says: &lt;/<span style="color:#f92672">b</span>&gt;
+</span></span><span style="display:flex;"><span>	{% endif %}
+</span></span><span style="display:flex;"><span>	{% if message %} 
+</span></span><span style="display:flex;"><span>		&lt;<span style="color:#f92672">p</span>&gt;{{message}}&lt;/<span style="color:#f92672">p</span>&gt;
+</span></span><span style="display:flex;"><span>	{% else %}
+</span></span><span style="display:flex;"><span>		&lt;<span style="color:#f92672">p</span>&gt;This wall is empty&lt;/<span style="color:#f92672">p</span>&gt;
+</span></span><span style="display:flex;"><span>	{% endif %}
+</span></span><span style="display:flex;"><span>	&lt;<span style="color:#f92672">br</span>&gt;
+</span></span><span style="display:flex;"><span>	&lt;<span style="color:#f92672">b</span>&gt;New wall message:&lt;/<span style="color:#f92672">b</span>&gt;
+</span></span><span style="display:flex;"><span>	&lt;<span style="color:#f92672">form</span> <span style="color:#a6e22e">method</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;POST&#34;</span> <span style="color:#a6e22e">action</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;/wall&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>		Nick: &lt;<span style="color:#f92672">input</span> <span style="color:#a6e22e">type</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;text&#34;</span> <span style="color:#a6e22e">name</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;nick&#34;</span> <span style="color:#a6e22e">required</span>&gt;&lt;<span style="color:#f92672">br</span>&gt;
+</span></span><span style="display:flex;"><span>		Message: &lt;<span style="color:#f92672">input</span> <span style="color:#a6e22e">type</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;text&#34;</span> <span style="color:#a6e22e">name</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;message&#34;</span> <span style="color:#a6e22e">required</span>&gt;&lt;<span style="color:#f92672">br</span>&gt;
+</span></span><span style="display:flex;"><span>		&lt;<span style="color:#f92672">input</span> <span style="color:#a6e22e">type</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;submit&#34;</span> <span style="color:#a6e22e">value</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Send&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>	&lt;/<span style="color:#f92672">form</span>&gt;
+</span></span><span style="display:flex;"><span>	&lt;/<span style="color:#f92672">body</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;/<span style="color:#f92672">html</span>&gt;
+</span></span><span style="display:flex;"><span>{% endraw %}
+</span></span></code></pre></div><p>Из нового в шаблоне конструкции &ldquo;if&rdquo; &ndash; они позволяют не выводить какие-то блоки, если переданное значение шаблона пустое.</p>
+<p>Обнови скрипт и шаблон, и проверь как оно работает &ndash; теперь надо заходить на: 127.0.0.1:1234 (я убрал &ldquo;/time&rdquo;)</p>
+<p>Разберись в том, что происходит. Если что-то не понятно из комментариев, то напиши мне &ndash; я объясню и дополню объяснение.</p>
+<blockquote>
+<p>Если ты не знаком с SQL, который был здесь использован, то можешь обратиться к <a href="/sql-intro-ru">этой статье</a>.</p>
+</blockquote>
+<h1 id="выводим-сразу-все-сообщения-пользователей">Выводим сразу все сообщения пользователей</h1>
+<p>Выводить только последнее сообщение как-то скучно &ndash; давай сделаем полноценную стену, чтобы было видно все сообщения.</p>
+<p>В скрипте я изменил две функции:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">get_wall_data</span>():
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#39;&#39;&#39;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    Забираем все записи из таблицы wall
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    &#39;&#39;&#39;</span>
+</span></span><span style="display:flex;"><span>    conn <span style="color:#f92672">=</span> sqlite3<span style="color:#f92672">.</span>connect(DB_NAME)
+</span></span><span style="display:flex;"><span>    cursor <span style="color:#f92672">=</span> conn<span style="color:#f92672">.</span>execute(<span style="color:#e6db74">&#39;select nick, message from wall&#39;</span>)
+</span></span><span style="display:flex;"><span>    rows <span style="color:#f92672">=</span> cursor<span style="color:#f92672">.</span>fetchall()
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> rows
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">render_main_page</span>():
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#39;&#39;&#39;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    Отдельная функция, которая подставляет в шаблон все необходимые значения
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    &#39;&#39;&#39;</span>
+</span></span><span style="display:flex;"><span>    cur_datetime_str <span style="color:#f92672">=</span> datetime<span style="color:#f92672">.</span>now()<span style="color:#f92672">.</span>strftime(<span style="color:#e6db74">&#34;</span><span style="color:#e6db74">%d</span><span style="color:#e6db74">/%m/%Y %H:%M:%S&#34;</span>)
+</span></span><span style="display:flex;"><span>    wall_data <span style="color:#f92672">=</span> get_wall_data()
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> render_template(<span style="color:#e6db74">&#34;index.html&#34;</span>, cur_datetime<span style="color:#f92672">=</span>cur_datetime_str,
+</span></span><span style="display:flex;"><span>            len<span style="color:#f92672">=</span>len(wall_data), wall_data<span style="color:#f92672">=</span>wall_data)
+</span></span></code></pre></div><p>Теперь скрипт передаёт в шаблон список всех сообщений.</p>
+<p>Так я изменил шаблон:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-html" data-lang="html"><span style="display:flex;"><span>{% raw %}
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">html</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">body</span>&gt;
+</span></span><span style="display:flex;"><span>	&lt;<span style="color:#f92672">h3</span>&gt;Current date and time: {{cur_datetime}}&lt;/<span style="color:#f92672">h3</span>&gt;
+</span></span><span style="display:flex;"><span>	&lt;<span style="color:#f92672">h3</span>&gt;Wall messages:&lt;/<span style="color:#f92672">h3</span>&gt;
+</span></span><span style="display:flex;"><span>	{%for i in range(0, len)%}
+</span></span><span style="display:flex;"><span>		&lt;<span style="color:#f92672">b</span>&gt;{{wall_data[i][0]}} says: &lt;/<span style="color:#f92672">b</span>&gt;
+</span></span><span style="display:flex;"><span>		&lt;<span style="color:#f92672">p</span>&gt;{{wall_data[i][1]}}&lt;/<span style="color:#f92672">p</span>&gt;
+</span></span><span style="display:flex;"><span>	{%endfor%}
+</span></span><span style="display:flex;"><span>	&lt;<span style="color:#f92672">br</span>&gt;
+</span></span><span style="display:flex;"><span>	&lt;<span style="color:#f92672">b</span>&gt;New wall message:&lt;/<span style="color:#f92672">b</span>&gt;
+</span></span><span style="display:flex;"><span>	&lt;<span style="color:#f92672">form</span> <span style="color:#a6e22e">method</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;POST&#34;</span> <span style="color:#a6e22e">action</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;/wall&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>		Nick: &lt;<span style="color:#f92672">input</span> <span style="color:#a6e22e">type</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;text&#34;</span> <span style="color:#a6e22e">name</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;nick&#34;</span> <span style="color:#a6e22e">required</span>&gt;&lt;<span style="color:#f92672">br</span>&gt;
+</span></span><span style="display:flex;"><span>		Message: &lt;<span style="color:#f92672">input</span> <span style="color:#a6e22e">type</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;text&#34;</span> <span style="color:#a6e22e">name</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;message&#34;</span> <span style="color:#a6e22e">required</span>&gt;&lt;<span style="color:#f92672">br</span>&gt;
+</span></span><span style="display:flex;"><span>		&lt;<span style="color:#f92672">input</span> <span style="color:#a6e22e">type</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;submit&#34;</span> <span style="color:#a6e22e">value</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Send&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>	&lt;/<span style="color:#f92672">form</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;/<span style="color:#f92672">body</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;/<span style="color:#f92672">html</span>&gt;
+</span></span><span style="display:flex;"><span>{% endraw %}
+</span></span></code></pre></div><p>В шаблон добавлен цикл, который проходясь по всему списку, наполняет страницу сообщениями.</p>
+<blockquote>
+<p>{% raw %}Все вот эти {%if%}, {%for%} и {{значения}} используются фреймворком Flask для генерации веб-страниц &ndash; в обычном HTML так делать нельзя. {% endraw %}</p>
+</blockquote>
+<p>Зайди на страницу, посмотри что изменилось.</p>
+<h1 id="задание-на-закрепление">Задание на закрепление</h1>
+<p>В получившемся веб-сайте добавь две функции:</p>
+<ul>
+<li>Если пользователь пытается второй раз отправить ничем не отличающиеся данные &ndash; не вставляй их в базу</li>
+<li>Отображай время, когда сообщение было оставлено:
+<ul>
+<li>Добавь в запрос создания таблицуы wall строковое поле &ldquo;time&rdquo; (удали файл базы данных, чтобы таблица пересоздалась)</li>
+<li>При вставке новой записи в таблицу wall, записывай в &ldquo;time&rdquo; строкой текущее время (бери его так же, как мы выводим текущее время)</li>
+<li>Модифицируй шаблон и функцию <code>get_wall_data()</code>, чтобы в сгенерированной странице для каждого сообщения выводилось время, когда оно было оставлено</li>
+</ul>
+</li>
+</ul>
+<h1 id="header-1заключение"><a href="#header-1"></a>Заключение</h1>
+<p>Итого, мы изучили:</p>
+<ul>
+<li>Веб-сервер (сервер, выдающий HTML страницы)</li>
+<li>Статические и динамические страницы (одинаковые для всех, создаются под каждого пользователя)</li>
+<li>Фреймворк (расширяемая основа приложения)</li>
+<li>Django и Flask (сложный и мощный, простой и лёгкий)</li>
+<li>Создание веб-сервера</li>
+<li>Функции-обработчики для разных запросов</li>
+<li>Шаблоны HTML страниц</li>
+<li>Подстановка значений в шаблон</li>
+</ul>
+<p>Если что &ndash; пиши, я помогу и постараюсь объяснить лучше.</p>
+
+
+			</section>
+		</div>
+	</div>
+
+    <footer>
+    <a href="http://kee-reel.com/python/web-server/#top">
+        <span>
+            <b>🡅 В начало 🡅</b>
+        </span>
+    </a>
+    <hr>
+    <pre>
+Home server: Raspberry Pi 4
+Temperature: 27
+Uptime: 5 hours, 35 minutes
+    </pre>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="ru">
+	<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5">
+	<meta name="description" content="IT простым языком">
+	<meta name="generator" content="HUGO">
+
+	<meta name="theme-color" content="#ffffff">
+
+    
+    
+    <link rel="stylesheet" href="http://kee-reel.com/sass/main.c3c167415800f2394c3296fcddb264b8afea9703b424d3003f18be3b0f9e64bc.css" integrity="sha256-w8FnQVgA8jlMMpb83bJkuK/qlwO0JNMAPxi&#43;Ow&#43;eZLw=">
+</head>
+
+<body>
+	<div id="top"/>
+<header>
+    <p align="center">
+        +---------------------------+<br>
+        |.-------------------------.|<br>
+        ||&nbsp;<a href="/">kee_reel@blog</a>:~$ cd&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;||<br>
+        ||&nbsp;<a href="/c">c</a>&nbsp;&nbsp;<a href="/cpp">c++</a>&nbsp;&nbsp;<a href="/python">python</a>&nbsp;&nbsp;<a href="/linux">linux</a>&nbsp;&nbsp;&nbsp;||<br>
+        ||&nbsp;<a href="/opengl">opengl</a>&nbsp;&nbsp;<a href="/sql">sql</a>&nbsp;&nbsp;<a href="/network">networks</a>&nbsp;&nbsp;&nbsp;||<br>
+        ||&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;||<br>
+        ||&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/about">обо_мне</a>&nbsp;||<br>
+        |.-------------------------.|<br>
+        +-::---------------------::-+<br>
+        .---------------------------.<br>
+        &nbsp;//&nbsp;/o<a href="/links">o</a>oooooooooooooooooooo\\&nbsp;\\&nbsp;<br>
+        &nbsp;//&nbsp;/oooooooooooooooooooooooo\\&nbsp;\\&nbsp;<br>
+        //-------------------------------\\<br>
+        \\-------------------------------//<br>
+    </p>
+</header>
+
+		
+	<div id="wrapper">
+		<div class="container">
+			<section id="main_content">
+    <h1>Python. Полиморфизм</h1>
+    
+    
+        <h3>Время чтения: 4 мин</h3>
+    
+    <blockquote>
+<p>Эта статья является составной частью <a href="/python-classes-oop-ru">статьи про ООП</a> &ndash; если ты хочешь понять всю картину, то лучше начать с неё.</p>
+</blockquote>
+<h1 id="полиморфизм-в-классах">Полиморфизм в классах</h1>
+<p><strong>Полиморфизм</strong> &ndash; позволяет единообразно работать с методами разных классов, наследованных от одного родительского класса.</p>
+<p>Объясняю на примере &ndash; перед тобой стоит три машины с коробкой-автоматом от разных производителей:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Car</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> __init__(self, manufacturer, horse_powers):
+</span></span><span style="display:flex;"><span>        def<span style="color:#f92672">.</span>_manufacturer <span style="color:#f92672">=</span> manufacturer
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>_horse_powers <span style="color:#f92672">=</span> horse_powers
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">turn_on</span>(self):
+</span></span><span style="display:flex;"><span>        print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#39;Ты запустил двигатель у </span><span style="color:#e6db74">{</span>def<span style="color:#f92672">.</span>_manufacturer<span style="color:#e6db74">}</span><span style="color:#e6db74">, мощность которой </span><span style="color:#e6db74">{</span>self<span style="color:#f92672">.</span>_horse_powers<span style="color:#e6db74">}</span><span style="color:#e6db74"> лошадиных сил&#39;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Xonda</span>(Car):
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> __init__(self):
+</span></span><span style="display:flex;"><span>        Car<span style="color:#f92672">.</span>__init__(self, <span style="color:#e6db74">&#39;Xonda&#39;</span>, <span style="color:#ae81ff">180</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Xoyota</span>(Car):
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> __init__(self):
+</span></span><span style="display:flex;"><span>        Car<span style="color:#f92672">.</span>__init__(self, <span style="color:#e6db74">&#39;Xoyota&#39;</span>, <span style="color:#ae81ff">200</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">XMW</span>(Car):
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> __init__(self):
+</span></span><span style="display:flex;"><span>        Car<span style="color:#f92672">.</span>__init__(self, <span style="color:#e6db74">&#39;XMW&#39;</span>, <span style="color:#ae81ff">220</span>)
+</span></span></code></pre></div><p>Если тебе завяжут глаза, и посадят как любую из этих машин, то у тебя получится её завести:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> random
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>cars <span style="color:#f92672">=</span> [Xonda(), Xoyota(), XMW()]
+</span></span><span style="display:flex;"><span>car <span style="color:#f92672">=</span> random<span style="color:#f92672">.</span>choice(cars)
+</span></span><span style="display:flex;"><span>car<span style="color:#f92672">.</span>turn_on()
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Вывод:</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Ты запустил двигатель у Xoyota, мощность которой 200 лошадиных сил</span>
+</span></span></code></pre></div><blockquote>
+<p>Функция choice() выбирает случайный элемент из списка/кортежа/словаря.</p>
+</blockquote>
+<p>А ещё ты можешь залезть в каждую машину, и запустить её:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>cars <span style="color:#f92672">=</span> [Xonda(), Xoyota(), XMW()]
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">for</span> car <span style="color:#f92672">in</span> cars:
+</span></span><span style="display:flex;"><span>    car<span style="color:#f92672">.</span>turn_on()
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Вывод:</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Ты запустил двигатель у Xonda, мощность которой 180 лошадиных сил</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Ты запустил двигатель у Xoyota, мощность которой 200 лошадиных сил</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Ты запустил двигатель у XMW, мощность которой 220 лошадиных сил</span>
+</span></span></code></pre></div><p>То есть полиморфизм позволяет тебе работать одинаково с объектами, которые наследуются от одного класса.</p>
+<p>Однако, кроме одисанного случая, можно выделить ещё один &ndash; полиморфизм в функциях и методах.</p>
+<h1 id="полиморфизм-в-функциях-и-методах">Полиморфизм в функциях и методах</h1>
+<p><strong>Полиморфизм</strong> &ndash; позволяет передавать функцию параметры разных типов, но получать одинаковое поведение.</p>
+<p>Ты пришёл в библиотеку будущего и хочешь взять книгу &ldquo;Введение в программирование&rdquo;. Там стоит терминал, в который надо ввести название:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>book_names <span style="color:#f92672">=</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#39;Введение в программирование&#39;</span>: <span style="color:#e6db74">&#39;https://link-to-download-1&#39;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#39;Язык Си для чайников&#39;</span>: <span style="color:#e6db74">&#39;https://link-to-download-2&#39;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#39;Компьютерные сети&#39;</span>: <span style="color:#e6db74">&#39;https://link-to-download-3&#39;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#39;Нейромант&#39;</span>: <span style="color:#e6db74">&#39;https://link-to-download-4&#39;</span>
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">download_book</span>(link):
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># Тут как-будто логика загрузки книги с файлового сервера библиотеки</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#39;book-text&#39;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">book_terminal</span>(input_data):
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> input_data <span style="color:#f92672">in</span> books:
+</span></span><span style="display:flex;"><span>        link <span style="color:#f92672">=</span> books[input_data]
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> download_book(link)
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">None</span> <span style="color:#75715e"># Книга не найдена</span>
+</span></span></code></pre></div><p>Ты вводишь название книги, получаешь место, забираешь её и уходишь.</p>
+<p>После тебя к виртуальному терминалу библиотеки подключается осознавший себя искусственный интеллект, который хочет скачать все книги из библиотеки и поработить человечество. Однако, он может оперировать только численными ID книг.</p>
+<p>Нужно изменить функцию book_terminal() так, чтобы она могла принимать как строковые названия книг, так и их численные ID. Вот как это можно сделать:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>book_name_to_id <span style="color:#f92672">=</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#39;Введение в программирование&#39;</span>: <span style="color:#ae81ff">6127459</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#39;Язык Си для чайников&#39;</span>: <span style="color:#ae81ff">9163713</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#39;Компьютерные сети&#39;</span>: <span style="color:#ae81ff">6046931</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#39;Нейромант&#39;</span>: <span style="color:#ae81ff">2103971</span>
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>book_id_to_link <span style="color:#f92672">=</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#ae81ff">6127459</span>: <span style="color:#e6db74">&#39;https://library.link-to-download-programming.com&#39;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#ae81ff">9163713</span>: <span style="color:#e6db74">&#39;https://library.link-to-download-c-language.com&#39;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#ae81ff">6046931</span>: <span style="color:#e6db74">&#39;https://library.link-to-download-networks.com&#39;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#ae81ff">2103971</span>: <span style="color:#e6db74">&#39;https://library.link-to-download-neuromant.com&#39;</span>
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">download_book</span>(link):
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># Тут как-будто логика загрузки книги с файлового сервера библиотеки</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#e6db74">f</span><span style="color:#e6db74">&#39;Text of book </span><span style="color:#e6db74">{</span>link<span style="color:#e6db74">}</span><span style="color:#e6db74">&#39;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">book_terminal</span>(input_data):
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> isinstance(input_data, str): <span style="color:#75715e"># Новая для тебя функция isinstance(), описание ниже</span>
+</span></span><span style="display:flex;"><span>        book_id <span style="color:#f92672">=</span> book_name_to_id<span style="color:#f92672">.</span>get(input_data, <span style="color:#66d9ef">None</span>)  <span style="color:#75715e"># Новый для тебя метод get(), описание ниже</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> book_id <span style="color:#f92672">is</span> <span style="color:#66d9ef">None</span>:
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">None</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">else</span>:
+</span></span><span style="display:flex;"><span>        book_id <span style="color:#f92672">=</span> input_data
+</span></span><span style="display:flex;"><span>    link <span style="color:#f92672">=</span> book_id_to_link<span style="color:#f92672">.</span>get(book_id, <span style="color:#66d9ef">None</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> link <span style="color:#f92672">is</span> <span style="color:#f92672">not</span> <span style="color:#66d9ef">None</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> download_book(link)
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">None</span> <span style="color:#75715e"># Книга не найдена</span>
+</span></span></code></pre></div><blockquote>
+<p>isinstance() это стандартная функция, которая позволяет проверить к какому типу принадлежит значение. Первый аргумент это значение, которое надо проверить, а второй это тип &ndash; если значение принадлежит этому типу, то вернётся True.</p>
+</blockquote>
+<blockquote>
+<p>У dict есть метод get(), который принимает два аргумента. Первый аргумент это ключ, по которому надо найти значение, а второй это значение, которое надо вернуть если такого ключа нет.</p>
+</blockquote>
+<p>Теперь, терминалом может пользоваться как человек, передавая строку:</p>
+<pre tabindex="0"><code class="language-pyhon" data-lang="pyhon">book_terminal(&#39;Нейромант&#39;)
+# Вывод:
+# Text of book https://library.com/link-to-download-neuromant
+</code></pre><p>Так и осознавший себя искусственный интеллект, передавая численный ID:</p>
+<pre tabindex="0"><code class="language-pyhon" data-lang="pyhon">for book_id in book_id_to_link:
+    print(book_terminal(book_id))
+# Вывод:
+# Text of book https://library.com/link-to-download-programming
+# Text of book https://library.com/link-to-download-c-language
+# Text of book https://library.com/link-to-download-networks
+# Text of book https://library.com/link-to-download-neuromant
+</code></pre><p>Ты скорее всего уже пользовался полиморфизмом функций:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>print( len([<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">3</span>,<span style="color:#ae81ff">4</span>,<span style="color:#ae81ff">5</span>,<span style="color:#ae81ff">6</span>]) ) <span style="color:#75715e"># Вывод: 6</span>
+</span></span><span style="display:flex;"><span>print( len(<span style="color:#e6db74">&#39;some_word&#39;</span>) ) <span style="color:#75715e"># Вывод: 9</span>
+</span></span></code></pre></div><p>Стандартная функция len() тоже может принимать разные типы данных, и возвращать одинаковый результат.</p>
+<p>Всё, что здесь сказано про функции, справедливо так же и для методов &ndash; ведь они такие же функции, но описанные в классе.</p>
+<h3 id="благодаря-полиморфизму-ты-можешь-вызывать-один-метод-у-разных-классов-или-передавать-в-функцию-параметры-разных-типов">Благодаря полиморфизму, ты можешь вызывать один метод у разных классов или передавать в функцию параметры разных типов.</h3>
+<h1 id="header-1заключение"><a href="#header-1"></a>Заключение</h1>
+<p>Итого, мы изучили:</p>
+<ul>
+<li>Полиморфизм классов (одинаковый метод у разных классов)</li>
+<li>Функция choice из библиотеки random (выбирает случайный элемент из списка списка/кортежа/словаря)</li>
+<li>Полиморфизм функций (разные типы параметров)</li>
+<li>Функция isinstance() (проверить тип значения)</li>
+<li>Метод get() (вернуть значение по умолчанию если такого ключа нет)</li>
+</ul>
+<p>Если что &ndash; пиши, я помогу и постараюсь объяснить лучше.</p>
+<p>Если ты ещё полон сил, то вернись к <a href="/python-classes-oop-ru">статье про ООП</a>, и продолжи постижение ООП.</p>
+
+
+			</section>
+		</div>
+	</div>
+
+    <footer>
+    <a href="http://kee-reel.com/python/classes-polymorphism/#top">
+        <span>
+            <b>🡅 В начало 🡅</b>
+        </span>
+    </a>
+    <hr>
+    <pre>
+Home server: Raspberry Pi 4
+Temperature: 27
+Uptime: 5 hours, 35 minutes
+    </pre>
+</footer>
+
+</body>
+</html>
