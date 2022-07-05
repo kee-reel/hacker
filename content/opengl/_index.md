@@ -1,4 +1,4 @@
 ---
-title: OpenGL
+title: OpenGL/C++
 draft: false
 ---

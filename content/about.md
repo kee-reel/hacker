@@ -43,8 +43,8 @@ title: About
 |-------|---------|-------------|
 | Python | ▁▂▃▄▅▆▇█ | 3 года в Wargaming |
 | Linux/Bash | ▁▂▃▄▅▆▇█ | 5 лет использую только Linux, умею шаманить, люблю автоматизацию на Bash |
-| Qt | ▁▂▃▄▅▆▇ | 1 год в Sinvent + [большой pet-project](/plag-ru) |
-| С/C++ | ▁▂▃▄▅▆ | 1 год в Sinvent и 3 года в Wargaming + [большой pet-project](/plag-ru) |
+| Qt | ▁▂▃▄▅▆▇ | 1 год в Sinvent + [большой pet-project](/plag) |
+| С/C++ | ▁▂▃▄▅▆ | 1 год в Sinvent и 3 года в Wargaming + [большой pet-project](/plag) |
 | Go | ▁▂▃▄▅▆ | [Средней сложности pet-project](https://github.com/kee-reel/LATE) |
 | SQL | ▁▂▃▄▅▆ | Периодически писал несложные запросы на работе и для pet project'ов |
 | Unity3D | ▁▂▃▄▅▆ | 3 года в Sinvent |

@@ -1,4 +1,3 @@
 ---
-title: Сети
-draft: false
+title: Компьютерные сети
 ---

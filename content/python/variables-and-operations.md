@@ -179,4 +179,4 @@ print(kilometers_can_drive_after_trip)
 
 Если что -- пиши, я помогу и постараюсь объяснить лучше.
 
-Дальше на очереди -- [контейнеры](/python-containers-ru).
+Дальше на очереди -- [контейнеры](/python-containers).

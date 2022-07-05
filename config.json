@@ -1,7 +1,8 @@
 {
-    "baseURL": "http://kee-reel.com/",
+    "baseURL": "https://kee-reel.com/",
     "params": {
         "author": "kee-reel",
         "title": "IT простым языком"
-    }
+    },
+    "publishdir": "/var/www/html/_site/"
 }
