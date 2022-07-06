@@ -5,4 +5,19 @@
         <h3>Время чтения: {{ $t }} мин</h3>
     {{ end }}
     {{ .Content }}
+
+    {{ $section_title := printf "%s. " .Parent.Title }}
+    <div style="display: flex; justify-content: space-between;">
+        {{ if .PrevInSection }}
+            <a href="{{ .PrevInSection.Permalink }}">⯇ {{ replace .PrevPage.Title $section_title "" }}</a>
+        {{ else }}
+            <div></div>
+        {{ end }}
+        <a href="{{ .Permalink }}#top"> <b>⯅ В начало ⯅</b> </a>
+        {{ if .NextInSection }}
+            <a href="{{ .NextInSection.Permalink }}">{{ replace .NextPage.Title $section_title "" }} ⯈</a>
+        {{ else }}
+            <div></div>
+        {{ end }}
+    </div>
 {{ end }}
