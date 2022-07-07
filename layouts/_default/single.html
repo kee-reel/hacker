@@ -1,23 +1,43 @@
 {{ define "main" }}
+    {{ $section_title := printf "%s. " .Parent.Title }}
+    {{ if or .PrevInSection .NextInSection }}
+        <div style="display: flex; justify-content: space-between;">
+            {{ if .PrevInSection }}
+                <a href="{{ .PrevInSection.Permalink }}">⯇ {{ replace .PrevInSection.Title $section_title "" }}</a>
+            {{ else }}
+                <div></div>
+            {{ end }}
+            {{ if .NextInSection }}
+                <a href="{{ .NextInSection.Permalink }}">{{ replace .NextInSection.Title $section_title "" }} ⯈</a>
+            {{ else }}
+                <div></div>
+            {{ end }}
+        </div>
+        <hr>
+    {{ end }}
     <h1>{{ .Title }}</h1>
     {{ $t := math.Round (div (countwords .Content) 200.0) }}
     {{ if (gt $t 2) }}
         <h3>Время чтения: {{ $t }} мин</h3>
     {{ end }}
     {{ .Content }}
-
-    {{ $section_title := printf "%s. " .Parent.Title }}
-    <div style="display: flex; justify-content: space-between;">
-        {{ if .PrevInSection }}
-            <a href="{{ .PrevInSection.Permalink }}">⯇ {{ replace .PrevPage.Title $section_title "" }}</a>
-        {{ else }}
-            <div></div>
-        {{ end }}
-        <a href="{{ .Permalink }}#top"> <b>⯅ В начало ⯅</b> </a>
-        {{ if .NextInSection }}
-            <a href="{{ .NextInSection.Permalink }}">{{ replace .NextPage.Title $section_title "" }} ⯈</a>
-        {{ else }}
-            <div></div>
-        {{ end }}
+    <hr>
+    <div align="center">
+        <a href="{{ .Permalink }}#top">⯅ В начало ⯅</a>
     </div>
+    {{ if or .PrevInSection .NextInSection }}
+        <hr>
+        <div style="display: flex; justify-content: space-between;">
+            {{ if .PrevInSection }}
+                <a href="{{ .PrevInSection.Permalink }}">⯇ {{ replace .PrevInSection.Title $section_title "" }}</a>
+            {{ else }}
+                <div></div>
+            {{ end }}
+            {{ if .NextInSection }}
+                <a href="{{ .NextInSection.Permalink }}">{{ replace .NextInSection.Title $section_title "" }} ⯈</a>
+            {{ else }}
+                <div></div>
+            {{ end }}
+        </div>
+    {{ end }}
 {{ end }}

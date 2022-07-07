@@ -1,13 +1,8 @@
 <footer>
-    <a href="{{ .Permalink }}#top">
-        <span>
-            <b>🡅 В начало 🡅</b>
-        </span>
-    </a>
     <hr>
-    <pre>
-Home server: Raspberry Pi 4
-Temperature: {{ .Site.Data.status.temperature }}
+    <div align="center">
+        Home server: Raspberry Pi 4<br>
+        Temperature: {{ .Site.Data.status.temperature }}<br>
 Uptime: {{ .Site.Data.status.uptime }}
-    </pre>
+    </div>
 </footer>
