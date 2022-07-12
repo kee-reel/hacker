@@ -12,3 +12,4 @@ title: Ссылки на классные ресурсы
 * [https://www.cameronsworld.net/](https://www.cameronsworld.net/) -- сайт, отдающий дань почтения старому интернету. ОчЕнЬ КрАсИвЫй!!! ;-)
 * [https://motherfuckingwebsite.com/](https://motherfuckingwebsite.com/) -- манифест против раздутых сайтов.
 * [https://250kb.club/](https://250kb.club/) -- сайт на котором собран список сайтов, занимающих менее 250 Кб.
+* [https://neal.fun/](https://neal.fun/) -- куча прикольных интерактивных веб-страничек ([например](https://neal.fun/absurd-trolley-problems/)].

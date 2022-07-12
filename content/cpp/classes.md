@@ -97,7 +97,7 @@ public:
 		m_temperature = temperature;
 		m_volume = volume;
 		// Выделяем память под строку
-		m_type = (char*)malloc(strlen(type));
+		m_type = new char[strlen(type)];
 		// Копируем type в m_type
 		strcpy(m_type, type);
 		std::cout << "Constructed " << volume << "ml cup of " <<
@@ -110,7 +110,7 @@ public:
 	{
 		// Освобождаем память под строку при удалении объекта
 		std::cout << "Destructed " << m_type << "." << std::endl;
-		free(m_type);
+		delete[] m_type;
 	}
 
 	// Метод drink()
@@ -190,8 +190,8 @@ new выполняет сразу две задачи:
 ```cpp
 Coffee *c3 = new Coffee("glasse", 10, 300);
 // То же самое что и
-c3 = (Coffee*) malloc(sizeof(Coffee));
-*c3 = Coffee("glasse", 10, 300);
+c3 = (Coffee*) malloc(sizeof(Coffee)); // Выделение памяти
+*c3 = Coffee("glasse", 10, 300); // Вызов конструктора для выделенной памяти
 ```
 
 ### delete
@@ -217,8 +217,8 @@ delete -- это ещё один оператор, который использ
 ```cpp
 delete c3;
 // То же самое что и
-c3->~Coffee();
-free(c3);
+c3->~Coffee(); // Вызов деструктора для выделенной памяти
+free(c3); // Освобождение памяти
 ```
 
 > Если использовать только free, то деструктор не вызовется.

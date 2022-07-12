@@ -3,12 +3,12 @@
     {{ if or .PrevInSection .NextInSection }}
         <div style="display: flex; justify-content: space-between;">
             {{ if .PrevInSection }}
-                <a href="{{ .PrevInSection.Permalink }}">⇦ {{ replace .PrevInSection.Title $section_title "" }}</a>
+                <a href="{{ .PrevInSection.Permalink }}">◀ {{ replace .PrevInSection.Title $section_title "" }}</a>
             {{ else }}
                 <div></div>
             {{ end }}
             {{ if .NextInSection }}
-                <a href="{{ .NextInSection.Permalink }}">{{ replace .NextInSection.Title $section_title "" }} ⇨</a>
+                <a href="{{ .NextInSection.Permalink }}">{{ replace .NextInSection.Title $section_title "" }} ▶</a>
             {{ else }}
                 <div></div>
             {{ end }}
@@ -23,18 +23,18 @@
     {{ .Content }}
     <hr>
     <div align="center">
-        <a href="{{ .Permalink }}#top">⇧ В начало ⇧</a>
+        <a href="{{ .Permalink }}#top">▲ В начало ▲</a>
     </div>
     {{ if or .PrevInSection .NextInSection }}
         <hr>
         <div style="display: flex; justify-content: space-between;">
             {{ if .PrevInSection }}
-                <a href="{{ .PrevInSection.Permalink }}">⇦ {{ replace .PrevInSection.Title $section_title "" }}</a>
+                <a href="{{ .PrevInSection.Permalink }}">◀ {{ replace .PrevInSection.Title $section_title "" }}</a>
             {{ else }}
                 <div></div>
             {{ end }}
             {{ if .NextInSection }}
-                <a href="{{ .NextInSection.Permalink }}">{{ replace .NextInSection.Title $section_title "" }} ⇨</a>
+                <a href="{{ .NextInSection.Permalink }}">{{ replace .NextInSection.Title $section_title "" }} ▶</a>
             {{ else }}
                 <div></div>
             {{ end }}
