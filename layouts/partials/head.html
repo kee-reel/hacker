@@ -7,6 +7,6 @@
 	<meta name="theme-color" content="#ffffff">
 
     {{ $style := resources.Get "sass/main.scss" | resources.ToCSS | resources.Minify | resources.Fingerprint }}
-    <link rel="stylesheet" href="{{ $style.Permalink }}">
+    <link rel="stylesheet" href="{{ $style.RelPermalink }}" integrity="{{ $style.Data.Integrity }}">
     <title> {{ .Site.Title }} </title>
 </head>
