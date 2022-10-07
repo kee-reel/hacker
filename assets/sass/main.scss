@@ -274,8 +274,10 @@ a:active, a:focus {
   min-height: calc(100vh - 100px);
 }
 
-
-.clicktogif img {display: block;}
+.clicktogif img {
+    display: block;
+    cursor: pointer;
+}
 .clicktogif input[type=checkbox] {
     position: absolute;
     left: -100vw;
