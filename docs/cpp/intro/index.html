@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+<html lang="ru">
+	<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5">
+	<meta name="description" content="IT простым языком">
+	<meta name="generator" content="HUGO">
+
+	<meta name="theme-color" content="#ffffff">
+
+    
+    <link rel="stylesheet" href="/sass/main.min.cbb118baada4f59224c0b905e399ab74606214a662342969e49ad0b93bfe4876.css" integrity="sha256-y7EYuq2k9ZIkwLkF45mrdGBiFKZiNClp5JrQuTv&#43;SHY=">
+    <title> IT простым языком </title>
+</head>
+
+<body>
+	<div id="top"/>
+<header>
+    <div align="center">
+        +---------------------------+<br>
+        |.-------------------------.|<br>
+        ||&nbsp;<a href="/">kee_reel@blog</a>:~$ cd&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;||<br>
+        ||&nbsp;<a href="/c">c</a>&nbsp;&nbsp;<a href="/cpp">c++</a>&nbsp;&nbsp;<a href="/python">python</a>&nbsp;&nbsp;<a href="/linux">linux</a>&nbsp;&nbsp;&nbsp;||<br>
+        ||&nbsp;<a href="/opengl">opengl</a>&nbsp;&nbsp;<a href="/sql">sql</a>&nbsp;&nbsp;<a href="/network">networks</a>&nbsp;&nbsp;&nbsp;||<br>
+        ||&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;||<br>
+        ||&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/about">обо_мне</a>&nbsp;||<br>
+        |.-------------------------.|<br>
+        +-::---------------------::-+<br>
+        .---------------------------.<br>
+        &nbsp;//&nbsp;/o<a href="/links">o</a>oooooooooooooooooooo\\&nbsp;\\&nbsp;<br>
+        &nbsp;//&nbsp;/oooooooooooooooooooooooo\\&nbsp;\\&nbsp;<br>
+        //-------------------------------\\<br>
+        \\-------------------------------//<br>
+    </div>
+    <hr>
+</header>
+
+		
+	<div id="wrapper">
+		<div class="container">
+			<section id="main_content">
+    
+    
+        <div style="display: flex; justify-content: space-between;">
+            
+                <div></div>
+            
+            
+                <a href="https://kee-reel.com/cpp/classes/">Классы ▶</a>
+            
+        </div>
+        <hr>
+    
+    <h1>C&#43;&#43;. Различия между C и C&#43;&#43;</h1>
+    
+    
+        <h3>Время чтения: 11 мин</h3>
+    
+    <p>Чтобы программировать на C++ необходимо сперва научиться программировать на C. Почему так?</p>
+<p>Это не новый язык, который придётся заново изучать &ndash; C++ является расширением языка C, и всё, что ты изучил в курсе C, тебе пригодится и в C++. Однако, какие-то моменты там теперь можно писать иначе &ndash; я покажу какие.</p>
+<blockquote>
+<p>Если ты не знаешь C, то ты не сможешь изучить C++. <a href="/c">Начни</a> с языка C.</p>
+</blockquote>
+<p>Вот основное, что изменилось в C++ относительно Си:</p>
+<ul>
+<li><a href="#io">Ввод/вывод</a>
+<ul>
+<li>Потоки ввода/вывода</li>
+<li>Пространства имён</li>
+</ul>
+</li>
+<li><a href="#variable">Переменные и типы данных</a>
+<ul>
+<li>Новый тип <code>bool</code></li>
+<li>Ключевое слово <code>auto</code></li>
+</ul>
+</li>
+<li><a href="#condition">Условия</a></li>
+<li><a href="#loop">Циклы</a></li>
+<li><a href="#pointer">Указатели</a>
+<ul>
+<li><code>new</code>, <code>new[]</code>, <code>delete</code>, <code>delete[]</code></li>
+<li><code>nullptr</code></li>
+</ul>
+</li>
+<li><a href="#array">Массивы</a></li>
+<li><a href="#string">Строки</a>
+<ul>
+<li><code>std::string</code></li>
+</ul>
+</li>
+<li><a href="#function">Функции</a>
+<ul>
+<li>Параметры по умолчанию</li>
+<li>Перегрузка функций</li>
+<li>Передача по ссылке</li>
+</ul>
+</li>
+<li><a href="#struct">Структуры</a></li>
+<li><a href="#file">Файлы</a>
+<ul>
+<li><code>fstream</code></li>
+</ul>
+</li>
+</ul>
+<div id="io"/>
+
+<h1 id="вводвывод">Ввод/вывод</h1>
+<p>Вот пример ввода/вывода на C:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#75715e">// Подключаем библиотеку стандартного ввода/вывода
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;stdio.h&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>()
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">int</span> x;
+</span></span><span style="display:flex;"><span>	<span style="color:#75715e">// Используем scanf (подключенный из stdio.h) для ввода
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	scanf(<span style="color:#e6db74">&#34;%d&#34;</span>, <span style="color:#f92672">&amp;</span>x);
+</span></span><span style="display:flex;"><span>	<span style="color:#75715e">// Используем printf (подключенный из stdio.h) для вывода
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	printf(<span style="color:#e6db74">&#34;Value = %d</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, x);
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>Точно такую же программу можно написать в C++, и она будет прекрасно работать. Надо, разве что, изменить название библиотеки с <code>stdio.h</code> на <code>cstdio</code> (добавляем &lsquo;c&rsquo; в начале, убираем &ldquo;.h&rdquo; в конце):</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;cstdio&gt;</span><span style="color:#75715e">
+</span></span></span></code></pre></div><p>Но, такой способ ввода/вывода называется теперь &ldquo;C style&rdquo;, а мы же хотим быть теперь &ldquo;C++ style&rdquo;! Вот как такая же программа будет выглядеть в новом &ldquo;C++ style&rdquo;:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#75715e">// Подключаем библиотеку потокового ввода/вывода
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;iostream&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>()
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">int</span> x;
+</span></span><span style="display:flex;"><span>	<span style="color:#75715e">// Используем std::cin (подключенный из iostream) для ввода
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	std<span style="color:#f92672">::</span>cin <span style="color:#f92672">&gt;&gt;</span> x;
+</span></span><span style="display:flex;"><span>	<span style="color:#75715e">// Используем std::cout (подключенный из iostream) для вывода
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	<span style="color:#75715e">// В конце выводим std::endl вместо &#39;\n&#39;
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	std<span style="color:#f92672">::</span>cout <span style="color:#f92672">&lt;&lt;</span> <span style="color:#e6db74">&#34;Value = &#34;</span> <span style="color:#f92672">&lt;&lt;</span> x <span style="color:#f92672">&lt;&lt;</span> std<span style="color:#f92672">::</span>endl;
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h3 id="потоки-вводавывода">Потоки ввода/вывода</h3>
+<p>Потоки это нововведение C++, которое облегчает работу с вводом/выводом в консоль, файлы и т.д.</p>
+<ul>
+<li>
+<p><code>cin</code> это поток стандартного ввода &ndash; из него мы можем получать данные, введённые с клавиатуры.</p>
+</li>
+<li>
+<p><code>cout</code> &ndash; поток стандартного вывода, который может выводить данные в консоль.</p>
+</li>
+</ul>
+<p>Чтобы получить из потока данные, используют оператор <code>&gt;&gt;</code> (стрелочки наружу), а чтобы отправить в поток данные &ndash; <code>&lt;&lt;</code> (стрелочки внутрь).</p>
+<h3 id="пространства-имён">Пространства имён</h3>
+<p>Ещё, в примере используется какая-то непонятная конструкция <code>std::</code> &ndash; что это?</p>
+<p>Представь, что у тебя есть две функции с одинаковым названием, и ты вот ни в какую не хочешь их переименовывать. Что делать?</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#75715e">// Возвращает введённую строку
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">char</span><span style="color:#f92672">*</span> <span style="color:#a6e22e">input</span>()
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// ...
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>}
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// Возвращает введённое число
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">input</span>()
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// ...
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>}
+</span></span></code></pre></div><p>В языке C ты бы ничего не смог бы поделать, а в C++ для разрешения таких ситуаций появляются пространства имён:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#66d9ef">namespace</span> string_utils
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">char</span><span style="color:#f92672">*</span> <span style="color:#a6e22e">input</span>()
+</span></span><span style="display:flex;"><span>	{
+</span></span><span style="display:flex;"><span>	<span style="color:#75715e">// ...
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	}
+</span></span><span style="display:flex;"><span>};
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">namespace</span> number_utils
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">input</span>()
+</span></span><span style="display:flex;"><span>	{
+</span></span><span style="display:flex;"><span>	<span style="color:#75715e">// ...
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	}
+</span></span><span style="display:flex;"><span>};
+</span></span></code></pre></div><p>Они позволяют разделить определение переменных, функций и прочего так, чтобы они не конфликтовали друг с другом. Обратиться к функциям из примера можно так:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#66d9ef">char</span> str <span style="color:#f92672">=</span> string_utils<span style="color:#f92672">::</span>input();
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> number <span style="color:#f92672">=</span> number_utils<span style="color:#f92672">::</span>input();
+</span></span></code></pre></div><p>В случае с <code>cin</code> и <code>cout</code> используется пространство имён std, поэтому они так и записываются: <code>std::cin</code>, <code>std::cout</code>.</p>
+<div id="variable"/>
+
+<h1 id="переменные-и-типы-данных">Переменные и типы данных</h1>
+<p>В языке C использовались следующие примитивные типы данных:</p>
+<ul>
+<li>char</li>
+<li>int</li>
+<li>float</li>
+<li>double</li>
+</ul>
+<p>В комплекте с модификаторами:</p>
+<ul>
+<li>unsigned &ndash; для беззнаковых</li>
+<li>short &ndash; для сокращённого размера</li>
+<li>long &ndash; для увеличенного размера</li>
+</ul>
+<h3 id="тип-bool">Тип bool</h3>
+<p>В языке C++ используются такие же типы данных, плюс добавляется новый тип данных &ndash; <code>bool</code>:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#66d9ef">bool</span> value_t <span style="color:#f92672">=</span> true;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">bool</span> value_f <span style="color:#f92672">=</span> false;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">if</span>(value_t)
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>	<span style="color:#75715e">// ...
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>}
+</span></span></code></pre></div><p>В языке C мы использовали для этих задач <code>char</code>, в который записывали <code>1</code> или <code>0</code>. Теперь у нас есть более подходящий для этого тип данных.</p>
+<h3 id="тип-auto">&ldquo;Тип&rdquo; auto</h3>
+<p>Одним из нововведений C++ является ключевое слово <code>auto</code> &ndash; оно позволяет нам не указывать тип переменной, если компилятор может понять его из контекста:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;iostream&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;typeinfo&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>()
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">int</span> x <span style="color:#f92672">=</span> <span style="color:#ae81ff">10</span>;
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">auto</span> y <span style="color:#f92672">=</span> <span style="color:#ae81ff">20</span>;
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">auto</span> z <span style="color:#f92672">=</span> <span style="color:#ae81ff">30.0</span>;
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">auto</span> w <span style="color:#f92672">=</span> <span style="color:#ae81ff">40.0f</span>;
+</span></span><span style="display:flex;"><span>	std<span style="color:#f92672">::</span>cout <span style="color:#f92672">&lt;&lt;</span> <span style="color:#66d9ef">typeid</span>(x).name() <span style="color:#f92672">&lt;&lt;</span> std<span style="color:#f92672">::</span>endl; <span style="color:#75715e">// Выведет i -- int
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	std<span style="color:#f92672">::</span>cout <span style="color:#f92672">&lt;&lt;</span> <span style="color:#66d9ef">typeid</span>(y).name() <span style="color:#f92672">&lt;&lt;</span> std<span style="color:#f92672">::</span>endl; <span style="color:#75715e">// Выведет i -- int
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	std<span style="color:#f92672">::</span>cout <span style="color:#f92672">&lt;&lt;</span> <span style="color:#66d9ef">typeid</span>(z).name() <span style="color:#f92672">&lt;&lt;</span> std<span style="color:#f92672">::</span>endl; <span style="color:#75715e">// Выведет d -- double
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	std<span style="color:#f92672">::</span>cout <span style="color:#f92672">&lt;&lt;</span> <span style="color:#66d9ef">typeid</span>(w).name() <span style="color:#f92672">&lt;&lt;</span> std<span style="color:#f92672">::</span>endl; <span style="color:#75715e">// Выведет f -- float
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>}
+</span></span></code></pre></div><blockquote>
+<p>Чтобы узнать тип переменной я воспользовался C++ библиотекой typeinfo &ndash; не пугайся, она не используется повсеместно, и здесь она нужна только для демонстрации.</p>
+</blockquote>
+<p>Для простых типов <code>auto</code> не очень помогает, но в дальнейшим он позволит нам сократить количество кода (когда будут названия классов).</p>
+<div id="condition"/>
+
+<h1 id="условия">Условия</h1>
+<p>Условия в C и C++ работают одинаково:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#66d9ef">int</span> x;
+</span></span><span style="display:flex;"><span>std<span style="color:#f92672">::</span>cin <span style="color:#f92672">&gt;&gt;</span> x;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">if</span>(x <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span>)
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>	std<span style="color:#f92672">::</span>cout <span style="color:#f92672">&lt;&lt;</span> <span style="color:#e6db74">&#34;+&#34;</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">else</span> <span style="color:#a6e22e">if</span>(x <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">0</span>)
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>	std<span style="color:#f92672">::</span>cout <span style="color:#f92672">&lt;&lt;</span> <span style="color:#e6db74">&#34;-&#34;</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">else</span>
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>	std<span style="color:#f92672">::</span>cout <span style="color:#f92672">&lt;&lt;</span> <span style="color:#e6db74">&#34;=&#34;</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><div id="loop"/>
+
+<h1 id="циклы">Циклы</h1>
+<p>Циклы в C и C++ работают одинаково:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#75715e">// Цикл for
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">10</span>; i<span style="color:#f92672">++</span>)
+</span></span><span style="display:flex;"><span>	std<span style="color:#f92672">::</span>cout <span style="color:#f92672">&lt;&lt;</span> i;
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// Цикл while
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">while</span>(i <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">10</span>)
+</span></span><span style="display:flex;"><span>	std<span style="color:#f92672">::</span>cout <span style="color:#f92672">&lt;&lt;</span> i<span style="color:#f92672">++</span>;
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// Цикл do while
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">do</span> {
+</span></span><span style="display:flex;"><span>	std<span style="color:#f92672">::</span>cout <span style="color:#f92672">&lt;&lt;</span> i<span style="color:#f92672">++</span>;
+</span></span><span style="display:flex;"><span>} <span style="color:#66d9ef">while</span>(i <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">10</span>);
+</span></span></code></pre></div><blockquote>
+<p>Забегая вперёд, for теперь может записываться через двоеточие при итерировании по STL контейнеру:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span>std<span style="color:#f92672">::</span>vector<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;</span> vs <span style="color:#f92672">=</span> {<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span>};
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> s : vs)
+</span></span><span style="display:flex;"><span>	std<span style="color:#f92672">::</span>cout <span style="color:#f92672">&lt;&lt;</span> s <span style="color:#f92672">&lt;&lt;</span> std<span style="color:#f92672">::</span>endl;
+</span></span></code></pre></div><p>Но об этом будем говорить потом.</p>
+</blockquote>
+<div id="pointer"/>
+
+<h1 id="указатели">Указатели</h1>
+<p>Указатели в C и C++ работают одинаково:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#66d9ef">int</span> x <span style="color:#f92672">=</span> <span style="color:#ae81ff">42</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> <span style="color:#f92672">*</span>p1 <span style="color:#f92672">=</span> <span style="color:#f92672">&amp;</span>x; <span style="color:#75715e">// Сохранит адрес переменной x
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>p1<span style="color:#f92672">++</span>; <span style="color:#75715e">// Переместит указатель на 4 байта вправо
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>p1 <span style="color:#f92672">-=</span> <span style="color:#ae81ff">2</span>; <span style="color:#75715e">// Переместит указатель на 8 байт влево
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">char</span> <span style="color:#f92672">*</span>p2 <span style="color:#f92672">=</span> p1; <span style="color:#75715e">// Сохранит адрес, который сейчас записан в p1 (4 байта влево от переменной x)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>p2 <span style="color:#f92672">+=</span> <span style="color:#ae81ff">4</span>; <span style="color:#75715e">// Переместит указатель на 4 байта вправо, на первый байт переменной x
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>std<span style="color:#f92672">::</span>cout <span style="color:#f92672">&lt;&lt;</span> <span style="color:#f92672">*</span>p2; <span style="color:#75715e">// Выведет значение первого байта x
+</span></span></span></code></pre></div><p>Если ты понял что тут написано, то ты понимаешь что такое указатели и как с ними работать.</p>
+<blockquote>
+<p>Для быстрых и смелых &ndash; в библиотеке STL добавятся &ldquo;умные&rdquo; указатели. В реальных проектах никто не работает с &ldquo;сырыми&rdquo; указателями, а пользуются &ldquo;умными&rdquo;. Если хочешь ознакомиться, то <a href="https://www.geeksforgeeks.org/smart-pointers-cpp/">вот</a>.</p>
+</blockquote>
+<h3 id="выделение-памяти">Выделение памяти</h3>
+<p>В Си для динамического выделения памяти использовались функции <code>malloc</code>, <code>calloc</code>, <code>realloc</code> и <code>free</code>:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#66d9ef">struct</span> <span style="color:#a6e22e">Example</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">int</span> a;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">float</span> b;
+</span></span><span style="display:flex;"><span>};
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>() {
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Выделяем память под структуру
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    Example <span style="color:#f92672">*</span>ex <span style="color:#f92672">=</span> malloc(<span style="color:#66d9ef">sizeof</span>(Example));
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Что-то с ней делаем
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    ex<span style="color:#f92672">-&gt;</span>a <span style="color:#f92672">=</span> <span style="color:#ae81ff">42</span>;
+</span></span><span style="display:flex;"><span>    ex<span style="color:#f92672">-&gt;</span>b <span style="color:#f92672">=</span> <span style="color:#ae81ff">42</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Освобождаем выделенную память
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    free(ex);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Выделяем массив из 10 int&#39;ов
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">int</span> n <span style="color:#f92672">=</span> <span style="color:#ae81ff">10</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">int</span> <span style="color:#f92672">*</span>arr <span style="color:#f92672">=</span> calloc(n, <span style="color:#66d9ef">sizeof</span>(<span style="color:#66d9ef">int</span>));
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Что-то с ним делаем
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> n; i<span style="color:#f92672">++</span>)\
+</span></span><span style="display:flex;"><span>        arr[i] <span style="color:#f92672">=</span> i;
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Освобождаем выделенную память
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    free(arr);
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>В C++ для этого появились операторы <code>new</code>, <code>new[]</code>, <code>delete</code> и <code>delete[]</code>:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#66d9ef">struct</span> <span style="color:#a6e22e">Example</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">int</span> a;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">float</span> b;
+</span></span><span style="display:flex;"><span>};
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>() {
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Выделяем память под структуру через оператор &#34;new&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    Example <span style="color:#f92672">*</span>ex <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Example();
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Что-то с ней делаем
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    ex<span style="color:#f92672">-&gt;</span>a <span style="color:#f92672">=</span> <span style="color:#ae81ff">42</span>;
+</span></span><span style="display:flex;"><span>    ex<span style="color:#f92672">-&gt;</span>b <span style="color:#f92672">=</span> <span style="color:#ae81ff">42</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Освобождаем выделенную память через оператор &#34;delete&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    free(ex);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Выделяем массив из 10 int&#39;ов через оператор &#34;new[]&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">int</span> n <span style="color:#f92672">=</span> <span style="color:#ae81ff">10</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">int</span> <span style="color:#f92672">*</span>arr <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#66d9ef">int</span>[n];
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Что-то с ним делаем
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> n; i<span style="color:#f92672">++</span>)\
+</span></span><span style="display:flex;"><span>        arr[i] <span style="color:#f92672">=</span> i;
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Освобождаем выделенную память через оператор &#34;delete[]&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">delete</span>[] arr;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>Обрати внимание, что если мы выделяем память для массива через <code>new int[10]</code>, то освободить её мы должны через <code>delete[]</code> &ndash; если будет использован просто <code>delete</code>, то поведение программы будет непредсказуемым.</p>
+<blockquote>
+<p>Кроме выделения памяти эти операторы ещё вызвают конструкторы объектов соответствующего типа &ndash; в следующей статье про это уже будет рассказано.</p>
+</blockquote>
+<h3 id="nullptr">nullptr</h3>
+<p>Из нового &ndash; помнишь <code>NULL</code>? Так вот, вместо него давай теперь использовать <code>nullptr</code>. Объясняю для чего:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#66d9ef">int</span> x <span style="color:#f92672">=</span> NULL;
+</span></span></code></pre></div><p>Такой код успешно скомпилируется. <code>NULL</code> это нулевой адрес <code>(void*)0</code>, который может быть неявно приведён в тип int: <code>(void*)0</code> -&gt; <code>0</code>.</p>
+<p><code>nullptr</code> лишён такого недостатка:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#66d9ef">int</span> x <span style="color:#f92672">=</span> <span style="color:#66d9ef">nullptr</span>;
+</span></span></code></pre></div><p>Такой код не скомпилируется, так как <code>nullptr</code> запрещает неявное приведение в любые типы, отличные от указалелей или bool.</p>
+<p>Возможность неявного приведения в тип bool нужна для использования в условиях:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#66d9ef">int</span> <span style="color:#f92672">*</span>x <span style="color:#f92672">=</span> <span style="color:#66d9ef">nullptr</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">if</span>(x)
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>	<span style="color:#75715e">// Выполнится только если x не равен nullptr
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>}
+</span></span></code></pre></div><div id="array"/>
+
+<h1 id="массивы">Массивы</h1>
+<p>Массивы в C и C++ работают одинаково:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#66d9ef">int</span> x[<span style="color:#ae81ff">10</span>];
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">10</span>; i<span style="color:#f92672">++</span>)
+</span></span><span style="display:flex;"><span>	std<span style="color:#f92672">::</span>cin <span style="color:#f92672">&gt;&gt;</span> x[i];
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> <span style="color:#f92672">*</span>y <span style="color:#f92672">=</span> malloc(<span style="color:#66d9ef">sizeof</span>(<span style="color:#66d9ef">int</span>) <span style="color:#f92672">*</span> <span style="color:#ae81ff">10</span>);
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">10</span>; i<span style="color:#f92672">++</span>)
+</span></span><span style="display:flex;"><span>	std<span style="color:#f92672">::</span>cin <span style="color:#f92672">&gt;&gt;</span> x[i];
+</span></span></code></pre></div><div id="string"/>
+
+<h1 id="строки">Строки</h1>
+<p>В C строки были представлены char массивами с нуль-терминатором <code>'\0'</code> в конце:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#66d9ef">char</span> str[<span style="color:#ae81ff">50</span>] <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Hello world!&#34;</span>;
+</span></span></code></pre></div><p>Для работы со строками использовались функции из <a href="https://www.cplusplus.com/reference/cstring/">библиотеки</a> <code>string.h</code>:</p>
+<ul>
+<li>strlen(char *str) &ndash; получить длину строки</li>
+<li>strcat(char *str1, char *str2) &ndash; конкатенация двух строк</li>
+<li>strtok(char *str, char *delimiter) &ndash; разделить строку</li>
+<li>strstr(char *str, char *str_to_find) &ndash; найти подстроку в строке</li>
+<li>strchr(char *str, char char_to_find) &ndash; найти символ в строке</li>
+</ul>
+<h3 id="stdstring">std::string</h3>
+<p>В C++ всё ещё можно работать со строками так же, но это не приветствуется. В C++ вся работа со строками происходит через класс <code>std::string</code> из библиотеки <code>string</code>:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span>std<span style="color:#f92672">::</span>string str <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;C++ style string.&#34;</span>;
+</span></span><span style="display:flex;"><span>str.length(); <span style="color:#75715e">// Длина строки
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span>std<span style="color:#f92672">::</span>string another_str <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Another string&#34;</span>;
+</span></span><span style="display:flex;"><span>std<span style="color:#f92672">::</span>string concatenated_str <span style="color:#f92672">=</span> str <span style="color:#f92672">+</span> another_str; <span style="color:#75715e">// Конкатенация строк
+</span></span></span></code></pre></div><p>Это просто пример использования &ndash; мы подробнее познакомимся с ними в дальнейшем.</p>
+<div id="function"/>
+
+<h1 id="функции">Функции</h1>
+<p>Функции в C и C++ работают одинаково:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;iostream&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">add</span>(<span style="color:#66d9ef">int</span> a, <span style="color:#66d9ef">int</span> b)
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">return</span> a <span style="color:#f92672">+</span> b;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>()
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">int</span> result <span style="color:#f92672">=</span> add(<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>);
+</span></span><span style="display:flex;"><span>	std<span style="color:#f92672">::</span>cout <span style="color:#f92672">&lt;&lt;</span> result <span style="color:#f92672">&lt;&lt;</span> std<span style="color:#f92672">::</span>endl; <span style="color:#75715e">// Выведет &#34;3&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>}
+</span></span></code></pre></div><h3 id="параметры-по-умолчанию">Параметры по умолчанию</h3>
+<p>Теперь для параметров функции можно указать значения по умолчанию, которые будут использованы, если ничего не было указано:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;iostream&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">add</span>(<span style="color:#66d9ef">int</span> a<span style="color:#f92672">=</span><span style="color:#ae81ff">2</span>, <span style="color:#66d9ef">int</span> b<span style="color:#f92672">=</span><span style="color:#ae81ff">2</span>)
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">return</span> a <span style="color:#f92672">+</span> b;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>()
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>	<span style="color:#75715e">// Тут можно обойтись и без временной переменной
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	<span style="color:#75715e">// a = 1, b = 1
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	std<span style="color:#f92672">::</span>cout <span style="color:#f92672">&lt;&lt;</span> add(<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>) <span style="color:#f92672">&lt;&lt;</span> std<span style="color:#f92672">::</span>endl; <span style="color:#75715e">// Выведет &#34;2&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	<span style="color:#75715e">// a = 0, b = 2 (по умолчанию)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	std<span style="color:#f92672">::</span>cout <span style="color:#f92672">&lt;&lt;</span> add(<span style="color:#ae81ff">0</span>) <span style="color:#f92672">&lt;&lt;</span> std<span style="color:#f92672">::</span>endl; <span style="color:#75715e">// Выведет &#34;2&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	<span style="color:#75715e">// a = 2 (по умолчанию), b = 2 (по умолчанию)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	std<span style="color:#f92672">::</span>cout <span style="color:#f92672">&lt;&lt;</span> add() <span style="color:#f92672">&lt;&lt;</span> std<span style="color:#f92672">::</span>endl; <span style="color:#75715e">// Выведет &#34;4&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>}
+</span></span></code></pre></div><p>Из-за того, что параметры передаются последовательно, нельзя первый параметр взять &ldquo;по умолчанию&rdquo;, а второй передать &ndash; придётся ручками указать первый:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span>add(, <span style="color:#ae81ff">1</span>); <span style="color:#75715e">// ОШИБКА
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>add(<span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">1</span>); <span style="color:#75715e">// ОК
+</span></span></span></code></pre></div><p>Ещё, не обязательно чтобы все параметры были по умолчанию &ndash; но при этом есть ограничение, что аргументы по умолчанию надо указывать начиная с последнего и далее, к началу:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">add</span>(<span style="color:#66d9ef">int</span> a <span style="color:#f92672">=</span> <span style="color:#ae81ff">2</span>, <span style="color:#66d9ef">int</span> b); <span style="color:#75715e">// ОШИБКА
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">add</span>(<span style="color:#66d9ef">int</span> a, <span style="color:#66d9ef">int</span> b <span style="color:#f92672">=</span> <span style="color:#ae81ff">2</span>); <span style="color:#75715e">// ОК
+</span></span></span></code></pre></div><h3 id="перегрузка-функций">Перегрузка функций</h3>
+<p>Перегрузка функций позволяет определить несколько функций с одинаковым названием, но различными аргументами:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;iostream&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">add</span>(<span style="color:#66d9ef">int</span> a, <span style="color:#66d9ef">int</span> b)
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">return</span> a <span style="color:#f92672">+</span> b;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">double</span> <span style="color:#a6e22e">add</span>(<span style="color:#66d9ef">double</span> a, <span style="color:#66d9ef">double</span> b)
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">return</span> a <span style="color:#f92672">+</span> b;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>()
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>	std<span style="color:#f92672">::</span>cout <span style="color:#f92672">&lt;&lt;</span> add(<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>) <span style="color:#f92672">&lt;&lt;</span> std<span style="color:#f92672">::</span>endl; <span style="color:#75715e">// Выведет &#34;3&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	std<span style="color:#f92672">::</span>cout <span style="color:#f92672">&lt;&lt;</span> add(<span style="color:#ae81ff">1.1</span>, <span style="color:#ae81ff">2.2</span>) <span style="color:#f92672">&lt;&lt;</span> std<span style="color:#f92672">::</span>endl; <span style="color:#75715e">// Выведет &#34;3.3&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>}
+</span></span></code></pre></div><p>Это работает так &ndash; компилятор, по типам указанных аргументов, старается подобрать самую подходящую функцию.</p>
+<p>В некоторых случаях он не может выбрать подходящий вариант:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span>add(<span style="color:#ae81ff">1.1</span>, <span style="color:#ae81ff">2</span>);
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// test.cpp: In function ‘int main()’:
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">// test.cpp:107:21: error: call of overloaded ‘add(int, double)’ is ambiguous
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">//   107 |     std::cout &lt;&lt; add(1.1, 2) &lt;&lt; std::endl;
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">//       |                  ~~~^~~~~~~~
+</span></span></span></code></pre></div><p>И ещё, перегружаемые функции должны различаться аргументами, а не возвращаемыми значениями:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">add</span>(<span style="color:#66d9ef">int</span> a, <span style="color:#66d9ef">int</span> b);
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">double</span> <span style="color:#a6e22e">add</span>(<span style="color:#66d9ef">double</span> a, <span style="color:#66d9ef">double</span> b);
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// test.cpp:100:5: error: ambiguating new declaration of ‘double add(int, int)’
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">//   100 | double add(int a, int b)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">//       |        ^~~
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">// test.cpp:96:8: note: old declaration ‘int add(int, int)’
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">//    96 | int add(int a, int b)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">//       |     ^~~
+</span></span></span></code></pre></div><h3 id="передача-по-ссылке">Передача по ссылке</h3>
+<p>Представь что в примере выше мы хотели бы изменять значение переменной <code>result</code> прямо внутри функции <code>add</code>. Для этого мы бы передавали переменную <code>result</code> через указатель:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;iostream&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">add</span>(<span style="color:#66d9ef">int</span> <span style="color:#f92672">*</span>result, <span style="color:#66d9ef">int</span> a, <span style="color:#66d9ef">int</span> b)
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>	<span style="color:#f92672">*</span>result <span style="color:#f92672">=</span> a <span style="color:#f92672">+</span> b;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>()
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">int</span> result;
+</span></span><span style="display:flex;"><span>	add(<span style="color:#f92672">&amp;</span>result, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>);
+</span></span><span style="display:flex;"><span>	std<span style="color:#f92672">::</span>cout <span style="color:#f92672">&lt;&lt;</span> result <span style="color:#f92672">&lt;&lt;</span> std<span style="color:#f92672">::</span>endl; <span style="color:#75715e">// Выведет &#34;3&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>}
+</span></span></code></pre></div><p>В C++ теперь мы можем не возиться с этими указателями, а передать переменную по ссылке (by reference):</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;iostream&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">add</span>(<span style="color:#66d9ef">int</span> <span style="color:#f92672">&amp;</span>result, <span style="color:#66d9ef">int</span> a, <span style="color:#66d9ef">int</span> b)
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>	result <span style="color:#f92672">=</span> a <span style="color:#f92672">+</span> b;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>()
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">int</span> result <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>	add(result, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>);
+</span></span><span style="display:flex;"><span>	std<span style="color:#f92672">::</span>cout <span style="color:#f92672">&lt;&lt;</span> result <span style="color:#f92672">&lt;&lt;</span> std<span style="color:#f92672">::</span>endl; <span style="color:#75715e">// Выведет &#34;3&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>}
+</span></span></code></pre></div><p>Чтобы передать переменную по ссылке, надо указать символ имперсанта <code>&amp;</code> при объявлении типа.</p>
+<div id="struct"/>
+
+<h1 id="структуры">Структуры</h1>
+<p>Структуры в C и C++ работают одинаково:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;iostream&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">struct</span> <span style="color:#a6e22e">MyStruct</span>
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">int</span> age;
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">char</span> name[<span style="color:#ae81ff">50</span>];
+</span></span><span style="display:flex;"><span>};
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>()
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>	MyStruct s;
+</span></span><span style="display:flex;"><span>	s.age <span style="color:#f92672">=</span> <span style="color:#ae81ff">21</span>;
+</span></span><span style="display:flex;"><span>	strcpy(s.name, <span style="color:#e6db74">&#34;John Snow&#34;</span>);
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>Единственное отличие в том, что теперь не надо писать <code>struct</code> перед названием структуры (вот так не надо <code>struct MyStruct s</code>).</p>
+<div id="file"/>
+
+<h1 id="файлы">Файлы</h1>
+<p>Файлы в C и C++ работают одинаково:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;cstdio&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>()
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">char</span> <span style="color:#f92672">*</span>text <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Some text to fill the file</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">And some more text&#34;</span>;
+</span></span><span style="display:flex;"><span>	FILE <span style="color:#f92672">*</span>f <span style="color:#f92672">=</span> fopen(<span style="color:#e6db74">&#34;some-file.txt&#34;</span>, <span style="color:#e6db74">&#34;w&#34;</span>);
+</span></span><span style="display:flex;"><span>	fprintf(f, <span style="color:#e6db74">&#34;%s&#34;</span>, text);
+</span></span><span style="display:flex;"><span>	fclose(f);
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h3 id="потоки-при-работе-с-файлами">Потоки при работе с файлами</h3>
+<p>Потоки в C++ можно использовать не только для вывода в консоль, но и для вывода в файл:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;fstream&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>()
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">char</span> <span style="color:#f92672">*</span>text <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Some text to fill the file</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">And some more text&#34;</span>;
+</span></span><span style="display:flex;"><span>	std<span style="color:#f92672">::</span>ifstream f(<span style="color:#e6db74">&#34;some-file.txt&#34;</span>);
+</span></span><span style="display:flex;"><span>	f <span style="color:#f92672">&lt;&lt;</span> text;
+</span></span><span style="display:flex;"><span>	f.close();
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>Так же можно считывать из файла (тут уже нужен <code>std::string</code>):</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;fstream&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>()
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>	std<span style="color:#f92672">::</span>string text;
+</span></span><span style="display:flex;"><span>	std<span style="color:#f92672">::</span>ifstream f(<span style="color:#e6db74">&#34;some-file.txt&#34;</span>);
+</span></span><span style="display:flex;"><span>	f <span style="color:#f92672">&gt;&gt;</span> text;
+</span></span><span style="display:flex;"><span>	f.close();
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>Согласись &ndash; стало удобнее :)</p>
+<h1 id="заключение">Заключение</h1>
+<p>Итого, мы вспомнили и узнали новое по этим темам:</p>
+<ul>
+<li><a href="#io">Ввод/вывод</a>
+<ul>
+<li>Потоки &ndash; <code>std::cout</code> для вывода, <code>std::cin</code> для ввода</li>
+<li>Пространства имён &ndash; <code>namespace</code> чтобы избегать пересечений названий</li>
+</ul>
+</li>
+<li><a href="#variable">Переменные и типы данных</a>
+<ul>
+<li>Новый тип <code>bool</code> &ndash; можно присваивать <code>true</code> и <code>false</code> вместо <code>1</code> и <code>0</code></li>
+<li>Ключевое слово <code>auto</code> &ndash; чтобы компилятор сам додумывал тип переменной</li>
+</ul>
+</li>
+<li><a href="#condition">Условия</a></li>
+<li><a href="#loop">Циклы</a></li>
+<li><a href="#pointer">Указатели</a>
+<ul>
+<li><code>new</code>, <code>new[]</code>, <code>delete</code>, <code>delete[]</code> &ndash; операторы, которые надо использовать при выделении памяти</li>
+<li><code>nullptr</code> &ndash; более безопасная замена <code>NULL</code></li>
+</ul>
+</li>
+<li><a href="#array">Массивы</a></li>
+<li><a href="#string">Строки</a>
+<ul>
+<li><code>std::string</code> &ndash; удобная замена &ldquo;сырым&rdquo; char массивам</li>
+</ul>
+</li>
+<li><a href="#function">Функции</a>
+<ul>
+<li>Параметры по умолчанию &ndash; для параметров функции можно указать значения по умолчанию</li>
+<li>Перегрузка функций &ndash; теперь можно делать функции с одним именем, но разными параметрами</li>
+<li>Передача по значению &ndash; можно не заморачиваться с передачей через указатель</li>
+</ul>
+</li>
+<li><a href="#struct">Структуры</a></li>
+<li><a href="#file">Файлы</a>
+<ul>
+<li><code>fstream</code> &ndash; удобная работа с файлом через потоки</li>
+</ul>
+</li>
+</ul>
+<p>В следующей статье начнём наступление на <a href="../classes">классы</a>.</p>
+
+    <hr>
+    <div align="center">
+        <a href="https://kee-reel.com/cpp/intro/#top">▲ В начало ▲</a>
+    </div>
+    
+        <hr>
+        <div style="display: flex; justify-content: space-between;">
+            
+                <div></div>
+            
+            
+                <a href="https://kee-reel.com/cpp/classes/">Классы ▶</a>
+            
+        </div>
+    
+
+			</section>
+		</div>
+	</div>
+
+    <footer>
+    <hr>
+    <div align="center">
+        Home server: Raspberry Pi 4<br>
+        Temperature: 36<br>
+Uptime: 1 week, 1 day, 23 hours, 20 minutes
+    </div>
+</footer>
+
+</body>
+</html>

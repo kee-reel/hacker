@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>C on IT простым языком</title>
+    <link>https://kee-reel.com/c/</link>
+    <description>Recent content in C on IT простым языком</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Mon, 13 Dec 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://kee-reel.com/c/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>C. Файлы</title>
+      <link>https://kee-reel.com/c/files/</link>
+      <pubDate>Mon, 13 Dec 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://kee-reel.com/c/files/</guid>
+      <description>Файл (file) &amp;ndash; это абстракция, поддерживаемая операционной системой, позволяющая работать с данными, записанными на внешних носителях (магнитная запись на жёстком диске, флеш память на SSD или флешке).
+Таким образом, работая с файлами, мы работаем с операционной системой, которая, в свою очередь, работает с драйверами физического устройства.
+Я очень упрощаю что там происходит &amp;ndash; если хочешь понять как это на самом деле устроено, можешь почитать Э. Танненбаум &amp;ldquo;Операционные системы&amp;rdquo;, глава &amp;ldquo;Файловые системы&amp;rdquo;.</description>
+    </item>
+    
+    <item>
+      <title>C. Функции</title>
+      <link>https://kee-reel.com/c/functions/</link>
+      <pubDate>Thu, 02 Dec 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://kee-reel.com/c/functions/</guid>
+      <description>Функция (function) &amp;ndash; это механизм, позволяющий вынести часть логики программы в отдельный блок, который можно многократно исполнять из разных мест прогаммы.
+Вот пример использования функции в программке, которая складывает, возводит в квадрат и выводит на экран целые числа:
+#include &amp;lt;stdio.h&amp;gt; int add(int a, int b) { int result = a + b; return result; } int square(int value) { int result = value * value; return result; } void show_result(int result) { printf(&amp;#34;Result: %d\n&amp;#34;, result); } int main() { int result = 0; result = add(2, 2); show_result(result); // Result: 4 result = square(4); show_result(result); // Result: 16 result = add(result, square(2)); show_result(result); // Result: 20 } Это называется определением функции (в следующем разделе разберём подробно):</description>
+    </item>
+    
+    <item>
+      <title>C. Массивы</title>
+      <link>https://kee-reel.com/c/arrays/</link>
+      <pubDate>Thu, 04 Nov 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://kee-reel.com/c/arrays/</guid>
+      <description>Массив (array) &amp;ndash; это непрерывная последовательность байт, хранящих множество значений определённого типа.
+Проще &amp;ndash; переменная хранит какое-то значение, а массив хранит множество переменных.
+В прошлой статье мы со всех сторон рассмотрели указатели &amp;ndash; тут то они нам и пригодятся!
+Массив объявляется так:
+int arr[3]; Здесь:
+int &amp;ndash; это тип значений, которые хранятся в массиве arr &amp;ndash; указатель на первый элемент массива [3] &amp;ndash; размер массива Прежде чем мы начнём заполнять значения, давай посмотрим как переменная и массив хранятся в памяти:</description>
+    </item>
+    
+    <item>
+      <title>C. Указатели</title>
+      <link>https://kee-reel.com/c/pointers/</link>
+      <pubDate>Tue, 19 Oct 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://kee-reel.com/c/pointers/</guid>
+      <description>Указатель (pointer) &amp;ndash; это переменная, в которой хранится адрес на какую-то ячейку памяти.
+Обычно, все боятся C и C++ из-за указателей &amp;ndash; они кажутся чем-то непонятным и очень приближённым к тому, как устроен компьютер.
+Однако, мне кажется, что даже такую сложную концепцию можно объяснить на аналогиях из реальной жизни, что значительно упростит понимание.
+Ищем клад Представь себе, что ты искатель клада &amp;ndash; без чего не обходится ни один поиск клада? Правильно, без карты!</description>
+    </item>
+    
+    <item>
+      <title>C. Циклы</title>
+      <link>https://kee-reel.com/c/loops/</link>
+      <pubDate>Thu, 30 Sep 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://kee-reel.com/c/loops/</guid>
+      <description>Цикл (loop) &amp;ndash; это механизм, позволяющий выполнить множество схожих действий.
+В языке си есть три вида циклов:
+for while do while Цикл for Вот пример определения цикла для решения задачи &amp;ldquo;выводим все чётные числа от 1 до n (не включительно)&amp;rdquo;:
+int n; scanf(&amp;#34;%d&amp;#34;, &amp;amp;n); for(int i = 1; i &amp;lt; n; i++) { if(i % 2 == 0) { printf(&amp;#34;%d\n&amp;#34;, i); } } Давай разберём из чего состоит цикл.
+Создание временной переменной int i = 1; Этот код выполняется перед стартом цикла &amp;ndash; обычно в нём создаётся временная переменная, которая будет использована внутри цикла.</description>
+    </item>
+    
+    <item>
+      <title>C. Условия</title>
+      <link>https://kee-reel.com/c/conditions/</link>
+      <pubDate>Thu, 16 Sep 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://kee-reel.com/c/conditions/</guid>
+      <description>Условие (condition) &amp;ndash; это механизм, позволяющий выполнить действие, только если выполняется определённое условие.
+Вот пример определения условия:
+int x; scanf(&amp;#34;%d&amp;#34;, &amp;amp;x); if(x &amp;gt; 100) { printf(&amp;#34;Число %d больше 100\n&amp;#34;, x); } else if(x == 100) { printf(&amp;#34;Число %d равно 100\n&amp;#34;, x); } else { printf(&amp;#34;Число %d меньше 100\n&amp;#34;, x); } Чтобы лучше понять что происходит, я нарисую блок-схему.
+Блок-схема &amp;ndash; это просто графическая схема, которая описывает какой-то алгоритм. С её помощью можно описать сам алгоритм, не заморачиваясь с написанием программы на каком-либо языке программирования.</description>
+    </item>
+    
+    <item>
+      <title>C. Операторы</title>
+      <link>https://kee-reel.com/c/operators/</link>
+      <pubDate>Sat, 11 Sep 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://kee-reel.com/c/operators/</guid>
+      <description>Оператор &amp;ndash; это штука, с помощью которой можно совершить операцию (сложение, вычитание и т.д.)
+Существует два вида операторов:
+Унарные &amp;ndash; для операций над одной переменной Бинарные &amp;ndash; для операций над двумя переменными Есть ещё тернарный (с тремя переменными), но про него мы вспомним, когда будем говорить про условия (if, else).
+Бинарные операторы Начнём с бинарных, потому что они роднее и понятнее:
+Сложение: + Вычитание: - Умножение: * Деление: / Остаток от деления: % Необходимо учитывать, что у операторов разные приоритеты применения &amp;ndash; например, классический пример:</description>
+    </item>
+    
+    <item>
+      <title>C. Переменные</title>
+      <link>https://kee-reel.com/c/variables/</link>
+      <pubDate>Fri, 10 Sep 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://kee-reel.com/c/variables/</guid>
+      <description>Одним из ключевых понятий в программировании является понятие переменная.
+Переменные хранят значения, используемые в программе.
+Типы переменных Переменные могут быть следующих типов:
+char &amp;ndash; целое число, которое занимает 1 байт int &amp;ndash; целое число, которое занимает 4 байта float &amp;ndash; вещественное число, которое занимает 4 байта double &amp;ndash; вещественное число, которое занимает 8 байт В зависимости от компилятора и разрядности системы (x64 или x86) размер типа int может занимать 2, 4 или 8 байт.</description>
+    </item>
+    
+    <item>
+      <title>C. Введение</title>
+      <link>https://kee-reel.com/c/intro/</link>
+      <pubDate>Tue, 07 Sep 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://kee-reel.com/c/intro/</guid>
+      <description>В этой статье я расскажу что такое языки программирования и в частности про C.
+Сразу скажу, я сторонник обучения сверху-вниз &amp;ndash; сначала объясняю глобально, а потом перехожу к частностям. Это помогает построить в голове карту предметной области, при помощи которой тебе будет проще в будущем систематизировать свои знания.
+Что такое язык программирования Язык программирования &amp;ndash; это язык на котором можно описать последовательность инструкций в том виде, в котором его сможет прочитать компьютер.</description>
+    </item>
+    
+  </channel>
+</rss>

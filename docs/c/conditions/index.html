@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="ru">
+	<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5">
+	<meta name="description" content="IT простым языком">
+	<meta name="generator" content="HUGO">
+
+	<meta name="theme-color" content="#ffffff">
+
+    
+    <link rel="stylesheet" href="/sass/main.min.cbb118baada4f59224c0b905e399ab74606214a662342969e49ad0b93bfe4876.css" integrity="sha256-y7EYuq2k9ZIkwLkF45mrdGBiFKZiNClp5JrQuTv&#43;SHY=">
+    <title> IT простым языком </title>
+</head>
+
+<body>
+	<div id="top"/>
+<header>
+    <div align="center">
+        +---------------------------+<br>
+        |.-------------------------.|<br>
+        ||&nbsp;<a href="/">kee_reel@blog</a>:~$ cd&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;||<br>
+        ||&nbsp;<a href="/c">c</a>&nbsp;&nbsp;<a href="/cpp">c++</a>&nbsp;&nbsp;<a href="/python">python</a>&nbsp;&nbsp;<a href="/linux">linux</a>&nbsp;&nbsp;&nbsp;||<br>
+        ||&nbsp;<a href="/opengl">opengl</a>&nbsp;&nbsp;<a href="/sql">sql</a>&nbsp;&nbsp;<a href="/network">networks</a>&nbsp;&nbsp;&nbsp;||<br>
+        ||&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;||<br>
+        ||&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/about">обо_мне</a>&nbsp;||<br>
+        |.-------------------------.|<br>
+        +-::---------------------::-+<br>
+        .---------------------------.<br>
+        &nbsp;//&nbsp;/o<a href="/links">o</a>oooooooooooooooooooo\\&nbsp;\\&nbsp;<br>
+        &nbsp;//&nbsp;/oooooooooooooooooooooooo\\&nbsp;\\&nbsp;<br>
+        //-------------------------------\\<br>
+        \\-------------------------------//<br>
+    </div>
+    <hr>
+</header>
+
+		
+	<div id="wrapper">
+		<div class="container">
+			<section id="main_content">
+    
+    
+        <div style="display: flex; justify-content: space-between;">
+            
+                <a href="https://kee-reel.com/c/operators/">◀ Операторы</a>
+            
+            
+                <a href="https://kee-reel.com/c/loops/">Циклы ▶</a>
+            
+        </div>
+        <hr>
+    
+    <h1>C. Условия</h1>
+    
+    
+        <h3>Время чтения: 9 мин</h3>
+    
+    <p>Условие (condition) &ndash; это механизм, позволяющий выполнить действие, только если выполняется определённое условие.</p>
+<p>Вот пример определения условия:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#66d9ef">int</span> x;
+</span></span><span style="display:flex;"><span>scanf(<span style="color:#e6db74">&#34;%d&#34;</span>, <span style="color:#f92672">&amp;</span>x);
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">if</span>(x <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">100</span>)
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    printf(<span style="color:#e6db74">&#34;Число %d больше 100</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, x);
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span>(x <span style="color:#f92672">==</span> <span style="color:#ae81ff">100</span>)
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    printf(<span style="color:#e6db74">&#34;Число %d равно 100</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, x);
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">else</span>
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    printf(<span style="color:#e6db74">&#34;Число %d меньше 100</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, x);
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>Чтобы лучше понять что происходит, я нарисую блок-схему.</p>
+<blockquote>
+<p>Блок-схема &ndash; это просто графическая схема, которая описывает какой-то алгоритм. С её помощью можно описать сам алгоритм, не заморачиваясь с написанием программы на каком-либо языке программирования.</p>
+</blockquote>
+<blockquote>
+<p>Алгоритм &ndash; это последовательность действий.</p>
+</blockquote>
+<p>Вот блок-схема для кода выше:</p>
+<p><img src="/assets/images/block-scheme.png" alt="Блок схема"></p>
+<blockquote>
+<p>Сделано с помощью <a href="https://github.com/jgraph/drawio-desktop/releases/">draw.io</a> онлайн редактора блок-схем</p>
+</blockquote>
+<p>В блок-схемах всё очень просто &ndash; нужно просто двигаться по стрелкам от &ldquo;начала&rdquo; к &ldquo;концу&rdquo; и отвечать на вопросы, если их задают. Вопросы в этих схемах и являются условиями, про которые я говорю.</p>
+<p>Надеюсь этим я объяснил смысл условий.</p>
+<p>Теперь я расскажу, почему на вопросы/условия можно отвечать только &ldquo;да&rdquo; или &ldquo;нет&rdquo;&hellip;</p>
+<h1 id="булевые-операции-и-операции-сравнения">Булевые операции и операции сравнения</h1>
+<p>В математике есть раздел, который называется &ldquo;булевая алгебра&rdquo;. Из неё в программирование пришли вот такие понятия:</p>
+<ul>
+<li>Значение <strong>истина</strong>, которое обозначается числом 1</li>
+<li>Значение <strong>ложь</strong>, которое обозначается числом 0</li>
+<li>Оператор <strong>НЕ</strong> (¬) &ndash; этот унарный оператор инвертирует значение</li>
+<li>Оператор <strong>ИЛИ</strong> (∨) &ndash; этот бинарный оператор возвращает <strong>истина</strong> если хоть один из операндов равен <strong>истина</strong></li>
+<li>Оператор <strong>И</strong> (∧) &ndash; этот бинарный оператор возвращает <strong>истина</strong> если все операнды равны <strong>истина</strong></li>
+</ul>
+<p>Для описания всевозможных результатов булевых операций используются таблицы истинности:</p>
+<p><img src="/assets/images/bool-operators.png" alt="Булевые операции"></p>
+<h3 id="булевые-операции">Булевые операции</h3>
+<p>В языке Си эти понятия обозначаются так:</p>
+<ul>
+<li><strong>истина</strong>: любое целое или вещественное значение не равное 0</li>
+<li><strong>ложь</strong>: целое или вещественное значение равное 0</li>
+<li><strong>НЕ</strong>: ! (символ восклицательного знака)</li>
+<li><strong>ИЛИ</strong>: || (два символа вертикальный слеш)</li>
+<li><strong>И</strong>: &amp;&amp; (два символа имперсант)</li>
+</ul>
+<p>Несмотря не то, что значение <strong>истина</strong> в Си можно обозначить как любое число не равное 0 &ndash; обычно программисты используют значение 1.</p>
+<p>Операции <strong>НЕ</strong>, <strong>ИЛИ</strong>, <strong>И</strong> всегда возвращают или 0 (<strong>ложь</strong>), или 1 (<strong>истина</strong>).</p>
+<p>Вот пример использования этих операций:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#75715e">// Использую тип char, чтобы не занимать лишнюю память -- ведь нужны только значения 0 и 1
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">char</span> thisIsTrue <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">char</span> thisIsFalse <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// Отрицание со значением истина
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">char</span> result <span style="color:#f92672">=</span> <span style="color:#f92672">!</span>thisIsTrue;
+</span></span><span style="display:flex;"><span>printf(<span style="color:#e6db74">&#34;!1 = %d</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, result); <span style="color:#75715e">// !1 = 0
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// Отрицание со значением ложь
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>result <span style="color:#f92672">=</span> <span style="color:#f92672">!</span>thisIsFalse;
+</span></span><span style="display:flex;"><span>printf(<span style="color:#e6db74">&#34;!0 = %d</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, result); <span style="color:#75715e">// !0 = 1
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// Операция ИЛИ
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>result <span style="color:#f92672">=</span> thisIsFalse <span style="color:#f92672">||</span> thisIsTrue;
+</span></span><span style="display:flex;"><span>printf(<span style="color:#e6db74">&#34;0 || 1 = %d</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, result); <span style="color:#75715e">// 0 || 1 = 1
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>result <span style="color:#f92672">=</span> thisIsFalse <span style="color:#f92672">||</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>printf(<span style="color:#e6db74">&#34;0 || 0 = %d</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, result); <span style="color:#75715e">// 0 || 0 = 0
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// Операция И
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>result <span style="color:#f92672">=</span> thisIsFalse <span style="color:#f92672">&amp;&amp;</span> thisIsTrue;
+</span></span><span style="display:flex;"><span>printf(<span style="color:#e6db74">&#34;0 &amp;&amp; 1 = %d</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, result); <span style="color:#75715e">// 0 &amp;&amp; 1 = 0
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>result <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">&amp;&amp;</span> thisIsTrue;
+</span></span><span style="display:flex;"><span>printf(<span style="color:#e6db74">&#34;1 &amp;&amp; 1 = %d</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, result); <span style="color:#75715e">// 1 &amp;&amp; 1 = 1
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// Не забываем что всё кроме 1 тоже считается истиной!
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>result <span style="color:#f92672">=</span> <span style="color:#f92672">!</span><span style="color:#ae81ff">51</span>;
+</span></span><span style="display:flex;"><span>printf(<span style="color:#e6db74">&#34;!51 = %d</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, result); <span style="color:#75715e">// !51 = 0
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>result <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">||</span> <span style="color:#ae81ff">522</span>;
+</span></span><span style="display:flex;"><span>printf(<span style="color:#e6db74">&#34;0 || 522 = %d</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, result); <span style="color:#75715e">// 0 || 552 = 1
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>result <span style="color:#f92672">=</span> <span style="color:#ae81ff">62.2</span> <span style="color:#f92672">&amp;&amp;</span> <span style="color:#ae81ff">23</span>;
+</span></span><span style="display:flex;"><span>printf(<span style="color:#e6db74">&#34;62.2 &amp;&amp; 23 = %d</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, result); <span style="color:#75715e">// 62.2 &amp;&amp; 23 = 1
+</span></span></span></code></pre></div><h4 id="хитрая-задача-на-собеседовании">Хитрая задача на собеседовании</h4>
+<p>В связи с тем, что булевые операции всегда возвращают или 1, или 0, программисты придумали хитрую задачку, которую любят задавать на собеседованиях.</p>
+<p>Сейчас я её покажу, объясню, и ты никогда на ней не провалишься :)</p>
+<p>На собеседовании тебе дают такой код:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#66d9ef">int</span> a <span style="color:#f92672">=</span> <span style="color:#ae81ff">42</span>;
+</span></span><span style="display:flex;"><span>a <span style="color:#f92672">=</span> <span style="color:#f92672">!!</span>a;
+</span></span><span style="display:flex;"><span>printf(<span style="color:#e6db74">&#34;%d&#34;</span>, a);
+</span></span></code></pre></div><p>И спрашивают &ndash; &ldquo;Что выведет программа?&rdquo;.</p>
+<p>Давай развернём операцию &ldquo;!!a&rdquo; на отдельные этапы выполнения:</p>
+<ul>
+<li>Сначала выполняем крайний правый &ldquo;!&rdquo;: !a -&gt; !42 -&gt; 0</li>
+<li>Затем выполняем оставшийся &ldquo;!&rdquo; на то, что получилось после предыдущего этапа: !0 -&gt; 1</li>
+</ul>
+<p>Ответ на собеседовании: выведется 1.</p>
+<h3 id="операции-сравнения">Операции сравнения</h3>
+<p>Ещё в языке Си есть операции сравнения, которые ничем не отличаются от аналогичных в математике:</p>
+<ul>
+<li>Равно: ==</li>
+<li>Не равно: !=</li>
+<li>Больше: &gt;</li>
+<li>Больше или равно: &gt;=</li>
+<li>Меньше: &lt;</li>
+<li>Меньше или равно: &lt;=</li>
+</ul>
+<p>Эти операции, так же как и булевые операции, возвращают <strong>булевое</strong> значение 0 (<strong>ложь</strong>) или 1 (<strong>истина</strong>).</p>
+<p>Вот пример использования этих операций:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#66d9ef">char</span> ten <span style="color:#f92672">=</span> <span style="color:#ae81ff">10</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">char</span> hundred <span style="color:#f92672">=</span> <span style="color:#ae81ff">100</span>;
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// Равно
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">char</span> result <span style="color:#f92672">=</span> ten <span style="color:#f92672">==</span> hundred;
+</span></span><span style="display:flex;"><span>printf(<span style="color:#e6db74">&#34;10 == 100 = %d</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, result); <span style="color:#75715e">// 10 == 100 = 0
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">// Не равно
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>result <span style="color:#f92672">=</span> ten <span style="color:#f92672">!=</span> hundred;
+</span></span><span style="display:flex;"><span>printf(<span style="color:#e6db74">&#34;10 != 100 = %d</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, result); <span style="color:#75715e">// 10 != 100 = 1
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">// Больше
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>result <span style="color:#f92672">=</span> ten <span style="color:#f92672">&gt;</span> hundred;
+</span></span><span style="display:flex;"><span>printf(<span style="color:#e6db74">&#34;10 &gt; 100 = %d</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, result); <span style="color:#75715e">// 10 &gt; 100 = 0
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">// Меньше или равно
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>result <span style="color:#f92672">=</span> ten <span style="color:#f92672">&lt;=</span> hundred;
+</span></span><span style="display:flex;"><span>printf(<span style="color:#e6db74">&#34;10 &lt;= 100 = %d</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, result); <span style="color:#75715e">// 10 &lt;= 100 = 1
+</span></span></span></code></pre></div><h3 id="комбинируем-булевые-операции-операции-сравнения-и-арифметические-операции">Комбинируем булевые операции, операции сравнения и арифметические операции</h3>
+<p>Зачастую тебе нужно будет комбинировать между собой несколько операторов, чтобы описать какую-то логику.</p>
+<p>Вот пример задания: &ldquo;Проверить что число чётное и меньше 100&rdquo;. Вот как бы я написал:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#66d9ef">int</span> x;
+</span></span><span style="display:flex;"><span>scanf(<span style="color:#e6db74">&#34;%d&#34;</span>, <span style="color:#f92672">&amp;</span>x);
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">char</span> isOk <span style="color:#f92672">=</span> <span style="color:#f92672">!</span>(x <span style="color:#f92672">%</span> <span style="color:#ae81ff">2</span>) <span style="color:#f92672">&amp;&amp;</span> x <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">100</span>;
+</span></span><span style="display:flex;"><span>printf(<span style="color:#e6db74">&#34;Число подходит (1 - да, 0 - нет): %d</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, isOk);
+</span></span></code></pre></div><p>Что такое &ldquo;!(x % 2) &amp;&amp; x &lt; 100&rdquo;? Это</p>
+<ul>
+<li>x % 2 &ndash; остаток от деления числа на 2: если число чётное, то остаток будет 0, а если нечётное, то 1</li>
+<li>!(x % 2) &ndash; булевая операция НЕ над результатом выражения (x % 2): если результат будет 0 (чётное), то результат будет 1</li>
+<li>x &lt; 100 &ndash; сравнение числа со 100: если число меньше, то результат будет 1, а если больше или равно, то 0</li>
+<li>!(x % 2) &amp;&amp; x &lt; 100 &ndash; булевая операция И над результатами левой и правой части: если число чётное И меньше 100, то вернётся 1</li>
+</ul>
+<p>Для ясности, подставлю конкретное число 42, и упрощу его вплоть до результата:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#f92672">!</span>(<span style="color:#ae81ff">42</span> <span style="color:#f92672">%</span> <span style="color:#ae81ff">2</span>) <span style="color:#f92672">&amp;&amp;</span> <span style="color:#ae81ff">42</span> <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">100</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">!</span>(<span style="color:#ae81ff">0</span>) <span style="color:#f92672">&amp;&amp;</span> <span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">1</span> <span style="color:#f92672">&amp;&amp;</span> <span style="color:#ae81ff">1</span>
+</span></span></code></pre></div><p>Можете тоже подставлять конкретные числа, чтобы проще было понять логику внутри сложных операций.</p>
+<h1 id="возвращаемся-к-тому-с-чего-начали">Возвращаемся к тому, с чего начали</h1>
+<p>&hellip;вот поэтому, ответом на условие может быть только ответ &ldquo;да&rdquo; или &ldquo;нет&rdquo; :)</p>
+<p>Ещё раз напишу код с условием из начала статьи:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#66d9ef">int</span> x;
+</span></span><span style="display:flex;"><span>scanf(<span style="color:#e6db74">&#34;%d&#34;</span>, <span style="color:#f92672">&amp;</span>x);
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">if</span>(x <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">100</span>)
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    printf(<span style="color:#e6db74">&#34;Число %d больше 100</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, x);
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span>(x <span style="color:#f92672">==</span> <span style="color:#ae81ff">100</span>)
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    printf(<span style="color:#e6db74">&#34;Число %d равно 100</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, x);
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">else</span>
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    printf(<span style="color:#e6db74">&#34;Число %d меньше 100</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, x);
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>В условии пишется выражение, которые возвращает значение 0 (<strong>ложь</strong>) или 1 (<strong>истина</strong>). Далее в фигурных скобках содержится блок кода, который выполнится если выражение будет истинным:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#75715e">// if(выражение)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">if</span>(x <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">100</span>)
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// Начало блока
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>{
+</span></span><span style="display:flex;"><span>    printf(<span style="color:#e6db74">&#34;Число %d больше 100</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, x);
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// Конец блока
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>}
+</span></span></code></pre></div><p>Если выражение внутри равно <strong>истина</strong> (не равно 0), то мы выполняем блок кода внутри этого условия, и заканчиваем.</p>
+<p>Если выражение внутри ложно то надо проверить, идёт ли после этого if конструкция else:</p>
+<ul>
+<li>Если else нет &ndash; мы закончили</li>
+<li>Если else есть &ndash; <strong>переходим к следующему условию</strong></li>
+</ul>
+<p>Предположим, что первое условие у нас не выполнилось &ndash; теперь мы перешли к следующему. Здесь такой же if, но с другим условием:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#66d9ef">else</span> <span style="color:#a6e22e">if</span>(x <span style="color:#f92672">==</span> <span style="color:#ae81ff">100</span>)
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    printf(<span style="color:#e6db74">&#34;Число %d равно 100</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, x);
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>Проверяем, есть ли после него else &ndash; ага, есть.</p>
+<p>Тут уже нет условия, поэтому мы просто выполняем блок кода внутри:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#66d9ef">else</span>
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    printf(<span style="color:#e6db74">&#34;Число %d меньше 100</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, x);
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>Конструкция else без условия:</p>
+<ul>
+<li>Не обязательна (можно оставить только if)</li>
+<li>Должна находиться после конструкции if</li>
+<li>После неё нельзя использовать другие конструкции if или else</li>
+</ul>
+<p>Получается такой вот круговорот if в природе:</p>
+<p><img src="/assets/images/condition-cycle.png" alt="Круговорот if"></p>
+<h1 id="вложенные-условия">Вложенные условия</h1>
+<p>Коротенько, но важно &ndash; <strong>внутри любого условия могут быть другие условия</strong>.</p>
+<p>Смотри:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#66d9ef">int</span> x;
+</span></span><span style="display:flex;"><span>scanf(<span style="color:#e6db74">&#34;%d&#34;</span>, <span style="color:#f92672">&amp;</span>x);
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">if</span>(x <span style="color:#f92672">!=</span> <span style="color:#ae81ff">100</span>)
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span>(x <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">100</span>)
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>        printf(<span style="color:#e6db74">&#34;Число %d больше 100</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, x);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">else</span>
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>        printf(<span style="color:#e6db74">&#34;Число %d меньше 100</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, x);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">else</span>
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    printf(<span style="color:#e6db74">&#34;Число %d равно 100</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, x);
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>Результат выполнения этого кода, идентичен результату выполнения кода из предыдущего раздела &ndash; просто тут я перенёс два условия под первое условие, чем изменил внутреннюю логику программы.</p>
+<p>В твоей практике периодически будут возникать ситуации, когда тебе будет сложно правильно составить конструкцию из условий &ndash; в этом случае нарисуй на бумаге блок-схему алгоритма, который хочешь написать.</p>
+<h1 id="тернарный-оператор">Тернарный оператор</h1>
+<p>Иногда, если уловие небольшое, его можно записать с помощью тернарного оператора &ldquo;?:&rdquo;.</p>
+<blockquote>
+<p>Тернарный он потому, что в нём 3 операнда: A ? B : C.
+Сложение, например, это бинарный оператор, там 2 операнда: A + B.</p>
+</blockquote>
+<p>Рассмотрю на примере такой задачи:</p>
+<ul>
+<li>Создаются две целочисленных переменных X и Y</li>
+<li>С клавиатуры вводится значение переменной X</li>
+<li>Если X больше 100, то Y = X * X</li>
+<li>Если X равен 100, то Y = X</li>
+<li>В остальных случаях (X меньше 100), то Y = X * 2</li>
+</ul>
+<p>Вот как я бы расписал это с помощью if:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#66d9ef">int</span> X, Y;
+</span></span><span style="display:flex;"><span>scanf(<span style="color:#e6db74">&#34;%d&#34;</span>, <span style="color:#f92672">&amp;</span>X);
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">if</span>(x <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">100</span>)
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    Y <span style="color:#f92672">=</span> X <span style="color:#f92672">*</span> X;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span>(x <span style="color:#f92672">==</span> <span style="color:#ae81ff">100</span>)
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    Y <span style="color:#f92672">=</span> X;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">else</span>
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    Y <span style="color:#f92672">=</span> X <span style="color:#f92672">*</span> <span style="color:#ae81ff">2</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>printf(<span style="color:#e6db74">&#34;Y = %d</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, Y);
+</span></span></code></pre></div><p>А вот как с помощью тернарного оператора &ldquo;?:&rdquo;</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#66d9ef">int</span> X, Y;
+</span></span><span style="display:flex;"><span>scanf(<span style="color:#e6db74">&#34;%d&#34;</span>, <span style="color:#f92672">&amp;</span>X);
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// Если x &gt; 100, то в Y вернётся X * X
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">// Иначе мы пойдём в это выражение ( x == 100 ? X : (X * 2) )
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">// В нём тот же смысл - если x == 100, то вернётся X
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">// Иначе вернётся X * 2
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>Y <span style="color:#f92672">=</span> x <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">100</span> <span style="color:#f92672">?</span> (X <span style="color:#f92672">*</span> X) <span style="color:#f92672">:</span> ( x <span style="color:#f92672">==</span> <span style="color:#ae81ff">100</span> <span style="color:#f92672">?</span> X : (X <span style="color:#f92672">*</span> <span style="color:#ae81ff">2</span>) );
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>printf(<span style="color:#e6db74">&#34;Y = %d</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, Y);
+</span></span></code></pre></div><p>С этим оператором читать становится сложнее, но запись короче. Используй его по необходимости.</p>
+<h1 id="условный-оператор-switch-case">Условный оператор switch case</h1>
+<p>В случаях, когда у тебя есть переменная, которая:</p>
+<ul>
+<li>Может принимать ограниченное множество значений</li>
+<li>Тебе надо для разных значений, сделать разные действия</li>
+</ul>
+<p>Используй switch case:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#66d9ef">int</span> day_of_week;
+</span></span><span style="display:flex;"><span>printf(<span style="color:#e6db74">&#34;Введите номер дня недели: &#34;</span>);
+</span></span><span style="display:flex;"><span>scanf(<span style="color:#e6db74">&#34;%d&#34;</span>, <span style="color:#f92672">&amp;</span>day_of_week);
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">switch</span>(day_of_week) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">case</span> <span style="color:#ae81ff">1</span><span style="color:#f92672">:</span>
+</span></span><span style="display:flex;"><span>        printf(<span style="color:#e6db74">&#34;Понедельник</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>);
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">break</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">case</span> <span style="color:#ae81ff">2</span><span style="color:#f92672">:</span>
+</span></span><span style="display:flex;"><span>        printf(<span style="color:#e6db74">&#34;Вторник</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>);
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">break</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">case</span> <span style="color:#ae81ff">3</span><span style="color:#f92672">:</span>
+</span></span><span style="display:flex;"><span>        printf(<span style="color:#e6db74">&#34;Среда</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>);
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">break</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">case</span> <span style="color:#ae81ff">4</span><span style="color:#f92672">:</span>
+</span></span><span style="display:flex;"><span>        printf(<span style="color:#e6db74">&#34;Четверг</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>);
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">break</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">case</span> <span style="color:#ae81ff">5</span><span style="color:#f92672">:</span>
+</span></span><span style="display:flex;"><span>        printf(<span style="color:#e6db74">&#34;Пятница</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>);
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">break</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">case</span> <span style="color:#ae81ff">6</span><span style="color:#f92672">:</span>
+</span></span><span style="display:flex;"><span>        printf(<span style="color:#e6db74">&#34;Суббота</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>);
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">break</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">case</span> <span style="color:#ae81ff">7</span><span style="color:#f92672">:</span>
+</span></span><span style="display:flex;"><span>        printf(<span style="color:#e6db74">&#34;Воскресенье</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>);
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">break</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">default</span><span style="color:#f92672">:</span>
+</span></span><span style="display:flex;"><span>        printf(<span style="color:#e6db74">&#34;Такого дня нет</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>);
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>Здесь в switch пишется выражение, которое будет сравниваться со значениями в описанных case.</p>
+<p>Если указанное выражение не подходит ни под какой case, то мы попадём в default. default является опциональным, и можно его не указывать.</p>
+<p>Код для каждого случая надо писать между &ldquo;case X:&rdquo; и &ldquo;break;&rdquo;.</p>
+<h1 id="задания-на-закрепление">Задания на закрепление</h1>
+<h4 id="простенькая-задачка-на-условия-и-выражения-внутри-них">Простенькая задачка на условия и выражения внутри них</h4>
+<p>С клавиатуры вводится целое число. В ответ программа выводит <strong>один</strong> из ответов:</p>
+<ul>
+<li>&ldquo;Чётное&rdquo; &ndash; если число чётное</li>
+<li>&ldquo;Нечётное&rdquo; &ndash; если число нечётное</li>
+<li>&ldquo;Ответ на главный вопрос жизни, вселенной и всего такого&rdquo; &ndash; если это число равно 42</li>
+</ul>
+<p>П</p>
+<h4 id="блок-схема">Блок-схема</h4>
+<p>Нарисуй на бумаге или в онлайн-редакторе блок схему для только что сделанной тобой задачи (можешь опираться на блок-схему в начале статьи).</p>
+<h1 id="заключение">Заключение</h1>
+<p>Итого, ты изучил:</p>
+<ul>
+<li>Блок-схемы</li>
+<li>Булевые значения и операторы</li>
+<li>Таблицы истинности</li>
+<li>Ответ на хитрую задачу на собеседовании</li>
+<li>Операторы сравнения</li>
+<li>Условия</li>
+<li>Вложенные условия</li>
+</ul>
+<p>Это очень важный этап развития тебя, как программиста. Условия используются везде, и если ты понял их сейчас, то ты сможешь в будущем легко перенести это знание на другие языки программирования.</p>
+<p>Если что &ndash; пиши, я помогу и постараюсь объяснить лучше.</p>
+<p>Дальше мы рассмотрим основную рабочую силу твоих программ &ndash; циклы.</p>
+
+    <hr>
+    <div align="center">
+        <a href="https://kee-reel.com/c/conditions/#top">▲ В начало ▲</a>
+    </div>
+    
+        <hr>
+        <div style="display: flex; justify-content: space-between;">
+            
+                <a href="https://kee-reel.com/c/operators/">◀ Операторы</a>
+            
+            
+                <a href="https://kee-reel.com/c/loops/">Циклы ▶</a>
+            
+        </div>
+    
+
+			</section>
+		</div>
+	</div>
+
+    <footer>
+    <hr>
+    <div align="center">
+        Home server: Raspberry Pi 4<br>
+        Temperature: 36<br>
+Uptime: 1 week, 1 day, 23 hours, 20 minutes
+    </div>
+</footer>
+
+</body>
+</html>

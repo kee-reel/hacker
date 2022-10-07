@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>C&#43;&#43; on IT простым языком</title>
+    <link>https://kee-reel.com/cpp/</link>
+    <description>Recent content in C&#43;&#43; on IT простым языком</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Thu, 05 May 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://kee-reel.com/cpp/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>C&#43;&#43;. Наследование классов</title>
+      <link>https://kee-reel.com/cpp/inheritance/</link>
+      <pubDate>Thu, 05 May 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://kee-reel.com/cpp/inheritance/</guid>
+      <description>Наследование &amp;ndash; позволяет связать разные классы в иерархию таким образом, что мы можем в классе наследнике переиспользовать поля и методы, объявленные в родительском классе.
+Давай сначала посмотрим на примере &amp;ndash; допустим, у меня есть класс Animal:
+class Animal { public: // Конструктор с параметрами Animal(int weight, int age, int max_age) : m_weight(weight), m_age(age), m_max_age(max_age) {} // Можем узнать старое ли это животное bool is_old() { return m_age &amp;gt; m_max_age * 0.</description>
+    </item>
+    
+    <item>
+      <title>C&#43;&#43;. Инкапсуляция</title>
+      <link>https://kee-reel.com/cpp/incapsulation/</link>
+      <pubDate>Sun, 03 Apr 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://kee-reel.com/cpp/incapsulation/</guid>
+      <description>Я буду основываться на коде, приведённом в основной статье про классы.
+Инкапсуляция &amp;ndash; позволяет скрыть детали реализации.
+Ты когда-нибудь пробовал разобрать свой телефон или ноутбук? Это очень сложный процесс, который как-будто специально сделан максимально трудоёмким для пользователя. Зачем это нужно его создателям?
+Если бы это было очень просто, то ты бы мог залезть &amp;ldquo;просто посмотреть&amp;rdquo; и случайно что-то сломать в этом сложном устройстве.
+Так вот на программирование это переносится идеально.</description>
+    </item>
+    
+    <item>
+      <title>C&#43;&#43;. Конструкторы, оператор присваивания и деструктор</title>
+      <link>https://kee-reel.com/cpp/constructors/</link>
+      <pubDate>Sun, 20 Mar 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://kee-reel.com/cpp/constructors/</guid>
+      <description>Я буду основываться на коде, приведённом в основной статье про классы.
+В основной статье я показал как создать класс и конструктор для него:
+class Coffee { public: Coffee(const char *type, int temperature, int volume) { m_temperature = temperature; m_volume = volume; // Выделяем память под строку m_type = (char*)malloc(strlen(type)); // Копируем type в m_type strcpy(m_type, type); } ... Разница между инициализацией и присваиванием Прежде чем мы пойдём дальше, я хочу показать один принципиальный момент.</description>
+    </item>
+    
+    <item>
+      <title>C&#43;&#43;. Переопределение операторов</title>
+      <link>https://kee-reel.com/cpp/operators/</link>
+      <pubDate>Sat, 19 Mar 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://kee-reel.com/cpp/operators/</guid>
+      <description>Прежде чем я расскажу про операторы в классах, давай я приведу пример, от которого будем отталкиваться.
+Я буду основываться на коде, приведённом в основной статье про классы.
+Например, я хочу добавить возможность переливать кофе из одной кружки в другую (ты очень любишь кофе, а твой друг не допил).
+Я мог бы добавить в класс Coffee новый метод pour (англ. &amp;ndash; налить):
+void pour(Coffee &amp;amp;other_cup) { // Сравниваем адреса объектов, чтобы понять что это разные объекты if(this == &amp;amp;other_cup) { std::cout &amp;lt;&amp;lt; &amp;#34;Can&amp;#39;t pour one cup into itself!</description>
+    </item>
+    
+    <item>
+      <title>C&#43;&#43;. Классы</title>
+      <link>https://kee-reel.com/cpp/classes/</link>
+      <pubDate>Tue, 15 Mar 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://kee-reel.com/cpp/classes/</guid>
+      <description>Основной особенностью C++ являются классы &amp;ndash; без них, C++ практичеси ничем бы не отличался от Си.
+Прежде чем мы перейдём к использованию классов, я расскажу откуда классы взялись &amp;ndash; про объектно-ориентированное программирование.
+Объектно-ориентированное программирование (ООП) &amp;ndash; подход к написанию программ при котором:
+Программа представляется в виде набора объектов и связей между ними Все объекты являются экземплярами классов Классы образуют иерархию наследования (про это в другой статье) Сейчас расскажу подробно что это всё значит.</description>
+    </item>
+    
+    <item>
+      <title>C&#43;&#43;. Различия между C и C&#43;&#43;</title>
+      <link>https://kee-reel.com/cpp/intro/</link>
+      <pubDate>Wed, 16 Feb 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://kee-reel.com/cpp/intro/</guid>
+      <description>Чтобы программировать на C++ необходимо сперва научиться программировать на C. Почему так?
+Это не новый язык, который придётся заново изучать &amp;ndash; C++ является расширением языка C, и всё, что ты изучил в курсе C, тебе пригодится и в C++. Однако, какие-то моменты там теперь можно писать иначе &amp;ndash; я покажу какие.
+Если ты не знаешь C, то ты не сможешь изучить C++. Начни с языка C.
+Вот основное, что изменилось в C++ относительно Си:</description>
+    </item>
+    
+  </channel>
+</rss>

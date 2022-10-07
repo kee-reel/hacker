@@ -1,11 +1,10 @@
 hugo
 mv generated ..
-git stash
 git checkout gh-pages
+rm -rf ./*
 rsync -vaz ../generated/* ./
 rm -rf ../generated
 git add .
-git commit --amend
-git push --force
+git commit -m 'Update content'
+git push
 git checkout master
-git stash pop

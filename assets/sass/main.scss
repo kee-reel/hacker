@@ -273,3 +273,16 @@ a:active, a:focus {
 #wrapper {
   min-height: calc(100vh - 100px);
 }
+
+
+.clicktogif img {display: block;}
+.clicktogif input[type=checkbox] {
+    position: absolute;
+    left: -100vw;
+}
+.clicktogif input[type=checkbox] + img {
+  filter: blur(0.5rem);
+}
+.clicktogif input[type=checkbox]:checked + img {
+  filter: blur(0);
+}

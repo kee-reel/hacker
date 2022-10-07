@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="ru">
+	<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5">
+	<meta name="description" content="IT простым языком">
+	<meta name="generator" content="HUGO">
+
+	<meta name="theme-color" content="#ffffff">
+
+    
+    <link rel="stylesheet" href="/sass/main.min.cbb118baada4f59224c0b905e399ab74606214a662342969e49ad0b93bfe4876.css" integrity="sha256-y7EYuq2k9ZIkwLkF45mrdGBiFKZiNClp5JrQuTv&#43;SHY=">
+    <title> IT простым языком </title>
+</head>
+
+<body>
+	<div id="top"/>
+<header>
+    <div align="center">
+        +---------------------------+<br>
+        |.-------------------------.|<br>
+        ||&nbsp;<a href="/">kee_reel@blog</a>:~$ cd&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;||<br>
+        ||&nbsp;<a href="/c">c</a>&nbsp;&nbsp;<a href="/cpp">c++</a>&nbsp;&nbsp;<a href="/python">python</a>&nbsp;&nbsp;<a href="/linux">linux</a>&nbsp;&nbsp;&nbsp;||<br>
+        ||&nbsp;<a href="/opengl">opengl</a>&nbsp;&nbsp;<a href="/sql">sql</a>&nbsp;&nbsp;<a href="/network">networks</a>&nbsp;&nbsp;&nbsp;||<br>
+        ||&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;||<br>
+        ||&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/about">обо_мне</a>&nbsp;||<br>
+        |.-------------------------.|<br>
+        +-::---------------------::-+<br>
+        .---------------------------.<br>
+        &nbsp;//&nbsp;/o<a href="/links">o</a>oooooooooooooooooooo\\&nbsp;\\&nbsp;<br>
+        &nbsp;//&nbsp;/oooooooooooooooooooooooo\\&nbsp;\\&nbsp;<br>
+        //-------------------------------\\<br>
+        \\-------------------------------//<br>
+    </div>
+    <hr>
+</header>
+
+		
+	<div id="wrapper">
+		<div class="container">
+			<section id="main_content">
+    
+    
+        <div style="display: flex; justify-content: space-between;">
+            
+                <a href="https://kee-reel.com/python/containers/">◀ Контейнеры</a>
+            
+            
+                <a href="https://kee-reel.com/python/loops/">Циклы ▶</a>
+            
+        </div>
+        <hr>
+    
+    <h1>Python. Условия</h1>
+    
+    
+        <h3>Время чтения: 5 мин</h3>
+    
+    <p>Условие (condition) &ndash; это механизм, позволяющий выполнить действие, только если выполняется определённое условие.</p>
+<p>Вот пример определения условия:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>this_is_true <span style="color:#f92672">=</span> <span style="color:#66d9ef">True</span>
+</span></span><span style="display:flex;"><span>this_is_false <span style="color:#f92672">=</span> <span style="color:#66d9ef">False</span>
+</span></span><span style="display:flex;"><span>condition_message <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;Condition: &#39;</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">if</span> this_is_false:
+</span></span><span style="display:flex;"><span>	condition_message <span style="color:#f92672">+=</span> <span style="color:#e6db74">&#39;one&#39;</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">elif</span> this_is_true <span style="color:#f92672">or</span> this_is_false:
+</span></span><span style="display:flex;"><span>	condition_message <span style="color:#f92672">+=</span> <span style="color:#e6db74">&#39;two&#39;</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">elif</span> this_is_true:
+</span></span><span style="display:flex;"><span>	condition_message <span style="color:#f92672">+=</span> <span style="color:#e6db74">&#39;three&#39;</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">else</span>:
+</span></span><span style="display:flex;"><span>	condition_message <span style="color:#f92672">+=</span> <span style="color:#e6db74">&#39;four&#39;</span>
+</span></span><span style="display:flex;"><span>print(condition_message)
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Вывод:</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Condition: two</span>
+</span></span></code></pre></div><p>Давай разберём:</p>
+<ul>
+<li><strong>Секция</strong> под <strong>if</strong> (если) исполнится если указанное условие истинно.</li>
+</ul>
+<h3 id="все-секции-в-python-отделяются-отступом-табуляцией-tab-или-равным-количеством-пробелов">Все <strong>секции</strong> в Python отделяются отступом: табуляцией &ldquo;Tab&rdquo; или равным количеством пробелов.</h3>
+<h3 id="это-очень-важно-не-смешивай-пробелы-и-табуляцию-а-если-используешь-пробелы-то-ставь-везде-одинаковое-количество-пробелов-для-отступа-если-что-то-напутаешь-то-программа-просто-не-запустится">Это очень важно! Не смешивай пробелы и табуляцию, а если используешь пробелы, то ставь везде одинаковое количество пробелов для отступа. Если что-то напутаешь, то программа просто не запустится.</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#66d9ef">if</span> this_is_false:
+</span></span><span style="display:flex;"><span>	condition_message <span style="color:#f92672">+=</span> <span style="color:#e6db74">&#39;one&#39;</span>
+</span></span></code></pre></div><ul>
+<li>Секция под <strong>elif</strong> (сокращённо от &ldquo;else if&rdquo;) исполнится если предыдущее условие ложно, а указанное условие истинно. elif это опциональное условие, и ты можешь его не указывать, и оставить только if. elif может использоваться после if неоднократно &ndash; то есть ты можешь написать if, потом elif, а потом ещё сколько хочешь elif.</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#66d9ef">elif</span> this_is_true <span style="color:#f92672">or</span> this_is_false:
+</span></span><span style="display:flex;"><span>	condition_message <span style="color:#f92672">+=</span> <span style="color:#e6db74">&#39;two&#39;</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">elif</span> this_is_true:
+</span></span><span style="display:flex;"><span>	condition_message <span style="color:#f92672">+=</span> <span style="color:#e6db74">&#39;three&#39;</span>
+</span></span></code></pre></div><ul>
+<li>Секция под <strong>else</strong> (иначе) исполнится если все предыдущие условия ложны (относится к if и elseif). else это опциональное условие, и ты можешь его не указывать, и оставить только if или if+elif.</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#66d9ef">else</span>:
+</span></span><span style="display:flex;"><span>	condition_message <span style="color:#f92672">+=</span> <span style="color:#e6db74">&#39;four&#39;</span>
+</span></span></code></pre></div><ul>
+<li>
+<p>Если хоть одно из условий выполняется (if, elif или else), то все другие условия не проходят проверку, и просто пропускаются. В примере выше, после того как выполнилось условие для <code>elif this_is_true or this_is_false</code>, программа не пошла проверять <code>elif this_is_true</code>, и просто вышла из всей этой цепочки условий.</p>
+</li>
+<li>
+<p>Помнишь мы в статье <a href="../variables-and-operations">&ldquo;переменные и операции с ними&rdquo;</a> мы рассматривали операции с булевыми переменными? Так вот &ndash; в условиях они очень часто используются. В примере выше, <code>this_is_true or this_is_false</code> это булевое <strong>выражение</strong>. <strong>Выражение</strong> это набор операций над какими-то значениями, которые порождают результат (&ldquo;a = 2 + 2&rdquo; &ndash; тут &ldquo;2 + 2&rdquo; это выражение).</p>
+</li>
+</ul>
+<h3 id="вложенные-условия">Вложенные условия</h3>
+<p>Внутри секции условия может содержаться другое условие:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>this_is_true <span style="color:#f92672">=</span> <span style="color:#66d9ef">True</span>
+</span></span><span style="display:flex;"><span>this_is_false <span style="color:#f92672">=</span> <span style="color:#66d9ef">False</span>
+</span></span><span style="display:flex;"><span>condition_message <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;Condition: &#39;</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">if</span> this_is_true:
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">if</span> this_is_false:
+</span></span><span style="display:flex;"><span>		condition_message <span style="color:#f92672">+=</span> <span style="color:#e6db74">&#39;one&#39;</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">else</span>:
+</span></span><span style="display:flex;"><span>		condition_message <span style="color:#f92672">+=</span> <span style="color:#e6db74">&#39;two&#39;</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">else</span>:
+</span></span><span style="display:flex;"><span>	condition_message <span style="color:#f92672">+=</span> <span style="color:#e6db74">&#39;three&#39;</span>
+</span></span><span style="display:flex;"><span>print(condition_message)
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Вывод:</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Condition: two</span>
+</span></span></code></pre></div><p>Главное не забывай отделять каждую секцию новым уровнем отступов.</p>
+<blockquote>
+<p>Чем больше вложенность условия &ndash; тем сложнее его читать. Представь, что у тебя есть 5 уровней вложенности условий (я такое видел) &ndash; в таком коде очень просто запутаться и его очень сложно читать!
+Старайся упрощать условия, чтобы они проще читались.</p>
+</blockquote>
+<h3 id="операции-сравнения">Операции сравнения</h3>
+<p>В условиях очень часто операции сравнения применяются к числам и строкам:</p>
+<ul>
+<li>равенство: ==</li>
+<li>неравенство: !=</li>
+<li>больше: &gt;</li>
+<li>больше или равно: &gt;=</li>
+<li>меньше: &lt;</li>
+<li>меньше или равно: &lt;=</li>
+</ul>
+<p>Вот примеры использования сравнений:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>value_1 <span style="color:#f92672">=</span> <span style="color:#ae81ff">5</span>
+</span></span><span style="display:flex;"><span>value_2 <span style="color:#f92672">=</span> <span style="color:#ae81ff">8</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">if</span> value_1 <span style="color:#f92672">&gt;</span> value_2:
+</span></span><span style="display:flex;"><span>	print(<span style="color:#e6db74">&#39;Value 1 is more than value 2&#39;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">elif</span> value_1 <span style="color:#f92672">&lt;</span> value_2:
+</span></span><span style="display:flex;"><span>	print(<span style="color:#e6db74">&#39;Value 1 is less than value 2&#39;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">else</span>:
+</span></span><span style="display:flex;"><span>	print(<span style="color:#e6db74">&#39;Value 1 is equal to value 2&#39;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">if</span> value_2 <span style="color:#f92672">&gt;=</span> <span style="color:#ae81ff">8</span>:
+</span></span><span style="display:flex;"><span>	print(<span style="color:#e6db74">&#39;Value 1 is equal to or more than 8&#39;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>some_list <span style="color:#f92672">=</span> [<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">5</span>]
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">if</span> len(some_list) <span style="color:#f92672">==</span> <span style="color:#ae81ff">5</span>:
+</span></span><span style="display:flex;"><span>	print(<span style="color:#e6db74">&#39;some_list items count is equal to 5&#39;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">else</span>:
+</span></span><span style="display:flex;"><span>	print(<span style="color:#e6db74">&#39;some_list items count is not equal to 5&#39;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>some_string <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;Some string&#39;</span>
+</span></span><span style="display:flex;"><span>another_string <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;Another string&#39;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">if</span> some_string <span style="color:#f92672">==</span> another_string:
+</span></span><span style="display:flex;"><span>	print(<span style="color:#e6db74">&#39;Strings are equal&#39;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">else</span>:
+</span></span><span style="display:flex;"><span>	print(<span style="color:#e6db74">&#39;Strings are not equal&#39;</span>)
+</span></span><span style="display:flex;"><span>	
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">if</span> another_string <span style="color:#f92672">==</span> <span style="color:#e6db74">&#39;Another string&#39;</span>:
+</span></span><span style="display:flex;"><span>	print(<span style="color:#e6db74">&#39;another_string contains value &#34;Another string&#34;&#39;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Вывод:</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Value 1 is or less than value 2</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Value 1 is equal to or more than 8</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># some_list items count is equal to 5</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Strings are not equal</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># another_string contains value &#34;Another string&#34;</span>
+</span></span></code></pre></div><p>Это просто набор искусственных примеров, чтобы ты освоился с правильным синтаксисом &ndash; на реальных примерах будет легче восприниматься.</p>
+<h3 id="операция-проверки-наличия-значения-в-контейнере">Операция проверки наличия значения в контейнере</h3>
+<p>Ещё часто используется операция проверки на наличие значения в контейнере.</p>
+<p>Контейнером, как мы узнали из <a href="../containers">статьи про контейнеры</a>, может быть список, кортеж или словарь. В случае списка и кортежа мы проверяем что это значение содержится в нём, а в случае словаря мы проверяем что это значение есть в списке существующих ключей словаря.</p>
+<p>Также, к этой операции можно применить булевую операцию <strong>not</strong>, чтобы проверить что такого значения в списке нет.</p>
+<p>Вот примеры использования операции:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>some_list <span style="color:#f92672">=</span> [<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span>]
+</span></span><span style="display:flex;"><span>some_dict <span style="color:#f92672">=</span> {
+</span></span><span style="display:flex;"><span>	<span style="color:#ae81ff">1</span>: <span style="color:#ae81ff">2</span>,
+</span></span><span style="display:flex;"><span>	<span style="color:#ae81ff">3</span>: <span style="color:#ae81ff">4</span>,
+</span></span><span style="display:flex;"><span>	<span style="color:#ae81ff">5</span>: <span style="color:#ae81ff">6</span>
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>value <span style="color:#f92672">=</span> <span style="color:#ae81ff">5</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">if</span> value <span style="color:#f92672">in</span> some_list:
+</span></span><span style="display:flex;"><span>	print(<span style="color:#e6db74">&#39;value is in some_list&#39;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">else</span>:
+</span></span><span style="display:flex;"><span>	print(<span style="color:#e6db74">&#39;value is not in some_list&#39;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">if</span> value <span style="color:#f92672">in</span> some_dict:
+</span></span><span style="display:flex;"><span>	print(<span style="color:#e6db74">&#39;value is in some_dict&#39;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">else</span>:
+</span></span><span style="display:flex;"><span>	print(<span style="color:#e6db74">&#39;value is in not some_dict&#39;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Вывод:</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># value is not in some_list</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># value is in some_dict</span>
+</span></span></code></pre></div><h3 id="задание-на-закрепление">Задание на закрепление</h3>
+<p>Для этого задания мы изучим ещё одну функцию &ndash; <strong>randint()</strong>. Эта функция используется для генерации случайного числа. Вот так выглядит пример её использования:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># Для её использования необходимо импортировать библиотеку random (мы поговорим про библиотеки потом)</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> random
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># randint принимает в параметры левую и правую границу возможных чисел</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># В данном случае будет сгенерировано случайное целое число от 1 до 6</span>
+</span></span><span style="display:flex;"><span>value <span style="color:#f92672">=</span> random<span style="color:#f92672">.</span>randint(<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">6</span>)
+</span></span></code></pre></div><p>Задание &ldquo;симулятор N-гранного кубика&rdquo;:</p>
+<ul>
+<li>Создай переменную, и присвой ей любое значение больше 1 &ndash; это будет количество граней твоего кубика</li>
+<li>Создай переменную, и присвой ей любое значение, которое может выпасть на твоём кубике &ndash; это будет твоё предсказание результата</li>
+<li>Используя функцию randint() сгенерируй значение на кубике</li>
+<li>Выведи выпавший результат, и предсказанное значение</li>
+<li>Выведи &ldquo;Больше на &quot; + str(выражение-расчёта-разницы), если твоё предсказанное значение получилось больше выпавшего результата</li>
+<li>Выведи &ldquo;Предсказание верно&rdquo;, если твоё предсказанное значение получилось равным выпавшему результату</li>
+<li>Выведи &ldquo;Меньше на &quot; + str(выражение-расчёта-разницы), если твоё предсказанное значение получилось меньше выпавшего результата</li>
+</ul>
+<h1 id="заключение">Заключение</h1>
+<p>Итого, мы изучили:</p>
+<ul>
+<li>Условия</li>
+<li>Секции (отделяй или табуляцией (Tab), или пробелами)</li>
+<li>Вложенные условия</li>
+<li>Операции сравнения</li>
+<li>Операция проверки наличия значения в контейнере</li>
+<li>Функция randint()</li>
+</ul>
+<p>Это очень важный этап развития тебя, как программиста. Условия используются везде, и если ты понял их сейчас, то ты сможешь в будущем легко перенести это знание на другие языки программирования.</p>
+<p>Если что &ndash; пиши, я помогу и постараюсь объяснить лучше.</p>
+<p>Дальше мы рассмотрим основную рабочую силу твоих программ &ndash; циклы.</p>
+
+    <hr>
+    <div align="center">
+        <a href="https://kee-reel.com/python/conditions/#top">▲ В начало ▲</a>
+    </div>
+    
+        <hr>
+        <div style="display: flex; justify-content: space-between;">
+            
+                <a href="https://kee-reel.com/python/containers/">◀ Контейнеры</a>
+            
+            
+                <a href="https://kee-reel.com/python/loops/">Циклы ▶</a>
+            
+        </div>
+    
+
+			</section>
+		</div>
+	</div>
+
+    <footer>
+    <hr>
+    <div align="center">
+        Home server: Raspberry Pi 4<br>
+        Temperature: 36<br>
+Uptime: 1 week, 1 day, 23 hours, 20 minutes
+    </div>
+</footer>
+
+</body>
+</html>

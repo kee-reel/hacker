@@ -4,6 +4,6 @@
     "params": {
         "author": "kee-reel"
     },
-    "publishdir": "./generated",
+    "publishdir": "./docs",
     "paginate": 10
 }

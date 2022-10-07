@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="ru">
+	<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5">
+	<meta name="description" content="IT простым языком">
+	<meta name="generator" content="HUGO">
+
+	<meta name="theme-color" content="#ffffff">
+
+    
+    <link rel="stylesheet" href="/sass/main.min.cbb118baada4f59224c0b905e399ab74606214a662342969e49ad0b93bfe4876.css" integrity="sha256-y7EYuq2k9ZIkwLkF45mrdGBiFKZiNClp5JrQuTv&#43;SHY=">
+    <title> IT простым языком </title>
+</head>
+
+<body>
+	<div id="top"/>
+<header>
+    <div align="center">
+        +---------------------------+<br>
+        |.-------------------------.|<br>
+        ||&nbsp;<a href="/">kee_reel@blog</a>:~$ cd&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;||<br>
+        ||&nbsp;<a href="/c">c</a>&nbsp;&nbsp;<a href="/cpp">c++</a>&nbsp;&nbsp;<a href="/python">python</a>&nbsp;&nbsp;<a href="/linux">linux</a>&nbsp;&nbsp;&nbsp;||<br>
+        ||&nbsp;<a href="/opengl">opengl</a>&nbsp;&nbsp;<a href="/sql">sql</a>&nbsp;&nbsp;<a href="/network">networks</a>&nbsp;&nbsp;&nbsp;||<br>
+        ||&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;||<br>
+        ||&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/about">обо_мне</a>&nbsp;||<br>
+        |.-------------------------.|<br>
+        +-::---------------------::-+<br>
+        .---------------------------.<br>
+        &nbsp;//&nbsp;/o<a href="/links">o</a>oooooooooooooooooooo\\&nbsp;\\&nbsp;<br>
+        &nbsp;//&nbsp;/oooooooooooooooooooooooo\\&nbsp;\\&nbsp;<br>
+        //-------------------------------\\<br>
+        \\-------------------------------//<br>
+    </div>
+    <hr>
+</header>
+
+		
+	<div id="wrapper">
+		<div class="container">
+			<section id="main_content">
+    
+    
+        <div style="display: flex; justify-content: space-between;">
+            
+                <a href="https://kee-reel.com/python/loops/">◀ Циклы</a>
+            
+            
+                <a href="https://kee-reel.com/python/classes/">Классы ▶</a>
+            
+        </div>
+        <hr>
+    
+    <h1>Python. Функции</h1>
+    
+    
+        <h3>Время чтения: 7 мин</h3>
+    
+    <p>Функция (function) &ndash; это механизм, позволяющий вынести часть логики программы в отдельный блок, который можно многократно исполнять из разных мест прогаммы.</p>
+<p>Вот пример определения функции:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># def -- сокращённо от слова define (определить)</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># У функции может не быть параметров:</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">someFunctionName</span>():
+</span></span><span style="display:flex;"><span>    value <span style="color:#f92672">=</span> <span style="color:#ae81ff">5</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># return (вернуть) - оператор, который возвращает переданное значение в место вызова функции</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> value <span style="color:#f92672">+</span> <span style="color:#ae81ff">2</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># Всё, что находится после return не будет исполнено, так как после return программа выйдет</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># из функции, и продолжит исполнение в месте вызова функции</span>
+</span></span><span style="display:flex;"><span>    print(<span style="color:#e6db74">&#39;This will never be printed&#39;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># У функции может быть несколько параметров</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">anotherFunctionName</span>(functionParameter1, functionParameter2):
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># Внутри функций можно вызывать другие функции</span>
+</span></span><span style="display:flex;"><span>    value <span style="color:#f92672">=</span> someFunctionName() <span style="color:#75715e"># Вернёт 7</span>
+</span></span><span style="display:flex;"><span>    result <span style="color:#f92672">=</span> (functionParameter1 <span style="color:#f92672">+</span> functionParameter2) <span style="color:#f92672">*</span> <span style="color:#ae81ff">10</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> result
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>a <span style="color:#f92672">=</span> <span style="color:#ae81ff">3</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Чтобы вызвать функцию необходимо написать её имя, а затем в круглых скобках указать её параметры</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Количество и позиции параметров должны быть такими же, как в определении функции</span>
+</span></span><span style="display:flex;"><span>b <span style="color:#f92672">=</span> someFunctionName() <span style="color:#75715e"># Вернёт 7</span>
+</span></span><span style="display:flex;"><span>c <span style="color:#f92672">=</span> anotherFunctionName(a, b) <span style="color:#75715e"># Вернёт 180</span>
+</span></span><span style="display:flex;"><span>print(c)
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Вывод:</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 100</span>
+</span></span></code></pre></div><p>Это называется <strong>определением</strong> функции:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">anotherFunctionName</span>(functionParameter1, functionParameter2):
+</span></span><span style="display:flex;"><span>    value <span style="color:#f92672">=</span> someFunctionName()
+</span></span><span style="display:flex;"><span>    result <span style="color:#f92672">=</span> (functionParameter1 <span style="color:#f92672">+</span> functionParameter2) <span style="color:#f92672">*</span> <span style="color:#ae81ff">10</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> result
+</span></span></code></pre></div><p>Это называется <strong>вызовом</strong> функции:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>c <span style="color:#f92672">=</span> anotherFunctionName(a, b)
+</span></span></code></pre></div><h3 id="задание-на-закрепление">Задание на закрепление</h3>
+<p>Скопируй этот код:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>result <span style="color:#f92672">=</span> myFirstFunction(<span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">2</span>)
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">if</span> result <span style="color:#f92672">==</span> <span style="color:#ae81ff">4</span>:
+</span></span><span style="display:flex;"><span>    print(<span style="color:#e6db74">&#39;Правильно :)&#39;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">else</span>:
+</span></span><span style="display:flex;"><span>    print(<span style="color:#e6db74">&#39;Неправильно :(&#39;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>result <span style="color:#f92672">=</span> mySecondFunction(<span style="color:#ae81ff">10</span>)
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">if</span> result <span style="color:#f92672">==</span> <span style="color:#ae81ff">100</span>:
+</span></span><span style="display:flex;"><span>    print(<span style="color:#e6db74">&#39;Правильно :)&#39;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">else</span>:
+</span></span><span style="display:flex;"><span>    print(<span style="color:#e6db74">&#39;Неправильно :(&#39;</span>)
+</span></span></code></pre></div><p>Определи функции myFirstFunction и mySecondFunction, чтобы мой код правильно выполнился.</p>
+<blockquote>
+<p>Функции необходимо определять <strong>до того</strong>, как ты их вызовешь (выше по тексту программы).</p>
+</blockquote>
+<h1 id="параметры-по-умолчанию">Параметры по умолчанию</h1>
+<p>Иногда, тебе не нужно передавать каждый раз одни и те же параметры &ndash; для этого ты можешь использовать параметры по умолчанию. Пример:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">someFunction</span>(a, b<span style="color:#f92672">=</span><span style="color:#ae81ff">2</span>, c<span style="color:#f92672">=</span><span style="color:#ae81ff">4</span>):
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> a <span style="color:#f92672">+</span> b <span style="color:#f92672">+</span> c
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Если не передавать параметры, то будут использованы значени по умолчанию:</span>
+</span></span><span style="display:flex;"><span>result <span style="color:#f92672">=</span> someFunction(<span style="color:#ae81ff">1</span>) <span style="color:#75715e"># Вернёт 7</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Если передать параметры (почти все или все), то будут использованы переданные значения:</span>
+</span></span><span style="display:flex;"><span>result <span style="color:#f92672">=</span> someFunction(<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">16</span>) <span style="color:#75715e"># Вернёт 21</span>
+</span></span><span style="display:flex;"><span>result <span style="color:#f92672">=</span> someFunction(<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">16</span>, <span style="color:#ae81ff">32</span>) <span style="color:#75715e"># Вернёт 49</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Но нельзя не указывать параметр &#34;a&#34;, так как для него нет значения по умолчанию</span>
+</span></span><span style="display:flex;"><span>result <span style="color:#f92672">=</span> someFunction() <span style="color:#75715e"># ОШИБКА</span>
+</span></span></code></pre></div><p>Также, есть способ передачи параметров, когда указывается имя параметра функции. Он используется реже, но тоже полезен, если у вас в функции много параметров по умолчанию. Пример:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># Можно указать первые два:</span>
+</span></span><span style="display:flex;"><span>result <span style="color:#f92672">=</span> someFunction(a<span style="color:#f92672">=</span><span style="color:#ae81ff">8</span>, b<span style="color:#f92672">=</span><span style="color:#ae81ff">16</span>)
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Можно указать первый и последний:</span>
+</span></span><span style="display:flex;"><span>result <span style="color:#f92672">=</span> someFunction(a<span style="color:#f92672">=</span><span style="color:#ae81ff">8</span>, c<span style="color:#f92672">=</span><span style="color:#ae81ff">32</span>)
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Или все сразу</span>
+</span></span><span style="display:flex;"><span>result <span style="color:#f92672">=</span> someFunction(a<span style="color:#f92672">=</span><span style="color:#ae81ff">8</span>, b<span style="color:#f92672">=</span><span style="color:#ae81ff">16</span>, c<span style="color:#f92672">=</span><span style="color:#ae81ff">32</span>)
+</span></span></code></pre></div><h3 id="задание-на-закрепление-1">Задание на закрепление</h3>
+<p>Скопируй этот код:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>result <span style="color:#f92672">=</span> myFirstFunction()
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">if</span> result <span style="color:#f92672">==</span> <span style="color:#ae81ff">4</span>:
+</span></span><span style="display:flex;"><span>    print(<span style="color:#e6db74">&#39;Правильно :)&#39;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">else</span>:
+</span></span><span style="display:flex;"><span>    print(<span style="color:#e6db74">&#39;Неправильно :(&#39;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>result <span style="color:#f92672">=</span> myFirstFunction(a<span style="color:#f92672">=</span><span style="color:#ae81ff">3</span>)
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">if</span> result <span style="color:#f92672">==</span> <span style="color:#ae81ff">5</span>:
+</span></span><span style="display:flex;"><span>    print(<span style="color:#e6db74">&#39;Правильно :)&#39;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">else</span>:
+</span></span><span style="display:flex;"><span>    print(<span style="color:#e6db74">&#39;Неправильно :(&#39;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>result <span style="color:#f92672">=</span> myFirstFunction(b<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>)
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">if</span> result <span style="color:#f92672">==</span> <span style="color:#ae81ff">3</span>:
+</span></span><span style="display:flex;"><span>    print(<span style="color:#e6db74">&#39;Правильно :)&#39;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">else</span>:
+</span></span><span style="display:flex;"><span>    print(<span style="color:#e6db74">&#39;Неправильно :(&#39;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>result <span style="color:#f92672">=</span> mySecondFunction()
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">if</span> result <span style="color:#f92672">==</span> <span style="color:#ae81ff">100</span>:
+</span></span><span style="display:flex;"><span>    print(<span style="color:#e6db74">&#39;Правильно :)&#39;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">else</span>:
+</span></span><span style="display:flex;"><span>    print(<span style="color:#e6db74">&#39;Неправильно :(&#39;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>result <span style="color:#f92672">=</span> mySecondFunction(value<span style="color:#f92672">=</span><span style="color:#ae81ff">20</span>)
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">if</span> result <span style="color:#f92672">==</span> <span style="color:#ae81ff">400</span>:
+</span></span><span style="display:flex;"><span>    print(<span style="color:#e6db74">&#39;Правильно :)&#39;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">else</span>:
+</span></span><span style="display:flex;"><span>    print(<span style="color:#e6db74">&#39;Неправильно :(&#39;</span>)
+</span></span></code></pre></div><p>Определи функции myFirstFunction и mySecondFunction, чтобы мой код правильно выполнился.</p>
+<h1 id="переменное-количество-параметров">Переменное количество параметров</h1>
+<p>В некоторых ситуациях тебе не важно само количество параметров, которые ты хочешь передать в функцию &ndash; например, когда ты передаёшь список параметров. В этом случае ты можешь использовать переменное количество параметров. Например:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># Если перед названием параметра указывается &#34;*&#34;, то этот параметр является списком.</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">funcWithManyParams</span>(<span style="color:#f92672">*</span>params):
+</span></span><span style="display:flex;"><span>    result <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># params - список, и работать мы с ним можем как с обычным списком</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> param <span style="color:#f92672">in</span> params:
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> param <span style="color:#f92672">%</span> <span style="color:#ae81ff">2</span> <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>:
+</span></span><span style="display:flex;"><span>            result <span style="color:#f92672">+=</span> param
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">else</span>:
+</span></span><span style="display:flex;"><span>            result <span style="color:#f92672">-=</span> param
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> result
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Мы передаём параметры как обычно, а питон их сам соберёт и превратит в список</span>
+</span></span><span style="display:flex;"><span>print(funcWithManyParams(<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span>)) <span style="color:#75715e"># Вывод: -2</span>
+</span></span><span style="display:flex;"><span>print(funcWithManyParams()) <span style="color:#75715e"># Вывод: 0</span>
+</span></span><span style="display:flex;"><span>print(funcWithManyParams(<span style="color:#ae81ff">10</span>)) <span style="color:#75715e"># Вывод: 10</span>
+</span></span></code></pre></div><p>Переменное количество параметров можно комбинировать и с обычными параметрами, но параметр со &ldquo;*&rdquo; должен быть в конце списка параметров. Пример:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">funcWithCombinedParamTypes</span>(value1, value2, <span style="color:#f92672">*</span>values):
+</span></span><span style="display:flex;"><span>    result <span style="color:#f92672">=</span> value1 <span style="color:#f92672">*</span> value2
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> value <span style="color:#f92672">in</span> values:
+</span></span><span style="display:flex;"><span>        result <span style="color:#f92672">+=</span> value
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> result
+</span></span><span style="display:flex;"><span>print(funcWithManyParams(<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">10</span>, <span style="color:#ae81ff">20</span>, <span style="color:#ae81ff">30</span>)) <span style="color:#75715e"># Вывод: 62</span>
+</span></span><span style="display:flex;"><span>print(funcWithManyParams(<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span>)) <span style="color:#75715e"># Вывод: 5</span>
+</span></span><span style="display:flex;"><span>print(funcWithManyParams(<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>)) <span style="color:#75715e"># Вывод: 2</span>
+</span></span><span style="display:flex;"><span>print(funcWithManyParams()) <span style="color:#75715e"># ОШИБКА: Надо обязательно указать два первых параметра</span>
+</span></span></code></pre></div><h3 id="задание-на-закрепление-2">Задание на закрепление</h3>
+<p>Скопируй этот код:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>result <span style="color:#f92672">=</span> myFirstFunction(<span style="color:#ae81ff">2</span>)
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">if</span> result <span style="color:#f92672">==</span> <span style="color:#ae81ff">2</span>:
+</span></span><span style="display:flex;"><span>    print(<span style="color:#e6db74">&#39;Правильно :)&#39;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">else</span>:
+</span></span><span style="display:flex;"><span>    print(<span style="color:#e6db74">&#39;Неправильно :(&#39;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>result <span style="color:#f92672">=</span> myFirstFunction(<span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">4</span>)
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">if</span> result <span style="color:#f92672">==</span> <span style="color:#ae81ff">6</span>:
+</span></span><span style="display:flex;"><span>    print(<span style="color:#e6db74">&#39;Правильно :)&#39;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">else</span>:
+</span></span><span style="display:flex;"><span>    print(<span style="color:#e6db74">&#39;Неправильно :(&#39;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>result <span style="color:#f92672">=</span> myFirstFunction(<span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">10</span>, <span style="color:#ae81ff">15</span>)
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">if</span> result <span style="color:#f92672">==</span> <span style="color:#ae81ff">30</span>:
+</span></span><span style="display:flex;"><span>    print(<span style="color:#e6db74">&#39;Правильно :)&#39;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">else</span>:
+</span></span><span style="display:flex;"><span>    print(<span style="color:#e6db74">&#39;Неправильно :(&#39;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>result <span style="color:#f92672">=</span> mySecondFunction(<span style="color:#ae81ff">5</span>)
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">if</span> result <span style="color:#f92672">==</span> <span style="color:#ae81ff">5</span>:
+</span></span><span style="display:flex;"><span>    print(<span style="color:#e6db74">&#39;Правильно :)&#39;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">else</span>:
+</span></span><span style="display:flex;"><span>    print(<span style="color:#e6db74">&#39;Неправильно :(&#39;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>result <span style="color:#f92672">=</span> mySecondFunction(<span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">5</span>)
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">if</span> result <span style="color:#f92672">==</span> <span style="color:#ae81ff">25</span>:
+</span></span><span style="display:flex;"><span>    print(<span style="color:#e6db74">&#39;Правильно :)&#39;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">else</span>:
+</span></span><span style="display:flex;"><span>    print(<span style="color:#e6db74">&#39;Неправильно :(&#39;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>result <span style="color:#f92672">=</span> mySecondFunction(<span style="color:#ae81ff">10</span>, <span style="color:#ae81ff">9</span>, <span style="color:#ae81ff">2</span>)
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">if</span> result <span style="color:#f92672">==</span> <span style="color:#ae81ff">180</span>:
+</span></span><span style="display:flex;"><span>    print(<span style="color:#e6db74">&#39;Правильно :)&#39;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">else</span>:
+</span></span><span style="display:flex;"><span>    print(<span style="color:#e6db74">&#39;Неправильно :(&#39;</span>)
+</span></span></code></pre></div><p>Определи функции myFirstFunction и mySecondFunction, чтобы мой код правильно выполнился.</p>
+<h1 id="рефакторинг">Рефакторинг</h1>
+<p>В программировании есть термин <strong>рефакторинг</strong> (refactoring, реструктуризация) &ndash; это процесс, в ходе которого разработчик улучшает читаемость программного кода. Этот процесс можно сравнить с тем, как ты прибираешься в папках на своём компьютере (давно разбирал папку &ldquo;Загрузки&rdquo;?).</p>
+<p>В процессе разработки больших проектов на это тратятся серьёзные деньги &ndash; всё для того, чтобы поддерживать качество кодовой базы в чистоте и порядке. Если не заниматься рефакторингом, то со временем код проекта настолько усложниться, что разработчики будут постоянно путаться и тратить неприлично много времени даже на простые задачи.</p>
+<p>Приведу пример рефакторинга в программном коде &ndash; это код программы до рефакторинга:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>i <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>combination <span style="color:#f92672">=</span> <span style="color:#ae81ff">3403</span>
+</span></span><span style="display:flex;"><span>simpleNumbers <span style="color:#f92672">=</span> []
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">while</span> i <span style="color:#f92672">&lt;=</span> <span style="color:#ae81ff">100</span>:
+</span></span><span style="display:flex;"><span>    j <span style="color:#f92672">=</span> i <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>    isSimple <span style="color:#f92672">=</span> <span style="color:#66d9ef">True</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">while</span> j <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">1</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> i <span style="color:#f92672">%</span> j <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>:
+</span></span><span style="display:flex;"><span>            isSimple <span style="color:#f92672">=</span> <span style="color:#66d9ef">False</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">break</span>
+</span></span><span style="display:flex;"><span>        j <span style="color:#f92672">-=</span> <span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> isSimple:
+</span></span><span style="display:flex;"><span>        simpleNumbers<span style="color:#f92672">.</span>append(i)
+</span></span><span style="display:flex;"><span>    i <span style="color:#f92672">+=</span> <span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>valueFound <span style="color:#f92672">=</span> <span style="color:#66d9ef">False</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">for</span> num1 <span style="color:#f92672">in</span> simpleNumbers:
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> num2 <span style="color:#f92672">in</span> simpleNumbers:
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> num1 <span style="color:#f92672">*</span> num2 <span style="color:#f92672">==</span> combination:
+</span></span><span style="display:flex;"><span>            valueFound <span style="color:#f92672">=</span> <span style="color:#66d9ef">True</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">break</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> valueFound:
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">break</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">if</span> valueFound:
+</span></span><span style="display:flex;"><span>    print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#39;Values for combination </span><span style="color:#e6db74">{</span>combination<span style="color:#e6db74">}</span><span style="color:#e6db74"> is </span><span style="color:#e6db74">{</span>num1<span style="color:#e6db74">}</span><span style="color:#e6db74"> and </span><span style="color:#e6db74">{</span>num2<span style="color:#e6db74">}</span><span style="color:#e6db74">&#39;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">else</span>:
+</span></span><span style="display:flex;"><span>    print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#39;Values for combination </span><span style="color:#e6db74">{</span>combination<span style="color:#e6db74">}</span><span style="color:#e6db74"> is not found&#39;</span>)
+</span></span></code></pre></div><p>Да, если добавить комментарии, то будет понятнее что происходит:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>i <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Публичный ключ, для которого надо подобрать комбинацию</span>
+</span></span><span style="display:flex;"><span>combination <span style="color:#f92672">=</span> <span style="color:#ae81ff">3403</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Список простых чисел, который будет заполнен</span>
+</span></span><span style="display:flex;"><span>simpleNumbers <span style="color:#f92672">=</span> []
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">while</span> i <span style="color:#f92672">&lt;=</span> <span style="color:#ae81ff">100</span>:
+</span></span><span style="display:flex;"><span>    j <span style="color:#f92672">=</span> i <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>    isSimple <span style="color:#f92672">=</span> <span style="color:#66d9ef">True</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># Для всех чисел от i-1 до 2 проверяем делятся ли они нацело на i</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">while</span> j <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">1</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> i <span style="color:#f92672">%</span> j <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>:
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e"># Если делится нацело, то ставим isSimple в False и прерываем цикл</span>
+</span></span><span style="display:flex;"><span>            isSimple <span style="color:#f92672">=</span> <span style="color:#66d9ef">False</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">break</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># Берём следующее число</span>
+</span></span><span style="display:flex;"><span>        j <span style="color:#f92672">-=</span> <span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># Если после всех чисел isSimple остался True, то ни одно число не делится нацело</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> isSimple:
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># Добавляем найденное число в список</span>
+</span></span><span style="display:flex;"><span>        simpleNumbers<span style="color:#f92672">.</span>append(i)
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># Берём следующее значение</span>
+</span></span><span style="display:flex;"><span>    i <span style="color:#f92672">+=</span> <span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>valueFound <span style="color:#f92672">=</span> <span style="color:#66d9ef">False</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Для всех простых чисел пытаемся найти такие два простых числа, множество которых будет равно combination</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">for</span> num1 <span style="color:#f92672">in</span> simpleNumbers:
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> num2 <span style="color:#f92672">in</span> simpleNumbers:
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> num1 <span style="color:#f92672">*</span> num2 <span style="color:#f92672">==</span> combination:
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e"># Если нашли подходящую комбинацию, то прерываем цикл</span>
+</span></span><span style="display:flex;"><span>            valueFound <span style="color:#f92672">=</span> <span style="color:#66d9ef">True</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">break</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># Внешний цикл тоже надо прервать</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> valueFound:
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">break</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">if</span> valueFound:
+</span></span><span style="display:flex;"><span>    print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#39;Values for combination </span><span style="color:#e6db74">{</span>combination<span style="color:#e6db74">}</span><span style="color:#e6db74"> is </span><span style="color:#e6db74">{</span>num1<span style="color:#e6db74">}</span><span style="color:#e6db74"> and </span><span style="color:#e6db74">{</span>num2<span style="color:#e6db74">}</span><span style="color:#e6db74">&#39;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">else</span>:
+</span></span><span style="display:flex;"><span>    print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#39;Values for combination </span><span style="color:#e6db74">{</span>combination<span style="color:#e6db74">}</span><span style="color:#e6db74"> is not found&#39;</span>)
+</span></span></code></pre></div><p>Комментарии, конечно, нужны, но код программы от этогого только ещё больше раздувается. Можно разбить весь этот код на несколько функций, и тогда каждая функция в отдельности будет небольшой, и мы сможем быстрее понять как работает эта программа:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">getSimpleNumbers</span>(maximumNumber):
+</span></span><span style="display:flex;"><span>    i <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>    simpleNumbers <span style="color:#f92672">=</span> []
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">while</span> i <span style="color:#f92672">&lt;=</span> maximumNumber:
+</span></span><span style="display:flex;"><span>        j <span style="color:#f92672">=</span> i <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>        isSimple <span style="color:#f92672">=</span> <span style="color:#66d9ef">True</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">while</span> j <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">1</span>:
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">if</span> i <span style="color:#f92672">%</span> j <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>:
+</span></span><span style="display:flex;"><span>                isSimple <span style="color:#f92672">=</span> <span style="color:#66d9ef">False</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">break</span>
+</span></span><span style="display:flex;"><span>            j <span style="color:#f92672">-=</span> <span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> isSimple:
+</span></span><span style="display:flex;"><span>            simpleNumbers<span style="color:#f92672">.</span>append(i)
+</span></span><span style="display:flex;"><span>        i <span style="color:#f92672">+=</span> <span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> simpleNumbers
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">findCombination</span>(simpleNumbers, combination):
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> num1 <span style="color:#f92672">in</span> simpleNumbers:
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">for</span> num2 <span style="color:#f92672">in</span> simpleNumbers:
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">if</span> num1 <span style="color:#f92672">*</span> num2 <span style="color:#f92672">==</span> combination:
+</span></span><span style="display:flex;"><span>                <span style="color:#75715e"># Возвращаем кортеж (tuple) из двух значений</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">return</span> (num1, num2)
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># Если ничего не нашли, то вернём False</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">False</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">hack</span>(combination):
+</span></span><span style="display:flex;"><span>    simpleNumbers <span style="color:#f92672">=</span> getSimpleNumbers(<span style="color:#ae81ff">100</span>)
+</span></span><span style="display:flex;"><span>    foundCombination <span style="color:#f92672">=</span> findCombination(simpleNumbers, combination)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> foundCombination <span style="color:#f92672">==</span> <span style="color:#66d9ef">False</span>:
+</span></span><span style="display:flex;"><span>        print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#39;Values for combination </span><span style="color:#e6db74">{</span>combination<span style="color:#e6db74">}</span><span style="color:#e6db74"> is not found&#39;</span>)
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    num1, num2 <span style="color:#f92672">=</span> foundCombination
+</span></span><span style="display:flex;"><span>    print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#39;Values for combination </span><span style="color:#e6db74">{</span>combination<span style="color:#e6db74">}</span><span style="color:#e6db74"> is </span><span style="color:#e6db74">{</span>num1<span style="color:#e6db74">}</span><span style="color:#e6db74"> and </span><span style="color:#e6db74">{</span>num2<span style="color:#e6db74">}</span><span style="color:#e6db74">&#39;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Прямо как в фильмах про хакеров, всё взламывается одной строчкой :)</span>
+</span></span><span style="display:flex;"><span>hack(<span style="color:#ae81ff">3403</span>)
+</span></span></code></pre></div><p>Вскоре ты сам начнёшь замечать места, которые можно упростить или написать красивее &ndash; это приходит с опытом.</p>
+<h1 id="заключение">Заключение</h1>
+<p>Итого, мы изучили:</p>
+<ul>
+<li>Что такое функции</li>
+<li>Параметры по умолчанию</li>
+<li>Переменное количество параметров</li>
+<li>Рефакторинг</li>
+</ul>
+<p>Если что &ndash; пиши, я помогу и постараюсь объяснить лучше.</p>
+<p>Дальше мы рассмотрим классы и объекты &ndash; основу построения сложных программ.</p>
+
+    <hr>
+    <div align="center">
+        <a href="https://kee-reel.com/python/functions/#top">▲ В начало ▲</a>
+    </div>
+    
+        <hr>
+        <div style="display: flex; justify-content: space-between;">
+            
+                <a href="https://kee-reel.com/python/loops/">◀ Циклы</a>
+            
+            
+                <a href="https://kee-reel.com/python/classes/">Классы ▶</a>
+            
+        </div>
+    
+
+			</section>
+		</div>
+	</div>
+
+    <footer>
+    <hr>
+    <div align="center">
+        Home server: Raspberry Pi 4<br>
+        Temperature: 36<br>
+Uptime: 1 week, 1 day, 23 hours, 20 minutes
+    </div>
+</footer>
+
+</body>
+</html>

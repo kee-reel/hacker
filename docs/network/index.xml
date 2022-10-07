@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Компьютерные сети on IT простым языком</title>
+    <link>https://kee-reel.com/network/</link>
+    <description>Recent content in Компьютерные сети on IT простым языком</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Fri, 22 Oct 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://kee-reel.com/network/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Компьютерные сети. Общение браузера с сервером</title>
+      <link>https://kee-reel.com/network/server/</link>
+      <pubDate>Fri, 22 Oct 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://kee-reel.com/network/server/</guid>
+      <description>Компьютерные сети насквозь пронизывают наше общество, я не буду описывать насколько важна их роль.
+В этой статье я дам немного теории, а затем рассмотрю весь процесс общения браузера с сервером.
+Давай разберёмся что такое сервер. У этого слова есть два значения: сервер-компьютер и сервер-программа.
+Сервер как компьютер Сервер &amp;ndash; компьютер, с постоянным подключением к сети интернет и глобальным IP.
+IP адрес IP &amp;ndash; адрес устройства в компьютерной сети.
+IP состоит из 4-х чисел в промежутке от 0 до 255, разделённых точкой &amp;ndash; например 188.</description>
+    </item>
+    
+  </channel>
+</rss>

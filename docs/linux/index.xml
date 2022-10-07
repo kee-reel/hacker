@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Linux on IT простым языком</title>
+    <link>https://kee-reel.com/linux/</link>
+    <description>Recent content in Linux on IT простым языком</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Wed, 15 Sep 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://kee-reel.com/linux/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Linux. Продвинутое использование терминала</title>
+      <link>https://kee-reel.com/linux/advanced-terminal-usage/</link>
+      <pubDate>Wed, 15 Sep 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://kee-reel.com/linux/advanced-terminal-usage/</guid>
+      <description>Прежде чем ты начнёшь постигать Linux кунг-фу при использовании конкретных программ, стоит отточить базовые навыки использования терминала, чтобы поднять скорость взаимодействия с терминалом на новый уровень.
+Я напишу про слежующие техники:
+Редактирование команд Перемещение по истории команд Редактирование команд При работе с терминалом часто приходится редактировать уже написанные команды.
+Чтобы изменить какое-то слово в команде, все новички зажимают стрелку вправо/влево, и ждут пока курсор до туда доползёт, чтобы потом зажать Delete или Backspace для удаления слова:</description>
+    </item>
+    
+    <item>
+      <title>Linux. Установка и работа с программами</title>
+      <link>https://kee-reel.com/linux/package-manager/</link>
+      <pubDate>Sun, 12 Sep 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://kee-reel.com/linux/package-manager/</guid>
+      <description>Если ты ознакомился с предыдущей статьёй, то ты уже умеешь перемещаться по разным папкам и создавать/редактировать/удалять файлы.
+Однако, этого недостаточно для полноценной работы &amp;ndash; кроме работы с файлами мы обычно запускаем всякие программы: браузер, офисные приложения, игры и тому подобное.
+Так как же на Linux ставить новые программы?
+&amp;ldquo;Магазин&amp;rdquo; приложений Так как Ubuntu Linux является одним из самых дружественных к пользователю дистрибутивов (версий сборки Linux), в него уже встроен графический &amp;ldquo;магазин&amp;rdquo; приложений.</description>
+    </item>
+    
+    <item>
+      <title>Linux. Основы работы с командной строкой</title>
+      <link>https://kee-reel.com/linux/basics/</link>
+      <pubDate>Wed, 11 Aug 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://kee-reel.com/linux/basics/</guid>
+      <description>Скорее всего ты читаешь этот текст в окне браузера, а значит используешь графическую оболочку при работе с операционной системой. Сейчас ты открываешь окна и кликаешь курсором на кнопки и иконки приложений, но так было не всегда.
+50 лет назад все пользователи компьютера видели перед собой примерно такую картину:
+Представь, например, что даже какая-нибудь Евлампия Сергеевна из отдела бухгалтерии работала через командную строку, чтобы сформировать квартальный отчёт.
+Окей, раньше просто не было графических интерфейсов, и у Евлампии Сергеевны не было альтернатив &amp;ndash; сейчас то зачем с этим заморачиваться?</description>
+    </item>
+    
+  </channel>
+</rss>

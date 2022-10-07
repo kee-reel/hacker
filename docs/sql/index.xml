@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>SQL on IT простым языком</title>
+    <link>https://kee-reel.com/sql/</link>
+    <description>Recent content in SQL on IT простым языком</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Tue, 12 Oct 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://kee-reel.com/sql/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>SQL. Основы и установка окружения</title>
+      <link>https://kee-reel.com/sql/intro/</link>
+      <pubDate>Tue, 12 Oct 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://kee-reel.com/sql/intro/</guid>
+      <description>Привет, в этой статье я расскажу что такое SQL, и зачем он нужен и как его применять.
+Наверно не стоит объяснять, что вся наша цивилизация держится на информации &amp;ndash; чем больше больше у тебя ценной информации, тем больше у тебя возможноcтей.
+Скорее всего, ты хранишь и используешь для личных нужд небольшие объёмы структурированной информации &amp;ndash; пара списков &amp;ldquo;TO DO&amp;rdquo; здесь, пара документов с идеями там &amp;ndash; её объёмы не выходят за несколько гигабайт.</description>
+    </item>
+    
+  </channel>
+</rss>

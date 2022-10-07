@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="ru">
+	<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5">
+	<meta name="description" content="IT простым языком">
+	<meta name="generator" content="HUGO">
+
+	<meta name="theme-color" content="#ffffff">
+
+    
+    <link rel="stylesheet" href="/sass/main.min.cbb118baada4f59224c0b905e399ab74606214a662342969e49ad0b93bfe4876.css" integrity="sha256-y7EYuq2k9ZIkwLkF45mrdGBiFKZiNClp5JrQuTv&#43;SHY=">
+    <title> IT простым языком </title>
+</head>
+
+<body>
+	<div id="top"/>
+<header>
+    <div align="center">
+        +---------------------------+<br>
+        |.-------------------------.|<br>
+        ||&nbsp;<a href="/">kee_reel@blog</a>:~$ cd&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;||<br>
+        ||&nbsp;<a href="/c">c</a>&nbsp;&nbsp;<a href="/cpp">c++</a>&nbsp;&nbsp;<a href="/python">python</a>&nbsp;&nbsp;<a href="/linux">linux</a>&nbsp;&nbsp;&nbsp;||<br>
+        ||&nbsp;<a href="/opengl">opengl</a>&nbsp;&nbsp;<a href="/sql">sql</a>&nbsp;&nbsp;<a href="/network">networks</a>&nbsp;&nbsp;&nbsp;||<br>
+        ||&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;||<br>
+        ||&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/about">обо_мне</a>&nbsp;||<br>
+        |.-------------------------.|<br>
+        +-::---------------------::-+<br>
+        .---------------------------.<br>
+        &nbsp;//&nbsp;/o<a href="/links">o</a>oooooooooooooooooooo\\&nbsp;\\&nbsp;<br>
+        &nbsp;//&nbsp;/oooooooooooooooooooooooo\\&nbsp;\\&nbsp;<br>
+        //-------------------------------\\<br>
+        \\-------------------------------//<br>
+    </div>
+    <hr>
+</header>
+
+		
+	<div id="wrapper">
+		<div class="container">
+			<section id="main_content">
+    
+    
+        <div style="display: flex; justify-content: space-between;">
+            
+                <a href="https://kee-reel.com/python/polymorphism/">◀ Полиморфизм</a>
+            
+            
+                <a href="https://kee-reel.com/python/incapsulation/">Инкапсуляция ▶</a>
+            
+        </div>
+        <hr>
+    
+    <h1>Python. Наследование классов</h1>
+    
+    
+        <h3>Время чтения: 4 мин</h3>
+    
+    <blockquote>
+<p>Эта статья является составной частью <a href="../oop">статьи про ООП</a> &ndash; если ты хочешь понять всю картину, то лучше начать с неё.</p>
+</blockquote>
+<p><strong>Наследование</strong> &ndash; позволяет связать разные классы в иерархию таким образом, что мы можем в старших классах определить базовые функции, и переиспользовать их во всех классах наследниках.</p>
+<p>Вот пример наследования:</p>
+<p><img src="/assets/images/python-classes-inheritance.png" alt="Наследование"></p>
+<p>У нас есть базовый класс Seat:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Seat</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> __init__(self, seat):
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>seat <span style="color:#f92672">=</span> seat
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">take_a_seat</span>(self):
+</span></span><span style="display:flex;"><span>        desc <span style="color:#f92672">=</span> self<span style="color:#f92672">.</span>get_description()
+</span></span><span style="display:flex;"><span>        print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#39;Ты сел на </span><span style="color:#e6db74">{</span>desc<span style="color:#e6db74">}</span><span style="color:#e6db74">&#39;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">get_description</span>(self):
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> <span style="color:#e6db74">f</span><span style="color:#e6db74">&#39;сиденье из </span><span style="color:#e6db74">{</span>self<span style="color:#f92672">.</span>seat<span style="color:#e6db74">}</span><span style="color:#e6db74">&#39;</span>
+</span></span></code></pre></div><p>В классе Seat есть:</p>
+<ul>
+<li>Поле seat &ndash; строка, с названием материала сиденья</li>
+<li>Метод <code>take_a_seat</code> &ndash; метод, который выводит строку, с описанием на что мы сели</li>
+<li>Метод <code>get_description</code> &ndash; метод, который возвращает строку с описанием того, на что мы сели</li>
+</ul>
+<p>Круто, но на сиденьи не получится нормально посидеть &ndash; введём класс Tabouret, отнаследованный от класса Seat:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># В скобочках указываем родительский класс Seat</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Tabouret</span>(Seat):
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> __init__(self, seat, legs):
+</span></span><span style="display:flex;"><span>        Seat<span style="color:#f92672">.</span>__init__(self, seat)
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>legs <span style="color:#f92672">=</span> legs
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># Переопределяем родительский метод get_description</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">get_description</span>(self):
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> <span style="color:#e6db74">f</span><span style="color:#e6db74">&#39;табурет у которого </span><span style="color:#e6db74">{</span>self<span style="color:#f92672">.</span>legs<span style="color:#e6db74">}</span><span style="color:#e6db74"> ножки, а сиденье из </span><span style="color:#e6db74">{</span>self<span style="color:#f92672">.</span>seat<span style="color:#e6db74">}</span><span style="color:#e6db74">&#39;</span>
+</span></span></code></pre></div><blockquote>
+<p>Обрати внимание, что мы вызываем конструктор базового класса:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>Seat<span style="color:#f92672">.</span>__init__(self, seat)
+</span></span></code></pre></div><p>Туда надо передать self (текущий объект) и все параметры, необходимые для этого конструктора.
+Если не вызвать конструктор базового класса, то он не вызовется и никакие поля базового класса не заполнятся.</p>
+</blockquote>
+<p>Класс <strong>Tabouret</strong>:</p>
+<ul>
+<li>Добавляет поле legs &ndash; число ножек</li>
+<li>Переопределяет метод get_description &ndash; теперь, если у объекта класса Tabouret вызвать метод get_description, то вызовется его реализация из класса Tabouret, а не из класса Seat</li>
+<li>Поле seat и метод take_a_seat наследуются из класса Seat</li>
+</ul>
+<blockquote>
+<p>Переопределение метода родительского класса это тоже важное понятие &ndash; запомни его.</p>
+</blockquote>
+<p>А как сделать стул? Введём класс Chair и отнаследуем от класса Tabouret:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Chair</span>(Tabouret):
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> __init__(self, seat, legs, back):
+</span></span><span style="display:flex;"><span>        Tabouret<span style="color:#f92672">.</span>__init__(self, seat, legs)
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>back <span style="color:#f92672">=</span> back
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">get_description</span>(self):
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> <span style="color:#e6db74">f</span><span style="color:#e6db74">&#39;стул у которого </span><span style="color:#e6db74">{</span>self<span style="color:#f92672">.</span>legs<span style="color:#e6db74">}</span><span style="color:#e6db74"> ножки, сиденье из </span><span style="color:#e6db74">{</span>self<span style="color:#f92672">.</span>seat<span style="color:#e6db74">}</span><span style="color:#e6db74">, а спинка из </span><span style="color:#e6db74">{</span>self<span style="color:#f92672">.</span>back<span style="color:#e6db74">}</span><span style="color:#e6db74">&#39;</span>
+</span></span></code></pre></div><p>Класс <strong>Chair</strong>:</p>
+<ul>
+<li>Добавляет поле _back &ndash; строка, с названием материала спинки</li>
+<li>Переопределяет метод get_description &ndash; теперь, если у объекта класса Chair вызвать метод get_description, то вызовется его реализация из класса Chair, а не из класса Tabouret</li>
+<li>Поле legs наследуются из класса Tabouret</li>
+<li>Поле seat и метод take_a_seat наследуются из класса Seat</li>
+</ul>
+<p>А что с диваном? Введём класс Couch и отнаследуем его от класса Seat:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Couch</span>(Seat):
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> __init__(self, seat):
+</span></span><span style="display:flex;"><span>        Seat<span style="color:#f92672">.</span>__init__(self, seat)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">get_description</span>(self):
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> <span style="color:#e6db74">f</span><span style="color:#e6db74">&#39;диван из </span><span style="color:#e6db74">{</span>self<span style="color:#f92672">.</span>seat<span style="color:#e6db74">}</span><span style="color:#e6db74">&#39;</span>
+</span></span></code></pre></div><p>Классы Couch и Chair имеют общий родительский класс Seat, но в остальном обладают разными свойствами.</p>
+<p>Класс <strong>Couch</strong>:</p>
+<ul>
+<li>Переопределяет метод get_description &ndash; теперь, если у объекта класса Couch вызвать метод get_description, то вызовется его реализация из класса Couch, а не из класса Seat</li>
+</ul>
+<p>Давай теперь создадим объекты каждого класса, и попробуем дёрнуть их методы take_a_seat:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>seat <span style="color:#f92672">=</span> Seat(<span style="color:#e6db74">&#39;паралона&#39;</span>)
+</span></span><span style="display:flex;"><span>tabouret <span style="color:#f92672">=</span> Tabouret(<span style="color:#e6db74">&#39;металла&#39;</span>, <span style="color:#ae81ff">3</span>)
+</span></span><span style="display:flex;"><span>chair <span style="color:#f92672">=</span> Chair(<span style="color:#e6db74">&#39;дерева&#39;</span>, <span style="color:#ae81ff">4</span>, <span style="color:#e6db74">&#39;дерева&#39;</span>)
+</span></span><span style="display:flex;"><span>couch <span style="color:#f92672">=</span> Couch(<span style="color:#e6db74">&#39;экокожи&#39;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>seat<span style="color:#f92672">.</span>take_a_seat()
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Вывод: Ты сел на сиденье из паралона</span>
+</span></span><span style="display:flex;"><span>tabouret<span style="color:#f92672">.</span>take_a_seat()
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Вывод: Ты сел на табурет у которого 3 ножки, а сиденье из металла</span>
+</span></span><span style="display:flex;"><span>chair<span style="color:#f92672">.</span>take_a_seat()
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Вывод: Ты сел на стул у которого 4 ножки, сиденье из дерева, а спинка из дерева</span>
+</span></span><span style="display:flex;"><span>couch<span style="color:#f92672">.</span>take_a_seat()
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Вывод: Ты сел на диван из экокожи</span>
+</span></span></code></pre></div><p>Окей, а зачем мы это всё сделали?</p>
+<h3 id="тебе-не-надо-дублировать-одинаковую-логику-в-разных-классах----логика-пишется-один-раз-в-родительском-классе-и-переиспользуется-во-всех-дочерних-классах">Тебе не надо дублировать одинаковую логику в разных классах &ndash; логика пишется один раз в родительском классе, и переиспользуется во всех дочерних классах.</h3>
+<p>Например, я захочу поменять вид строки в take_a_seat &ndash; для этого я залезу в код класса Seat:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">take_a_seat</span>(self):
+</span></span><span style="display:flex;"><span>    desc <span style="color:#f92672">=</span> self<span style="color:#f92672">.</span>get_description()
+</span></span><span style="display:flex;"><span>    print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#39;Ты испытываешь нестерпимое желание сесть на </span><span style="color:#e6db74">{</span>desc<span style="color:#e6db74">}</span><span style="color:#e6db74">&#39;</span>)
+</span></span></code></pre></div><p>И, не меняя ничего другого, у меня изменится вывод для всех других классов:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>seat<span style="color:#f92672">.</span>take_a_seat()
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Вывод: Ты испытываешь нестерпимое желание сесть на сиденье из паралона</span>
+</span></span><span style="display:flex;"><span>tabouret<span style="color:#f92672">.</span>take_a_seat()
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Вывод: Ты испытываешь нестерпимое желание сесть на табурет у которого 3 ножки, а сиденье из металла</span>
+</span></span><span style="display:flex;"><span>chair<span style="color:#f92672">.</span>take_a_seat()
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Вывод: Ты испытываешь нестерпимое желание сесть на стул у которого 4 ножки, сиденье из дерева, а спинка из дерева</span>
+</span></span><span style="display:flex;"><span>couch<span style="color:#f92672">.</span>take_a_seat()
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Вывод: Ты испытываешь нестерпимое желание сесть на диван из экокожи</span>
+</span></span></code></pre></div><p>Это очень удобно, если работаешь со множеством классов.</p>
+<h1 id="заключение">Заключение</h1>
+<p>Итого, мы изучили:</p>
+<ul>
+<li>Наследование</li>
+<li>Родительский класс</li>
+<li>Дочерний класс</li>
+<li>Конструктор родительского класса</li>
+<li>Переопределение метода</li>
+</ul>
+<p>И, ещё раз, смысл наследования:</p>
+<h3 id="тебе-не-надо-дублировать-одинаковую-логику-в-разных-классах----логика-пишется-один-раз-в-родительском-классе-и-переиспользуется-во-всех-дочерних-классах-1">Тебе не надо дублировать одинаковую логику в разных классах &ndash; логика пишется один раз в родительском классе, и переиспользуется во всех дочерних классах.</h3>
+<p>Если что &ndash; пиши, я помогу и постараюсь объяснить лучше.</p>
+<p>Если ты ещё полон сил, то вернись к <a href="../oop">статье про ООП</a>, и продолжи постижение ООП.</p>
+
+    <hr>
+    <div align="center">
+        <a href="https://kee-reel.com/python/inheritance/#top">▲ В начало ▲</a>
+    </div>
+    
+        <hr>
+        <div style="display: flex; justify-content: space-between;">
+            
+                <a href="https://kee-reel.com/python/polymorphism/">◀ Полиморфизм</a>
+            
+            
+                <a href="https://kee-reel.com/python/incapsulation/">Инкапсуляция ▶</a>
+            
+        </div>
+    
+
+			</section>
+		</div>
+	</div>
+
+    <footer>
+    <hr>
+    <div align="center">
+        Home server: Raspberry Pi 4<br>
+        Temperature: 36<br>
+Uptime: 1 week, 1 day, 23 hours, 20 minutes
+    </div>
+</footer>
+
+</body>
+</html>

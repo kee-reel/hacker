@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>OpenGL/C&#43;&#43; on IT простым языком</title>
+    <link>https://kee-reel.com/opengl/</link>
+    <description>Recent content in OpenGL/C&#43;&#43; on IT простым языком</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Sun, 03 Oct 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://kee-reel.com/opengl/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>OpenGL/C&#43;&#43;. Первое окно</title>
+      <link>https://kee-reel.com/opengl/first-window/</link>
+      <pubDate>Sun, 03 Oct 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://kee-reel.com/opengl/first-window/</guid>
+      <description>В этой статье я расскажу как происходит инициализация OpenGL и создаётся окно в котором мы будем всё отрисовывать.
+В прошлой статье я рассказал как настроить окружение и запустить самый простой проект &amp;ndash; продолжу с того, на чём остановился.
+В левой части экрана ты можешь увидеть список всех проектов &amp;ndash; найди там проект &amp;ldquo;tutorial01_first_window&amp;rdquo; и открой файл &amp;ldquo;tutorial01.cpp&amp;rdquo;.
+Там ты увидишь код, который инициализирует все библиотеки и создаёт окно &amp;ndash; давай разберём по порядку.</description>
+    </item>
+    
+    <item>
+      <title>OpenGL/C&#43;&#43;. Установка окружения</title>
+      <link>https://kee-reel.com/opengl/environment-setup/</link>
+      <pubDate>Sun, 03 Oct 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://kee-reel.com/opengl/environment-setup/</guid>
+      <description>В этой статье я расскажу как подготовить окружение для изучения OpenGL на C++.
+Сразу скажу &amp;ndash; я опираюсь на материалы сайта opengl-tutorial.org. Можешь прямо сейчас перейти туда, и узнать там всё то же самое.
+Для чего тогда дублировать материал и писать одно и то же? У меня есть 3 причины:
+Мой pull-request с исправлениями в русской локализации, на момент написания этой статьи висит уже месяц &amp;ndash; похоже владелец сайта подзабил на свой проект Из-за того, что автор сайта подзабил на свой проект, некоторая информация уже устарела (в QtCreator теперь есть нативная поддержка CMake, и установка из-за этого ускоряется в разы) Так я лучше разберусь в материале, так как для написания хорошей статьи придётся закопаться поглубже в предмет Установка на Windows Если никогда не ставил драйверы для видеокарты &amp;ndash; поставь сейчас.</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="ru">
+	<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5">
+	<meta name="description" content="IT простым языком">
+	<meta name="generator" content="HUGO">
+
+	<meta name="theme-color" content="#ffffff">
+
+    
+    <link rel="stylesheet" href="/sass/main.min.cbb118baada4f59224c0b905e399ab74606214a662342969e49ad0b93bfe4876.css" integrity="sha256-y7EYuq2k9ZIkwLkF45mrdGBiFKZiNClp5JrQuTv&#43;SHY=">
+    <title> IT простым языком </title>
+</head>
+
+<body>
+	<div id="top"/>
+<header>
+    <div align="center">
+        +---------------------------+<br>
+        |.-------------------------.|<br>
+        ||&nbsp;<a href="/">kee_reel@blog</a>:~$ cd&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;||<br>
+        ||&nbsp;<a href="/c">c</a>&nbsp;&nbsp;<a href="/cpp">c++</a>&nbsp;&nbsp;<a href="/python">python</a>&nbsp;&nbsp;<a href="/linux">linux</a>&nbsp;&nbsp;&nbsp;||<br>
+        ||&nbsp;<a href="/opengl">opengl</a>&nbsp;&nbsp;<a href="/sql">sql</a>&nbsp;&nbsp;<a href="/network">networks</a>&nbsp;&nbsp;&nbsp;||<br>
+        ||&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;||<br>
+        ||&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/about">обо_мне</a>&nbsp;||<br>
+        |.-------------------------.|<br>
+        +-::---------------------::-+<br>
+        .---------------------------.<br>
+        &nbsp;//&nbsp;/o<a href="/links">o</a>oooooooooooooooooooo\\&nbsp;\\&nbsp;<br>
+        &nbsp;//&nbsp;/oooooooooooooooooooooooo\\&nbsp;\\&nbsp;<br>
+        //-------------------------------\\<br>
+        \\-------------------------------//<br>
+    </div>
+    <hr>
+</header>
+
+		
+	<div id="wrapper">
+		<div class="container">
+			<section id="main_content">
+    
+    
+        <div style="display: flex; justify-content: space-between;">
+            
+                <a href="https://kee-reel.com/python/inheritance/">◀ Наследование классов</a>
+            
+            
+                <a href="https://kee-reel.com/python/web-server/">Основы веб-сервера Flask ▶</a>
+            
+        </div>
+        <hr>
+    
+    <h1>Python. Инкапсуляция</h1>
+    
+    
+        <h3>Время чтения: 4 мин</h3>
+    
+    <blockquote>
+<p>Эта статья является составной частью <a href="../oop">статьи про ООП</a> &ndash; если ты хочешь понять всю картину, то лучше начать с неё.</p>
+</blockquote>
+<p><strong>Инкапсуляция</strong> &ndash; позволяет скрыть детали реализации.</p>
+<p>Ты когда-нибудь пробовал разобрать свой телефон или ноутбук? Это очень сложный процесс, который как-будто специально сделан максимально трудоёмким для пользователя. Зачем это нужно его создателям?</p>
+<p><img src="/assets/images/laptop-repair.png" alt="Разбор ноутбука"></p>
+<p>Если бы это было очень просто, то ты бы мог залезть &ldquo;просто посмотреть&rdquo; и случайно что-то сломать в этом сложном устройстве.</p>
+<p>Так вот на программирование это переносится идеально. Только вместо устройства здесь твои классы, а вместо пользователя другие разработчики &ndash; только эти пользователи хотят не &ldquo;просто посмотреть&rdquo;, а изменить твой код или унаследоваться от твоего класса.</p>
+<p>Если ты не затруднишь доступ к чувствительным местам своих классов, то, чем сложнее твой код, тем больше вероятность что другой разработчик чего-то в нём не поймёт и сломает всё к чертям :)</p>
+<p>В рамках этой статьи я рассмотрю инкапсуляцию &ndash; способ сокрытия переменных и методов от шаловливых ручек разработчиков.</p>
+<h1 id="публичныеприватные-поляметоды">Публичные/приватные поля/методы</h1>
+<p>Во всех примерах до этого я писал названия полей в классах вот так:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Laptop</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> __init__(self):
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>battery_percent <span style="color:#f92672">=</span> <span style="color:#ae81ff">100</span>
+</span></span></code></pre></div><p>Поле <code>battery_percent</code> &ndash; публичное, то есть любой может прочитать из него значение или записать туда что-то:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>laptop <span style="color:#f92672">=</span> Laptop()
+</span></span><span style="display:flex;"><span>print(laptop<span style="color:#f92672">.</span>battery_percent) <span style="color:#75715e"># Вывод: 100</span>
+</span></span><span style="display:flex;"><span>laptop<span style="color:#f92672">.</span>battery_percent <span style="color:#f92672">=</span> <span style="color:#ae81ff">123</span>
+</span></span><span style="display:flex;"><span>print(laptop<span style="color:#f92672">.</span>battery_percent) <span style="color:#75715e"># Вывод: 123</span>
+</span></span></code></pre></div><p>Вот сейчас пользователь взял и поменял процент зарядки в твоём &ldquo;устройстве&rdquo;. Если бы у тебя в этом классе было много логики завязанной на процент зарядки, то наверняка что-то бы отвалилось.</p>
+<p>Как защитить поле <code>battery_percent</code>? Сделать его приватным!</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Laptop</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> __init__(self):
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>__battery_percent <span style="color:#f92672">=</span> <span style="color:#ae81ff">100</span>
+</span></span></code></pre></div><p>Если писать имена переменных с <code>__</code>, то они будут <strong>приватными</strong> &ndash; то есть к ним нельзя будет обратиться вне класса.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>laptop <span style="color:#f92672">=</span> Laptop()
+</span></span><span style="display:flex;"><span>print(laptop<span style="color:#f92672">.</span>battery_percent) <span style="color:#75715e"># ОШИБКА: AttributeError: &#39;Laptop&#39; object has no attribute &#39;battery_percent&#39;</span>
+</span></span></code></pre></div><p>Ок, как тогда к нему получить доступ? Сделать метод, который будет возвращать значение поля <code>__battery_percent</code>:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Laptop</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> __init__(self):
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>__battery_percent <span style="color:#f92672">=</span> <span style="color:#ae81ff">100</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">get_battery_percent</span>(self):
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> self<span style="color:#f92672">.</span>__battery_percent
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>laptop <span style="color:#f92672">=</span> Laptop()
+</span></span><span style="display:flex;"><span>print(laptop<span style="color:#f92672">.</span>get_battery_percent()) <span style="color:#75715e"># Вывод: 100</span>
+</span></span></code></pre></div><p>Ура, теперь наша логика под защитой!</p>
+<p>Ещё ты можешь делать приватные методы, если не хочешь чтобы кто-то вызывал этот метод кроме тебя:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">from</span> time <span style="color:#f92672">import</span> time
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Laptop</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> __init__(self):
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>__start_time <span style="color:#f92672">=</span> self<span style="color:#f92672">.</span>__last_update_time <span style="color:#f92672">=</span> time()
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>__battery_percent <span style="color:#f92672">=</span> <span style="color:#ae81ff">100</span>
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>__battery_consumption_per_second <span style="color:#f92672">=</span> <span style="color:#ae81ff">0.05</span>
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>__screen_brightness <span style="color:#f92672">=</span> <span style="color:#ae81ff">100</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">get_battery_percent</span>(self):
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> self<span style="color:#f92672">.</span>__battery_percent
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># Этот метод будет периодически вызываться извне</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">update</span>(self):
+</span></span><span style="display:flex;"><span>        seconds_since_last_update <span style="color:#f92672">=</span> time() <span style="color:#f92672">-</span> self<span style="color:#f92672">.</span>__last_update_time
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>__battery_percent <span style="color:#f92672">-=</span> self<span style="color:#f92672">.</span>__battery_consumption_per_second <span style="color:#f92672">*</span> seconds_since_last_update
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>__last_update_time <span style="color:#f92672">=</span> time()
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>__update_screen_brightness()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># А вот этот метод не хочется показывать наружу</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">__update_screen_brightness</span>(self):
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> self<span style="color:#f92672">.</span>__battery_percent <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">30</span>:
+</span></span><span style="display:flex;"><span>            self<span style="color:#f92672">.</span>__screen_brightness <span style="color:#f92672">=</span> <span style="color:#ae81ff">50</span>
+</span></span></code></pre></div><blockquote>
+<p>Функция time() из библиотеки time возвращает текущее количество секунд с 1 января 1970 года &ndash; например моё текущее время 1633025404 (30 сен 2021 21:10:04 MSK). Это также называется Unix-время &ndash; можно почитать про это на <a href="https://ru.wikipedia.org/wiki/Unix-%D0%B2%D1%80%D0%B5%D0%BC%D1%8F">вики</a>. Все информационные системы используют именно такую запись для хранения времени.</p>
+</blockquote>
+<h1 id="приватные-поля-в-наследовании">Приватные поля в наследовании</h1>
+<p>Если ты создашь приватное поле, то доступ к нему не смогут получить ни где-то снаружи, ни в классах наследниках:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">A</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> __init__(self):
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>__private_field <span style="color:#f92672">=</span> <span style="color:#ae81ff">42</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">B</span>(A):
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> __init__(self):
+</span></span><span style="display:flex;"><span>        A<span style="color:#f92672">.</span>__init__(self)
+</span></span><span style="display:flex;"><span>        print(self<span style="color:#f92672">.</span>__private_field) <span style="color:#75715e"># ОШИБКА: AttributeError: &#39;B&#39; object has no attribute &#39;_B__private_field&#39;</span>
+</span></span></code></pre></div><p>Что делать, если доступ к полю всё же нужен? Есть два пути:</p>
+<ul>
+<li>Добавление метода</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">A</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> __init__(self):
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>__private_field <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">get_private_field</span>(self):
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> self<span style="color:#f92672">.</span>__private_field
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">B</span>(A):
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> __init__(self):
+</span></span><span style="display:flex;"><span>        A<span style="color:#f92672">.</span>__init__(self)
+</span></span><span style="display:flex;"><span>        print(self<span style="color:#f92672">.</span>get_private_field()) <span style="color:#75715e"># Вывод: 42</span>
+</span></span></code></pre></div><p>То есть объект класса B как бы у себя изнутри забирает это значение.</p>
+<p><img src="/assets/images/python-classes-private-field.png" alt="Приватное поле"></p>
+<ul>
+<li>Смена приватного поля на защищённое (protected)</li>
+</ul>
+<p>Можно написать не два подчёркивания перед названием переменной, а одно:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">A</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> __init__(self):
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>_private_field <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">get_private_field</span>(self):
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> self<span style="color:#f92672">.</span>_private_field
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">B</span>(A):
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> __init__(self):
+</span></span><span style="display:flex;"><span>        A<span style="color:#f92672">.</span>__init__(self)
+</span></span><span style="display:flex;"><span>        print(self<span style="color:#f92672">.</span>_private_field) <span style="color:#75715e"># Вывод: 42</span>
+</span></span></code></pre></div><p>Оно ничем не отличается от поля, которое было вообще без подчёркиваний &ndash; все смогут обращаться к такому полю снаружи.</p>
+<p>Единственное что меняется &ndash; таким образом ты помечаешь его как внутреннее, и сигнализируешь другим разработчикам не трогать его.</p>
+<p>Таким образом, ты можешь:</p>
+<ul>
+<li>Сделать приватным и защититься от всех, но написать дополнительные методы</li>
+<li>Пометить как внутреннее и сэкономить на методах, но повысить шанс возникновения проблем</li>
+</ul>
+<h3 id="если-ты-хочешь-чтобы-твой-код-не-ломался-при-изменении-внутренней-логики----то-надо-использовать-инкапсуляцию-и-скрывать-как-можно-больше-кода-от-шаловливых-ручек-программистов">Если ты хочешь чтобы твой код не ломался при изменении внутренней логики &ndash; то надо использовать инкапсуляцию, и скрывать как можно больше кода от шаловливых ручек программистов.</h3>
+<h1 id="заключение">Заключение</h1>
+<p>Итого, мы изучили:</p>
+<ul>
+<li>Инкапсуляция (сокрытие деталей реализации)</li>
+<li>Приватное поле (с двумя подчёркиваниями, никто не дотянется)</li>
+<li>Приватный метод</li>
+<li>Функция time из библиотеки time (возвращает количество секунд с 1 января 1970 года)</li>
+<li>Два подхода к инкапсуляции в наследовании (методы для получения нужных полей или защищённое поле)</li>
+</ul>
+<p>Если что &ndash; пиши, я помогу и постараюсь объяснить лучше.</p>
+<p>Если ты ещё полон сил, то вернись к <a href="../oop">статье про ООП</a>, и продолжи постижение ООП.</p>
+
+    <hr>
+    <div align="center">
+        <a href="https://kee-reel.com/python/incapsulation/#top">▲ В начало ▲</a>
+    </div>
+    
+        <hr>
+        <div style="display: flex; justify-content: space-between;">
+            
+                <a href="https://kee-reel.com/python/inheritance/">◀ Наследование классов</a>
+            
+            
+                <a href="https://kee-reel.com/python/web-server/">Основы веб-сервера Flask ▶</a>
+            
+        </div>
+    
+
+			</section>
+		</div>
+	</div>
+
+    <footer>
+    <hr>
+    <div align="center">
+        Home server: Raspberry Pi 4<br>
+        Temperature: 36<br>
+Uptime: 1 week, 1 day, 23 hours, 20 minutes
+    </div>
+</footer>
+
+</body>
+</html>

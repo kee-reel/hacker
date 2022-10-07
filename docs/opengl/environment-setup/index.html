@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="ru">
+	<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5">
+	<meta name="description" content="IT простым языком">
+	<meta name="generator" content="HUGO">
+
+	<meta name="theme-color" content="#ffffff">
+
+    
+    <link rel="stylesheet" href="/sass/main.min.cbb118baada4f59224c0b905e399ab74606214a662342969e49ad0b93bfe4876.css" integrity="sha256-y7EYuq2k9ZIkwLkF45mrdGBiFKZiNClp5JrQuTv&#43;SHY=">
+    <title> IT простым языком </title>
+</head>
+
+<body>
+	<div id="top"/>
+<header>
+    <div align="center">
+        +---------------------------+<br>
+        |.-------------------------.|<br>
+        ||&nbsp;<a href="/">kee_reel@blog</a>:~$ cd&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;||<br>
+        ||&nbsp;<a href="/c">c</a>&nbsp;&nbsp;<a href="/cpp">c++</a>&nbsp;&nbsp;<a href="/python">python</a>&nbsp;&nbsp;<a href="/linux">linux</a>&nbsp;&nbsp;&nbsp;||<br>
+        ||&nbsp;<a href="/opengl">opengl</a>&nbsp;&nbsp;<a href="/sql">sql</a>&nbsp;&nbsp;<a href="/network">networks</a>&nbsp;&nbsp;&nbsp;||<br>
+        ||&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;||<br>
+        ||&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/about">обо_мне</a>&nbsp;||<br>
+        |.-------------------------.|<br>
+        +-::---------------------::-+<br>
+        .---------------------------.<br>
+        &nbsp;//&nbsp;/o<a href="/links">o</a>oooooooooooooooooooo\\&nbsp;\\&nbsp;<br>
+        &nbsp;//&nbsp;/oooooooooooooooooooooooo\\&nbsp;\\&nbsp;<br>
+        //-------------------------------\\<br>
+        \\-------------------------------//<br>
+    </div>
+    <hr>
+</header>
+
+		
+	<div id="wrapper">
+		<div class="container">
+			<section id="main_content">
+    
+    
+        <div style="display: flex; justify-content: space-between;">
+            
+                <div></div>
+            
+            
+                <a href="https://kee-reel.com/opengl/first-window/">Первое окно ▶</a>
+            
+        </div>
+        <hr>
+    
+    <h1>OpenGL/C&#43;&#43;. Установка окружения</h1>
+    
+    
+    <p>В этой статье я расскажу как подготовить окружение для изучения OpenGL на C++.</p>
+<p>Сразу скажу &ndash; я опираюсь на материалы сайта <a href="http://www.opengl-tutorial.org">opengl-tutorial.org</a>. Можешь прямо сейчас перейти туда, и узнать там всё то же самое.</p>
+<p>Для чего тогда дублировать материал и писать одно и то же? У меня есть 3 причины:</p>
+<ul>
+<li>Мой <a href="https://github.com/opengl-tutorials/ogl/pull/116">pull-request</a> с исправлениями в русской локализации, на момент написания этой статьи висит уже месяц &ndash; похоже владелец сайта подзабил на свой проект</li>
+<li>Из-за того, что автор сайта подзабил на свой проект, некоторая информация уже устарела (в QtCreator теперь есть нативная поддержка CMake, и установка из-за этого ускоряется в разы)</li>
+<li>Так я лучше разберусь в материале, так как для написания хорошей статьи придётся закопаться поглубже в предмет</li>
+</ul>
+<h1 id="установка-на-windows">Установка на Windows</h1>
+<ul>
+<li>
+<p>Если никогда не ставил драйверы для видеокарты &ndash; поставь сейчас. Если уже стоят, то всё норм.</p>
+</li>
+<li>
+<p><a href="https://www.qt.io/download-thank-you">Скачай</a> Qt + Qt Creator</p>
+</li>
+</ul>
+<p>Для установки придётся зарегистрироваться у них на <a href="https://login.qt.io/login">сайте</a>. Если очень не хочется, то напиши мне &ndash; я скину свои креды, чтобы ты их ввёл при установке.</p>
+<p>При установке Qt выбери &ldquo;Qt 6.X for desktop development&rdquo;:</p>
+<p><img src="/assets/images/cpp-opengl-qt-install.png" alt="Установка Qt"></p>
+<p>После всего этого у тебя установится:</p>
+<ul>
+<li>Фреймворк Qt: C:/Qt</li>
+<li>IDE QtCreator: C:/Qt/Tools/QtCreator/bin/qtcreator.exe</li>
+<li>CMake: C:/Qt/Tools/CMake_64/bin/cmake.exe</li>
+</ul>
+<h3 id="возможные-проблемы-при-установке">Возможные проблемы при установке</h3>
+<blockquote>
+<p>Если возникнут какие-то проблемы, то пиши мне &ndash; решим вместе и я допишу их решение здесь.</p>
+</blockquote>
+<ul>
+<li>&ldquo;Не найдена библиотека MSVCP140.dll&rdquo; &ndash; скачай <a href="https://aka.ms/vs/16/release/vc_redist.x86.exe">это</a>, взял <a href="https://docs.microsoft.com/en-US/cpp/windows/latest-supported-vc-redist?view=msvc-160">отсюда</a></li>
+</ul>
+<h1 id="установка-на-linux">Установка на Linux</h1>
+<ul>
+<li>Установи необходимые библиотеки:</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo apt install cmake make g++ libx11-dev libxi-dev libgl1-mesa-dev libglu1-mesa-dev libxrandr-dev libxext-dev libxcursor-dev libxinerama-dev libxi-dev
+</span></span></code></pre></div><ul>
+<li><a href="https://www.qt.io/download-thank-you">Скачай</a> Qt + Qt Creator</li>
+</ul>
+<p>Для установки придётся зарегистрироваться у них на <a href="https://login.qt.io/login">сайте</a>. Если очень не хочется, то напиши мне &ndash; я скину свои креды, чтобы ты их ввёл при установке.</p>
+<p>При установке Qt выбери &ldquo;Qt 6.X for desktop development&rdquo;.</p>
+<p>После всего этого у тебя установится:</p>
+<ul>
+<li>Фреймворк Qt: ~/Qt</li>
+<li>IDE QtCreator: ~/Qt/Tools/QtCreator/bin/qtcreator</li>
+<li>CMake: ~/Qt/Tools/Cmake/bin/cmake</li>
+</ul>
+<h1 id="запускаем-проект">Запускаем проект</h1>
+<p>Скачай <a href="https://github.com/opengl-tutorials/ogl/archive/master.zip">этот</a> архив и распакуй куда удобно. Архив взят с сайта <a href="http://www.opengl-tutorial.org">opengl-tutorial.org</a>.</p>
+<p>Открой QtCreator:</p>
+<ul>
+<li>Нажми Ctrl+O (или выбери опцию &ldquo;Open File or Project&hellip;&rdquo;)</li>
+<li>Найди папку с распакованным архивом &ndash; она называется &ldquo;ogl-master&rdquo;</li>
+<li>В этой папке открой файл &ldquo;CMakeLists.txt&rdquo; &ndash; откроется весь проект</li>
+<li>В левом нижнем углу нажми на проект (как на скриншоте):</li>
+</ul>
+<p><img src="/assets/images/cpp-opengl-qtcreator-project.png" alt="Проект QtCreator"></p>
+<ul>
+<li>Ты увидишь все подпроекты этого проекта &ndash; найди в этом списке tutorial01_first_window, и выбери его</li>
+<li>После этого нажми на зелёный треугольник (без жука) в левом нижнем углу &ndash; выбранный подпроект соберётся и (надеюсь) запустится</li>
+</ul>
+<p>Откроется вот такое шикарное пустое окно:</p>
+<p><img src="/assets/images/cpp-opengl-first-window.png" alt="Установка Qt"></p>
+<p>Если ты дошёл до этого момента и даже ничего не сломалось, то поздравляю &ndash; ты успешно настроил окружение для дальнейшего обучения!</p>
+<h1 id="header-1заключение"><a href="#header-1"></a>Заключение</h1>
+<p>Скорее всего что-то пойдёт не так в процессе установки, поэтому пиши сразу, как запахнет жареным!</p>
+<p>В <a href="/first-window">следующей статье</a> мы уже разберём как это шикарное пустое окно создалось и показалось.</p>
+
+    <hr>
+    <div align="center">
+        <a href="https://kee-reel.com/opengl/environment-setup/#top">▲ В начало ▲</a>
+    </div>
+    
+        <hr>
+        <div style="display: flex; justify-content: space-between;">
+            
+                <div></div>
+            
+            
+                <a href="https://kee-reel.com/opengl/first-window/">Первое окно ▶</a>
+            
+        </div>
+    
+
+			</section>
+		</div>
+	</div>
+
+    <footer>
+    <hr>
+    <div align="center">
+        Home server: Raspberry Pi 4<br>
+        Temperature: 36<br>
+Uptime: 1 week, 1 day, 23 hours, 20 minutes
+    </div>
+</footer>
+
+</body>
+</html>
