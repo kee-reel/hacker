@@ -2,16 +2,16 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>C&#43;&#43; on IT простым языком</title>
-    <link>https://kee-reel.com/cpp/</link>
+    <link>https://kee-reel.com/cpp.html</link>
     <description>Recent content in C&#43;&#43; on IT простым языком</description>
     <generator>Hugo -- gohugo.io</generator>
     <lastBuildDate>Thu, 05 May 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://kee-reel.com/cpp/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>C&#43;&#43;. Наследование классов</title>
-      <link>https://kee-reel.com/cpp/inheritance/</link>
+      <link>https://kee-reel.com/cpp/inheritance.html</link>
       <pubDate>Thu, 05 May 2022 00:00:00 +0000</pubDate>
       
-      <guid>https://kee-reel.com/cpp/inheritance/</guid>
+      <guid>https://kee-reel.com/cpp/inheritance.html</guid>
       <description>Наследование &amp;ndash; позволяет связать разные классы в иерархию таким образом, что мы можем в классе наследнике переиспользовать поля и методы, объявленные в родительском классе.
 Давай сначала посмотрим на примере &amp;ndash; допустим, у меня есть класс Animal:
 class Animal { public: // Конструктор с параметрами Animal(int weight, int age, int max_age) : m_weight(weight), m_age(age), m_max_age(max_age) {} // Можем узнать старое ли это животное bool is_old() { return m_age &amp;gt; m_max_age * 0.</description>
@@ -19,10 +19,10 @@ class Animal { public: // Конструктор с параметрами Anima
     
     <item>
       <title>C&#43;&#43;. Инкапсуляция</title>
-      <link>https://kee-reel.com/cpp/incapsulation/</link>
+      <link>https://kee-reel.com/cpp/incapsulation.html</link>
       <pubDate>Sun, 03 Apr 2022 00:00:00 +0000</pubDate>
       
-      <guid>https://kee-reel.com/cpp/incapsulation/</guid>
+      <guid>https://kee-reel.com/cpp/incapsulation.html</guid>
       <description>Я буду основываться на коде, приведённом в основной статье про классы.
 Инкапсуляция &amp;ndash; позволяет скрыть детали реализации.
 Ты когда-нибудь пробовал разобрать свой телефон или ноутбук? Это очень сложный процесс, который как-будто специально сделан максимально трудоёмким для пользователя. Зачем это нужно его создателям?
@@ -32,10 +32,10 @@ class Animal { public: // Конструктор с параметрами Anima
     
     <item>
       <title>C&#43;&#43;. Конструкторы, оператор присваивания и деструктор</title>
-      <link>https://kee-reel.com/cpp/constructors/</link>
+      <link>https://kee-reel.com/cpp/constructors.html</link>
       <pubDate>Sun, 20 Mar 2022 00:00:00 +0000</pubDate>
       
-      <guid>https://kee-reel.com/cpp/constructors/</guid>
+      <guid>https://kee-reel.com/cpp/constructors.html</guid>
       <description>Я буду основываться на коде, приведённом в основной статье про классы.
 В основной статье я показал как создать класс и конструктор для него:
 class Coffee { public: Coffee(const char *type, int temperature, int volume) { m_temperature = temperature; m_volume = volume; // Выделяем память под строку m_type = (char*)malloc(strlen(type)); // Копируем type в m_type strcpy(m_type, type); } ... Разница между инициализацией и присваиванием Прежде чем мы пойдём дальше, я хочу показать один принципиальный момент.</description>
@@ -43,10 +43,10 @@ class Coffee { public: Coffee(const char *type, int temperature, int volume) { m
     
     <item>
       <title>C&#43;&#43;. Переопределение операторов</title>
-      <link>https://kee-reel.com/cpp/operators/</link>
+      <link>https://kee-reel.com/cpp/operators.html</link>
       <pubDate>Sat, 19 Mar 2022 00:00:00 +0000</pubDate>
       
-      <guid>https://kee-reel.com/cpp/operators/</guid>
+      <guid>https://kee-reel.com/cpp/operators.html</guid>
       <description>Прежде чем я расскажу про операторы в классах, давай я приведу пример, от которого будем отталкиваться.
 Я буду основываться на коде, приведённом в основной статье про классы.
 Например, я хочу добавить возможность переливать кофе из одной кружки в другую (ты очень любишь кофе, а твой друг не допил).
@@ -56,10 +56,10 @@ void pour(Coffee &amp;amp;other_cup) { // Сравниваем адреса об
     
     <item>
       <title>C&#43;&#43;. Классы</title>
-      <link>https://kee-reel.com/cpp/classes/</link>
+      <link>https://kee-reel.com/cpp/classes.html</link>
       <pubDate>Tue, 15 Mar 2022 00:00:00 +0000</pubDate>
       
-      <guid>https://kee-reel.com/cpp/classes/</guid>
+      <guid>https://kee-reel.com/cpp/classes.html</guid>
       <description>Основной особенностью C++ являются классы &amp;ndash; без них, C++ практичеси ничем бы не отличался от Си.
 Прежде чем мы перейдём к использованию классов, я расскажу откуда классы взялись &amp;ndash; про объектно-ориентированное программирование.
 Объектно-ориентированное программирование (ООП) &amp;ndash; подход к написанию программ при котором:
@@ -68,10 +68,10 @@ void pour(Coffee &amp;amp;other_cup) { // Сравниваем адреса об
     
     <item>
       <title>C&#43;&#43;. Различия между C и C&#43;&#43;</title>
-      <link>https://kee-reel.com/cpp/intro/</link>
+      <link>https://kee-reel.com/cpp/intro.html</link>
       <pubDate>Wed, 16 Feb 2022 00:00:00 +0000</pubDate>
       
-      <guid>https://kee-reel.com/cpp/intro/</guid>
+      <guid>https://kee-reel.com/cpp/intro.html</guid>
       <description>Чтобы программировать на C++ необходимо сперва научиться программировать на C. Почему так?
 Это не новый язык, который придётся заново изучать &amp;ndash; C++ является расширением языка C, и всё, что ты изучил в курсе C, тебе пригодится и в C++. Однако, какие-то моменты там теперь можно писать иначе &amp;ndash; я покажу какие.
 Если ты не знаешь C, то ты не сможешь изучить C++. Начни с языка C.

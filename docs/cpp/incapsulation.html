@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="ru">
+	<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5">
+	<meta name="description" content="IT простым языком">
+	<meta name="generator" content="HUGO">
+
+	<meta name="theme-color" content="#ffffff">
+
+    
+    <link rel="stylesheet" href="/sass/main.min.css">
+    <title> IT простым языком </title>
+</head>
+
+<body>
+	<div id="top"/>
+<header>
+    <div align="center">
+        +---------------------------+<br>
+        |.-------------------------.|<br>
+        ||&nbsp;<a href="/">kee_reel@blog</a>:~$ cd&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;||<br>
+        ||&nbsp;<a href="/c">c</a>&nbsp;&nbsp;<a href="/cpp">c++</a>&nbsp;&nbsp;<a href="/python">python</a>&nbsp;&nbsp;<a href="/linux">linux</a>&nbsp;&nbsp;&nbsp;||<br>
+        ||&nbsp;<a href="/opengl">opengl</a>&nbsp;&nbsp;<a href="/sql">sql</a>&nbsp;&nbsp;<a href="/network">networks</a>&nbsp;&nbsp;&nbsp;||<br>
+        ||&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;||<br>
+        ||&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/about">обо_мне</a>&nbsp;||<br>
+        |.-------------------------.|<br>
+        +-::---------------------::-+<br>
+        .---------------------------.<br>
+        &nbsp;//&nbsp;/o<a href="/links">o</a>oooooooooooooooooooo\\&nbsp;\\&nbsp;<br>
+        &nbsp;//&nbsp;/oooooooooooooooooooooooo\\&nbsp;\\&nbsp;<br>
+        //-------------------------------\\<br>
+        \\-------------------------------//<br>
+    </div>
+    <hr>
+</header>
+
+		
+	<div id="wrapper">
+		<div class="container">
+			<section id="main_content">
+    
+    
+        <div style="display: flex; justify-content: space-between;">
+            
+                <a href="https://kee-reel.com/cpp/constructors.html">◀ Конструкторы, оператор присваивания и деструктор</a>
+            
+            
+                <a href="https://kee-reel.com/cpp/inheritance.html">Наследование классов ▶</a>
+            
+        </div>
+        <hr>
+    
+    <h1>C&#43;&#43;. Инкапсуляция</h1>
+    
+    
+        <h3>Время чтения: 12 мин</h3>
+    
+    <blockquote>
+<p>Я буду основываться на коде, приведённом в основной <a href="../classes">статье</a> про классы.</p>
+</blockquote>
+<p><strong>Инкапсуляция</strong> &ndash; позволяет скрыть детали реализации.</p>
+<p>Ты когда-нибудь пробовал разобрать свой телефон или ноутбук? Это очень сложный процесс, который как-будто специально сделан максимально трудоёмким для пользователя. Зачем это нужно его создателям?</p>
+<p><img src="/assets/images/laptop-repair.png" alt="Разбор ноутбука"></p>
+<p>Если бы это было очень просто, то ты бы мог залезть &ldquo;просто посмотреть&rdquo; и случайно что-то сломать в этом сложном устройстве.</p>
+<p>Так вот на программирование это переносится идеально. Только вместо устройства здесь твои классы, а вместо пользователя другие разработчики.</p>
+<p>Если ты не затруднишь доступ к чувствительным местам своих классов, то есть хорошая вероятность, что другой разработчик чего-то в нём не поймёт и сломает всё к чертям :)</p>
+<p>В рамках этой статьи я рассмотрю инкапсуляцию &ndash; способ сокрытия переменных и методов от шаловливых ручек разработчиков.</p>
+<h1 id="проблема-доступа-ко-внутренним-переменным">Проблема доступа ко внутренним переменным</h1>
+<p>Напомню то, как я объявлял класс до этого:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">Coffee</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl"><span class="k">public</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">	<span class="n">Coffee</span><span class="p">(</span><span class="k">const</span> <span class="kt">char</span> <span class="o">*</span><span class="n">type</span><span class="p">,</span> <span class="kt">int</span> <span class="n">temperature</span><span class="p">,</span> <span class="kt">int</span> <span class="n">volume</span><span class="p">)</span> <span class="p">{...}</span>
+</span></span><span class="line"><span class="cl">	<span class="o">~</span><span class="n">Coffee</span><span class="p">()</span> <span class="p">{...}</span>
+</span></span><span class="line"><span class="cl">	<span class="kt">void</span> <span class="nf">drink</span><span class="p">(</span><span class="kt">int</span> <span class="n">ml_to_drink</span><span class="p">)</span> <span class="p">{...}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="kt">char</span> <span class="o">*</span><span class="n">m_type</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="kt">int</span> <span class="n">m_temperature</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="kt">int</span> <span class="n">m_volume</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span></code></pre></div><p>Если я создам объект этого класса, то я смогу вызвать любой метод и обратиться к любому полю:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="n">Coffee</span> <span class="n">public_coffee</span><span class="p">(</span><span class="s">&#34;latte&#34;</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">100</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="n">public_coffee</span><span class="p">.</span><span class="n">drink</span><span class="p">(</span><span class="mi">100</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="n">public_coffee</span><span class="p">.</span><span class="n">m_type</span> <span class="o">=</span> <span class="s">&#34;random_shit&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="n">public_coffee</span><span class="p">.</span><span class="n">m_temperature</span> <span class="o">=</span> <span class="o">-</span><span class="mi">666</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="n">public_coffee</span><span class="p">.</span><span class="n">m_volume</span> <span class="o">=</span> <span class="o">-</span><span class="mi">100</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>В этом примере всё, кроме создания класса и вызова метода <code>drink()</code> ломает поведение программы. Да, ты можешь сказать, что это очень странные действия, и так никто не будет делать. А что если я приведу такую ситуацию:</p>
+<ul>
+<li>На работе, при решении какой-то задачи, ты написал класс Coffee, но не защитил внутренние поля</li>
+<li>Какого-то другого программиста попросили решить задачу с помощью твоего класса Coffee</li>
+<li>Он должен:
+<ul>
+<li>Создать объект</li>
+<li>Считать с клавиатуры число</li>
+<li>&ldquo;Выпить&rdquo; считанный объём кофе</li>
+</ul>
+</li>
+</ul>
+<p>Вот как он это сделал:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="n">Coffee</span> <span class="n">public_coffee</span><span class="p">(</span><span class="s">&#34;latte&#34;</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">100</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="kt">int</span> <span class="n">ml_to_drink</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="n">std</span><span class="o">::</span><span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">ml_to_drink</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="n">public_coffee</span><span class="p">.</span><span class="n">m_volume</span> <span class="o">-=</span> <span class="n">ml_to_drink</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>Уже видишь проблему? Из-за того, что он не воспользовался методом <code>drink()</code>, вполне возможна ситуация, что <code>m_volume</code> уйдёт в отрицательные значения.</p>
+<h1 id="спецификаторы-доступа">Спецификаторы доступа</h1>
+<p>Скорее всего ты уже давно заметил, что в объявлении класса написан какой-то <code>public</code> &ndash; что это значит?</p>
+<p><code>public</code> это спецификатор доступа. Спецификатор доступа определяет, кто может обращаться к указанным полям и методам.</p>
+<p>В С++ существует три спецификатора доступа:</p>
+<ul>
+<li>public &ndash; к полям и методам объекта можно обращаться откуда угодно</li>
+<li>private &ndash; к полям и методам объекта можно обращаться только внутри методов класса</li>
+<li>protected &ndash; к полям и методам объекта можно обращаться внутри методов класса и классов-наследников</li>
+</ul>
+<p><code>protected</code> мы разберём в статье про наследование, а пока давай сфокусируемся на <code>public</code> и <code>private</code>.</p>
+<p>Вернёмся к проблеме, которую создал другой программист:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="n">Coffee</span> <span class="n">public_coffee</span><span class="p">(</span><span class="s">&#34;latte&#34;</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">100</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="kt">int</span> <span class="n">ml_to_drink</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="n">std</span><span class="o">::</span><span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">ml_to_drink</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="n">public_coffee</span><span class="p">.</span><span class="n">m_volume</span> <span class="o">-=</span> <span class="n">ml_to_drink</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>Сейчас, поле <code>m_volume</code> у нас <code>public</code>, но нам ничего не мешает сделать его <code>private</code>:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">Coffee</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl"><span class="k">public</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">	<span class="n">Coffee</span><span class="p">(</span><span class="k">const</span> <span class="kt">char</span> <span class="o">*</span><span class="n">type</span><span class="p">,</span> <span class="kt">int</span> <span class="n">temperature</span><span class="p">,</span> <span class="kt">int</span> <span class="n">volume</span><span class="p">)</span> <span class="p">{...}</span> <span class="c1">// всё ещё public
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="o">~</span><span class="n">Coffee</span><span class="p">()</span> <span class="p">{...}</span> <span class="c1">// всё ещё public
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="kt">void</span> <span class="nf">drink</span><span class="p">(</span><span class="kt">int</span> <span class="n">ml_to_drink</span><span class="p">)</span> <span class="p">{...}</span> <span class="c1">// всё ещё public
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">private</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">	<span class="kt">char</span> <span class="o">*</span><span class="n">m_type</span><span class="p">;</span> <span class="c1">// теперь private
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="kt">int</span> <span class="n">m_temperature</span><span class="p">;</span> <span class="c1">// теперь private
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="kt">int</span> <span class="n">m_volume</span><span class="p">;</span> <span class="c1">// теперь private
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">};</span>
+</span></span></code></pre></div><p>После занесения полей под <code>private</code>, при попытке написать такой код, другой программист поймает ошибку компиляции:</p>
+<pre tabindex="0"><code>main.cpp: In function ‘int main()’:
+main.cpp:52:23: error: ‘int Coffee::m_volume’ is private within this context
+52 |		 public_coffee.m_volume -= ml_to_drink;
+   |					   ^~~~~~~~
+main.cpp:45:13: note: declared private here
+45 |		 int m_volume;
+   |			 ^~~~~~~~
+</code></pre><p>Теперь, мы не оставили ему выбора, кроме как нормально изменить объём, вызвав метод <code>drink</code>:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="n">Coffee</span> <span class="n">public_coffee</span><span class="p">(</span><span class="s">&#34;latte&#34;</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">100</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="kt">int</span> <span class="n">ml_to_drink</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="n">std</span><span class="o">::</span><span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">ml_to_drink</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="n">public_coffee</span><span class="p">.</span><span class="n">drink</span><span class="p">(</span><span class="n">ml_to_drink</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><blockquote>
+<p>Если ты всё ещё сомневаешься, что кто-то будет делать глупые вещи, то представь, что у этого программиста выдалась бессонная ночь, у него проблемы в семье и сегодня дедлайн &ndash; ему лишь бы сделать. Всякое бывает в жизни, так что лучше перестраховаться.</p>
+</blockquote>
+<h1 id="вызов-метода-из-другого-метода">Вызов метода из другого метода</h1>
+<p>Иногда, методы по своей функциональности могут быть очень похожи &ndash; в этих случаях очень удобно вызывать метод из другого метода. И при этом не важно &ndash; <code>public</code> это или <code>private</code> &ndash; все поля и <strong>методы</strong> класса доступны внутри методов класса.</p>
+<p>Например, у меня есть метод <code>drink</code>, уменьшающий объём на произвольное количество миллилитров, и метод <code>sip</code> (маленький глоток), уменьшающий объём на 15 миллилитров.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">Coffee</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl"><span class="k">public</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">	<span class="n">Coffee</span><span class="p">(</span><span class="k">const</span> <span class="kt">char</span> <span class="o">*</span><span class="n">type</span><span class="p">,</span> <span class="kt">int</span> <span class="n">temperature</span><span class="p">,</span> <span class="kt">int</span> <span class="n">volume</span><span class="p">)</span> <span class="p">{...}</span>
+</span></span><span class="line"><span class="cl">	<span class="o">~</span><span class="n">Coffee</span><span class="p">()</span> <span class="p">{...}</span>
+</span></span><span class="line"><span class="cl">	<span class="kt">void</span> <span class="nf">drink</span><span class="p">(</span><span class="kt">int</span> <span class="n">ml_to_drink</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="c1">// Проверка, чтобы последний глоток кофе не вычел больше, чем осталось
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>		<span class="n">ml_to_drink</span> <span class="o">=</span> <span class="n">m_volume</span> <span class="o">&gt;</span> <span class="n">ml_to_drink</span> <span class="o">?</span> <span class="nl">ml_to_drink</span> <span class="p">:</span> <span class="n">m_volume</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">		<span class="n">m_volume</span> <span class="o">-=</span> <span class="n">ml_to_drink</span><span class="p">;;</span>
+</span></span><span class="line"><span class="cl">		<span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;Drank &#34;</span> <span class="o">&lt;&lt;</span> <span class="n">ml_to_drink</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;ml of &#34;</span> <span class="o">&lt;&lt;</span> <span class="n">m_type</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;.&#34;</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="kt">void</span> <span class="nf">sip</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">	<span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="c1">// Такая же проверка
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>		<span class="kt">int</span> <span class="n">ml_to_drink</span> <span class="o">=</span> <span class="n">m_volume</span> <span class="o">&gt;</span> <span class="mi">15</span> <span class="o">?</span> <span class="mi">15</span> <span class="o">:</span> <span class="n">m_volume</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">		<span class="n">m_volume</span> <span class="o">-=</span> <span class="n">ml_to_drink</span><span class="p">;;</span>
+</span></span><span class="line"><span class="cl">		<span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;Drank &#34;</span> <span class="o">&lt;&lt;</span> <span class="n">ml_to_drink</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;ml of &#34;</span> <span class="o">&lt;&lt;</span> <span class="n">m_type</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;.&#34;</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="k">private</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">	<span class="kt">char</span> <span class="o">*</span><span class="n">m_type</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="kt">int</span> <span class="n">m_temperature</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="kt">int</span> <span class="n">m_volume</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span></code></pre></div><p>В методе <code>sip</code> можно воспользоваться уже готовой функциональностью метода <code>drink</code>, чтобы не писать по 100 раз одно и то же:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">Coffe</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl"><span class="k">public</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">	<span class="n">Coffee</span><span class="p">(</span><span class="k">const</span> <span class="kt">char</span> <span class="o">*</span><span class="n">type</span><span class="p">,</span> <span class="kt">int</span> <span class="n">temperature</span><span class="p">,</span> <span class="kt">int</span> <span class="n">volume</span><span class="p">)</span> <span class="p">{...}</span>
+</span></span><span class="line"><span class="cl">	<span class="o">~</span><span class="n">Coffee</span><span class="p">()</span> <span class="p">{...}</span>
+</span></span><span class="line"><span class="cl">	<span class="kt">void</span> <span class="nf">drink</span><span class="p">(</span><span class="kt">int</span> <span class="n">ml_to_drink</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="c1">// Проверка, чтобы последний глоток кофе не вычел больше, чем осталось
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>		<span class="n">ml_to_drink</span> <span class="o">=</span> <span class="n">m_volume</span> <span class="o">&gt;</span> <span class="n">ml_to_drink</span> <span class="o">?</span> <span class="nl">ml_to_drink</span> <span class="p">:</span> <span class="n">m_volume</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">		<span class="n">m_volume</span> <span class="o">-=</span> <span class="n">ml_to_drink</span><span class="p">;;</span>
+</span></span><span class="line"><span class="cl">		<span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;Drank &#34;</span> <span class="o">&lt;&lt;</span> <span class="n">ml_to_drink</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;ml of &#34;</span> <span class="o">&lt;&lt;</span> <span class="n">m_type</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;.&#34;</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="kt">void</span> <span class="nf">sip</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">	<span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="n">drink</span><span class="p">(</span><span class="mi">15</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="k">private</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">	<span class="kt">char</span> <span class="o">*</span><span class="n">m_type</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="kt">int</span> <span class="n">m_temperature</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="kt">int</span> <span class="n">m_volume</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span></code></pre></div><p>Удобно, правда? *sip*</p>
+<h1 id="приватные-методы">Приватные методы</h1>
+<p>Иногда, в нескольких методах может дублироваться какой-то код &ndash; тогда его можно вынести в приватный метод.</p>
+<p>Например, у меня есть метод <code>drink</code>, уменьшающий объём, и метод <code>refill</code> (наполнить), увеличивающий объём.</p>
+<p>При этом, у меня добавится <strong>новое поле</strong> <code>m_max_volume</code>, которое ограничивает макисмальный объём кружки.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">Coffee</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl"><span class="k">public</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">	<span class="n">Coffee</span><span class="p">(</span><span class="k">const</span> <span class="kt">char</span> <span class="o">*</span><span class="n">type</span><span class="p">,</span> <span class="kt">int</span> <span class="n">temperature</span><span class="p">,</span> <span class="kt">int</span> <span class="n">volume</span><span class="p">,</span> <span class="kt">int</span> <span class="n">max_volume</span><span class="p">)</span> <span class="p">{...}</span>
+</span></span><span class="line"><span class="cl">	<span class="o">~</span><span class="n">Coffee</span><span class="p">()</span> <span class="p">{...}</span>
+</span></span><span class="line"><span class="cl">	<span class="kt">void</span> <span class="nf">drink</span><span class="p">(</span><span class="kt">int</span> <span class="n">ml_to_drink</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="c1">// Проверка, чтобы последний глоток кофе не вычел больше, чем осталось
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>		<span class="n">ml_to_drink</span> <span class="o">=</span> <span class="n">m_volume</span> <span class="o">&gt;</span> <span class="n">ml_to_drink</span> <span class="o">?</span> <span class="nl">ml_to_drink</span> <span class="p">:</span> <span class="n">m_volume</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">		<span class="n">m_volume</span> <span class="o">-=</span> <span class="n">ml_to_drink</span><span class="p">;;</span>
+</span></span><span class="line"><span class="cl">		<span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;Drank &#34;</span> <span class="o">&lt;&lt;</span> <span class="n">ml_to_drink</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;ml of &#34;</span> <span class="o">&lt;&lt;</span> <span class="n">m_type</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;.&#34;</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="kt">void</span> <span class="nf">refill</span><span class="p">(</span><span class="kt">int</span> <span class="n">ml_to_refill</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="c1">// Проверка, чтобы наполнение кружки не наполнило больше, чем возможно
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>		<span class="n">ml_to_refill</span> <span class="o">=</span> <span class="p">(</span><span class="n">m_max_volume</span> <span class="o">-</span> <span class="n">m_volume</span><span class="p">)</span> <span class="o">&gt;</span> <span class="n">ml_to_refill</span> <span class="o">?</span> <span class="nl">ml_to_refill</span> <span class="p">:</span> <span class="p">(</span><span class="n">m_max_volume</span> <span class="o">-</span> <span class="n">m_volume</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">		<span class="n">m_volume</span> <span class="o">+=</span> <span class="n">ml_to_refill</span><span class="p">;;</span>
+</span></span><span class="line"><span class="cl">		<span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;Refilled &#34;</span> <span class="o">&lt;&lt;</span> <span class="n">ml_to_refill</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;ml of &#34;</span> <span class="o">&lt;&lt;</span> <span class="n">m_type</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;.&#34;</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="k">private</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">	<span class="kt">char</span> <span class="o">*</span><span class="n">m_type</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="kt">int</span> <span class="n">m_temperature</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="kt">int</span> <span class="n">m_volume</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="kt">int</span> <span class="n">m_max_volume</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span></code></pre></div><p>Я бы мог вынести логику изменения объёма кофе в отдельный метод:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">Coffee</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl"><span class="k">public</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">	<span class="n">Coffee</span><span class="p">(</span><span class="k">const</span> <span class="kt">char</span> <span class="o">*</span><span class="n">type</span><span class="p">,</span> <span class="kt">int</span> <span class="n">temperature</span><span class="p">,</span> <span class="kt">int</span> <span class="n">volume</span><span class="p">,</span> <span class="kt">int</span> <span class="n">max_volume</span><span class="p">)</span> <span class="p">{...}</span>
+</span></span><span class="line"><span class="cl">	<span class="o">~</span><span class="n">Coffee</span><span class="p">()</span> <span class="p">{...}</span>
+</span></span><span class="line"><span class="cl">	<span class="kt">void</span> <span class="nf">drink</span><span class="p">(</span><span class="kt">int</span> <span class="n">ml_to_drink</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="n">change_volume</span><span class="p">(</span><span class="o">-</span><span class="n">ml_to_drink</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="kt">void</span> <span class="nf">refill</span><span class="p">(</span><span class="kt">int</span> <span class="n">ml_to_refill</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="n">change_volume</span><span class="p">(</span><span class="n">ml_to_refill</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="k">private</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">	<span class="kt">void</span> <span class="n">change_volume</span><span class="p">(</span><span class="kt">int</span> <span class="n">change_ml</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="n">m_volume</span> <span class="o">+=</span> <span class="n">change_ml</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">		<span class="k">if</span><span class="p">(</span><span class="n">m_volume</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">			<span class="n">m_volume</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">		<span class="k">else</span> <span class="nf">if</span><span class="p">(</span><span class="n">m_volume</span> <span class="o">&gt;</span> <span class="n">m_max_volume</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">			<span class="n">m_volume</span> <span class="o">=</span> <span class="n">m_max_volume</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">		<span class="k">else</span>
+</span></span><span class="line"><span class="cl">			<span class="n">m_volume</span> <span class="o">+=</span> <span class="n">ml_to_drink</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">		<span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="p">(</span><span class="n">change_ml</span> <span class="o">&lt;</span> <span class="mi">0</span> <span class="o">?</span> <span class="s">&#34;Drank&#34;</span> <span class="o">:</span> <span class="s">&#34;Refilled&#34;</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="n">change_ml</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;ml of &#34;</span> <span class="o">&lt;&lt;</span> <span class="n">m_type</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;.&#34;</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="k">private</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">	<span class="kt">char</span> <span class="o">*</span><span class="n">m_type</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="kt">int</span> <span class="n">m_temperature</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="kt">int</span> <span class="n">m_volume</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="kt">int</span> <span class="n">m_max_volume</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span></code></pre></div><p>Таким образом, я сделал приватный метод, который позволит другим методам удобно и безопасно изменять переменную <code>m_volume</code>.</p>
+<p>На будущее запомни &ndash; если один из методов используется только твоими методами, то делай его приватным. Это облегчит процесс изучения твоего класса другими программистами &ndash; обычно они вчитываются только в публичные методы.</p>
+<p>И последнее &ndash; я написал <code>private</code> два раза, хотя достаточно только первого, перед методом <code>change_volume</code>. Я это обычно делаю для того, чтобы визуально разделить объявления методов и полей. Если тебе такое не нравится, то можешь писать спецификатор доступа только один раз.</p>
+<h1 id="структуры-и-спецификатор-доступа-по-умолчанию">Структуры и спецификатор доступа по умолчанию</h1>
+<p>Помнишь, в языке Си были структуры? Вот так с ними можно было работать:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span><span class="k">struct</span> <span class="n">Person</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="kt">int</span> <span class="n">age</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="kt">char</span> <span class="n">name</span><span class="p">[</span><span class="mi">50</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">	<span class="kt">char</span> <span class="n">last_name</span><span class="p">[</span><span class="mi">50</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="o">*</span><span class="n">argv</span><span class="p">[])</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="k">struct</span> <span class="n">Person</span> <span class="n">p</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="n">scanf</span><span class="p">(</span><span class="s">&#34;%d%s%s&#34;</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">p</span><span class="p">.</span><span class="n">age</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">p</span><span class="p">.</span><span class="n">name</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">p</span><span class="p">.</span><span class="n">last_name</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="c1">// 10 ivan ivanovich
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="n">p</span><span class="p">.</span><span class="n">age</span> <span class="o">+=</span> <span class="mi">10</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="n">strcat</span><span class="p">(</span><span class="n">p</span><span class="p">.</span><span class="n">name</span><span class="p">,</span> <span class="s">&#34;XXX&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="n">strcat</span><span class="p">(</span><span class="n">p</span><span class="p">.</span><span class="n">last_name</span><span class="p">,</span> <span class="s">&#34;YYY&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="n">printf</span><span class="p">(</span><span class="s">&#34;%d %s %s</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">p</span><span class="p">.</span><span class="n">age</span><span class="p">,</span> <span class="n">p</span><span class="p">.</span><span class="n">name</span><span class="p">,</span> <span class="n">p</span><span class="p">.</span><span class="n">last_name</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="c1">// 20 ivanXXX ivanovichYYY
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span> 
+</span></span></code></pre></div><p>Ничего не напоминает? ;)</p>
+<p>Да, структуры это классы без методов! Или всё-таки с методами?</p>
+<p>Давай перейдём на C++ и попробуем добавить метод в структуру:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;cstring&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span><span class="k">struct</span> <span class="nc">Person</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="kt">int</span> <span class="n">age</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="kt">char</span> <span class="n">name</span><span class="p">[</span><span class="mi">50</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">	<span class="kt">char</span> <span class="n">last_name</span><span class="p">[</span><span class="mi">50</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">	<span class="kt">void</span> <span class="nf">read</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">	<span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="n">std</span><span class="o">::</span><span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">age</span> <span class="o">&gt;&gt;</span> <span class="n">name</span> <span class="o">&gt;&gt;</span> <span class="n">last_name</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="kt">void</span> <span class="nf">print</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">	<span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">age</span> <span class="o">&lt;&lt;</span> <span class="n">name</span> <span class="o">&lt;&lt;</span> <span class="n">last_name</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="o">*</span><span class="n">argv</span><span class="p">[])</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="n">Person</span> <span class="n">p</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="n">p</span><span class="p">.</span><span class="n">read</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">	<span class="c1">// 10 ivan ivanovich
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="n">p</span><span class="p">.</span><span class="n">age</span> <span class="o">+=</span> <span class="mi">10</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="n">strcat</span><span class="p">(</span><span class="n">p</span><span class="p">.</span><span class="n">name</span><span class="p">,</span> <span class="s">&#34;XXX&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="n">strcat</span><span class="p">(</span><span class="n">p</span><span class="p">.</span><span class="n">last_name</span><span class="p">,</span> <span class="s">&#34;YYY&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="n">p</span><span class="p">.</span><span class="n">print</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">	<span class="c1">// 20 ivanXXX ivanovichYYY
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span> 
+</span></span></code></pre></div><p>Сработало&hellip; А в чём же тогда разница???</p>
+<p>А в том, что в <code>struct</code> по умолчанию спецификатор доступа это <code>public</code>, а в <code>class</code> это <code>private</code>. Давай попробуем в коде выше заменить <code>struct</code> на <code>class</code>.</p>
+<p>При компиляции возникнет 5 ошибок &ndash; на каждое обращение к полю или методу объекта &ldquo;p&rdquo;. Одна из них:</p>
+<pre tabindex="0"><code>main.c: In function ‘int main(int, char**)’:
+main.c:16:11: error: ‘void Person::read()’ is private within this context
+   16 |	 p.read();
+	  |	 ~~~~~~^~
+main.c:7:10: note: declared private here
+	7 |	 void read()
+	  |		  ^~~~
+</code></pre><p>То есть, если мы пишем <code>class</code>, то компилятор сам вставляет <code>private</code> на первой строчке определения класса.</p>
+<p>Мораль такая &ndash; что <code>struct</code>, что <code>class</code> &ndash; в C++ ничем кроме спецификатора доступа не отличаются.</p>
+<p>Несмотря на всё это, <code>struct</code> обычно содержит только поля, и туда не добавляются методы.</p>
+<blockquote>
+<p>Я понимаю твоё замешательство, но <code>struct</code> так работает из-за того, что C++ поддерживает обратную совместимость с Си.</p>
+</blockquote>
+<h1 id="friend">friend</h1>
+<p>Иногда возникает необходимость закрыть доступ к полям/методам для всех <strong>кроме</strong> определённой функции или класса.</p>
+<p>Давай рассмотрим на примере &ndash; я хочу сделать функцию (не метод!), которая будет выводить информацию по всем полям класса Coffee:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">print_info</span><span class="p">(</span><span class="n">Coffee</span> <span class="o">&amp;</span><span class="n">cup</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="n">std</span><span class="o">::</span><span class="n">out</span> <span class="o">&lt;&lt;</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;Cup of &#34;</span> <span class="n">cup</span><span class="p">.</span><span class="n">m_type</span> <span class="o">&lt;&lt;</span> <span class="o">&lt;&lt;</span> <span class="s">&#34; coffee: volume (&#34;</span> <span class="o">&lt;&lt;</span> <span class="n">cup</span><span class="p">.</span><span class="n">m_volume</span> <span class="o">&lt;&lt;</span> 
+</span></span><span class="line"><span class="cl">		<span class="s">&#34;/&#34;</span> <span class="o">&lt;&lt;</span> <span class="n">cup</span><span class="p">.</span><span class="n">m_max_volume</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;)ml, temperature &#34;</span> <span class="o">&lt;&lt;</span> <span class="n">cup</span><span class="p">.</span><span class="n">m_temperature</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>Эта функция обращается к <code>private</code> полям класса, так что при компиляции вылезет куча ошибок такого вида:</p>
+<pre tabindex="0"><code>main.cpp: In function ‘void print_info(Coffee&amp;)’:
+main.cpp:17:35: error: ‘char* Coffee::m_type’ is private within this context
+17 |	 std::cout &lt;&lt; &#34;Cup of &#34; &lt;&lt; cup.m_type &lt;&lt; &#34; coffee: volume (&#34; &lt;&lt; cup.m_volume &lt;&lt;
+   |								   ^~~~~~
+</code></pre><p>Ну да, всё правильно &ndash; мы не можем обращаться к этим полям, потому что они <code>private</code>.</p>
+<p>Однако, если мы хотим дать <strong>функции print_info</strong> возможность обращаться к <code>private</code> (и <code>protected</code>) полям класса Coffe, то мы можем это сделать, добавив в определение класса такую строчку:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">print_info</span><span class="p">(</span><span class="n">Coffee</span> <span class="o">&amp;</span><span class="n">cup</span><span class="p">)</span> <span class="p">{...}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">Coffee</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl"><span class="k">public</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">	<span class="n">Coffee</span><span class="p">(</span><span class="k">const</span> <span class="kt">char</span> <span class="o">*</span><span class="n">type</span><span class="p">,</span> <span class="kt">int</span> <span class="n">temperature</span><span class="p">,</span> <span class="kt">int</span> <span class="n">volume</span><span class="p">,</span> <span class="kt">int</span> <span class="n">max_volume</span><span class="p">)</span> <span class="p">{...}</span>
+</span></span><span class="line"><span class="cl">	<span class="o">~</span><span class="n">Coffee</span><span class="p">()</span> <span class="p">{...}</span>
+</span></span><span class="line"><span class="cl">	<span class="kt">void</span> <span class="nf">drink</span><span class="p">(</span><span class="kt">int</span> <span class="n">ml_to_drink</span><span class="p">)</span> <span class="p">{...}</span>
+</span></span><span class="line"><span class="cl">	<span class="kt">void</span> <span class="nf">refill</span><span class="p">(</span><span class="kt">int</span> <span class="n">ml_to_refill</span><span class="p">)</span> <span class="p">{...}</span>
+</span></span><span class="line"><span class="cl"><span class="k">private</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">	<span class="kt">void</span> <span class="n">change_volume</span><span class="p">(</span><span class="kt">int</span> <span class="n">change_ml</span><span class="p">)</span> <span class="p">{...}</span>
+</span></span><span class="line"><span class="cl"><span class="k">private</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">	<span class="kt">char</span> <span class="o">*</span><span class="n">m_type</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="kt">int</span> <span class="n">m_temperature</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="kt">int</span> <span class="n">m_volume</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="kt">int</span> <span class="n">m_max_volume</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="k">friend</span> <span class="kt">void</span> <span class="nf">print_info</span><span class="p">(</span><span class="n">Coffee</span> <span class="o">&amp;</span><span class="n">cup</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span></code></pre></div><p>Теперь код скомпилируется без ошибок, и можно будет попробовать вызвать функцию <code>print_info</code>:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="o">*</span><span class="n">argv</span><span class="p">[])</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="n">Coffee</span> <span class="n">cup</span><span class="p">(</span><span class="s">&#34;americano&#34;</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">75</span><span class="p">,</span> <span class="mi">100</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="n">print_info</span><span class="p">(</span><span class="n">cup</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="c1">// Cup of americano coffee: volume (75/100)ml, temperature 50
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span> 
+</span></span></code></pre></div><p>На самом деле, такую функцию лучше было бы сделать методом, но есть пример функции, которую можно сделать только через <code>friend</code> &ndash; функция для потокового ввода/вывода.</p>
+<h3 id="переопределение-функции-потокового-вводавывода">Переопределение функции потокового ввода/вывода</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="n">std</span><span class="o">::</span><span class="n">ostream</span><span class="o">&amp;</span> <span class="k">operator</span><span class="o">&lt;&lt;</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">ostream</span> <span class="o">&amp;</span><span class="n">out</span><span class="p">,</span> <span class="n">Coffee</span> <span class="o">&amp;</span><span class="n">cup</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="n">out</span> <span class="o">&lt;&lt;</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;Cup of &#34;</span> <span class="n">cup</span><span class="p">.</span><span class="n">m_type</span> <span class="o">&lt;&lt;</span> <span class="o">&lt;&lt;</span> <span class="s">&#34; coffee: volume (&#34;</span> <span class="o">&lt;&lt;</span> <span class="n">cup</span><span class="p">.</span><span class="n">m_volume</span> <span class="o">&lt;&lt;</span> 
+</span></span><span class="line"><span class="cl">		<span class="s">&#34;/&#34;</span> <span class="o">&lt;&lt;</span> <span class="n">cup</span><span class="p">.</span><span class="n">m_max_volume</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;)ml, temperature &#34;</span> <span class="o">&lt;&lt;</span> <span class="n">cup</span><span class="p">.</span><span class="n">m_temperature</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="k">return</span> <span class="n">out</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">std</span><span class="o">::</span><span class="n">istream</span><span class="o">&amp;</span> <span class="k">operator</span><span class="o">&gt;&gt;</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">istream</span> <span class="o">&amp;</span><span class="n">in</span><span class="p">,</span> <span class="n">Coffee</span> <span class="o">&amp;</span><span class="n">cup</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="n">in</span> <span class="o">&gt;&gt;</span> <span class="n">cup</span><span class="p">.</span><span class="n">m_volume</span> <span class="o">&gt;&gt;</span> <span class="n">cup</span><span class="p">.</span><span class="n">m_max_volume</span> <span class="o">&gt;&gt;</span> <span class="n">cup</span><span class="p">.</span><span class="n">m_temperature</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="k">return</span> <span class="n">in</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>Ээээ&hellip; Что это за заклинание?</p>
+<p>Давай разберёмся:</p>
+<ul>
+<li><code>std::ostream</code> &ndash; это класс, который занимается организацией потокового вывода, объект этого класса ты уже встречал &ndash; это <code>std::cout</code></li>
+<li><code>std::istream</code> &ndash; это класс, который занимается организацией потокового ввода, и его ты встречал &ndash; это <code>std::cin</code></li>
+<li><code>operator&lt;&lt;</code> &ndash; это функция, которая вызывается не через имя (как, например, <code>print_info</code>), а через использование оператора <code>&lt;&lt;</code> (дальше увидим)</li>
+<li><code>operator&gt;&gt;</code> &ndash; а эта функция вызывается через использование оператора <code>&gt;&gt;</code></li>
+<li>У обоих функций по два параметра &ndash; объект класса, который работает с потовым вводом/выводом, и объект класса Coffee</li>
+<li>Они возвращают сами себя, чтобы можно было объединять вызов таких функций в цепочки, каждый раз заново вызывая эту же функцию, но для нового значения: <code>std::cout &lt;&lt; a &lt;&lt; b &lt;&lt; c;</code></li>
+</ul>
+<blockquote>
+<p>Да, операторы могут быть не только методами класса, но и отдельными функциями.</p>
+</blockquote>
+<p>Вот как эти функции будут использоваться:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="o">*</span><span class="n">argv</span><span class="p">[])</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="n">Coffee</span> <span class="n">cup</span><span class="p">(</span><span class="s">&#34;americano&#34;</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">75</span><span class="p">,</span> <span class="mi">100</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="c1">// ! Видишь, функция вызывается через оператор &lt;&lt;
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">cup</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="c1">// Cup of americano coffee: volume (75/100)ml, temperature 50
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="c1">// ! Ввожу 10 20 30
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="n">std</span><span class="o">::</span><span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">cup</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">cup</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="c1">// Cup of americano coffee: volume (10/20)ml, temperature 30
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span> 
+</span></span></code></pre></div><blockquote>
+<p>Раскрою странное знание: я мог бы вызвать функции не через оператор, а через имя функции вот так: <code>operator&gt;&gt;(std::cin, cup)</code> и <code>operator&lt;&lt;(std::cout, cup)</code>, но так никто обычно не делает.</p>
+</blockquote>
+<p>Смотри-ка, теперь вводить и выводить информацию стало проще! Но мы забыли про главное &ndash; сказать что они <code>friend</code> для Coffee:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="n">std</span><span class="o">::</span><span class="n">ostream</span><span class="o">&amp;</span> <span class="k">operator</span><span class="o">&lt;&lt;</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">ostream</span> <span class="o">&amp;</span><span class="n">out</span><span class="p">,</span> <span class="n">Coffee</span> <span class="o">&amp;</span><span class="n">cup</span><span class="p">)</span> <span class="p">{...}</span>
+</span></span><span class="line"><span class="cl"><span class="n">std</span><span class="o">::</span><span class="n">istream</span><span class="o">&amp;</span> <span class="k">operator</span><span class="o">&gt;&gt;</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">istream</span> <span class="o">&amp;</span><span class="n">in</span><span class="p">,</span> <span class="n">Coffee</span> <span class="o">&amp;</span><span class="n">cup</span><span class="p">)</span> <span class="p">{...}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">Coffee</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl"><span class="k">public</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">	<span class="n">Coffee</span><span class="p">(</span><span class="k">const</span> <span class="kt">char</span> <span class="o">*</span><span class="n">type</span><span class="p">,</span> <span class="kt">int</span> <span class="n">temperature</span><span class="p">,</span> <span class="kt">int</span> <span class="n">volume</span><span class="p">,</span> <span class="kt">int</span> <span class="n">max_volume</span><span class="p">)</span> <span class="p">{...}</span>
+</span></span><span class="line"><span class="cl">	<span class="o">~</span><span class="n">Coffee</span><span class="p">()</span> <span class="p">{...}</span>
+</span></span><span class="line"><span class="cl">	<span class="kt">void</span> <span class="nf">drink</span><span class="p">(</span><span class="kt">int</span> <span class="n">ml_to_drink</span><span class="p">)</span> <span class="p">{...}</span>
+</span></span><span class="line"><span class="cl">	<span class="kt">void</span> <span class="nf">refill</span><span class="p">(</span><span class="kt">int</span> <span class="n">ml_to_refill</span><span class="p">)</span> <span class="p">{...}</span>
+</span></span><span class="line"><span class="cl"><span class="k">private</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">	<span class="kt">void</span> <span class="n">change_volume</span><span class="p">(</span><span class="kt">int</span> <span class="n">change_ml</span><span class="p">)</span> <span class="p">{...}</span>
+</span></span><span class="line"><span class="cl"><span class="k">private</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">	<span class="kt">char</span> <span class="o">*</span><span class="n">m_type</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="kt">int</span> <span class="n">m_temperature</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="kt">int</span> <span class="n">m_volume</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="kt">int</span> <span class="n">m_max_volume</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="k">friend</span> <span class="n">std</span><span class="o">::</span><span class="n">ostream</span><span class="o">&amp;</span> <span class="k">operator</span><span class="o">&lt;&lt;</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">ostream</span> <span class="o">&amp;</span><span class="n">out</span><span class="p">,</span> <span class="n">Coffee</span> <span class="o">&amp;</span><span class="n">cup</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="k">friend</span> <span class="n">std</span><span class="o">::</span><span class="n">istream</span><span class="o">&amp;</span> <span class="k">operator</span><span class="o">&gt;&gt;</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">istream</span> <span class="o">&amp;</span><span class="n">in</span><span class="p">,</span> <span class="n">Coffee</span> <span class="o">&amp;</span><span class="n">cup</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span></code></pre></div><p>Вот, так то лучше!</p>
+<h3 id="friend-class">friend class</h3>
+<p>И ещё &ndash; я не буду рассматривать во всех красках, но ещё мы можем разрешать доступ к <code>private</code> полям/методам своего класса другим классам:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">Vending</span> <span class="p">{...}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">Coffee</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl"><span class="k">public</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">	<span class="n">Coffee</span><span class="p">(</span><span class="k">const</span> <span class="kt">char</span> <span class="o">*</span><span class="n">type</span><span class="p">,</span> <span class="kt">int</span> <span class="n">temperature</span><span class="p">,</span> <span class="kt">int</span> <span class="n">volume</span><span class="p">,</span> <span class="kt">int</span> <span class="n">max_volume</span><span class="p">)</span> <span class="p">{...}</span>
+</span></span><span class="line"><span class="cl">	<span class="o">~</span><span class="n">Coffee</span><span class="p">()</span> <span class="p">{...}</span>
+</span></span><span class="line"><span class="cl">	<span class="kt">void</span> <span class="nf">drink</span><span class="p">(</span><span class="kt">int</span> <span class="n">ml_to_drink</span><span class="p">)</span> <span class="p">{...}</span>
+</span></span><span class="line"><span class="cl">	<span class="kt">void</span> <span class="nf">refill</span><span class="p">(</span><span class="kt">int</span> <span class="n">ml_to_refill</span><span class="p">)</span> <span class="p">{...}</span>
+</span></span><span class="line"><span class="cl"><span class="k">private</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">	<span class="kt">void</span> <span class="n">change_volume</span><span class="p">(</span><span class="kt">int</span> <span class="n">change_ml</span><span class="p">)</span> <span class="p">{...}</span>
+</span></span><span class="line"><span class="cl"><span class="k">private</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">	<span class="kt">char</span> <span class="o">*</span><span class="n">m_type</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="kt">int</span> <span class="n">m_temperature</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="kt">int</span> <span class="n">m_volume</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="kt">int</span> <span class="n">m_max_volume</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="k">friend</span> <span class="k">class</span> <span class="nc">Vending</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span></code></pre></div><p>Класс <code>Vending</code> сможет обратиться к любым полям/методам класса <code>Coffee</code>. Это используется в исключительных случаях, о которых мы возможно поговорим в будущем &ndash; сейчас просто отложи это в памяти.</p>
+<h1 id="заключение">Заключение</h1>
+<p>Итого, мы изучили:</p>
+<ul>
+<li>Инкапсуляция (сокрытие деталей реализации)</li>
+<li>Спецификаторы доступа
+<ul>
+<li>public &ndash; все могут</li>
+<li>private &ndash; только сам класс</li>
+<li>protected &ndash; только сам класс и его наследники (узнаем в статье про наследование)</li>
+</ul>
+</li>
+<li>Вызов метода из метода &ndash; обобщай и властвуй</li>
+<li>Приватный метод &ndash; выносим общий код во внутренний метод</li>
+<li>Спецификатор доступа по умолчанию &ndash; <code>struct</code>-<code>public</code>, <code>class</code>-<code>private</code></li>
+<li>friend &ndash; разрешаем доступ функции/классу к приватным полям/классам своего класса</li>
+<li>Операторы потокового ввода/вывода &ndash; удобный способ вводить/выводить информацию о классе</li>
+</ul>
+<p>Если что &ndash; пиши, я помогу и постараюсь объяснить лучше.</p>
+
+    <hr>
+    <div align="center">
+        <a href="https://kee-reel.com/cpp/incapsulation.html#top">▲ В начало ▲</a>
+    </div>
+    
+        <hr>
+        <div style="display: flex; justify-content: space-between;">
+            
+                <a href="https://kee-reel.com/cpp/constructors.html">◀ Конструкторы, оператор присваивания и деструктор</a>
+            
+            
+                <a href="https://kee-reel.com/cpp/inheritance.html">Наследование классов ▶</a>
+            
+        </div>
+    
+
+			</section>
+		</div>
+	</div>
+
+    <footer>
+    <hr>
+    <div align="center">
+        Home server: Raspberry Pi 4<br>
+        Temperature: 41<br>
+Uptime: 1 hour, 43 minutes
+    </div>
+</footer>
+
+</body>
+</html>

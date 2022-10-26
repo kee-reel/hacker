@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="ru">
+	<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5">
+	<meta name="description" content="IT простым языком">
+	<meta name="generator" content="HUGO">
+
+	<meta name="theme-color" content="#ffffff">
+
+    
+    <link rel="stylesheet" href="/sass/main.min.css">
+    <title> IT простым языком </title>
+</head>
+
+<body>
+	<div id="top"/>
+<header>
+    <div align="center">
+        +---------------------------+<br>
+        |.-------------------------.|<br>
+        ||&nbsp;<a href="/">kee_reel@blog</a>:~$ cd&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;||<br>
+        ||&nbsp;<a href="/c">c</a>&nbsp;&nbsp;<a href="/cpp">c++</a>&nbsp;&nbsp;<a href="/python">python</a>&nbsp;&nbsp;<a href="/linux">linux</a>&nbsp;&nbsp;&nbsp;||<br>
+        ||&nbsp;<a href="/opengl">opengl</a>&nbsp;&nbsp;<a href="/sql">sql</a>&nbsp;&nbsp;<a href="/network">networks</a>&nbsp;&nbsp;&nbsp;||<br>
+        ||&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;||<br>
+        ||&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/about">обо_мне</a>&nbsp;||<br>
+        |.-------------------------.|<br>
+        +-::---------------------::-+<br>
+        .---------------------------.<br>
+        &nbsp;//&nbsp;/o<a href="/links">o</a>oooooooooooooooooooo\\&nbsp;\\&nbsp;<br>
+        &nbsp;//&nbsp;/oooooooooooooooooooooooo\\&nbsp;\\&nbsp;<br>
+        //-------------------------------\\<br>
+        \\-------------------------------//<br>
+    </div>
+    <hr>
+</header>
+
+		
+	<div id="wrapper">
+		<div class="container">
+			<section id="main_content">
+    
+    
+        <div style="display: flex; justify-content: space-between;">
+            
+                <a href="https://kee-reel.com/c/variables.html">◀ Переменные</a>
+            
+            
+                <a href="https://kee-reel.com/c/conditions.html">Условия ▶</a>
+            
+        </div>
+        <hr>
+    
+    <h1>C. Операторы</h1>
+    
+    
+        <h3>Время чтения: 6 мин</h3>
+    
+    <p>Оператор &ndash; это штука, с помощью которой можно совершить операцию (сложение, вычитание и т.д.)</p>
+<p>Существует два вида операторов:</p>
+<ul>
+<li>Унарные &ndash; для операций над одной переменной</li>
+<li>Бинарные &ndash; для операций над двумя переменными</li>
+</ul>
+<blockquote>
+<p>Есть ещё тернарный (с тремя переменными), но про него мы вспомним, когда будем говорить про условия (if, else).</p>
+</blockquote>
+<h2 id="бинарные-операторы">Бинарные операторы</h2>
+<p>Начнём с бинарных, потому что они роднее и понятнее:</p>
+<ul>
+<li>Сложение: +</li>
+<li>Вычитание: -</li>
+<li>Умножение: *</li>
+<li>Деление: /</li>
+<li>Остаток от деления: %</li>
+</ul>
+<p>Необходимо учитывать, что у операторов разные приоритеты применения &ndash; например, классический пример:</p>
+<pre tabindex="0"><code>2 + 2 * 2 = ?
+</code></pre><p>Если твой ответ 8, то ты забыл что умножение выполняется перед сложением. Здесь всё точно так же &ndash; сначала слева направо выполняются * / %, а затем так же выполняются + -.</p>
+<p>Однако, как и в математике ты можешь ставить скобки, чтобы изменять порядок выполнения операций:</p>
+<pre tabindex="0"><code>(2 + 2) * 2 = 8
+</code></pre><p>Операторы можно использовать разными способами:</p>
+<ul>
+<li>С целочисленными значениями</li>
+<li>С вещественными значениями</li>
+<li>Со смешанными значениями</li>
+<li>С приведением типа</li>
+<li>С операцией присваивания</li>
+<li>Для злодеев</li>
+</ul>
+<p>Да, в языке C многовато тонкостей с операторами, но это всё само запомнится со временем &ndash; просто попробуй уловить основные моменты.</p>
+<h3 id="с-целочисленными-значениями">С целочисленными значениями</h3>
+<p>Вот примеры использования операций с целочисленными значениями:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="kt">int</span> <span class="n">a</span> <span class="o">=</span> <span class="mi">15</span><span class="p">,</span> <span class="n">b</span> <span class="o">=</span> <span class="mi">8</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="n">result</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">result</span> <span class="o">=</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span><span class="p">;</span> <span class="c1">// Присвоится 23
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">result</span> <span class="o">=</span> <span class="n">a</span> <span class="o">-</span> <span class="n">b</span><span class="p">;</span> <span class="c1">// Присвоится 7
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">result</span> <span class="o">=</span> <span class="n">a</span> <span class="o">*</span> <span class="n">b</span><span class="p">;</span> <span class="c1">// Присвоится 120
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">result</span> <span class="o">=</span> <span class="n">a</span> <span class="o">/</span> <span class="n">b</span><span class="p">;</span> <span class="c1">// Присвоится 1 потому что получается 1.875, а так как это целое число (int) -- дробная часть просто отбросится
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">result</span> <span class="o">=</span> <span class="n">a</span> <span class="o">%</span> <span class="n">b</span><span class="p">;</span> <span class="c1">// Присвоится 7 потому что при делении 15 на 8 получается 1 целая часть, и 7 в остатке
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">result</span> <span class="o">=</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span> <span class="o">*</span> <span class="mi">2</span><span class="p">;</span> <span class="c1">// Присвоится 31
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">result</span> <span class="o">=</span> <span class="p">(</span><span class="n">a</span> <span class="o">+</span> <span class="n">b</span><span class="p">)</span> <span class="o">*</span> <span class="mi">2</span><span class="p">;</span> <span class="c1">// Присвоится 46
+</span></span></span></code></pre></div><h3 id="с-вещественными-значениями">С вещественными значениями</h3>
+<p>Вот примеры использования операций с вещественными значениями:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="kt">float</span> <span class="n">a</span> <span class="o">=</span> <span class="mf">7.</span><span class="p">,</span> <span class="n">b</span> <span class="o">=</span> <span class="mf">4.4</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="kt">float</span> <span class="n">result</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">result</span> <span class="o">=</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span><span class="p">;</span> <span class="c1">// Присвоится 11.4
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">result</span> <span class="o">=</span> <span class="n">a</span> <span class="o">-</span> <span class="n">b</span><span class="p">;</span> <span class="c1">// Присвоится 2.6
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">result</span> <span class="o">=</span> <span class="n">a</span> <span class="o">*</span> <span class="n">b</span><span class="p">;</span> <span class="c1">// Присвоится 30.800001
+</span></span></span><span class="line"><span class="cl"><span class="c1">// Почему 30.800001, а не 30.8? Потому что вычисления с float обладают точностью до определённого
+</span></span></span><span class="line"><span class="cl"><span class="c1">// знака -- дальше этого знака может начаться безумие. Так происходит из-за особенности хранения
+</span></span></span><span class="line"><span class="cl"><span class="c1">// вещественных чисел в памяти. Если использовать double вместо float, то точность повысится и
+</span></span></span><span class="line"><span class="cl"><span class="c1">// возрастёт до более дальнего знака после запятой.
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">result</span> <span class="o">=</span> <span class="n">a</span> <span class="o">/</span> <span class="n">b</span><span class="p">;</span> <span class="c1">// Присвоится 1.590909
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">result</span> <span class="o">=</span> <span class="n">a</span> <span class="o">%</span> <span class="n">b</span><span class="p">;</span> <span class="c1">// !!! ОШИБКА, операция &#34;%&#34; не может использоваться с вещественными числами !!!
+</span></span></span></code></pre></div><blockquote>
+<p>Обрати внимание, что оператор % не может использоваться с вещественнымим числами.</p>
+</blockquote>
+<h3 id="со-смешанными-значениями">Со смешанными значениями</h3>
+<p>Окей, операции отдельно с целыми, отдельно с вещественными значениями понятны &ndash; а что если смешивать целые и вещественные в одной операции?</p>
+<p>В этом случае, результат будет превращаться в вещественный:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="kt">int</span> <span class="n">a</span> <span class="o">=</span> <span class="mi">5</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="kt">float</span> <span class="n">b</span> <span class="o">=</span> <span class="mf">4.5</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="kt">float</span> <span class="n">floatResult</span> <span class="o">=</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span><span class="p">;</span> <span class="c1">// Присвоится 9.5
+</span></span></span><span class="line"><span class="cl"><span class="c1">// Присвоится 9 потому что результат 9.5 засовывается в
+</span></span></span><span class="line"><span class="cl"><span class="c1">// целочисленную переменную, и дробная часть отбрасывается
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kt">int</span> <span class="n">intResult</span> <span class="o">=</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// Это справедливо и для всех остальных операций: - * /
+</span></span></span></code></pre></div><h3 id="с-приведением-типа">С приведением типа</h3>
+<p>В некоторых случаях может получиться так, у тебя на руках есть только целочисленные переменные, но тебе нужно их поделить друг на друга, и получить вещественный результат. Вот пример ситуации:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="kt">int</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="kt">float</span> <span class="n">result</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">scanf</span><span class="p">(</span><span class="s">&#34;%d&#34;</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">a</span><span class="p">);</span> <span class="c1">// Ввёл 6
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">scanf</span><span class="p">(</span><span class="s">&#34;%d&#34;</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">b</span><span class="p">);</span> <span class="c1">// Ввёл 4
+</span></span></span><span class="line"><span class="cl"><span class="c1">// Целочисленный результат 1 запишется в вещественную переменную,
+</span></span></span><span class="line"><span class="cl"><span class="c1">// из-за чего целочисленное значение неявно приведётся к вещественное 1.000000
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">result</span> <span class="o">=</span> <span class="n">a</span> <span class="o">/</span> <span class="n">b</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">print</span><span class="p">(</span><span class="s">&#34;%f</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">result</span><span class="p">);</span> <span class="c1">// Выведет 1.000000
+</span></span></span></code></pre></div><p>Обрати внимание, что с этом случае мы записали целочисленное значение в вещественную переменную. В этом случае целочисленное значение <strong>неявно приводится</strong> к вещественному.</p>
+<p>Что я могу сделать, чтобы получился правильный результат деления 1.5?</p>
+<p>Для этого существует операция <strong>явного приведения</strong> типа &ndash; с её помощью можно прямо в выражении изменить тип значения переменной. Вот как это выглядит:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="kt">int</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="kt">float</span> <span class="n">result</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">scanf</span><span class="p">(</span><span class="s">&#34;%d&#34;</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">a</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">scanf</span><span class="p">(</span><span class="s">&#34;%d&#34;</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">b</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// Можно приводить к типу не только делимое, но и вообще любую переменную или число в выражении,
+</span></span></span><span class="line"><span class="cl"><span class="c1">// и не только к double, но вообще к любому типу.
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">result</span> <span class="o">=</span> <span class="p">(</span><span class="kt">double</span><span class="p">)</span> <span class="n">a</span> <span class="o">/</span> <span class="n">b</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">print</span><span class="p">(</span><span class="s">&#34;%f</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">result</span><span class="p">);</span>
+</span></span></code></pre></div><p>В этом случае выведется 1.500000, так как одна из переменных становится вещественной, а как мы знаем из предыдущего раздела &ldquo;Со смешанными значениями&rdquo; &ndash; &ldquo;результат будет превращаться в вещественный&rdquo;.</p>
+<blockquote>
+<p>Я показал самый полезный случай использования приведения типа, но могут быть и какие-то другие экзотические случаи.</p>
+</blockquote>
+<h3 id="с-операцией-присваивания">С операцией присваивания</h3>
+<p>Бинарные операторы можно красиво объединять с операцией присваивания:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="kt">int</span> <span class="n">a</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// Вот эта запись:
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">a</span> <span class="o">=</span> <span class="n">a</span> <span class="o">+</span> <span class="mi">10</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// Равноценна такой:
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">a</span> <span class="o">+=</span> <span class="mi">10</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// Это справедливо для всех остальных операций: -= *= /= %=
+</span></span></span></code></pre></div><h3 id="для-злодеев">Для злодеев</h3>
+<p>Просто чтоб ты знал &ndash; существует вариант использования присваивания с операторами для злодеев, который не надо использовать (но так можно):</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="kt">int</span> <span class="n">a</span> <span class="o">=</span> <span class="mi">2</span><span class="p">,</span> <span class="n">b</span> <span class="o">=</span> <span class="mi">3</span><span class="p">,</span> <span class="n">c</span> <span class="o">=</span> <span class="mi">4</span><span class="p">,</span> <span class="n">d</span> <span class="o">=</span> <span class="mi">5</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">a</span> <span class="o">+=</span> <span class="p">(</span><span class="n">b</span> <span class="o">+=</span> <span class="mi">5</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">c</span> <span class="o">=</span> <span class="mi">10</span><span class="p">)</span> <span class="o">+</span> <span class="n">d</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// Перепишу то же самое, но не по-злодейски:
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">b</span> <span class="o">=</span> <span class="n">b</span> <span class="o">+</span> <span class="mi">5</span><span class="p">;</span> <span class="c1">// Сначала выполняем первую скобку
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">c</span> <span class="o">=</span> <span class="mi">10</span><span class="p">;</span> <span class="c1">// Потом вторую
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">a</span> <span class="o">=</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span> <span class="o">*</span> <span class="n">c</span> <span class="o">+</span> <span class="n">d</span><span class="p">;</span> <span class="c1">// Потом подставляем переменные в исходное выражение
+</span></span></span></code></pre></div><h1 id="задание-на-закрепление">Задание на закрепление</h1>
+<p>Я пока что дам пару простеньких заданий чтобы размять пальцы. Выдумывать какие-то сложные уравнения я не буду &ndash; просто если у тебя в будущем возникнет необходимость посчитать что-то сложное, то ты просто вернись к этом материалу. Через пару-тройку раз оно само засядет в подкорке.</p>
+<p>Задания:</p>
+<ul>
+<li>Напиши программу, которая принимает с клавиатуры (scanf) номер студента, и выводит (printf) номер его варианта. Всего вариантов от 0 до 14. Например, если у студента номер 0 или 15, то у него будет вариант 0. Если у студента номер 2 или 17, то вариант 2. Подсказка: %</li>
+<li>Напиши программу, которая принимает с клавиатуры три вещественных числа, и выводит сумму двух первых чисел, умноженную на третье.</li>
+</ul>
+<h2 id="унарные-операторы">Унарные операторы</h2>
+<p>Раньше вы их скорее не встречали, так как они используются только в программированнии:</p>
+<ul>
+<li>Инкремент (увеличивает значение переменной на 1): ++</li>
+<li>Декремент (уменьшает значение переменной на 1): &ndash;</li>
+</ul>
+<p>Вот так они используются:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="kt">int</span> <span class="n">x</span> <span class="o">=</span> <span class="mi">5</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">x</span><span class="o">++</span><span class="p">;</span> <span class="c1">// После этого x станет равен 6
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">x</span><span class="o">--</span><span class="p">;</span> <span class="c1">// А теперь x снова равен 5
+</span></span></span></code></pre></div><p>С этими операторами есть хитрый момент &ndash; <strong>тут важно с какой стороны стоит оператор</strong>. Если оператор стоит:</p>
+<ul>
+<li>Слева &ndash; операция происходит до получения значения переменной</li>
+<li>Справа &ndash; операция происходит после получения значения переменной</li>
+</ul>
+<p>Проще показать на примере:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="kt">int</span> <span class="n">x</span><span class="p">,</span> <span class="n">result</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">x</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// После этой строчки result станет равен 3, а x равен 4:
+</span></span></span><span class="line"><span class="cl"><span class="c1">// то есть мы сначала выполнили операцию присваивания, а потом сделали инкремент переменной x
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">result</span> <span class="o">=</span> <span class="n">x</span><span class="o">++</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// Сбраcываем значение x на 3
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">x</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// После этой строчки result равен 4, а равен 4:
+</span></span></span><span class="line"><span class="cl"><span class="c1">// то есть мы сначала сделали инкремент, а потом выполнили операцию присваивания
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">result</span> <span class="o">=</span> <span class="o">++</span><span class="n">x</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// Сбраcываем значение x на 3
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">x</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// После этой строчки result равен 8, а x равен 4:
+</span></span></span><span class="line"><span class="cl"><span class="c1">// то есть мы сначала выполнили операцию сложения, а потом сделали инкремент
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">result</span> <span class="o">=</span> <span class="n">x</span><span class="o">++</span> <span class="o">+</span> <span class="mi">5</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// Сбраcываем значение x на 3
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">x</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// После этой строчки result равен 9, а x равен 4:
+</span></span></span><span class="line"><span class="cl"><span class="c1">// то есть мы сначала сделали инкремент, а потом выполнили операцию присваивания
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">result</span> <span class="o">=</span> <span class="o">++</span><span class="n">x</span> <span class="o">+</span> <span class="mi">5</span><span class="p">;</span>
+</span></span></code></pre></div><h1 id="заключение">Заключение</h1>
+<p>Итого, ты изучил:</p>
+<ul>
+<li>Бинарные операторы
+<ul>
+<li>С целочисленными значениями</li>
+<li>С вещественными значениями</li>
+<li>Со смешанными значениями</li>
+<li>С приведением типа</li>
+<li>С операцией присваивания</li>
+<li>Для злодеев</li>
+</ul>
+</li>
+<li>Унарные операторы</li>
+</ul>
+<p>Если что &ndash; пиши, я помогу и постараюсь объяснить лучше.</p>
+<p>Дальше на очереди &ndash; условия.</p>
+
+    <hr>
+    <div align="center">
+        <a href="https://kee-reel.com/c/operators.html#top">▲ В начало ▲</a>
+    </div>
+    
+        <hr>
+        <div style="display: flex; justify-content: space-between;">
+            
+                <a href="https://kee-reel.com/c/variables.html">◀ Переменные</a>
+            
+            
+                <a href="https://kee-reel.com/c/conditions.html">Условия ▶</a>
+            
+        </div>
+    
+
+			</section>
+		</div>
+	</div>
+
+    <footer>
+    <hr>
+    <div align="center">
+        Home server: Raspberry Pi 4<br>
+        Temperature: 41<br>
+Uptime: 1 hour, 43 minutes
+    </div>
+</footer>
+
+</body>
+</html>

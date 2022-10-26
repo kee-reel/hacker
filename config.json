@@ -1,9 +1,19 @@
 {
     "title": "IT простым языком",
-    "baseURL": "https://kee-reel.com/",
+    "baseURL": "https://kee-reel.com",
     "params": {
         "author": "kee-reel"
     },
-    "publishdir": "./docs",
-    "paginate": 10
+    "paginate": 10,
+    "pygmentsUseClasses": true,
+    "pygmentsCodefences": true,
+    "outputs": {
+        "page": ["HTML"],
+        "home": ["HTML", "RSS"],
+        "section": ["HTML","RSS"],
+        "taxonomyTerm": ["HTML", "RSS"],
+        "taxonomy": ["HTML", "RSS"]
+    },
+    "uglyURLs": true,
+    "publishdir": "./docs"
 }

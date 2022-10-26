@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="ru">
+	<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5">
+	<meta name="description" content="IT простым языком">
+	<meta name="generator" content="HUGO">
+
+	<meta name="theme-color" content="#ffffff">
+
+    
+    <link rel="stylesheet" href="/sass/main.min.css">
+    <title> IT простым языком </title>
+</head>
+
+<body>
+	<div id="top"/>
+<header>
+    <div align="center">
+        +---------------------------+<br>
+        |.-------------------------.|<br>
+        ||&nbsp;<a href="/">kee_reel@blog</a>:~$ cd&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;||<br>
+        ||&nbsp;<a href="/c">c</a>&nbsp;&nbsp;<a href="/cpp">c++</a>&nbsp;&nbsp;<a href="/python">python</a>&nbsp;&nbsp;<a href="/linux">linux</a>&nbsp;&nbsp;&nbsp;||<br>
+        ||&nbsp;<a href="/opengl">opengl</a>&nbsp;&nbsp;<a href="/sql">sql</a>&nbsp;&nbsp;<a href="/network">networks</a>&nbsp;&nbsp;&nbsp;||<br>
+        ||&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;||<br>
+        ||&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/about">обо_мне</a>&nbsp;||<br>
+        |.-------------------------.|<br>
+        +-::---------------------::-+<br>
+        .---------------------------.<br>
+        &nbsp;//&nbsp;/o<a href="/links">o</a>oooooooooooooooooooo\\&nbsp;\\&nbsp;<br>
+        &nbsp;//&nbsp;/oooooooooooooooooooooooo\\&nbsp;\\&nbsp;<br>
+        //-------------------------------\\<br>
+        \\-------------------------------//<br>
+    </div>
+    <hr>
+</header>
+
+		
+	<div id="wrapper">
+		<div class="container">
+			<section id="main_content">
+    
+    
+        <div style="display: flex; justify-content: space-between;">
+            
+                <a href="https://kee-reel.com/python/oop.html">◀ Принципы ООП</a>
+            
+            
+                <a href="https://kee-reel.com/python/inheritance.html">Наследование классов ▶</a>
+            
+        </div>
+        <hr>
+    
+    <h1>Python. Полиморфизм</h1>
+    
+    
+        <h3>Время чтения: 4 мин</h3>
+    
+    <blockquote>
+<p>Эта статья является составной частью <a href="../oop">статьи про ООП</a> &ndash; если ты хочешь понять всю картину, то лучше начать с неё.</p>
+</blockquote>
+<h1 id="полиморфизм-в-классах">Полиморфизм в классах</h1>
+<p><strong>Полиморфизм</strong> &ndash; позволяет единообразно работать с методами разных классов, наследованных от одного родительского класса.</p>
+<p>Объясняю на примере &ndash; перед тобой стоит три машины с коробкой-автоматом от разных производителей:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">Car</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">manufacturer</span><span class="p">,</span> <span class="n">horse_powers</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="n">def</span><span class="o">.</span><span class="n">_manufacturer</span> <span class="o">=</span> <span class="n">manufacturer</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">_horse_powers</span> <span class="o">=</span> <span class="n">horse_powers</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">turn_on</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Ты запустил двигатель у </span><span class="si">{</span><span class="n">def</span><span class="o">.</span><span class="n">_manufacturer</span><span class="si">}</span><span class="s1">, мощность которой </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_horse_powers</span><span class="si">}</span><span class="s1"> лошадиных сил&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">Xonda</span><span class="p">(</span><span class="n">Car</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="n">Car</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s1">&#39;Xonda&#39;</span><span class="p">,</span> <span class="mi">180</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">Xoyota</span><span class="p">(</span><span class="n">Car</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="n">Car</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s1">&#39;Xoyota&#39;</span><span class="p">,</span> <span class="mi">200</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">XMW</span><span class="p">(</span><span class="n">Car</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="n">Car</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s1">&#39;XMW&#39;</span><span class="p">,</span> <span class="mi">220</span><span class="p">)</span>
+</span></span></code></pre></div><p>Если тебе завяжут глаза, и посадят как любую из этих машин, то у тебя получится её завести:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">random</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">cars</span> <span class="o">=</span> <span class="p">[</span><span class="n">Xonda</span><span class="p">(),</span> <span class="n">Xoyota</span><span class="p">(),</span> <span class="n">XMW</span><span class="p">()]</span>
+</span></span><span class="line"><span class="cl"><span class="n">car</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">cars</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">car</span><span class="o">.</span><span class="n">turn_on</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># Вывод:</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># Ты запустил двигатель у Xoyota, мощность которой 200 лошадиных сил</span>
+</span></span></code></pre></div><blockquote>
+<p>Функция choice() выбирает случайный элемент из списка/кортежа/словаря.</p>
+</blockquote>
+<p>А ещё ты можешь залезть в каждую машину, и запустить её:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">cars</span> <span class="o">=</span> <span class="p">[</span><span class="n">Xonda</span><span class="p">(),</span> <span class="n">Xoyota</span><span class="p">(),</span> <span class="n">XMW</span><span class="p">()]</span>
+</span></span><span class="line"><span class="cl"><span class="k">for</span> <span class="n">car</span> <span class="ow">in</span> <span class="n">cars</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">car</span><span class="o">.</span><span class="n">turn_on</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># Вывод:</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># Ты запустил двигатель у Xonda, мощность которой 180 лошадиных сил</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># Ты запустил двигатель у Xoyota, мощность которой 200 лошадиных сил</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># Ты запустил двигатель у XMW, мощность которой 220 лошадиных сил</span>
+</span></span></code></pre></div><p>То есть полиморфизм позволяет тебе работать одинаково с объектами, которые наследуются от одного класса.</p>
+<p>Однако, кроме одисанного случая, можно выделить ещё один &ndash; полиморфизм в функциях и методах.</p>
+<h1 id="полиморфизм-в-функциях-и-методах">Полиморфизм в функциях и методах</h1>
+<p><strong>Полиморфизм</strong> &ndash; позволяет передавать функцию параметры разных типов, но получать одинаковое поведение.</p>
+<p>Ты пришёл в библиотеку будущего и хочешь взять книгу &ldquo;Введение в программирование&rdquo;. Там стоит терминал, в который надо ввести название:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">book_names</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="s1">&#39;Введение в программирование&#39;</span><span class="p">:</span> <span class="s1">&#39;https://link-to-download-1&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="s1">&#39;Язык Си для чайников&#39;</span><span class="p">:</span> <span class="s1">&#39;https://link-to-download-2&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="s1">&#39;Компьютерные сети&#39;</span><span class="p">:</span> <span class="s1">&#39;https://link-to-download-3&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="s1">&#39;Нейромант&#39;</span><span class="p">:</span> <span class="s1">&#39;https://link-to-download-4&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">download_book</span><span class="p">(</span><span class="n">link</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># Тут как-будто логика загрузки книги с файлового сервера библиотеки</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="s1">&#39;book-text&#39;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">book_terminal</span><span class="p">(</span><span class="n">input_data</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="n">input_data</span> <span class="ow">in</span> <span class="n">books</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">link</span> <span class="o">=</span> <span class="n">books</span><span class="p">[</span><span class="n">input_data</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">download_book</span><span class="p">(</span><span class="n">link</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="kc">None</span> <span class="c1"># Книга не найдена</span>
+</span></span></code></pre></div><p>Ты вводишь название книги, получаешь место, забираешь её и уходишь.</p>
+<p>После тебя к виртуальному терминалу библиотеки подключается осознавший себя искусственный интеллект, который хочет скачать все книги из библиотеки и поработить человечество. Однако, он может оперировать только численными ID книг.</p>
+<p>Нужно изменить функцию <code>book_terminal()</code> так, чтобы она могла принимать как строковые названия книг, так и их численные ID. Вот как это можно сделать:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">book_name_to_id</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="s1">&#39;Введение в программирование&#39;</span><span class="p">:</span> <span class="mi">6127459</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="s1">&#39;Язык Си для чайников&#39;</span><span class="p">:</span> <span class="mi">9163713</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="s1">&#39;Компьютерные сети&#39;</span><span class="p">:</span> <span class="mi">6046931</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="s1">&#39;Нейромант&#39;</span><span class="p">:</span> <span class="mi">2103971</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="n">book_id_to_link</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="mi">6127459</span><span class="p">:</span> <span class="s1">&#39;https://library.link-to-download-programming.com&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="mi">9163713</span><span class="p">:</span> <span class="s1">&#39;https://library.link-to-download-c-language.com&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="mi">6046931</span><span class="p">:</span> <span class="s1">&#39;https://library.link-to-download-networks.com&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="mi">2103971</span><span class="p">:</span> <span class="s1">&#39;https://library.link-to-download-neuromant.com&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">download_book</span><span class="p">(</span><span class="n">link</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># Тут как-будто логика загрузки книги с файлового сервера библиотеки</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="sa">f</span><span class="s1">&#39;Text of book </span><span class="si">{</span><span class="n">link</span><span class="si">}</span><span class="s1">&#39;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">book_terminal</span><span class="p">(</span><span class="n">input_data</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">input_data</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span> <span class="c1"># Новая для тебя функция isinstance(), описание ниже</span>
+</span></span><span class="line"><span class="cl">        <span class="n">book_id</span> <span class="o">=</span> <span class="n">book_name_to_id</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">input_data</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>  <span class="c1"># Новый для тебя метод get(), описание ниже</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="n">book_id</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="k">return</span> <span class="kc">None</span>
+</span></span><span class="line"><span class="cl">    <span class="k">else</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">book_id</span> <span class="o">=</span> <span class="n">input_data</span>
+</span></span><span class="line"><span class="cl">    <span class="n">link</span> <span class="o">=</span> <span class="n">book_id_to_link</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">book_id</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="n">link</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">download_book</span><span class="p">(</span><span class="n">link</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="kc">None</span> <span class="c1"># Книга не найдена</span>
+</span></span></code></pre></div><blockquote>
+<p>isinstance() это стандартная функция, которая позволяет проверить к какому типу принадлежит значение. Первый аргумент это значение, которое надо проверить, а второй это тип &ndash; если значение принадлежит этому типу, то вернётся True.</p>
+</blockquote>
+<blockquote>
+<p>У dict есть метод get(), который принимает два аргумента. Первый аргумент это ключ, по которому надо найти значение, а второй это значение, которое надо вернуть если такого ключа нет.</p>
+</blockquote>
+<p>Теперь, терминалом может пользоваться как человек, передавая строку:</p>
+<pre tabindex="0"><code class="language-pyhon" data-lang="pyhon">book_terminal(&#39;Нейромант&#39;)
+# Вывод:
+# Text of book https://library.com/link-to-download-neuromant
+</code></pre><p>Так и осознавший себя искусственный интеллект, передавая численный ID:</p>
+<pre tabindex="0"><code class="language-pyhon" data-lang="pyhon">for book_id in book_id_to_link:
+    print(book_terminal(book_id))
+# Вывод:
+# Text of book https://library.com/link-to-download-programming
+# Text of book https://library.com/link-to-download-c-language
+# Text of book https://library.com/link-to-download-networks
+# Text of book https://library.com/link-to-download-neuromant
+</code></pre><p>Ты скорее всего уже пользовался полиморфизмом функций:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span> <span class="nb">len</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">])</span> <span class="p">)</span> <span class="c1"># Вывод: 6</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span> <span class="nb">len</span><span class="p">(</span><span class="s1">&#39;some_word&#39;</span><span class="p">)</span> <span class="p">)</span> <span class="c1"># Вывод: 9</span>
+</span></span></code></pre></div><p>Стандартная функция len() тоже может принимать разные типы данных, и возвращать одинаковый результат.</p>
+<p>Всё, что здесь сказано про функции, справедливо так же и для методов &ndash; ведь они такие же функции, но описанные в классе.</p>
+<h3 id="благодаря-полиморфизму-ты-можешь-вызывать-один-метод-у-разных-классов-или-передавать-в-функцию-параметры-разных-типов">Благодаря полиморфизму, ты можешь вызывать один метод у разных классов или передавать в функцию параметры разных типов.</h3>
+<h1 id="заключение">Заключение</h1>
+<p>Итого, мы изучили:</p>
+<ul>
+<li>Полиморфизм классов (одинаковый метод у разных классов)</li>
+<li>Функция choice из библиотеки random (выбирает случайный элемент из списка списка/кортежа/словаря)</li>
+<li>Полиморфизм функций (разные типы параметров)</li>
+<li>Функция isinstance() (проверить тип значения)</li>
+<li>Метод get() (вернуть значение по умолчанию если такого ключа нет)</li>
+</ul>
+<p>Если что &ndash; пиши, я помогу и постараюсь объяснить лучше.</p>
+<p>Если ты ещё полон сил, то вернись к <a href="../oop">статье про ООП</a>, и продолжи его постижение.</p>
+
+    <hr>
+    <div align="center">
+        <a href="https://kee-reel.com/python/polymorphism.html#top">▲ В начало ▲</a>
+    </div>
+    
+        <hr>
+        <div style="display: flex; justify-content: space-between;">
+            
+                <a href="https://kee-reel.com/python/oop.html">◀ Принципы ООП</a>
+            
+            
+                <a href="https://kee-reel.com/python/inheritance.html">Наследование классов ▶</a>
+            
+        </div>
+    
+
+			</section>
+		</div>
+	</div>
+
+    <footer>
+    <hr>
+    <div align="center">
+        Home server: Raspberry Pi 4<br>
+        Temperature: 41<br>
+Uptime: 1 hour, 43 minutes
+    </div>
+</footer>
+
+</body>
+</html>

@@ -2,16 +2,16 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Python on IT простым языком</title>
-    <link>https://kee-reel.com/python/</link>
+    <link>https://kee-reel.com/python.html</link>
     <description>Recent content in Python on IT простым языком</description>
     <generator>Hugo -- gohugo.io</generator>
     <lastBuildDate>Wed, 08 Dec 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://kee-reel.com/python/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Python. Первый проект. Регистрация</title>
-      <link>https://kee-reel.com/python/web-reg-and-auth/</link>
+      <link>https://kee-reel.com/python/web-reg-and-auth.html</link>
       <pubDate>Wed, 08 Dec 2021 00:00:00 +0000</pubDate>
       
-      <guid>https://kee-reel.com/python/web-reg-and-auth/</guid>
+      <guid>https://kee-reel.com/python/web-reg-and-auth.html</guid>
       <description>Эта статья из цикла статей &amp;ldquo;Первый проект&amp;rdquo;, в которых я шаг за шагом показываю как разработать систему, близкую по сложности к реальной.
 В этой статье я реализую регистрацию, а в следующей &amp;ndash; авторизацию по логину/паролю. Для фреймворка Flask уже есть готовое решение для этой задачи: flask_login. С целью постижения глубинной природы вещей, я покажу как реализовать это самому, без использования сторонних библиотек.
 Новые endpoint&amp;rsquo;ы Расширю простейший веб-сервер и добавлю двe новых конечных точки (endpont):</description>
@@ -19,10 +19,10 @@
     
     <item>
       <title>Python. Первый проект</title>
-      <link>https://kee-reel.com/python/first-project/</link>
+      <link>https://kee-reel.com/python/first-project.html</link>
       <pubDate>Fri, 03 Dec 2021 00:00:00 +0000</pubDate>
       
-      <guid>https://kee-reel.com/python/first-project/</guid>
+      <guid>https://kee-reel.com/python/first-project.html</guid>
       <description>В этой статье я приведу пример задачи на ООП и покажу как её решить. После этого я дам несколько самостоятельных заданий.
 Читаем ТЗ Представляем ситуацию &amp;ndash; ты пришёл работать в компанию, которая занимается продажей обучающих курсов. До тебя никто не занимался автоматизацией, и все задачи выполнялись вручную.
 Директор даёт тебе такое техническое задание:
@@ -31,10 +31,10 @@
     
     <item>
       <title>Python. Основы веб-сервера Flask</title>
-      <link>https://kee-reel.com/python/web-server/</link>
+      <link>https://kee-reel.com/python/web-server.html</link>
       <pubDate>Sat, 23 Oct 2021 00:00:00 +0000</pubDate>
       
-      <guid>https://kee-reel.com/python/web-server/</guid>
+      <guid>https://kee-reel.com/python/web-server.html</guid>
       <description>Представь, что ты написал скрипт, который может пригодиться кому-то кроме тебя &amp;ndash; как им поделиться?
 У тебя есть три варианта:
 Выложить исходный код в открытый доступ (например на GitHub) &amp;ndash; для этого пользователь твоей программы должен уметь запускать Python скрипты. Подготовить исполняемый файл (например через PyInstaller) &amp;ndash; скрипт будет готов к запуску, и пользователь сможет запустить его как обычное приложение. Развернуть веб-сервер, на котором будет исполняться твоя программа &amp;ndash; любой пользователь сможет воспользоваться ей через браузер.</description>
@@ -42,10 +42,10 @@
     
     <item>
       <title>Python. Инкапсуляция</title>
-      <link>https://kee-reel.com/python/incapsulation/</link>
+      <link>https://kee-reel.com/python/incapsulation.html</link>
       <pubDate>Thu, 30 Sep 2021 00:00:00 +0000</pubDate>
       
-      <guid>https://kee-reel.com/python/incapsulation/</guid>
+      <guid>https://kee-reel.com/python/incapsulation.html</guid>
       <description>Эта статья является составной частью статьи про ООП &amp;ndash; если ты хочешь понять всю картину, то лучше начать с неё.
 Инкапсуляция &amp;ndash; позволяет скрыть детали реализации.
 Ты когда-нибудь пробовал разобрать свой телефон или ноутбук? Это очень сложный процесс, который как-будто специально сделан максимально трудоёмким для пользователя. Зачем это нужно его создателям?
@@ -54,10 +54,10 @@
     
     <item>
       <title>Python. Наследование классов</title>
-      <link>https://kee-reel.com/python/inheritance/</link>
+      <link>https://kee-reel.com/python/inheritance.html</link>
       <pubDate>Thu, 30 Sep 2021 00:00:00 +0000</pubDate>
       
-      <guid>https://kee-reel.com/python/inheritance/</guid>
+      <guid>https://kee-reel.com/python/inheritance.html</guid>
       <description>Эта статья является составной частью статьи про ООП &amp;ndash; если ты хочешь понять всю картину, то лучше начать с неё.
 Наследование &amp;ndash; позволяет связать разные классы в иерархию таким образом, что мы можем в старших классах определить базовые функции, и переиспользовать их во всех классах наследниках.
 Вот пример наследования:
@@ -67,10 +67,10 @@ class Seat: def __init__(self, seat): self.seat = seat def take_a_seat(self): de
     
     <item>
       <title>Python. Полиморфизм</title>
-      <link>https://kee-reel.com/python/polymorphism/</link>
+      <link>https://kee-reel.com/python/polymorphism.html</link>
       <pubDate>Thu, 30 Sep 2021 00:00:00 +0000</pubDate>
       
-      <guid>https://kee-reel.com/python/polymorphism/</guid>
+      <guid>https://kee-reel.com/python/polymorphism.html</guid>
       <description>Эта статья является составной частью статьи про ООП &amp;ndash; если ты хочешь понять всю картину, то лучше начать с неё.
 Полиморфизм в классах Полиморфизм &amp;ndash; позволяет единообразно работать с методами разных классов, наследованных от одного родительского класса.
 Объясняю на примере &amp;ndash; перед тобой стоит три машины с коробкой-автоматом от разных производителей:
@@ -79,10 +79,10 @@ class Car: def __init__(self, manufacturer, horse_powers): def._manufacturer = m
     
     <item>
       <title>Python. Принципы ООП</title>
-      <link>https://kee-reel.com/python/oop/</link>
+      <link>https://kee-reel.com/python/oop.html</link>
       <pubDate>Thu, 23 Sep 2021 00:00:00 +0000</pubDate>
       
-      <guid>https://kee-reel.com/python/oop/</guid>
+      <guid>https://kee-reel.com/python/oop.html</guid>
       <description>В объектно-ориентированном программировании есть 3 основных принципа:
 Наследование Позволяет связать разные классы в иерархию таким образом, что мы можем в старших классах определить базовые функции, и переиспользовать их во всех классах наследниках.
 Чтобы узнать более подробно перейди к отдельной статье про наследование.
@@ -93,10 +93,10 @@ class Car: def __init__(self, manufacturer, horse_powers): def._manufacturer = m
     
     <item>
       <title>Python. Классы</title>
-      <link>https://kee-reel.com/python/classes/</link>
+      <link>https://kee-reel.com/python/classes.html</link>
       <pubDate>Wed, 22 Sep 2021 00:00:00 +0000</pubDate>
       
-      <guid>https://kee-reel.com/python/classes/</guid>
+      <guid>https://kee-reel.com/python/classes.html</guid>
       <description>Прежде чем мы перейдём к использованию классов, я расскажу откуда классы взялись &amp;ndash; про объектно-ориентированное программирование.
 Объектно-ориентированное программирование (ООП) &amp;ndash; подход к написанию программ при котором:
 Программа представляется в виде набора объектов и связей между ними Все объекты являются экземплярами классов Классы образуют иерархию наследования (про это в следующей статье) Сейчас расскажу подробно что это всё значит.
@@ -105,10 +105,10 @@ class Car: def __init__(self, manufacturer, horse_powers): def._manufacturer = m
     
     <item>
       <title>Python. Функции</title>
-      <link>https://kee-reel.com/python/functions/</link>
+      <link>https://kee-reel.com/python/functions.html</link>
       <pubDate>Sat, 28 Aug 2021 00:00:00 +0000</pubDate>
       
-      <guid>https://kee-reel.com/python/functions/</guid>
+      <guid>https://kee-reel.com/python/functions.html</guid>
       <description>Функция (function) &amp;ndash; это механизм, позволяющий вынести часть логики программы в отдельный блок, который можно многократно исполнять из разных мест прогаммы.
 Вот пример определения функции:
 # def -- сокращённо от слова define (определить) # У функции может не быть параметров: def someFunctionName(): value = 5 # return (вернуть) - оператор, который возвращает переданное значение в место вызова функции return value + 2 # Всё, что находится после return не будет исполнено, так как после return программа выйдет # из функции, и продолжит исполнение в месте вызова функции print(&amp;#39;This will never be printed&amp;#39;) # У функции может быть несколько параметров def anotherFunctionName(functionParameter1, functionParameter2): # Внутри функций можно вызывать другие функции value = someFunctionName() # Вернёт 7 result = (functionParameter1 + functionParameter2) * 10 return result a = 3 # Чтобы вызвать функцию необходимо написать её имя, а затем в круглых скобках указать её параметры # Количество и позиции параметров должны быть такими же, как в определении функции b = someFunctionName() # Вернёт 7 c = anotherFunctionName(a, b) # Вернёт 180 print(c) # Вывод: # 100 Это называется определением функции:</description>
@@ -116,10 +116,10 @@ class Car: def __init__(self, manufacturer, horse_powers): def._manufacturer = m
     
     <item>
       <title>Python. Циклы</title>
-      <link>https://kee-reel.com/python/loops/</link>
+      <link>https://kee-reel.com/python/loops.html</link>
       <pubDate>Sat, 21 Aug 2021 00:00:00 +0000</pubDate>
       
-      <guid>https://kee-reel.com/python/loops/</guid>
+      <guid>https://kee-reel.com/python/loops.html</guid>
       <description>Цикл (loop) &amp;ndash; это механизм, позволяющий описать выполнение множества одинаковых действий.
 Есть две разновидности циклов:
 for while Цикл for Вот пример определения цикла for:
@@ -128,22 +128,22 @@ some_list = [1, 2, 3, 4, 5, 0] # Читается как: для каждого 
     
     <item>
       <title>Python. Условия</title>
-      <link>https://kee-reel.com/python/conditions/</link>
+      <link>https://kee-reel.com/python/conditions.html</link>
       <pubDate>Fri, 20 Aug 2021 00:00:00 +0000</pubDate>
       
-      <guid>https://kee-reel.com/python/conditions/</guid>
+      <guid>https://kee-reel.com/python/conditions.html</guid>
       <description>Условие (condition) &amp;ndash; это механизм, позволяющий выполнить действие, только если выполняется определённое условие.
 Вот пример определения условия:
-this_is_true = True this_is_false = False condition_message = &amp;#39;Condition: &amp;#39; if this_is_false: condition_message += &amp;#39;one&amp;#39; elif this_is_true or this_is_false: condition_message += &amp;#39;two&amp;#39; elif this_is_true: condition_message += &amp;#39;three&amp;#39; else: condition_message += &amp;#39;four&amp;#39; print(condition_message) # Вывод: # Condition: two Давай разберём:
-Секция под if (если) исполнится если указанное условие истинно. Все секции в Python отделяются отступом: табуляцией &amp;ldquo;Tab&amp;rdquo; или равным количеством пробелов.</description>
+this_is_true = True this_is_false = False condition_message = &amp;#39;Condition: &amp;#39; if this_is_false: condition_message += &amp;#39;one&amp;#39; elif this_is_true or this_is_false: condition_message += &amp;#39;two&amp;#39; elif this_is_true: condition_message += &amp;#39;three&amp;#39; else: condition_message += &amp;#39;four&amp;#39; print(condition_message) # Condition: two Давай разберём:
+Секция под if (если) исполнится если указанное условие истинно. if this_is_false: condition_message += &amp;#39;one&amp;#39; Все секции в Python отделяются отступом: табуляцией &amp;ldquo;Tab&amp;rdquo; или равным количеством пробелов.</description>
     </item>
     
     <item>
       <title>Python. Контейнеры</title>
-      <link>https://kee-reel.com/python/containers/</link>
+      <link>https://kee-reel.com/python/containers.html</link>
       <pubDate>Tue, 17 Aug 2021 00:00:00 +0000</pubDate>
       
-      <guid>https://kee-reel.com/python/containers/</guid>
+      <guid>https://kee-reel.com/python/containers.html</guid>
       <description>Контейнеры это незаменимый инструмент, при работе с наборами данных &amp;ndash; давай их изучим. Существуют следующие типы контейнеров:
 Списки Кортежи Словари Списки Зачастую, тебе не хватает переменной, чтобы вместить все данные &amp;ndash; например, тебе нужно посчитать среднюю оценку для всей группы в университете по какому-то предмету (человек 25, например). Ты мог бы создать переменные (&amp;ldquo;student_1&amp;rdquo;, &amp;ldquo;student_2&amp;rdquo;, &amp;ldquo;student_3&amp;rdquo; и так далее), но это была бы очень монотонная и занудная работа.
 К счастью разработчики очень ленивые, и давно придумали решение этой проблемы &amp;ndash; список (list).</description>
@@ -151,10 +151,10 @@ this_is_true = True this_is_false = False condition_message = &amp;#39;Condition
     
     <item>
       <title>Python. Переменные и операции с ними</title>
-      <link>https://kee-reel.com/python/variables-and-operations/</link>
+      <link>https://kee-reel.com/python/variables-and-operations.html</link>
       <pubDate>Mon, 16 Aug 2021 00:00:00 +0000</pubDate>
       
-      <guid>https://kee-reel.com/python/variables-and-operations/</guid>
+      <guid>https://kee-reel.com/python/variables-and-operations.html</guid>
       <description>Одним из ключевых понятий в программировании является понятие &amp;ldquo;переменная&amp;rdquo;.
 Переменные хранят значения, используемые в программе.
 Типы переменных Значения могут быть следующих типов:
@@ -163,27 +163,27 @@ is_car_in_motion = True kilometers_per_second = 85 fuel_left = 0.</description>
     </item>
     
     <item>
-      <title>Python. Введение</title>
-      <link>https://kee-reel.com/python/intro/</link>
+      <title>Python. Установка окружения</title>
+      <link>https://kee-reel.com/python/environment-setup.html</link>
       <pubDate>Sun, 15 Aug 2021 00:00:00 +0000</pubDate>
       
-      <guid>https://kee-reel.com/python/intro/</guid>
-      <description>В этой статье я расскажу что такое языки программирования и в частности про Python.
-Сразу скажу, я сторонник обучения сверху-вниз &amp;ndash; сначала объясняю глобально, а потом перехожу к частностям. Это помогает построить в голове карту предметной области, при помощи которой тебе будет проще в будущем систематизировать свои знания.
-Что такое язык программирования Язык программирования &amp;ndash; это язык на котором можно описать последовательность инструкций в том виде, в котором его сможет прочитать компьютер.</description>
-    </item>
-    
-    <item>
-      <title>Python. Установка окружения</title>
-      <link>https://kee-reel.com/python/environment-setup/</link>
-      <pubDate>Wed, 11 Aug 2021 00:00:00 +0000</pubDate>
-      
-      <guid>https://kee-reel.com/python/environment-setup/</guid>
+      <guid>https://kee-reel.com/python/environment-setup.html</guid>
       <description>Для того, чтобы начать разрабатывать на Python, давай установим все необходимые инструменты разработки.
 Сперва установи сам Python, а затем мы с тобой посмотрим на два инструмента разработки:
 Командная строка + текстовый редактор IDE PyCharm Установка Открой официальный сайт Python и скачай установщик для своей операционной системы: https://www.python.org/downloads/
 Установка на всех операционных системах стандартная, должна пройти без проблем.
 Если проблемы всё же возникли, то напиши мне &amp;ndash; я помогу и дополню описание этого шага.</description>
+    </item>
+    
+    <item>
+      <title>Python. Введение</title>
+      <link>https://kee-reel.com/python/intro.html</link>
+      <pubDate>Wed, 11 Aug 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://kee-reel.com/python/intro.html</guid>
+      <description>В этой статье я расскажу что такое языки программирования и в частности про Python.
+Сразу скажу, я сторонник обучения сверху-вниз &amp;ndash; сначала объясняю глобально, а потом перехожу к частностям. Это помогает построить в голове карту предметной области, при помощи которой тебе будет проще в будущем систематизировать свои знания.
+Что такое язык программирования Язык программирования &amp;ndash; это язык на котором можно описать последовательность инструкций в том виде, в котором его сможет прочитать компьютер.</description>
     </item>
     
   </channel>

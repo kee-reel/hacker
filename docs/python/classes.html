@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="ru">
+	<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5">
+	<meta name="description" content="IT простым языком">
+	<meta name="generator" content="HUGO">
+
+	<meta name="theme-color" content="#ffffff">
+
+    
+    <link rel="stylesheet" href="/sass/main.min.css">
+    <title> IT простым языком </title>
+</head>
+
+<body>
+	<div id="top"/>
+<header>
+    <div align="center">
+        +---------------------------+<br>
+        |.-------------------------.|<br>
+        ||&nbsp;<a href="/">kee_reel@blog</a>:~$ cd&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;||<br>
+        ||&nbsp;<a href="/c">c</a>&nbsp;&nbsp;<a href="/cpp">c++</a>&nbsp;&nbsp;<a href="/python">python</a>&nbsp;&nbsp;<a href="/linux">linux</a>&nbsp;&nbsp;&nbsp;||<br>
+        ||&nbsp;<a href="/opengl">opengl</a>&nbsp;&nbsp;<a href="/sql">sql</a>&nbsp;&nbsp;<a href="/network">networks</a>&nbsp;&nbsp;&nbsp;||<br>
+        ||&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;||<br>
+        ||&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/about">обо_мне</a>&nbsp;||<br>
+        |.-------------------------.|<br>
+        +-::---------------------::-+<br>
+        .---------------------------.<br>
+        &nbsp;//&nbsp;/o<a href="/links">o</a>oooooooooooooooooooo\\&nbsp;\\&nbsp;<br>
+        &nbsp;//&nbsp;/oooooooooooooooooooooooo\\&nbsp;\\&nbsp;<br>
+        //-------------------------------\\<br>
+        \\-------------------------------//<br>
+    </div>
+    <hr>
+</header>
+
+		
+	<div id="wrapper">
+		<div class="container">
+			<section id="main_content">
+    
+    
+        <div style="display: flex; justify-content: space-between;">
+            
+                <a href="https://kee-reel.com/python/functions.html">◀ Функции</a>
+            
+            
+                <a href="https://kee-reel.com/python/oop.html">Принципы ООП ▶</a>
+            
+        </div>
+        <hr>
+    
+    <h1>Python. Классы</h1>
+    
+    
+        <h3>Время чтения: 7 мин</h3>
+    
+    <p>Прежде чем мы перейдём к использованию классов, я расскажу откуда классы взялись &ndash; про объектно-ориентированное программирование.</p>
+<p>Объектно-ориентированное программирование (ООП) &ndash; подход к написанию программ при котором:</p>
+<ul>
+<li>Программа представляется в виде набора объектов и связей между ними</li>
+<li>Все объекты являются экземплярами классов</li>
+<li>Классы образуют иерархию наследования (про это в следующей статье)</li>
+</ul>
+<p>Сейчас расскажу подробно что это всё значит.</p>
+<h1 id="объект">Объект</h1>
+<p>В реальном мире мы с тобой постоянно взаимодействуем с какими-то объектами: стул, стол, кружка, телефон и т.д.</p>
+<p>Как это всё может относиться к программированию?</p>
+<p>До сих пор, твои программы представляли собой набор функций, которые вызывают друг друга в определённой последовательности (или просто одна функция). Этот подход называется функциональным &ndash; он хорошо себя показывает если нужно написать программу, которая выполняет только одну задачу.</p>
+<p>Однако, если твоя программа делает сразу много задач, то тебе необходимо использовать ООП. С помощью этого подхода, ты сможешь представить свою программу как набор объектов, каждый из которых будет ответствененн только за свою область задач.</p>
+<p>Вот пример простой программы &ldquo;Список рецептов&rdquo;, в которой можно только создавать, изменять и удалять рецепты:</p>
+<p><img src="/assets/images/python-classes-reciples.png" alt="Программа &amp;ldquo;Список рецептов&amp;rdquo;"></p>
+<p>Всё что я сделал &ndash; это перенёс функции программы по разным объектам.</p>
+<p>Чтобы добавить ещё больше контекста &ndash; вот примеры задач, которые я мог бы решать в этой программе, как программист:</p>
+<ul>
+<li>Нужно чтобы теперь файл базы данных лежал в другой папке:
+<ul>
+<li>Залезу в код объекта &ldquo;База Данных&rdquo;:
+<ul>
+<li>Поменяю путь до файла</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Нужно увеличить размер кнопок в интерфейсе на 50%:
+<ul>
+<li>Залезу в код объекта &ldquo;Пользовательский Интерфейс&rdquo;:
+<ul>
+<li>Поменяю свойство размера кнопок</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Нужно добавить для рецепта новое численное поле &ldquo;Время приготовления&rdquo;:
+<ul>
+<li>Залезу в код объекта &ldquo;Пользовательский Интерфейс&rdquo;:
+<ul>
+<li>Добавлю новое численное поле ввода</li>
+<li>Подпишу его &ldquo;Время приготовления&rdquo;</li>
+<li>Добавлю дополнительный параметр cooking_duration в dict, который отправляю в объект &ldquo;Список Рецептов&rdquo;</li>
+</ul>
+</li>
+<li>Залезу в код объекта &ldquo;Список Рецептов&rdquo;:
+<ul>
+<li>Добавлю логику получения значения cooking_duration из данных от объекта &ldquo;Пользовательский Интерфейс&rdquo;</li>
+<li>Изменю запросы на добавление/изменение/удаление в объект &ldquo;База Данных&rdquo;, чтобы они учитывали новое значение cooking_duration</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>В этом случае ООП не убавило работы &ndash; мне нужно писать столько же кода, чтобы выполнить задачу. Однако, теперь весь этот код сгруппирован в объектах, и мне намного легче удержать в голове взаимосвязи между тремя объектами, нежели множественные вызовы между десятками функций.</p>
+<p>Это я в общих чертах описал чем отличается ООП от функционального программирования, которым мы занимались до этого. Теперь рассмотрим классы.</p>
+<h1 id="класс">Класс</h1>
+<p>Класс &ndash; это описание объекта, а объект &ndash; это существующий экземпляр класса.</p>
+<p><img src="/assets/images/python-classes-chair.png" alt="Класс Стул"></p>
+<p>То есть если мы описали какой-то класс, мы не можем его использовать по назначению &ndash; нельзя сесть на описание стула, можно сесть только на экземпляр стула.</p>
+<p>Вот пример объявления класса, создания и использования объектов в Python:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># Создание класса</span>
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">Chair</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">legs</span><span class="p">,</span> <span class="n">seat</span><span class="p">,</span> <span class="n">back</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">legs</span> <span class="o">=</span> <span class="n">legs</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">seat</span> <span class="o">=</span> <span class="n">seat</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">back</span> <span class="o">=</span> <span class="n">back</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">take_a_seat</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Ты сел на стул у которого </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">legs</span><span class="si">}</span><span class="s1"> ножки, материал сидения - </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">seat</span><span class="si">}</span><span class="s1">, а материал спинки - </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">back</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Создание объектов</span>
+</span></span><span class="line"><span class="cl"><span class="n">wooden_chair</span> <span class="o">=</span> <span class="n">Chair</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="s1">&#39;дерево&#39;</span><span class="p">,</span> <span class="s1">&#39;дерево&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">plastic_chair</span> <span class="o">=</span> <span class="n">Chair</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="s1">&#39;пластик&#39;</span><span class="p">,</span> <span class="s1">&#39;пластик&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">metal_with_plastic_chair</span> <span class="o">=</span> <span class="n">Chair</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="s1">&#39;металл&#39;</span><span class="p">,</span> <span class="s1">&#39;пластик&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Вызов методов объектов</span>
+</span></span><span class="line"><span class="cl"><span class="n">wooden_chair</span><span class="o">.</span><span class="n">take_a_seat</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="n">plastic_chair</span><span class="o">.</span><span class="n">take_a_seat</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="n">metal_with_plastic_chair</span><span class="o">.</span><span class="n">take_a_seat</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">wooden_chair</span><span class="o">.</span><span class="n">compare_legs_count</span><span class="p">(</span><span class="mi">4</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">metal_with_plastic_chair</span><span class="o">.</span><span class="n">compare_legs_count</span><span class="p">(</span><span class="mi">4</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Обращение к полям объектов</span>
+</span></span><span class="line"><span class="cl"><span class="n">legs</span> <span class="o">=</span> <span class="n">wooden_chair</span><span class="o">.</span><span class="n">legs</span>
+</span></span><span class="line"><span class="cl"><span class="n">back</span> <span class="o">=</span> <span class="n">plastic_chair</span><span class="o">.</span><span class="n">back</span>
+</span></span><span class="line"><span class="cl"><span class="n">seat</span> <span class="o">=</span> <span class="n">metal_with_plastic_chair</span><span class="o">.</span><span class="n">seat</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Количество ножек деревянного стула: </span><span class="si">{</span><span class="n">legs</span><span class="si">}</span><span class="s1">, материал спинки пластикового стула: </span><span class="si">{</span><span class="n">back</span><span class="si">}</span><span class="s1">, материал сидения стула металл/пластик: </span><span class="si">{</span><span class="n">seat</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">metal_with_plastic_chair</span><span class="o">.</span><span class="n">legs</span> <span class="o">=</span> <span class="mi">4</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Количество ножек деревянного стула: </span><span class="si">{</span><span class="n">legs</span><span class="si">}</span><span class="s1">, материал спинки пластикового стула: </span><span class="si">{</span><span class="n">back</span><span class="si">}</span><span class="s1">, материал сидения стула металл/пластик: </span><span class="si">{</span><span class="n">seat</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</span></span></code></pre></div><p>Скопируй это код себе, и давай разберём его.</p>
+<h3 id="объявление-класса">Объявление класса</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">Chair</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">legs</span><span class="p">,</span> <span class="n">seat</span><span class="p">,</span> <span class="n">back</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">legs</span> <span class="o">=</span> <span class="n">legs</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">seat</span> <span class="o">=</span> <span class="n">seat</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">back</span> <span class="o">=</span> <span class="n">back</span>
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">take_a_seat</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Ты сел на стул у которого </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">legs</span><span class="si">}</span><span class="s1"> ножки, материал сидения - </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">seat</span><span class="si">}</span><span class="s1">, а материал спинки - </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">back</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">compare_legs_count</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">legs_to_compare</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">legs</span> <span class="o">==</span> <span class="n">legs_to_compare</span><span class="p">:</span>
+</span></span></code></pre></div><p>В начале пишем имя класса, по которому мы в дальнейшем будем обращаться при создании объектов:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">Chair</span><span class="p">:</span>
+</span></span></code></pre></div><p>Затем идёт определение метода __init__ &ndash; этот метод также называется <strong>конструктором</strong> объекта.</p>
+<blockquote>
+<p>Метод &ndash; это функция, которая объявлена внутри какого-то класса.</p>
+</blockquote>
+<p>Используется именно такой странное название метода, потому что имя __init__ зарезервированно Python, и метод с таким именем автоматически вызывается при создании объекта.</p>
+<p>В круглых скобках после названия как и в функции указываются параметры. В методах есть одна особенность &ndash; во всех методах класса первым параметром передаётся self. Именно через self мы будем обращаться к объекту и его полям.</p>
+<blockquote>
+<p>Поле объекта &ndash; это переменная, которая хранится внутри этого объекта. У каждого объекта свой набор полей.</p>
+</blockquote>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">legs</span><span class="p">,</span> <span class="n">seat</span><span class="p">,</span> <span class="n">back</span><span class="p">):</span>
+</span></span></code></pre></div><p>В методе __init__ мы создаём и заполняем поля legs, seat и back значениями, которые были переданы в параметрах конструктора.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># Поле legs -- хранит число ножек стула</span>
+</span></span><span class="line"><span class="cl"><span class="bp">self</span><span class="o">.</span><span class="n">legs</span> <span class="o">=</span> <span class="n">legs</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># Поле seat -- хранит строку с названием материала сидения</span>
+</span></span><span class="line"><span class="cl"><span class="bp">self</span><span class="o">.</span><span class="n">seat</span> <span class="o">=</span> <span class="n">seat</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># Поле back -- хранит строку с названием материала спинки</span>
+</span></span><span class="line"><span class="cl"><span class="bp">self</span><span class="o">.</span><span class="n">back</span> <span class="o">=</span> <span class="n">back</span>
+</span></span></code></pre></div><p>На этом логика конструктора заканчивается.</p>
+<p>Кроме этого, мы добавляем метод <code>take_a_seat</code>, который &ldquo;симулирует&rdquo; процесс восседания на стул. В нём просто выводятся значения полей объекта.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">take_a_seat</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Ты сел на стул у которого </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">legs</span><span class="si">}</span><span class="s1"> ножки, материал сидения - </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">seat</span><span class="si">}</span><span class="s1">, а материал спинки - </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">back</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</span></span></code></pre></div><p>И ещё один метод <code>compare_legs_count</code>, который сравнивает количество ног стула с переданным через параметры. Я его добавил, чтобы показать как выглядят методы с параметрами.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">compare_legs_count</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">legs_to_compare</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">legs</span> <span class="o">==</span> <span class="n">legs_to_compare</span><span class="p">:</span>
+</span></span></code></pre></div><h3 id="создание-объекта">Создание объекта</h3>
+<p>Далее, мы создаём объекты &ndash; экземпляры класса Chair.</p>
+<p>Для того, чтобы создать объект, надо написать имя класса, и в круглых скобках указать параметры, которые будут переданы в конструктор.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">wooden_chair</span> <span class="o">=</span> <span class="n">Chair</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="s1">&#39;дерево&#39;</span><span class="p">,</span> <span class="s1">&#39;дерево&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">plastic_chair</span> <span class="o">=</span> <span class="n">Chair</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="s1">&#39;пластик&#39;</span><span class="p">,</span> <span class="s1">&#39;пластик&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">metal_with_plastic_chair</span> <span class="o">=</span> <span class="n">Chair</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="s1">&#39;металл&#39;</span><span class="p">,</span> <span class="s1">&#39;пластик&#39;</span><span class="p">)</span>
+</span></span></code></pre></div><p>Таким образом в переменную запишется <strong>объект</strong>.</p>
+<p>Окей, а что с ними делать?</p>
+<h3 id="вызов-методов-класса">Вызов методов класса</h3>
+<p>Помнишь мы создали методы <code>take_a_seat</code> и <code>compare_legs_count</code>? Так вот, мы можем их вызывать:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">wooden_chair</span><span class="o">.</span><span class="n">take_a_seat</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># Вывод: Ты сел на стул у которого 4 ножки, материал сидения - дерево, а материал спинки - дерево</span>
+</span></span><span class="line"><span class="cl"><span class="n">plastic_chair</span><span class="o">.</span><span class="n">take_a_seat</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># Вывод: Ты сел на стул у которого 4 ножки, материал сидения - пластик, а материал спинки - пластик</span>
+</span></span><span class="line"><span class="cl"><span class="n">metal_with_plastic_chair</span><span class="o">.</span><span class="n">take_a_seat</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># Вывод: Ты сел на стул у которого 3 ножки, материал сидения - металл, а материал спинки - пластик</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">wooden_chair</span><span class="o">.</span><span class="n">compare_legs_count</span><span class="p">(</span><span class="mi">4</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># Вывод: True</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">metal_with_plastic_chair</span><span class="o">.</span><span class="n">compare_legs_count</span><span class="p">(</span><span class="mi">4</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># Вывод: False</span>
+</span></span></code></pre></div><p>Обрати внимание, что в зависимости от объекта, у нас получается разный вывод &ndash; мы же при создании объектов передавали разные параметры.</p>
+<blockquote>
+<p>Мы никогда не передаём параметр self, так как Python сам его докидывает &ndash; ты же указывай всё остальное.</p>
+</blockquote>
+<h3 id="обращение-к-полям-класса">Обращение к полям класса</h3>
+<p>Чтобы обратиться к полю класса, надо написать &ldquo;ОБЪЕКТ.ПОЛЕ&rdquo;. С нимим можно работать как с обычными переменными, в них нет ничего особенного &ndash; просто они лежат в объекте.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># Можем вытаскивать значения из полей</span>
+</span></span><span class="line"><span class="cl"><span class="n">legs</span> <span class="o">=</span> <span class="n">wooden_chair</span><span class="o">.</span><span class="n">legs</span>
+</span></span><span class="line"><span class="cl"><span class="n">back</span> <span class="o">=</span> <span class="n">plastic_chair</span><span class="o">.</span><span class="n">back</span>
+</span></span><span class="line"><span class="cl"><span class="n">seat</span> <span class="o">=</span> <span class="n">metal_with_plastic_chair</span><span class="o">.</span><span class="n">seat</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Количество ножек деревянного стула: </span><span class="si">{</span><span class="n">legs</span><span class="si">}</span><span class="s1">, материал спинки пластикового стула: </span><span class="si">{</span><span class="n">back</span><span class="si">}</span><span class="s1">, материал сидения стула металл/пластик: </span><span class="si">{</span><span class="n">seat</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># Можем присваивать</span>
+</span></span><span class="line"><span class="cl"><span class="n">metal_with_plastic_chair</span><span class="o">.</span><span class="n">legs</span> <span class="o">=</span> <span class="mi">4</span>
+</span></span><span class="line"><span class="cl"><span class="n">legs</span> <span class="o">=</span> <span class="n">wooden_chair</span><span class="o">.</span><span class="n">legs</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Количество ножек деревянного стула: </span><span class="si">{</span><span class="n">legs</span><span class="si">}</span><span class="s1">, материал спинки пластикового стула: </span><span class="si">{</span><span class="n">back</span><span class="si">}</span><span class="s1">, материал сидения стула металл/пластик: </span><span class="si">{</span><span class="n">seat</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</span></span></code></pre></div><h1 id="задание-на-закрепление">Задание на закрепление</h1>
+<p>Создай класс Calculator:</p>
+<ul>
+<li>В нём должно быть поле &ldquo;acc&rdquo;, в которое в конструкторе класса присваивается 0</li>
+<li>В нём должны быть методы:
+<ul>
+<li>add &ndash; принимает один параметр, складывает его с &ldquo;acc&rdquo; и кладёт результат в &ldquo;acc&rdquo;</li>
+<li>sub &ndash; принимает один параметр, вычитает его из &ldquo;acc&rdquo; и кладёт результат в &ldquo;acc&rdquo;</li>
+<li>mul &ndash; принимает один параметр, умножает его на &ldquo;acc&rdquo; и кладёт результат в acc</li>
+<li>div &ndash; принимает один параметр, делит &ldquo;acc&rdquo; на него и кладёт результат в acc</li>
+<li>clr &ndash; не принимает параметров, сбрасывает значение поля acc в 0</li>
+<li>res &ndash; не принимает параметров, возвращает значение поля acc</li>
+</ul>
+</li>
+</ul>
+<p>После того, как создашь класс Calculator, исполни этот код:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">c</span> <span class="o">=</span> <span class="n">Calculator</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="n">c</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="k">assert</span> <span class="n">c</span><span class="o">.</span><span class="n">res</span><span class="p">()</span> <span class="o">==</span> <span class="o">-</span><span class="mi">10</span>
+</span></span><span class="line"><span class="cl"><span class="n">c</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="mi">12</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="k">assert</span> <span class="n">c</span><span class="o">.</span><span class="n">res</span><span class="p">()</span> <span class="o">==</span> <span class="mi">2</span>
+</span></span><span class="line"><span class="cl"><span class="n">c</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="k">assert</span> <span class="n">c</span><span class="o">.</span><span class="n">res</span><span class="p">()</span> <span class="o">==</span> <span class="mi">6</span>
+</span></span><span class="line"><span class="cl"><span class="n">c</span><span class="o">.</span><span class="n">mul</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="k">assert</span> <span class="n">c</span><span class="o">.</span><span class="n">res</span><span class="p">()</span> <span class="o">==</span> <span class="mi">12</span>
+</span></span><span class="line"><span class="cl"><span class="n">c</span><span class="o">.</span><span class="n">div</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="k">assert</span> <span class="n">c</span><span class="o">.</span><span class="n">res</span><span class="p">()</span> <span class="o">==</span> <span class="mi">3</span>
+</span></span><span class="line"><span class="cl"><span class="n">c</span><span class="o">.</span><span class="n">clr</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="k">assert</span> <span class="n">c</span><span class="o">.</span><span class="n">res</span><span class="p">()</span> <span class="o">==</span> <span class="mi">0</span>
+</span></span></code></pre></div><p>Если посыпятся ошибки, то класс создан не по ТЗ :)</p>
+<h1 id="заключение">Заключение</h1>
+<p>Итого, мы изучили:</p>
+<ul>
+<li>Объектно-ориентированное программирование</li>
+<li>Объекты</li>
+<li>Классы (методы, конструктор, поля)</li>
+</ul>
+<p>Теперь первые два пункта в определении ООП понятны:</p>
+<blockquote>
+<p>Объектно-ориентированное программирование (ООП) &ndash; подход к написанию программ при котором:</p>
+<ul>
+<li>Программа представляется в виде набора объектов и связей между ними</li>
+<li>Все объекты являются экземплярами классов</li>
+<li>Классы образуют иерархию наследования</li>
+</ul>
+</blockquote>
+<p>Если что &ndash; пиши, я помогу и постараюсь объяснить лучше.</p>
+<p>Дальше мы залезем поглубже в принципы ООП &ndash; сложные, но полезные понятия.</p>
+
+    <hr>
+    <div align="center">
+        <a href="https://kee-reel.com/python/classes.html#top">▲ В начало ▲</a>
+    </div>
+    
+        <hr>
+        <div style="display: flex; justify-content: space-between;">
+            
+                <a href="https://kee-reel.com/python/functions.html">◀ Функции</a>
+            
+            
+                <a href="https://kee-reel.com/python/oop.html">Принципы ООП ▶</a>
+            
+        </div>
+    
+
+			</section>
+		</div>
+	</div>
+
+    <footer>
+    <hr>
+    <div align="center">
+        Home server: Raspberry Pi 4<br>
+        Temperature: 41<br>
+Uptime: 1 hour, 43 minutes
+    </div>
+</footer>
+
+</body>
+</html>

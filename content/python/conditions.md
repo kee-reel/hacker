@@ -22,7 +22,6 @@ elif this_is_true:
 else:
 	condition_message += 'four'
 print(condition_message)
-# Вывод:
 # Condition: two
 ```
 
@@ -30,13 +29,13 @@ print(condition_message)
 
 * **Секция** под **if** (если) исполнится если указанное условие истинно.
 
-### Все **секции** в Python отделяются отступом: табуляцией "Tab" или равным количеством пробелов.
-### Это очень важно! Не смешивай пробелы и табуляцию, а если используешь пробелы, то ставь везде одинаковое количество пробелов для отступа. Если что-то напутаешь, то программа просто не запустится.
-
 ```python
 if this_is_false:
 	condition_message += 'one'
 ```
+
+### Все **секции** в Python отделяются отступом: табуляцией "Tab" или равным количеством пробелов.
+### Это очень важно! Не смешивай пробелы и табуляцию, а если используешь пробелы, то ставь везде одинаковое количество пробелов для отступа. Если что-то напутаешь, то программа просто не запустится.
 
 * Секция под **elif** (сокращённо от "else if") исполнится если предыдущее условие ложно, а указанное условие истинно. elif это опциональное условие, и ты можешь его не указывать, и оставить только if. elif может использоваться после if неоднократно -- то есть ты можешь написать if, потом elif, а потом ещё сколько хочешь elif.
 
@@ -56,7 +55,7 @@ else:
 
 * Если хоть одно из условий выполняется (if, elif или else), то все другие условия не проходят проверку, и просто пропускаются. В примере выше, после того как выполнилось условие для `elif this_is_true or this_is_false`, программа не пошла проверять `elif this_is_true`, и просто вышла из всей этой цепочки условий.
 
-* Помнишь мы в статье ["переменные и операции с ними"](../variables-and-operations) мы рассматривали операции с булевыми переменными? Так вот -- в условиях они очень часто используются. В примере выше, `this_is_true or this_is_false` это булевое **выражение**. **Выражение** это набор операций над какими-то значениями, которые порождают результат ("a = 2 + 2" -- тут "2 + 2" это выражение).
+* Помнишь в статье ["переменные и операции с ними"](../variables-and-operations) мы рассматривали операции с булевыми переменными? Так вот -- в условиях они очень часто используются. В примере выше, `this_is_true or this_is_false` это булевое **выражение**. **Выражение** это набор операций над какими-то значениями, которые порождают результат ("a = 2 + 2" -- тут "2 + 2" это выражение).
 
 ### Вложенные условия
 
@@ -74,7 +73,6 @@ if this_is_true:
 else:
 	condition_message += 'three'
 print(condition_message)
-# Вывод:
 # Condition: two
 ```
 
@@ -106,9 +104,11 @@ elif value_1 < value_2:
 	print('Value 1 is less than value 2')
 else:
 	print('Value 1 is equal to value 2')
+# Value 1 is or less than value 2
 
 if value_2 >= 8:
 	print('Value 1 is equal to or more than 8')
+# Value 1 is equal to or more than 8
 
 some_list = [1, 2, 3, 4, 5]
 
@@ -116,24 +116,18 @@ if len(some_list) == 5:
 	print('some_list items count is equal to 5')
 else:
 	print('some_list items count is not equal to 5')
+# some_list items count is equal to 5
 
 some_string = 'Some string'
 another_string = 'Another string'
-
 if some_string == another_string:
 	print('Strings are equal')
 else:
 	print('Strings are not equal')
+# Strings are not equal
 	
-
 if another_string == 'Another string':
 	print('another_string contains value "Another string"')
-
-# Вывод:
-# Value 1 is or less than value 2
-# Value 1 is equal to or more than 8
-# some_list items count is equal to 5
-# Strings are not equal
 # another_string contains value "Another string"
 ```
 
@@ -147,26 +141,26 @@ if another_string == 'Another string':
 
 Также, к этой операции можно применить булевую операцию **not**, чтобы проверить что такого значения в списке нет.
 
-Вот примеры использования операции:
+Вот примеры использования операции проверки наличия в контейнере:
 
 ```python
 some_list = [1, 2, 3]
-some_dict = {
-	1: 2,
-	3: 4,
-	5: 6
-}
 value = 5
 if value in some_list:
 	print('value is in some_list')
 else:
 	print('value is not in some_list')
+# value is not in some_list
+
+some_dict = {
+	1: 2,
+	3: 4,
+	5: 6
+}
 if value in some_dict:
 	print('value is in some_dict')
 else:
 	print('value is in not some_dict')
-# Вывод:
-# value is not in some_list
 # value is in some_dict
 ```
 
