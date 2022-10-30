@@ -34,7 +34,7 @@ else
 
 Вот блок-схема для кода выше:
 
-![Блок схема](/assets/images/block-scheme.png)
+![Блок схема](/assets/images/c-block-scheme.png)
 
 > Сделано с помощью [draw.io](https://github.com/jgraph/drawio-desktop/releases/) онлайн редактора блок-схем
 
@@ -262,7 +262,7 @@ else
 
 Получается такой вот круговорот if в природе:
 
-![Круговорот if](/assets/images/condition-cycle.png)
+![Круговорот if](/assets/images/c-condition-cycle.png)
 
 # Вложенные условия
 

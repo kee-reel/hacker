@@ -91,7 +91,7 @@
 <p>А почему адрес так выглядит?</p>
 <h1 id="адрес-и-представление-числа-в-памяти">Адрес и представление числа в памяти</h1>
 <p>Адрес это номер ячейки в оперативной памяти. Записывается этот адрес в шеснадцатеричной системе счисления.</p>
-<p><img src="/assets/images/pointer-to-variable.png" alt="Указатель на переменную"></p>
+<p><img src="/assets/images/c-pointer-to-variable.png" alt="Указатель на переменную"></p>
 <p>Ты можешь представить адрес, как номер ячейки внутри своей плашки оперативной памяти. Каждая ячейка там занимает ровно 1 байт.</p>
 <p>Например, у меня 16 Гб оперативной памяти &ndash; значит будет 16(Гб) * 1024(Мб) * 1024(Кб) = 16777216 байт. Это значит что возможные адреса находятся на промежутке от 0 до 16777215, или в шеснадцатеричной от 0x0 до 0xFFFFFF.</p>
 <blockquote>
@@ -99,7 +99,7 @@
 </blockquote>
 <p>Ещё, ты возможно заметил, что в моём примере число в ячейках записано как-то задом наперёд &ndash; сначала идут значения, а затем нули, хотя на листочке мы бы записали это двоичное число наоборот.</p>
 <p>Всё дело в порядке байт в записи числа:</p>
-<p><img src="/assets/images/little-big-endian.png" alt="Порядок байт"></p>
+<p><img src="/assets/images/c-little-big-endian.png" alt="Порядок байт"></p>
 <p>В зависимости от процессора, порядок записи байт у тебя может быть:</p>
 <ul>
 <li>От старшего к младшему (big-endian) &ndash; первый байт числа хранит старшие биты, а последний младшие</li>
@@ -183,7 +183,7 @@
 <li>В карте &ldquo;В&rdquo; записаны координаты карты &ldquo;А&rdquo;</li>
 </ul>
 <p>Если у тебя есть карта &ldquo;В&rdquo;, то тебе надо по ней найти карту &ldquo;А&rdquo;, чтобы по ней уже найти клад.</p>
-<p><img src="/assets/images/pointer-to-pointer.png" alt="Карта с координатами карты"></p>
+<p><img src="/assets/images/c-pointer-to-pointer.png" alt="Карта с координатами карты"></p>
 <p>Применяем аналогию к Си &ndash; ты можешь создать указатель, в котором лежит адрес указателя на переменную:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="kt">int</span> <span class="n">treasure</span> <span class="o">=</span> <span class="mi">777</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl"><span class="kt">int</span><span class="o">*</span> <span class="n">map_A</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">treasure</span><span class="p">;</span>
@@ -218,7 +218,7 @@
 </span></span><span class="line"><span class="cl"><span class="c1">// value by int_treasure_map: 777
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">printf</span><span class="p">(</span><span class="s">&#34;value by char_treasure_map: %d</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="o">*</span><span class="n">char_treasure_map</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl"><span class="c1">// value by char_treasure_map: 9
-</span></span></span></code></pre></div><p><img src="/assets/images/pointers-different-types.png" alt="Разные типы указателей"></p>
+</span></span></span></code></pre></div><p><img src="/assets/images/c-pointers-different-types.png" alt="Разные типы указателей"></p>
 <p>Помнишь, я упомянал до этого про порядок байт? В этом примере мы увидели вживую что это такое.</p>
 <p>У меня получилось, что char_treasure_map вернул нам значение первого байта int переменной treasure. Почему только первый байт? Потому что это указатель на char, а char занимает 1 байт.</p>
 <p>Если бы у меня был порядок байт не &ldquo;от младшего к старшему&rdquo;, а &ldquo;от старшего к младшему&rdquo;, то мне вернулось бы значение 0, так как первыми байтами числа были старшие байты (а там первые два байта это нули).</p>
@@ -236,7 +236,7 @@
 </span></span></span><span class="line"><span class="cl"><span class="c1">// Interpret x as int: 777
 </span></span></span></code></pre></div><p>Изначально мы присвоили в переменную &ldquo;x&rdquo; значение 777 как во float переменную &ndash; в память оно и записалось в вещественном представлении. Затем, мы присвоили значение 777 по int указателю &ldquo;p_x&rdquo; &ndash; туда, куда указывает &ldquo;p_x&rdquo; (в переменную &ldquo;x&rdquo;) мы записали его в целочисленном представлении.</p>
 <p>Вот наглядная демострация того, как выглядят разные представления числа 777:</p>
-<p><img src="/assets/images/pointer-data-representation.png" alt="Разное представление типов"></p>
+<p><img src="/assets/images/c-pointer-data-representation.png" alt="Разное представление типов"></p>
 <p>Если мы будем интерпретировать вещественную запись числа как целую, или целую как вещественную &ndash; мы не сможем нормально прочитать нужное нам значение. Это как если бы мы начали читать книгу на чешском по-русски, и наоборот &ndash; что-то мы поймём, но значение слов будет разным.</p>
 <p>То, что я показал является экзотическими случаями и на практике нигде не встречается. Не делай так никогда-никогда!</p>
 <p><strong>Всегда следи, что типы указателей и переменных совпадают, а в указателях записаны корректные адреса.</strong></p>
@@ -283,7 +283,7 @@
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">char_treasure_map_2</span> <span class="o">-=</span> <span class="mi">3</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl"><span class="n">printf</span><span class="p">(</span><span class="s">&#34;value by char_treasure_map+0: %d</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="o">*</span><span class="n">char_treasure_map_2</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl"><span class="c1">// value by char_treasure_map+0: 9
-</span></span></span></code></pre></div><p><img src="/assets/images/pointers-arithmetic.png" alt="Адресная арифметика"></p>
+</span></span></span></code></pre></div><p><img src="/assets/images/c-pointers-arithmetic.png" alt="Адресная арифметика"></p>
 <p>Если ты прибавляешь/отнимаешь от указателя на char единицу, то адрес изменится на 1, а если ты прибавишь/отнимешь единицу от указателю на int, то адрес изменится на 4. Почему так происходит?</p>
 <p>Тут как раз вступают типы указателей &ndash; в зависимости от типа указателя, смещение происходит на число байт, равное размеру значения этого типа. То есть, для:</p>
 <ul>
@@ -347,8 +347,8 @@ Variable &#39;b&#39; has bigger address
     <hr>
     <div align="center">
         Home server: Raspberry Pi 4<br>
-        Temperature: 41<br>
-Uptime: 1 hour, 43 minutes
+        Temperature: 51<br>
+Uptime: 5 hours, 12 minutes
     </div>
 </footer>
 

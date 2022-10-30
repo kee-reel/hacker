@@ -54,7 +54,7 @@ printf("coordinates in treasure_map: %p\n", treasure_map);
 
 Адрес это номер ячейки в оперативной памяти. Записывается этот адрес в шеснадцатеричной системе счисления.
 
-![Указатель на переменную](/assets/images/pointer-to-variable.png)
+![Указатель на переменную](/assets/images/c-pointer-to-variable.png)
 
 Ты можешь представить адрес, как номер ячейки внутри своей плашки оперативной памяти. Каждая ячейка там занимает ровно 1 байт.
 
@@ -66,7 +66,7 @@ printf("coordinates in treasure_map: %p\n", treasure_map);
 
 Всё дело в порядке байт в записи числа:
 
-![Порядок байт](/assets/images/little-big-endian.png)
+![Порядок байт](/assets/images/c-little-big-endian.png)
 
 В зависимости от процессора, порядок записи байт у тебя может быть:
 
@@ -188,7 +188,7 @@ printf("treasure by friend_map: %d\n", *friend_map);
 
 Если у тебя есть карта "В", то тебе надо по ней найти карту "А", чтобы по ней уже найти клад.
 
-![Карта с координатами карты](/assets/images/pointer-to-pointer.png)
+![Карта с координатами карты](/assets/images/c-pointer-to-pointer.png)
 
 Применяем аналогию к Си -- ты можешь создать указатель, в котором лежит адрес указателя на переменную:
 
@@ -237,7 +237,7 @@ printf("value by char_treasure_map: %d\n", *char_treasure_map);
 // value by char_treasure_map: 9
 ```
 
-![Разные типы указателей](/assets/images/pointers-different-types.png)
+![Разные типы указателей](/assets/images/c-pointers-different-types.png)
 
 Помнишь, я упомянал до этого про порядок байт? В этом примере мы увидели вживую что это такое.
 
@@ -266,7 +266,7 @@ printf("Interpret x as float: %f\nInterpret x as int: %d\n", x, *p_x);
 
 Вот наглядная демострация того, как выглядят разные представления числа 777:
 
-![Разное представление типов](/assets/images/pointer-data-representation.png)
+![Разное представление типов](/assets/images/c-pointer-data-representation.png)
 
 Если мы будем интерпретировать вещественную запись числа как целую, или целую как вещественную -- мы не сможем нормально прочитать нужное нам значение. Это как если бы мы начали читать книгу на чешском по-русски, и наоборот -- что-то мы поймём, но значение слов будет разным.
 
@@ -328,7 +328,7 @@ printf("value by char_treasure_map+0: %d\n", *char_treasure_map_2);
 // value by char_treasure_map+0: 9
 ```
 
-![Адресная арифметика](/assets/images/pointers-arithmetic.png)
+![Адресная арифметика](/assets/images/c-pointers-arithmetic.png)
 
 Если ты прибавляешь/отнимаешь от указателя на char единицу, то адрес изменится на 1, а если ты прибавишь/отнимешь единицу от указателю на int, то адрес изменится на 4. Почему так происходит?
 

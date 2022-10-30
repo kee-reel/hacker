@@ -68,7 +68,7 @@
 <li>[3] &ndash; размер массива</li>
 </ul>
 <p>Прежде чем мы начнём заполнять значения, давай посмотрим как переменная и массив хранятся в памяти:</p>
-<p><img src="/assets/images/array-vs-variable.png" alt="Переменная и массив в памяти"></p>
+<p><img src="/assets/images/c-array-vs-variable.png" alt="Переменная и массив в памяти"></p>
 <p>То есть, по сути, массив это просто набор переменных, которые расположены рядом в памяти.</p>
 <p>Как ты помнишь из <a href="../pointers">статьи</a> про указатели, к ним можно прибавлять числа, чтобы сдвигать их туда-сюда в памяти.</p>
 <p>На иллюстрации я показал, что прибавляя число, можно сдвигаться на первый, второй или третий элемент массива.</p>
@@ -182,7 +182,7 @@
 </span></span></code></pre></div><p>Эмммм&hellip; Что это за чёрная магия там в выводе?</p>
 <p>Сейчас объясню!</p>
 <p>По сути, многомерные массивы в памяти выглядят точно так же, как и одномерные:</p>
-<p><img src="/assets/images/arrays-dimensions.png" alt="Многомерный массив"></p>
+<p><img src="/assets/images/c-arrays-dimensions.png" alt="Многомерный массив"></p>
 <p>Вся разница лишь в том, что ты можешь первым индексом перескакивать между массивами, а вторым индексом перескакивать между элементами массивов.</p>
 <p>А на счёт чёрной магии &ndash; ты же не забыл что индекс это просто сокращённая запись разыменования?</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="kt">int</span> <span class="n">arr</span><span class="p">[</span><span class="mi">3</span><span class="p">][</span><span class="mi">2</span><span class="p">];</span>
@@ -455,8 +455,8 @@
     <hr>
     <div align="center">
         Home server: Raspberry Pi 4<br>
-        Temperature: 41<br>
-Uptime: 1 hour, 43 minutes
+        Temperature: 51<br>
+Uptime: 5 hours, 12 minutes
     </div>
 </footer>
 

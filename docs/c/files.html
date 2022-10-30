@@ -58,7 +58,7 @@
     
     <p>Файл (file) &ndash; это абстракция, поддерживаемая операционной системой, позволяющая работать с данными, записанными на внешних носителях (магнитная запись на жёстком диске, флеш память на SSD или флешке).</p>
 <p>Таким образом, работая с файлами, мы работаем с операционной системой, которая, в свою очередь, работает с драйверами физического устройства.</p>
-<p><img src="/assets/images/file-descriptor.png" alt="Дескриптор файла"></p>
+<p><img src="/assets/images/c-file-descriptor.png" alt="Дескриптор файла"></p>
 <blockquote>
 <p>Я очень упрощаю что там происходит &ndash; если хочешь понять как это на самом деле устроено, можешь почитать Э. Танненбаум &ldquo;Операционные системы&rdquo;, глава &ldquo;Файловые системы&rdquo;.</p>
 </blockquote>
@@ -354,10 +354,10 @@ And some more textþ
 </span></span><span class="line"><span class="cl">	<span class="n">printf</span><span class="p">(</span><span class="s">&#34;%d &#34;</span><span class="p">,</span> <span class="n">new_arr</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>
 </span></span><span class="line"><span class="cl"><span class="c1">// Вывод программы: 1 2 4 8 16
 </span></span></span></code></pre></div><p>Возможно ты думаешь, что в файле сейчас записано что-то вроде &ldquo;1 2 4 8 16&rdquo;, но нет &ndash; там такое:</p>
-<p><img src="/assets/images/binary-file.png" alt="Текст бинарного файла"></p>
+<p><img src="/assets/images/c-binary-file.png" alt="Текст бинарного файла"></p>
 <p>Оно выглядит так странно из-за того, что текстовый редактор не может нормально отобразить бинарные данные &ndash; он пытается прочитать коды символов.</p>
 <p>Чтобы реально узнать что там лежит, необходимо воспользоваться редактором, который может отображать бинарные данные. Вот как содержимое выглядит через такой редактор:</p>
-<p><img src="/assets/images/binary-file-hex.png" alt="Данные в бинарном файле"></p>
+<p><img src="/assets/images/c-binary-file-hex.png" alt="Данные в бинарном файле"></p>
 <p>Обычно они называются hex-editor, потому что отображают данные в шеснадцатеричной системе счисления. Посмотрев на данные в представлении этого редактора, можно заметить что наши 5 int&rsquo;ов лежат там как ни в чём не бывало.</p>
 <p>Зачем вообще это надо? Почему нельзя хранить всё как текст?</p>
 <p>Представь, что я захочу сохранить unsigned int число 4294967295:</p>
@@ -479,8 +479,8 @@ And some more textþ
     <hr>
     <div align="center">
         Home server: Raspberry Pi 4<br>
-        Temperature: 41<br>
-Uptime: 1 hour, 43 minutes
+        Temperature: 51<br>
+Uptime: 5 hours, 12 minutes
     </div>
 </footer>
 
