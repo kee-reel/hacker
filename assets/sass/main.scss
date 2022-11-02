@@ -147,24 +147,26 @@ blockquote {
 }
 
 pre {
-  background: rgba(0, 0, 0, 0.1);
+  //background: rgba(0, 0, 0, 1);
+  background-color: rgb(39, 40, 34);
   border: 1px solid rgba(255, 255, 255, 0.15);
   padding: 10px;
   font-size: 16px;
-  color: #b5e853;
+  color: $body-foreground;
   border-radius: 2px;
   text-wrap: normal;
   overflow: auto;
   overflow-y: hidden;
 }
 
-code.highlighter-rouge {
-  background: rgba(0, 0, 0, 0.1);
-  border: 1px solid rgba(255, 255, 255, 0.15);
+code {
+  //background: rgba(0, 0, 0, 1);
+  background-color: rgb(39, 40, 34);
+  border: 0px;
   padding: 0px 3px;
   margin: 0px -3px;
-  color: #aa759f;
-  border-radius: 2px;
+  color: $body-foreground;
+  border-radius: 0px;
 }
 
 table {

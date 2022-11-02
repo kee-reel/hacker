@@ -9,7 +9,7 @@
 	<meta name="theme-color" content="#ffffff">
 
     
-    <link rel="stylesheet" href="/sass/main.min.css">
+    <link rel="stylesheet" href="/sass/main.scss">
     <title> IT простым языком </title>
 </head>
 
@@ -20,14 +20,14 @@
         +---------------------------+<br>
         |.-------------------------.|<br>
         ||&nbsp;<a href="/">kee_reel@blog</a>:~$ cd&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;||<br>
-        ||&nbsp;<a href="/c">c</a>&nbsp;&nbsp;<a href="/cpp">c++</a>&nbsp;&nbsp;<a href="/python">python</a>&nbsp;&nbsp;<a href="/linux">linux</a>&nbsp;&nbsp;&nbsp;||<br>
-        ||&nbsp;<a href="/opengl">opengl</a>&nbsp;&nbsp;<a href="/sql">sql</a>&nbsp;&nbsp;<a href="/network">networks</a>&nbsp;&nbsp;&nbsp;||<br>
+        ||&nbsp;<a href="/c.html">c</a>&nbsp;&nbsp;<a href="/cpp.html">c++</a>&nbsp;&nbsp;<a href="/python.html">python</a>&nbsp;&nbsp;<a href="/linux.html">linux</a>&nbsp;&nbsp;&nbsp;||<br>
+        ||&nbsp;<a href="/opengl.html">opengl</a>&nbsp;&nbsp;<a href="/sql.html">sql</a>&nbsp;&nbsp;<a href="/network.html">networks</a>&nbsp;&nbsp;&nbsp;||<br>
         ||&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;||<br>
-        ||&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/about">обо_мне</a>&nbsp;||<br>
+        ||&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/about.html">обо_мне</a>&nbsp;||<br>
         |.-------------------------.|<br>
         +-::---------------------::-+<br>
         .---------------------------.<br>
-        &nbsp;//&nbsp;/o<a href="/links">o</a>oooooooooooooooooooo\\&nbsp;\\&nbsp;<br>
+        &nbsp;//&nbsp;/o<a href="/links.html">o</a>oooooooooooooooooooo\\&nbsp;\\&nbsp;<br>
         &nbsp;//&nbsp;/oooooooooooooooooooooooo\\&nbsp;\\&nbsp;<br>
         //-------------------------------\\<br>
         \\-------------------------------//<br>
@@ -70,25 +70,25 @@
 <p>В зависимости от компилятора и разрядности системы (x64 или x86) размер типа int может занимать 2, 4 или 8 байт. Дальше в статье я покажу как узнать сколько он занимает на твоей машине.</p>
 </blockquote>
 <p>Вот пример определения переменных в C:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="c1">// Можно так: ТИП ИМЯ;
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kt">char</span> <span class="n">charVariable</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="c1">// или так: ТИП ИМЯ = ЗНАЧЕНИЕ;
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kt">int</span> <span class="n">intVariable</span> <span class="o">=</span> <span class="mi">777</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="c1">// или так (больше одной переменной заданного типа): ТИП ИМЯ_ПЕРЕМЕННОЙ, ИМЯ_ДРУГОЙ_ПЕРЕМЕННОЙ;
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kt">int</span> <span class="n">anotherIntVariable1</span><span class="p">,</span> <span class="n">anotherIntVariable2</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="c1">// или так: ТИП ИМЯ_ПЕРЕМЕННОЙ = ЗНАЧЕНИЕ, ИМЯ_ДРУГОЙ_ПЕРЕМЕННОЙ;
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kt">float</span> <span class="n">floatVariable</span> <span class="o">=</span> <span class="mf">983.223</span><span class="p">,</span> <span class="n">anotherFloatVariable</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="c1">// Если после запятой у ещественного числа нет знаков, то можно вместо &#34;766.0&#34; написать просто &#34;766.&#34;
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kt">double</span> <span class="n">doubleVariable</span> <span class="o">=</span> <span class="mf">766.</span><span class="p">;</span>
-</span></span></code></pre></div><ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="c1">// Можно так: ТИП ИМЯ;
+</span><span class="c1"></span><span class="kt">char</span> <span class="n">charVariable</span><span class="p">;</span>
+<span class="c1">// или так: ТИП ИМЯ = ЗНАЧЕНИЕ;
+</span><span class="c1"></span><span class="kt">int</span> <span class="n">intVariable</span> <span class="o">=</span> <span class="mi">777</span><span class="p">;</span>
+<span class="c1">// или так (больше одной переменной заданного типа): ТИП ИМЯ_ПЕРЕМЕННОЙ, ИМЯ_ДРУГОЙ_ПЕРЕМЕННОЙ;
+</span><span class="c1"></span><span class="kt">int</span> <span class="n">anotherIntVariable1</span><span class="p">,</span> <span class="n">anotherIntVariable2</span><span class="p">;</span>
+<span class="c1">// или так: ТИП ИМЯ_ПЕРЕМЕННОЙ = ЗНАЧЕНИЕ, ИМЯ_ДРУГОЙ_ПЕРЕМЕННОЙ;
+</span><span class="c1"></span><span class="kt">float</span> <span class="n">floatVariable</span> <span class="o">=</span> <span class="mf">983.223</span><span class="p">,</span> <span class="n">anotherFloatVariable</span><span class="p">;</span>
+<span class="c1">// Если после запятой у ещественного числа нет знаков, то можно вместо &#34;766.0&#34; написать просто &#34;766.&#34;
+</span><span class="c1"></span><span class="kt">double</span> <span class="n">doubleVariable</span> <span class="o">=</span> <span class="mf">766.</span><span class="p">;</span>
+</code></pre></div><ul>
 <li>Символ &ldquo;=&rdquo; означает операцию <strong>присваивания</strong> &ndash; она перезаписыват значение переменной на указанное. Его можно использовать не только при создании переменной, но и отдельно:</li>
 </ul>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="kt">char</span> <span class="n">charVariable</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="n">charVariable</span> <span class="o">=</span> <span class="mi">42</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span> <span class="o">=</span> <span class="mi">7</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="c1">// Вот так можно присвоить значение сразу наскольким переменным:
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">a</span> <span class="o">=</span> <span class="n">b</span> <span class="o">=</span> <span class="mi">24</span><span class="p">;</span>
-</span></span></code></pre></div><!-- raw HTML omitted -->
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="kt">char</span> <span class="n">charVariable</span><span class="p">;</span>
+<span class="n">charVariable</span> <span class="o">=</span> <span class="mi">42</span><span class="p">;</span>
+<span class="kt">int</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span> <span class="o">=</span> <span class="mi">7</span><span class="p">;</span>
+<span class="c1">// Вот так можно присвоить значение сразу наскольким переменным:
+</span><span class="c1"></span><span class="n">a</span> <span class="o">=</span> <span class="n">b</span> <span class="o">=</span> <span class="mi">24</span><span class="p">;</span>
+</code></pre></div><!-- raw HTML omitted -->
 <ul>
 <li>
 <p>Имя переменной может содержать любые числа, латинские буквы (большие и маленькие) и символ &ldquo;_&rdquo;. При этом оно не должно начинаться с числа &ndash; так &ldquo;777variable&rdquo; нельзя.</p>
@@ -140,12 +140,12 @@
 <li>scanf &ndash; форматированный ввод, обеспечивает запись введённого с клавиатуры значения в переменную</li>
 </ul>
 <p>Как с ними работать? Вот так:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="kt">int</span> <span class="n">x</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="c1">// scanf(строка_формата_ввода, адрес_переменной);
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">scanf</span><span class="p">(</span><span class="s">&#34;%d&#34;</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">x</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl"><span class="c1">// printf(строка_формата_вывода, значение);
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">printf</span><span class="p">(</span><span class="s">&#34;Value from keyboard: %d</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">x</span><span class="p">);</span>
-</span></span></code></pre></div><ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="kt">int</span> <span class="n">x</span><span class="p">;</span>
+<span class="c1">// scanf(строка_формата_ввода, адрес_переменной);
+</span><span class="c1"></span><span class="n">scanf</span><span class="p">(</span><span class="s">&#34;%d&#34;</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">x</span><span class="p">);</span>
+<span class="c1">// printf(строка_формата_вывода, значение);
+</span><span class="c1"></span><span class="n">printf</span><span class="p">(</span><span class="s">&#34;Value from keyboard: %d</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">x</span><span class="p">);</span>
+</code></pre></div><ul>
 <li>строка_формата_ввода &ndash; это строка, которая в одном случае задаёт формат ввода. Обычно там одно значение с &ldquo;%&rdquo; (сейчас расскажу про это)</li>
 <li>адрес_переменной &ndash; так как каждая переменная на самом деле хранится в памяти, мы можем узнать адрес ячейки, в которой эта переменная хранится. Для того, чтобы получить адрес переменной, надо написать &ldquo;&amp;&rdquo; перед именем
 переменной. scanf принимает адрес переменной для того, чтобы положить полученные данные по указанному адресу.</li>
@@ -160,7 +160,7 @@
 <li>\n &ndash; это символ, обозначающий перенос строки (то, что происходит, когда ты нажимаешь Enter)</li>
 </ul>
 <p>ДА КТО ТАКОЙ ЭТОТ ВАШ &ldquo;%&rdquo;?!</p>
-<p>Это специальный символ, который необходим для указания типа входного/выходного значения. Тип значения указывается буквой после &ldquo;%&rdquo;:</p>
+<p>Это специальный символ, который необходим для указания типа входного/выходного значения. Тип значения указывается буквой после &ldquo;%&quot;:</p>
 <ul>
 <li>%hd &ndash; целое однобайтовое число (char)</li>
 <li>%d &ndash; целое четырёхбайтовое число (int)</li>
@@ -173,64 +173,64 @@
 <p>Существуют ещё другие обозначения типов. Если понадобятся &ndash; поищи описание функции scanf или printf.</p>
 </blockquote>
 <p>В функции scanf и printf в строках с форматом ввода/вывода может быть указано сразу несколько значений:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="kt">char</span> <span class="n">a</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="n">b</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="kt">float</span> <span class="n">c</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="c1">// При вводе этих значений надо отделять числа пробелом -- то есть я бы ввёл &#34;5 88 2.5&#34;, и нажал бы Enter
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">scanf</span><span class="p">(</span><span class="s">&#34;%hd %d %f&#34;</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">a</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">b</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">c</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl"><span class="n">printf</span><span class="p">(</span><span class="s">&#34;a: %hd; b: %d; c: %f; The answer to life, the universe, and everything: %d&#34;</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="mi">42</span><span class="p">);</span>
-</span></span></code></pre></div><h1 id="задание-на-закрепление">Задание на закрепление</h1>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="kt">char</span> <span class="n">a</span><span class="p">;</span>
+<span class="kt">int</span> <span class="n">b</span><span class="p">;</span>
+<span class="kt">float</span> <span class="n">c</span><span class="p">;</span>
+<span class="c1">// При вводе этих значений надо отделять числа пробелом -- то есть я бы ввёл &#34;5 88 2.5&#34;, и нажал бы Enter
+</span><span class="c1"></span><span class="n">scanf</span><span class="p">(</span><span class="s">&#34;%hd %d %f&#34;</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">a</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">b</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">c</span><span class="p">);</span>
+<span class="n">printf</span><span class="p">(</span><span class="s">&#34;a: %hd; b: %d; c: %f; The answer to life, the universe, and everything: %d&#34;</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="mi">42</span><span class="p">);</span>
+</code></pre></div><h1 id="задание-на-закрепление">Задание на закрепление</h1>
 <p>Скопируй этот код в IDE:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp">
-</span></span></span><span class="line"><span class="cl"><span class="cp"></span>
-</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
-</span></span><span class="line"><span class="cl"><span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">intVariable</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">    <span class="n">scanf</span><span class="p">(</span><span class="s">&#34;%d&#34;</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">intVariable</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">    <span class="n">printf</span> <span class="p">(</span><span class="s">&#34;Value of intVariable: %d</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">intVariable</span><span class="p">);</span> <span class="c1">// Вот в этот printf добавить остальные переменные
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">printf</span> <span class="p">(</span><span class="s">&#34;Adress of intVariable: %p</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">intVariable</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></div><p>Создай ещё три новых переменных с типами char, float и double &ndash; заполни их через scanf, и выведи их значения в одном printf.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp">
+</span><span class="cp"></span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="kt">int</span> <span class="n">intVariable</span><span class="p">;</span>
+    <span class="n">scanf</span><span class="p">(</span><span class="s">&#34;%d&#34;</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">intVariable</span><span class="p">);</span>
+    <span class="n">printf</span> <span class="p">(</span><span class="s">&#34;Value of intVariable: %d</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">intVariable</span><span class="p">);</span> <span class="c1">// Вот в этот printf добавить остальные переменные
+</span><span class="c1"></span>    <span class="n">printf</span> <span class="p">(</span><span class="s">&#34;Adress of intVariable: %p</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">intVariable</span><span class="p">);</span>
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div><p>Создай ещё три новых переменных с типами char, float и double &ndash; заполни их через scanf, и выведи их значения в одном printf.</p>
 <p>Попробуй убрать \n &ndash; что изменится?</p>
 <h1 id="инициализация-переменной">Инициализация переменной</h1>
 <p>Чтобы избежать определённых ошибок, необходимо понимать особенность создания переменных в C (и в C++) &ndash; если ты сразу не присваиваешь ей значение, то там может быть какое угодно значение.</p>
 <p>Пример:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="kt">int</span> <span class="n">a</span> <span class="o">=</span> <span class="mi">5</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="n">b</span><span class="p">;</span>
-</span></span></code></pre></div><p>Мы создали две переменных:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="kt">int</span> <span class="n">a</span> <span class="o">=</span> <span class="mi">5</span><span class="p">;</span>
+<span class="kt">int</span> <span class="n">b</span><span class="p">;</span>
+</code></pre></div><p>Мы создали две переменных:</p>
 <ul>
 <li>a &ndash; для этой переменной выделится память, и в эту память сразу запишется значение 5</li>
 <li>b &ndash; для этой переменной так же выделится память, но ничего не запишется. Это значит, что там останется значение, которое было туда записано когда-то до этого, когда эта память использовалась (возможно другой программой) под другую переменную</li>
 </ul>
 <p>Из-за этой особенности необходимо не забывать инициализировать переменную каким-то значением, которое ты в ней ожидаешь.</p>
 <p>В некоторых случаях, инициализировать переменную не обязательно &ndash; например, если туда точно что-то будет записано:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="c1">// В этом случае можно не инициализировать значения:
-</span></span></span><span class="line"><span class="cl"><span class="c1">// - a и b будут заполнены значением с клавиатуры
-</span></span></span><span class="line"><span class="cl"><span class="c1">// - в result запишется сумма a и b
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kt">int</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">result</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="c1">// Я в следующей статье расскажу что это за scanf
-</span></span></span><span class="line"><span class="cl"><span class="c1">// Пока что воспринимай это как способ записать в переменную значение, введённое с клавиатуры
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">scanf</span><span class="p">(</span><span class="s">&#34;%d&#34;</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">a</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl"><span class="n">scanf</span><span class="p">(</span><span class="s">&#34;%d&#34;</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">b</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl"><span class="n">result</span> <span class="o">=</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span><span class="p">;</span>
-</span></span></code></pre></div><p>Однако, в этом случае инициализация переменной необходима:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="kt">int</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="c1">// В этом случае необходимо было проинициализировать переменную a,
-</span></span></span><span class="line"><span class="cl"><span class="c1">// так как там может быть какое-угодно значение (0, -341124, 777 и т.д.)
-</span></span></span><span class="line"><span class="cl"><span class="c1">// и сумма a + b будет непредсказуемой
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">scanf</span><span class="p">(</span><span class="s">&#34;%d&#34;</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">b</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl"><span class="n">a</span> <span class="o">=</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span><span class="p">;</span>
-</span></span></code></pre></div><h1 id="как-узнать-размер-переменной">Как узнать размер переменной</h1>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="c1">// В этом случае можно не инициализировать значения:
+</span><span class="c1">// - a и b будут заполнены значением с клавиатуры
+</span><span class="c1">// - в result запишется сумма a и b
+</span><span class="c1"></span><span class="kt">int</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">result</span><span class="p">;</span>
+<span class="c1">// Я в следующей статье расскажу что это за scanf
+</span><span class="c1">// Пока что воспринимай это как способ записать в переменную значение, введённое с клавиатуры
+</span><span class="c1"></span><span class="n">scanf</span><span class="p">(</span><span class="s">&#34;%d&#34;</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">a</span><span class="p">);</span>
+<span class="n">scanf</span><span class="p">(</span><span class="s">&#34;%d&#34;</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">b</span><span class="p">);</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span><span class="p">;</span>
+</code></pre></div><p>Однако, в этом случае инициализация переменной необходима:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="kt">int</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">;</span>
+<span class="c1">// В этом случае необходимо было проинициализировать переменную a,
+</span><span class="c1">// так как там может быть какое-угодно значение (0, -341124, 777 и т.д.)
+</span><span class="c1">// и сумма a + b будет непредсказуемой
+</span><span class="c1"></span><span class="n">scanf</span><span class="p">(</span><span class="s">&#34;%d&#34;</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">b</span><span class="p">);</span>
+<span class="n">a</span> <span class="o">=</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span><span class="p">;</span>
+</code></pre></div><h1 id="как-узнать-размер-переменной">Как узнать размер переменной</h1>
 <p>В самом начале статьи я обещал показать как можно узнать сколько байт занимает переменная типа int.</p>
 <p>Для этого тебе понадобится функция sizeof. Вот примеры использования:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="kt">int</span> <span class="n">someIntVariable</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="kt">float</span> <span class="n">someFloatVariable</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="n">sizeOfIntVariable</span> <span class="o">=</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">someIntVariable</span><span class="p">),</span> <span class="n">sizeOfFloatVariable</span> <span class="o">=</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">someFloatVariable</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl"><span class="n">printf</span><span class="p">(</span><span class="s">&#34;size of int: %d, size of float: %d</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">sizeOfIntVariable</span><span class="p">,</span> <span class="n">sizeOfFloatVariable</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl"><span class="c1">// Ещё можно так, без промежуточных переменных:
-</span></span></span><span class="line"><span class="cl"><span class="c1">// printf(&#34;size of int: %d, size of float: %d\n&#34;, sizeof(someIntVariable), sizeof(someFloatVariable));
-</span></span></span></code></pre></div><p>Функция sizeof возвращает количество байт, которое занимает указанная переменная.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="kt">int</span> <span class="n">someIntVariable</span><span class="p">;</span>
+<span class="kt">float</span> <span class="n">someFloatVariable</span><span class="p">;</span>
+<span class="kt">int</span> <span class="n">sizeOfIntVariable</span> <span class="o">=</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">someIntVariable</span><span class="p">),</span> <span class="n">sizeOfFloatVariable</span> <span class="o">=</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">someFloatVariable</span><span class="p">);</span>
+<span class="n">printf</span><span class="p">(</span><span class="s">&#34;size of int: %d, size of float: %d</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">sizeOfIntVariable</span><span class="p">,</span> <span class="n">sizeOfFloatVariable</span><span class="p">);</span>
+<span class="c1">// Ещё можно так, без промежуточных переменных:
+</span><span class="c1">// printf(&#34;size of int: %d, size of float: %d\n&#34;, sizeof(someIntVariable), sizeof(someFloatVariable));
+</span></code></pre></div><p>Функция sizeof возвращает количество байт, которое занимает указанная переменная.</p>
 <p>На моей машине вывелась такая строка:</p>
 <pre tabindex="0"><code>size of int: 4, size of float: 4
 </code></pre><p>А какая у тебя? :)</p>
@@ -272,8 +272,8 @@
     <hr>
     <div align="center">
         Home server: Raspberry Pi 4<br>
-        Temperature: 51<br>
-Uptime: 5 hours, 12 minutes
+        Temperature: <br>
+Uptime: 
     </div>
 </footer>
 

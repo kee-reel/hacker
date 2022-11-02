@@ -136,7 +136,7 @@ app.run(port=1234)
 
 ```html
 <html>
- <body
+ <body>
   <h1>Current date and time: 2021-10-24 15:03:59</h1>
  </body>
 </html>
@@ -171,18 +171,14 @@ def time_handler():
 Для этого надо зайти в наш шаблон "index.html", и заменить статическое время на вот такое выражение:
 
 ```html
-{% raw %}
 <html>
- <body
+ <body>
   <h1>Current date and time: {{cur_datetime}}</h1>
  </body>
 </html>
-{% endraw %}
 ```
 
-{% raw %}
-Что такое "{{cur_datetime}}"? Это значение шаблона, которое мы теперь можем подставлять из нашего Python скрипта.
-{% endraw %}
+Что такое "{{cur\_datetime}}"? Это значение шаблона, которое мы теперь можем подставлять из нашего Python скрипта.
 
 Поменяй обработчик запроса "/time" таким образом:
 
@@ -284,9 +280,8 @@ app.run(port=1234)
 Вот текст изменённого шаблона:
 
 ```html
-{% raw %}
 <html>
-	<body>
+<body>
 	<h3>Current date and time: {{cur_datetime}}</h3>
 	<br>
 	<h3>Last message:</h3>
@@ -305,9 +300,8 @@ app.run(port=1234)
 		Message: <input type="text" name="message" required><br>
 		<input type="submit" value="Send">
 	</form>
-	</body>
+</body>
 </html>
-{% endraw %}
 ```
 
 Из нового в шаблоне конструкции "if" -- они позволяют не выводить какие-то блоки, если переданное значение шаблона пустое.
@@ -349,15 +343,14 @@ def render_main_page():
 Так я изменил шаблон:
 
 ```html
-{% raw %}
 <html>
 <body>
 	<h3>Current date and time: {{cur_datetime}}</h3>
 	<h3>Wall messages:</h3>
-	{%for i in range(0, len)%}
+	{% for i in range(0, len) %}
 		<b>{{wall_data[i][0]}} says: </b>
 		<p>{{wall_data[i][1]}}</p>
-	{%endfor%}
+	{% endfor %}
 	<br>
 	<b>New wall message:</b>
 	<form method="POST" action="/wall">
@@ -367,12 +360,11 @@ def render_main_page():
 	</form>
 </body>
 </html>
-{% endraw %}
 ```
 
 В шаблон добавлен цикл, который проходясь по всему списку, наполняет страницу сообщениями.
 
-> {% raw %}Все вот эти {%if%}, {%for%} и {{значения}} используются фреймворком Flask для генерации веб-страниц -- в обычном HTML так делать нельзя. {% endraw %}
+> Все вот эти {% if %}, {% for %} и {{значения}} используются фреймворком Flask для генерации веб-страниц -- в обычном HTML так делать нельзя.
 
 Зайди на страницу, посмотри что изменилось.
 

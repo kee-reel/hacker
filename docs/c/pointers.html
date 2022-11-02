@@ -9,7 +9,7 @@
 	<meta name="theme-color" content="#ffffff">
 
     
-    <link rel="stylesheet" href="/sass/main.min.css">
+    <link rel="stylesheet" href="/sass/main.scss">
     <title> IT простым языком </title>
 </head>
 
@@ -20,14 +20,14 @@
         +---------------------------+<br>
         |.-------------------------.|<br>
         ||&nbsp;<a href="/">kee_reel@blog</a>:~$ cd&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;||<br>
-        ||&nbsp;<a href="/c">c</a>&nbsp;&nbsp;<a href="/cpp">c++</a>&nbsp;&nbsp;<a href="/python">python</a>&nbsp;&nbsp;<a href="/linux">linux</a>&nbsp;&nbsp;&nbsp;||<br>
-        ||&nbsp;<a href="/opengl">opengl</a>&nbsp;&nbsp;<a href="/sql">sql</a>&nbsp;&nbsp;<a href="/network">networks</a>&nbsp;&nbsp;&nbsp;||<br>
+        ||&nbsp;<a href="/c.html">c</a>&nbsp;&nbsp;<a href="/cpp.html">c++</a>&nbsp;&nbsp;<a href="/python.html">python</a>&nbsp;&nbsp;<a href="/linux.html">linux</a>&nbsp;&nbsp;&nbsp;||<br>
+        ||&nbsp;<a href="/opengl.html">opengl</a>&nbsp;&nbsp;<a href="/sql.html">sql</a>&nbsp;&nbsp;<a href="/network.html">networks</a>&nbsp;&nbsp;&nbsp;||<br>
         ||&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;||<br>
-        ||&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/about">обо_мне</a>&nbsp;||<br>
+        ||&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/about.html">обо_мне</a>&nbsp;||<br>
         |.-------------------------.|<br>
         +-::---------------------::-+<br>
         .---------------------------.<br>
-        &nbsp;//&nbsp;/o<a href="/links">o</a>oooooooooooooooooooo\\&nbsp;\\&nbsp;<br>
+        &nbsp;//&nbsp;/o<a href="/links.html">o</a>oooooooooooooooooooo\\&nbsp;\\&nbsp;<br>
         &nbsp;//&nbsp;/oooooooooooooooooooooooo\\&nbsp;\\&nbsp;<br>
         //-------------------------------\\<br>
         \\-------------------------------//<br>
@@ -70,19 +70,19 @@
 </ul>
 <p>То есть, карта с координатами клада &ndash; это указатель с адресом переменной.</p>
 <p>Давай создадим указатель на переменную:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="c1">// Обычная int переменная
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kt">int</span> <span class="n">treasure</span> <span class="o">=</span> <span class="mi">777</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="c1">// Указатель на int переменную (на это указывает * после типа int)
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kt">int</span><span class="o">*</span> <span class="n">treasure_map</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="c1">// Записываем адрес int переменной treasure в указатель treasure_map
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">treasure_map</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">treasure</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="n">printf</span><span class="p">(</span><span class="s">&#34;treasure: %d</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">treasure</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl"><span class="c1">// treasure: 777
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">printf</span><span class="p">(</span><span class="s">&#34;coordinates of treasure: %p</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">treasure</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl"><span class="c1">// coordinates of treasure: 0x7ffe461b4bec
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">printf</span><span class="p">(</span><span class="s">&#34;coordinates in treasure_map: %p</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">treasure_map</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl"><span class="c1">// coordinates in treasure_map: 0x7ffe461b4bec
-</span></span></span></code></pre></div><p>Давай разберём что вывела программа:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="c1">// Обычная int переменная
+</span><span class="c1"></span><span class="kt">int</span> <span class="n">treasure</span> <span class="o">=</span> <span class="mi">777</span><span class="p">;</span>
+<span class="c1">// Указатель на int переменную (на это указывает * после типа int)
+</span><span class="c1"></span><span class="kt">int</span><span class="o">*</span> <span class="n">treasure_map</span><span class="p">;</span>
+<span class="c1">// Записываем адрес int переменной treasure в указатель treasure_map
+</span><span class="c1"></span><span class="n">treasure_map</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">treasure</span><span class="p">;</span>
+<span class="n">printf</span><span class="p">(</span><span class="s">&#34;treasure: %d</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">treasure</span><span class="p">);</span>
+<span class="c1">// treasure: 777
+</span><span class="c1"></span><span class="n">printf</span><span class="p">(</span><span class="s">&#34;coordinates of treasure: %p</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">treasure</span><span class="p">);</span>
+<span class="c1">// coordinates of treasure: 0x7ffe461b4bec
+</span><span class="c1"></span><span class="n">printf</span><span class="p">(</span><span class="s">&#34;coordinates in treasure_map: %p</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">treasure_map</span><span class="p">);</span>
+<span class="c1">// coordinates in treasure_map: 0x7ffe461b4bec
+</span></code></pre></div><p>Давай разберём что вывела программа:</p>
 <ul>
 <li>&ldquo;treasure: 777&rdquo; &ndash; значение нашей переменной (клад)</li>
 <li>&ldquo;coordinates of treasure: 0x7ffe461b4bec&rdquo; &ndash; адрес переменной (координаты клада)</li>
@@ -115,68 +115,68 @@
 <li>double занимает 8 байт</li>
 </ul>
 <p>Так вот &ndash; любые указатели занимают 4 байта или 8 байт:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="kt">int</span><span class="o">*</span> <span class="n">x</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="n">printf</span><span class="p">(</span><span class="s">&#34;size of pointer: %d</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">x</span><span class="p">));</span>
-</span></span><span class="line"><span class="cl"><span class="c1">// Вывод: size of pointer: 8
-</span></span></span></code></pre></div><p>У меня он занимает 8 байт. От чего зависит сколько байт будет занимать указатель?</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="kt">int</span><span class="o">*</span> <span class="n">x</span><span class="p">;</span>
+<span class="n">printf</span><span class="p">(</span><span class="s">&#34;size of pointer: %d</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">x</span><span class="p">));</span>
+<span class="c1">// Вывод: size of pointer: 8
+</span></code></pre></div><p>У меня он занимает 8 байт. От чего зависит сколько байт будет занимать указатель?</p>
 <p>В 32-х битных операционных системах, поддерживается работа с оперативной памятью до 4-х гигабайт &ndash; это адреса от 0 до 4294967295. Такое количество адресов идеально вмещается в 4 байта &ndash; поэтому указатель занимает 4 байта, чтобы туда влез адрес на любую ячейку в памяти.</p>
 <p>В 64-x битных системах указатель вмещается в 8 байт &ndash; тут уже можно раздать адреса на петабайты памяти.</p>
 <h1 id="вытаскиваем-клад">Вытаскиваем клад</h1>
 <p>Чего смотреть на эту карту &ndash; давай пойдём по координатам, указанным в карте, и выкопаем клад.</p>
 <p>Применяя эту аналогию к Си &ndash; мы можем получить значение переменной, адрес которой хранится в указателе:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="kt">int</span> <span class="n">treasure</span> <span class="o">=</span> <span class="mi">777</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="kt">int</span><span class="o">*</span> <span class="n">treasure_map</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">treasure</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="n">printf</span><span class="p">(</span><span class="s">&#34;coordinates in treasure_map: %p</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">treasure_map</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl"><span class="n">printf</span><span class="p">(</span><span class="s">&#34;treasure by coordinates in treasure_map: %d</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="o">*</span><span class="n">treasure_map</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl"><span class="cm">/* Вывод:
-</span></span></span><span class="line"><span class="cl"><span class="cm">cooridnates in treasure_map: 0x7ffe461b4bec
-</span></span></span><span class="line"><span class="cl"><span class="cm">treasure by coordinates in treasure_map: 777 */</span>
-</span></span></code></pre></div><p>То есть, чтобы получить значение по адресу, который хранится в указателе, надо указать звёздочку &ldquo;*&rdquo; перед именем указателя.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="kt">int</span> <span class="n">treasure</span> <span class="o">=</span> <span class="mi">777</span><span class="p">;</span>
+<span class="kt">int</span><span class="o">*</span> <span class="n">treasure_map</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">treasure</span><span class="p">;</span>
+<span class="n">printf</span><span class="p">(</span><span class="s">&#34;coordinates in treasure_map: %p</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">treasure_map</span><span class="p">);</span>
+<span class="n">printf</span><span class="p">(</span><span class="s">&#34;treasure by coordinates in treasure_map: %d</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="o">*</span><span class="n">treasure_map</span><span class="p">);</span>
+<span class="cm">/* Вывод:
+</span><span class="cm">cooridnates in treasure_map: 0x7ffe461b4bec
+</span><span class="cm">treasure by coordinates in treasure_map: 777 */</span>
+</code></pre></div><p>То есть, чтобы получить значение по адресу, который хранится в указателе, надо указать звёздочку &ldquo;*&rdquo; перед именем указателя.</p>
 <blockquote>
 <p>Операция получения значения по указателю называется разыменованием.</p>
 </blockquote>
 <h1 id="закапываем-новый-клад">Закапываем новый клад</h1>
 <p>У тебя есть карта с координатами клада &ndash; ты можешь пойти на это место, выкопать старый клад и закопать новый.</p>
 <p>Применяя аналогию к Си &ndash; можно заменить значение в переменной, адрес которой хранится в указателе:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="kt">int</span> <span class="n">treasure</span> <span class="o">=</span> <span class="mi">777</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="kt">int</span><span class="o">*</span> <span class="n">treasure_map</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">treasure</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="n">printf</span><span class="p">(</span><span class="s">&#34;treasure: %d</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">treasure</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl"><span class="c1">// treasure: 777
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="o">*</span><span class="n">treasure_map</span> <span class="o">=</span> <span class="mi">666</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="n">printf</span><span class="p">(</span><span class="s">&#34;new treasure: %d</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">treasure</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl"><span class="c1">// new treasure: 666
-</span></span></span></code></pre></div><h1 id="карта-которая-является-сокровищем">Карта, которая является сокровищем</h1>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="kt">int</span> <span class="n">treasure</span> <span class="o">=</span> <span class="mi">777</span><span class="p">;</span>
+<span class="kt">int</span><span class="o">*</span> <span class="n">treasure_map</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">treasure</span><span class="p">;</span>
+<span class="n">printf</span><span class="p">(</span><span class="s">&#34;treasure: %d</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">treasure</span><span class="p">);</span>
+<span class="c1">// treasure: 777
+</span><span class="c1"></span><span class="o">*</span><span class="n">treasure_map</span> <span class="o">=</span> <span class="mi">666</span><span class="p">;</span>
+<span class="n">printf</span><span class="p">(</span><span class="s">&#34;new treasure: %d</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">treasure</span><span class="p">);</span>
+<span class="c1">// new treasure: 666
+</span></code></pre></div><h1 id="карта-которая-является-сокровищем">Карта, которая является сокровищем</h1>
 <p>Безумный искатель сокровищ нарисовал карту, в которой записаны координаты, где лежит эта карта.</p>
 <p>Проводя аналогию с языком Си &ndash; безумный программист присвоил указателю адрес на этот же указатель.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="kt">int</span><span class="o">*</span> <span class="n">p_x</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="n">p_x</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">p_x</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="n">printf</span><span class="p">(</span><span class="s">&#34;%p %d</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">p_x</span><span class="p">,</span> <span class="o">*</span><span class="n">p_x</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl"><span class="c1">// 0x7ffd164172d0 373387984
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
-</span></span><span class="line"><span class="cl"><span class="o">*</span><span class="n">p_x</span> <span class="o">=</span> <span class="mi">255</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="n">printf</span><span class="p">(</span><span class="s">&#34;%p %d</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">p_x</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl"><span class="c1">// 0x7ffd000000ff 255
-</span></span></span><span class="line"><span class="cl"><span class="c1">// Теперь нельзя выводить значение через *p_x, потому что
-</span></span></span><span class="line"><span class="cl"><span class="c1">// он указывает на несуществующий адрес FF.
-</span></span></span></code></pre></div><p>Ситуация, в которой указатель указывает сам на себя опасна, если ты попытаешься присвоить туда не адрес, а какое-то значение.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="kt">int</span><span class="o">*</span> <span class="n">p_x</span><span class="p">;</span>
+<span class="n">p_x</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">p_x</span><span class="p">;</span>
+<span class="n">printf</span><span class="p">(</span><span class="s">&#34;%p %d</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">p_x</span><span class="p">,</span> <span class="o">*</span><span class="n">p_x</span><span class="p">);</span>
+<span class="c1">// 0x7ffd164172d0 373387984
+</span><span class="c1"></span>
+<span class="o">*</span><span class="n">p_x</span> <span class="o">=</span> <span class="mi">255</span><span class="p">;</span>
+<span class="n">printf</span><span class="p">(</span><span class="s">&#34;%p %d</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">p_x</span><span class="p">);</span>
+<span class="c1">// 0x7ffd000000ff 255
+</span><span class="c1">// Теперь нельзя выводить значение через *p_x, потому что
+</span><span class="c1">// он указывает на несуществующий адрес FF.
+</span></code></pre></div><p>Ситуация, в которой указатель указывает сам на себя опасна, если ты попытаешься присвоить туда не адрес, а какое-то значение.</p>
 <p>Это очень экзотическая ситуация &ndash; просто будь в курсе, что это возможно.</p>
 <h1 id="переписываем-координаты-из-одной-карты-в-другую">Переписываем координаты из одной карты в другую</h1>
 <p>Представь, что у тебя ещё есть друг искатель клада, с которым то хочешь поделиться координатами клада. Для этого ты возьмёшь его карту, и запишешь в неё координаты из своей карты.</p>
 <p>Применяем аналогию к Си &ndash; ты можешь из одного указателя, записать значение в другой указатель:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="kt">int</span> <span class="n">treasure</span> <span class="o">=</span> <span class="mi">777</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="kt">int</span><span class="o">*</span> <span class="n">my_map</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">treasure</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="kt">int</span><span class="o">*</span> <span class="n">friend_map</span> <span class="o">=</span> <span class="n">my_map</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="n">printf</span><span class="p">(</span><span class="s">&#34;treasure: %d</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">treasure</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl"><span class="c1">// treasure: 777
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">printf</span><span class="p">(</span><span class="s">&#34;coordinates in my_map: %p</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">my_map</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl"><span class="c1">// coordinates in my_map: 0x7ffc7cac03a4
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">printf</span><span class="p">(</span><span class="s">&#34;treasure by my_map: %d</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="o">*</span><span class="n">my_map</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl"><span class="c1">// treasure by my_map: 777
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">printf</span><span class="p">(</span><span class="s">&#34;coordinates in friend_map: %p</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">friend_map</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl"><span class="c1">// coordinates in friend_map: 0x7ffc7cac03a4
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">printf</span><span class="p">(</span><span class="s">&#34;treasure by friend_map: %d</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="o">*</span><span class="n">friend_map</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl"><span class="c1">// treasure by friend_map: 777
-</span></span></span></code></pre></div><h1 id="карта-с-координатами-другой-карты">Карта с координатами другой карты</h1>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="kt">int</span> <span class="n">treasure</span> <span class="o">=</span> <span class="mi">777</span><span class="p">;</span>
+<span class="kt">int</span><span class="o">*</span> <span class="n">my_map</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">treasure</span><span class="p">;</span>
+<span class="kt">int</span><span class="o">*</span> <span class="n">friend_map</span> <span class="o">=</span> <span class="n">my_map</span><span class="p">;</span>
+<span class="n">printf</span><span class="p">(</span><span class="s">&#34;treasure: %d</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">treasure</span><span class="p">);</span>
+<span class="c1">// treasure: 777
+</span><span class="c1"></span><span class="n">printf</span><span class="p">(</span><span class="s">&#34;coordinates in my_map: %p</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">my_map</span><span class="p">);</span>
+<span class="c1">// coordinates in my_map: 0x7ffc7cac03a4
+</span><span class="c1"></span><span class="n">printf</span><span class="p">(</span><span class="s">&#34;treasure by my_map: %d</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="o">*</span><span class="n">my_map</span><span class="p">);</span>
+<span class="c1">// treasure by my_map: 777
+</span><span class="c1"></span><span class="n">printf</span><span class="p">(</span><span class="s">&#34;coordinates in friend_map: %p</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">friend_map</span><span class="p">);</span>
+<span class="c1">// coordinates in friend_map: 0x7ffc7cac03a4
+</span><span class="c1"></span><span class="n">printf</span><span class="p">(</span><span class="s">&#34;treasure by friend_map: %d</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="o">*</span><span class="n">friend_map</span><span class="p">);</span>
+<span class="c1">// treasure by friend_map: 777
+</span></code></pre></div><h1 id="карта-с-координатами-другой-карты">Карта с координатами другой карты</h1>
 <p>Представь, что кто-то захотел очень хорошо спрятать клад, и он сделал две карты:</p>
 <ul>
 <li>В карте &ldquo;А&rdquo; записаны координаты клада</li>
@@ -185,56 +185,56 @@
 <p>Если у тебя есть карта &ldquo;В&rdquo;, то тебе надо по ней найти карту &ldquo;А&rdquo;, чтобы по ней уже найти клад.</p>
 <p><img src="/assets/images/c-pointer-to-pointer.png" alt="Карта с координатами карты"></p>
 <p>Применяем аналогию к Си &ndash; ты можешь создать указатель, в котором лежит адрес указателя на переменную:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="kt">int</span> <span class="n">treasure</span> <span class="o">=</span> <span class="mi">777</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="kt">int</span><span class="o">*</span> <span class="n">map_A</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">treasure</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="kt">int</span><span class="o">**</span> <span class="n">map_B</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">map_A</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="n">printf</span><span class="p">(</span><span class="s">&#34;coordinates in map_B: %p</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">map_B</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl"><span class="c1">// coordinates in map_B: 0x7ffe82475c28
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">printf</span><span class="p">(</span><span class="s">&#34;coordinates of map_A: %p</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">map_A</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl"><span class="c1">// coordinates of map_A: 0x7ffe82475c28
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">printf</span><span class="p">(</span><span class="s">&#34;coordinates in map_A: %p</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="o">*</span><span class="n">map_B</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl"><span class="c1">// coordinates in map_A: 0x7ffe82475c24
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">printf</span><span class="p">(</span><span class="s">&#34;coordinates of treasure: %p</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">treasure</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl"><span class="c1">// coordinates of treasure: 0x7ffe82475c24
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">printf</span><span class="p">(</span><span class="s">&#34;treasure: %d</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="o">**</span><span class="n">map_B</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl"><span class="c1">// treasure: 777
-</span></span></span></code></pre></div><p>Вот эта последняя строчка, где написано &ldquo;**map_B&rdquo; &ndash; самая сложная. Здесь, мы идём по координатам из карты &ldquo;В&rdquo;, находим карту &ldquo;А&rdquo;, и уже по карте &ldquo;А&rdquo;, достаём клад.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="kt">int</span> <span class="n">treasure</span> <span class="o">=</span> <span class="mi">777</span><span class="p">;</span>
+<span class="kt">int</span><span class="o">*</span> <span class="n">map_A</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">treasure</span><span class="p">;</span>
+<span class="kt">int</span><span class="o">**</span> <span class="n">map_B</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">map_A</span><span class="p">;</span>
+<span class="n">printf</span><span class="p">(</span><span class="s">&#34;coordinates in map_B: %p</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">map_B</span><span class="p">);</span>
+<span class="c1">// coordinates in map_B: 0x7ffe82475c28
+</span><span class="c1"></span><span class="n">printf</span><span class="p">(</span><span class="s">&#34;coordinates of map_A: %p</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">map_A</span><span class="p">);</span>
+<span class="c1">// coordinates of map_A: 0x7ffe82475c28
+</span><span class="c1"></span><span class="n">printf</span><span class="p">(</span><span class="s">&#34;coordinates in map_A: %p</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="o">*</span><span class="n">map_B</span><span class="p">);</span>
+<span class="c1">// coordinates in map_A: 0x7ffe82475c24
+</span><span class="c1"></span><span class="n">printf</span><span class="p">(</span><span class="s">&#34;coordinates of treasure: %p</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">treasure</span><span class="p">);</span>
+<span class="c1">// coordinates of treasure: 0x7ffe82475c24
+</span><span class="c1"></span><span class="n">printf</span><span class="p">(</span><span class="s">&#34;treasure: %d</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="o">**</span><span class="n">map_B</span><span class="p">);</span>
+<span class="c1">// treasure: 777
+</span></code></pre></div><p>Вот эта последняя строчка, где написано &ldquo;**map_B&rdquo; &ndash; самая сложная. Здесь, мы идём по координатам из карты &ldquo;В&rdquo;, находим карту &ldquo;А&rdquo;, и уже по карте &ldquo;А&rdquo;, достаём клад.</p>
 <h1 id="разные-типы-указателей">Разные типы указателей</h1>
 <p>Тут уже мои аналогии начнут трещать по швам, потому что в языке Си указатели могут быть разных типов.</p>
 <p>Поэтому давай я тут объясню без аналогий, но с визуальным пояснением.</p>
 <h3 id="кусочек-переменной">Кусочек переменной</h3>
 <p>Допустим у тебя есть int указатель на int переменную &ndash; а что, если у тебя будет char указатель на int переменную?</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="kt">int</span> <span class="n">treasure</span> <span class="o">=</span> <span class="mi">777</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="kt">int</span><span class="o">*</span> <span class="n">int_treasure_map</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">treasure</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="c1">// Явное приведение int* к char*, чтобы компилятор не ругался
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kt">char</span><span class="o">*</span> <span class="n">char_treasure_map</span> <span class="o">=</span> <span class="p">(</span><span class="kt">char</span><span class="o">*</span><span class="p">)</span><span class="o">&amp;</span><span class="n">treasure</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="n">printf</span><span class="p">(</span><span class="s">&#34;treasure: %d</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">treasure</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl"><span class="c1">// treasure: 777
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">printf</span><span class="p">(</span><span class="s">&#34;address in int_treasure_map: %p</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">int_treasure_map</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl"><span class="c1">// address in int_treasure_map: 0x7ffd9ec2e014
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">printf</span><span class="p">(</span><span class="s">&#34;address in char_treasure_map: %p</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">char_treasure_map</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl"><span class="c1">// address in char_treasure_map: 0x7ffd9ec2e014
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">printf</span><span class="p">(</span><span class="s">&#34;value by int_treasure_map: %d</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="o">*</span><span class="n">int_treasure_map</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl"><span class="c1">// value by int_treasure_map: 777
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">printf</span><span class="p">(</span><span class="s">&#34;value by char_treasure_map: %d</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="o">*</span><span class="n">char_treasure_map</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl"><span class="c1">// value by char_treasure_map: 9
-</span></span></span></code></pre></div><p><img src="/assets/images/c-pointers-different-types.png" alt="Разные типы указателей"></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="kt">int</span> <span class="n">treasure</span> <span class="o">=</span> <span class="mi">777</span><span class="p">;</span>
+<span class="kt">int</span><span class="o">*</span> <span class="n">int_treasure_map</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">treasure</span><span class="p">;</span>
+<span class="c1">// Явное приведение int* к char*, чтобы компилятор не ругался
+</span><span class="c1"></span><span class="kt">char</span><span class="o">*</span> <span class="n">char_treasure_map</span> <span class="o">=</span> <span class="p">(</span><span class="kt">char</span><span class="o">*</span><span class="p">)</span><span class="o">&amp;</span><span class="n">treasure</span><span class="p">;</span>
+<span class="n">printf</span><span class="p">(</span><span class="s">&#34;treasure: %d</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">treasure</span><span class="p">);</span>
+<span class="c1">// treasure: 777
+</span><span class="c1"></span><span class="n">printf</span><span class="p">(</span><span class="s">&#34;address in int_treasure_map: %p</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">int_treasure_map</span><span class="p">);</span>
+<span class="c1">// address in int_treasure_map: 0x7ffd9ec2e014
+</span><span class="c1"></span><span class="n">printf</span><span class="p">(</span><span class="s">&#34;address in char_treasure_map: %p</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">char_treasure_map</span><span class="p">);</span>
+<span class="c1">// address in char_treasure_map: 0x7ffd9ec2e014
+</span><span class="c1"></span><span class="n">printf</span><span class="p">(</span><span class="s">&#34;value by int_treasure_map: %d</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="o">*</span><span class="n">int_treasure_map</span><span class="p">);</span>
+<span class="c1">// value by int_treasure_map: 777
+</span><span class="c1"></span><span class="n">printf</span><span class="p">(</span><span class="s">&#34;value by char_treasure_map: %d</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="o">*</span><span class="n">char_treasure_map</span><span class="p">);</span>
+<span class="c1">// value by char_treasure_map: 9
+</span></code></pre></div><p><img src="/assets/images/c-pointers-different-types.png" alt="Разные типы указателей"></p>
 <p>Помнишь, я упомянал до этого про порядок байт? В этом примере мы увидели вживую что это такое.</p>
 <p>У меня получилось, что char_treasure_map вернул нам значение первого байта int переменной treasure. Почему только первый байт? Потому что это указатель на char, а char занимает 1 байт.</p>
 <p>Если бы у меня был порядок байт не &ldquo;от младшего к старшему&rdquo;, а &ldquo;от старшего к младшему&rdquo;, то мне вернулось бы значение 0, так как первыми байтами числа были старшие байты (а там первые два байта это нули).</p>
 <h3 id="не-тот-тип-переменной">Не тот тип переменной</h3>
 <p>Ещё ты можешь взять float переменную, создать указатель на int, и указать его на float переменную:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="kt">float</span> <span class="n">x</span> <span class="o">=</span> <span class="mi">777</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="kt">int</span><span class="o">*</span> <span class="n">p_x</span> <span class="o">=</span> <span class="p">(</span><span class="kt">int</span><span class="o">*</span><span class="p">)</span><span class="o">&amp;</span><span class="n">x</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="n">printf</span><span class="p">(</span><span class="s">&#34;Interpret x as float: %f</span><span class="se">\n</span><span class="s">Interpret x as int: %d</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="o">*</span><span class="n">p_x</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl"><span class="c1">// Interpret x as float: 777.000000
-</span></span></span><span class="line"><span class="cl"><span class="c1">// Interpret x as int: 1145192448
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
-</span></span><span class="line"><span class="cl"><span class="o">*</span><span class="n">p_x</span> <span class="o">=</span> <span class="mi">777</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="n">printf</span><span class="p">(</span><span class="s">&#34;Interpret x as float: %f</span><span class="se">\n</span><span class="s">Interpret x as int: %d</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="o">*</span><span class="n">p_x</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl"><span class="c1">// Interpret x as float: 0.000000
-</span></span></span><span class="line"><span class="cl"><span class="c1">// Interpret x as int: 777
-</span></span></span></code></pre></div><p>Изначально мы присвоили в переменную &ldquo;x&rdquo; значение 777 как во float переменную &ndash; в память оно и записалось в вещественном представлении. Затем, мы присвоили значение 777 по int указателю &ldquo;p_x&rdquo; &ndash; туда, куда указывает &ldquo;p_x&rdquo; (в переменную &ldquo;x&rdquo;) мы записали его в целочисленном представлении.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="kt">float</span> <span class="n">x</span> <span class="o">=</span> <span class="mi">777</span><span class="p">;</span>
+<span class="kt">int</span><span class="o">*</span> <span class="n">p_x</span> <span class="o">=</span> <span class="p">(</span><span class="kt">int</span><span class="o">*</span><span class="p">)</span><span class="o">&amp;</span><span class="n">x</span><span class="p">;</span>
+<span class="n">printf</span><span class="p">(</span><span class="s">&#34;Interpret x as float: %f</span><span class="se">\n</span><span class="s">Interpret x as int: %d</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="o">*</span><span class="n">p_x</span><span class="p">);</span>
+<span class="c1">// Interpret x as float: 777.000000
+</span><span class="c1">// Interpret x as int: 1145192448
+</span><span class="c1"></span>
+<span class="o">*</span><span class="n">p_x</span> <span class="o">=</span> <span class="mi">777</span><span class="p">;</span>
+<span class="n">printf</span><span class="p">(</span><span class="s">&#34;Interpret x as float: %f</span><span class="se">\n</span><span class="s">Interpret x as int: %d</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="o">*</span><span class="n">p_x</span><span class="p">);</span>
+<span class="c1">// Interpret x as float: 0.000000
+</span><span class="c1">// Interpret x as int: 777
+</span></code></pre></div><p>Изначально мы присвоили в переменную &ldquo;x&rdquo; значение 777 как во float переменную &ndash; в память оно и записалось в вещественном представлении. Затем, мы присвоили значение 777 по int указателю &ldquo;p_x&rdquo; &ndash; туда, куда указывает &ldquo;p_x&rdquo; (в переменную &ldquo;x&rdquo;) мы записали его в целочисленном представлении.</p>
 <p>Вот наглядная демострация того, как выглядят разные представления числа 777:</p>
 <p><img src="/assets/images/c-pointer-data-representation.png" alt="Разное представление типов"></p>
 <p>Если мы будем интерпретировать вещественную запись числа как целую, или целую как вещественную &ndash; мы не сможем нормально прочитать нужное нам значение. Это как если бы мы начали читать книгу на чешском по-русски, и наоборот &ndash; что-то мы поймём, но значение слов будет разным.</p>
@@ -247,43 +247,43 @@
 <li>Указатель типа void нельзя разыменовать &ndash; можно только считывать адрес</li>
 </ul>
 <p>Вот пример использования void:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="kt">int</span> <span class="n">x</span> <span class="o">=</span> <span class="mi">777</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="kt">void</span><span class="o">*</span> <span class="n">p</span> <span class="o">=</span> <span class="p">(</span><span class="kt">void</span><span class="o">*</span><span class="p">)</span><span class="o">&amp;</span><span class="n">x</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="n">printf</span><span class="p">(</span><span class="s">&#34;address in void pointer: %p</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">p</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl"><span class="c1">// Разыменовывать его нельзя, но мы можем его сначала
-</span></span></span><span class="line"><span class="cl"><span class="c1">// привести к нужному типу, а потом разыменовать
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">printf</span><span class="p">(</span><span class="s">&#34;value by void pointer: %d</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="o">*</span><span class="p">((</span><span class="kt">int</span><span class="o">*</span><span class="p">)</span><span class="n">p</span><span class="p">));</span>
-</span></span></code></pre></div><h1 id="адресная-арифметика">Адресная арифметика</h1>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="kt">int</span> <span class="n">x</span> <span class="o">=</span> <span class="mi">777</span><span class="p">;</span>
+<span class="kt">void</span><span class="o">*</span> <span class="n">p</span> <span class="o">=</span> <span class="p">(</span><span class="kt">void</span><span class="o">*</span><span class="p">)</span><span class="o">&amp;</span><span class="n">x</span><span class="p">;</span>
+<span class="n">printf</span><span class="p">(</span><span class="s">&#34;address in void pointer: %p</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">p</span><span class="p">);</span>
+<span class="c1">// Разыменовывать его нельзя, но мы можем его сначала
+</span><span class="c1">// привести к нужному типу, а потом разыменовать
+</span><span class="c1"></span><span class="n">printf</span><span class="p">(</span><span class="s">&#34;value by void pointer: %d</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="o">*</span><span class="p">((</span><span class="kt">int</span><span class="o">*</span><span class="p">)</span><span class="n">p</span><span class="p">));</span>
+</code></pre></div><h1 id="адресная-арифметика">Адресная арифметика</h1>
 <p>Адреса в указателях можно не только хранить, то и как-то изменять &ndash; например сдвигать указатель на соседние ячейки.</p>
 <p>Давай я возьму предыдущий пример, и покажу как это выглядит:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="kt">int</span> <span class="n">treasure</span> <span class="o">=</span> <span class="mi">777</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="kt">int</span><span class="o">*</span> <span class="n">int_treasure_map</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">treasure</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="kt">char</span><span class="o">*</span> <span class="n">char_treasure_map</span> <span class="o">=</span> <span class="p">((</span><span class="kt">char</span><span class="o">*</span><span class="p">)</span><span class="o">&amp;</span><span class="n">treasure</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl"><span class="n">printf</span><span class="p">(</span><span class="s">&#34;treasure: %d</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">treasure</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl"><span class="c1">// treasure: 777
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">printf</span><span class="p">(</span><span class="s">&#34;address in int_treasure_map: %p</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">int_treasure_map</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl"><span class="c1">// address in int_treasure_map: 0x7ffe5123e044
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">printf</span><span class="p">(</span><span class="s">&#34;address in char_treasure_map: %p</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">char_treasure_map</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl"><span class="c1">// address in char_treasure_map: 0x7ffe5123e044
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">printf</span><span class="p">(</span><span class="s">&#34;value by int_treasure_map: %d</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="o">*</span><span class="n">int_treasure_map</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl"><span class="c1">// value by int_treasure_map: 777
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">printf</span><span class="p">(</span><span class="s">&#34;value by char_treasure_map+0: %d</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="o">*</span><span class="n">char_treasure_map</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl"><span class="c1">// value by char_treasure_map+0: 9
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">printf</span><span class="p">(</span><span class="s">&#34;value by char_treasure_map+1: %d</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="o">*</span><span class="p">(</span><span class="n">char_treasure_map</span><span class="o">+</span><span class="mi">1</span><span class="p">));</span>
-</span></span><span class="line"><span class="cl"><span class="c1">// value by char_treasure_map+1: 3
-</span></span></span><span class="line"><span class="cl"><span class="c1">// А могу ещё и в переменную засунуть
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kt">char</span><span class="o">*</span> <span class="n">char_treasure_map_2</span> <span class="o">=</span> <span class="p">((</span><span class="kt">char</span><span class="o">*</span><span class="p">)</span><span class="o">&amp;</span><span class="n">treasure</span><span class="p">)</span> <span class="o">+</span> <span class="mi">2</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="n">printf</span><span class="p">(</span><span class="s">&#34;value by char_treasure_map+2: %d</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="o">*</span><span class="n">char_treasure_map_2</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl"><span class="c1">// value by char_treasure_map+2: 0
-</span></span></span><span class="line"><span class="cl"><span class="c1">// А могу ещё вот так на 1 вперёд сдвинуть
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">char_treasure_map_2</span><span class="o">++</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="n">printf</span><span class="p">(</span><span class="s">&#34;value by char_treasure_map+3: %d</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="o">*</span><span class="n">char_treasure_map_2</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl"><span class="c1">// value by char_treasure_map+3: 0
-</span></span></span><span class="line"><span class="cl"><span class="c1">// А могу в обратную сторону сдвинуть
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">char_treasure_map_2</span> <span class="o">-=</span> <span class="mi">3</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="n">printf</span><span class="p">(</span><span class="s">&#34;value by char_treasure_map+0: %d</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="o">*</span><span class="n">char_treasure_map_2</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl"><span class="c1">// value by char_treasure_map+0: 9
-</span></span></span></code></pre></div><p><img src="/assets/images/c-pointers-arithmetic.png" alt="Адресная арифметика"></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="kt">int</span> <span class="n">treasure</span> <span class="o">=</span> <span class="mi">777</span><span class="p">;</span>
+<span class="kt">int</span><span class="o">*</span> <span class="n">int_treasure_map</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">treasure</span><span class="p">;</span>
+<span class="kt">char</span><span class="o">*</span> <span class="n">char_treasure_map</span> <span class="o">=</span> <span class="p">((</span><span class="kt">char</span><span class="o">*</span><span class="p">)</span><span class="o">&amp;</span><span class="n">treasure</span><span class="p">);</span>
+<span class="n">printf</span><span class="p">(</span><span class="s">&#34;treasure: %d</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">treasure</span><span class="p">);</span>
+<span class="c1">// treasure: 777
+</span><span class="c1"></span><span class="n">printf</span><span class="p">(</span><span class="s">&#34;address in int_treasure_map: %p</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">int_treasure_map</span><span class="p">);</span>
+<span class="c1">// address in int_treasure_map: 0x7ffe5123e044
+</span><span class="c1"></span><span class="n">printf</span><span class="p">(</span><span class="s">&#34;address in char_treasure_map: %p</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">char_treasure_map</span><span class="p">);</span>
+<span class="c1">// address in char_treasure_map: 0x7ffe5123e044
+</span><span class="c1"></span><span class="n">printf</span><span class="p">(</span><span class="s">&#34;value by int_treasure_map: %d</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="o">*</span><span class="n">int_treasure_map</span><span class="p">);</span>
+<span class="c1">// value by int_treasure_map: 777
+</span><span class="c1"></span><span class="n">printf</span><span class="p">(</span><span class="s">&#34;value by char_treasure_map+0: %d</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="o">*</span><span class="n">char_treasure_map</span><span class="p">);</span>
+<span class="c1">// value by char_treasure_map+0: 9
+</span><span class="c1"></span><span class="n">printf</span><span class="p">(</span><span class="s">&#34;value by char_treasure_map+1: %d</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="o">*</span><span class="p">(</span><span class="n">char_treasure_map</span><span class="o">+</span><span class="mi">1</span><span class="p">));</span>
+<span class="c1">// value by char_treasure_map+1: 3
+</span><span class="c1">// А могу ещё и в переменную засунуть
+</span><span class="c1"></span><span class="kt">char</span><span class="o">*</span> <span class="n">char_treasure_map_2</span> <span class="o">=</span> <span class="p">((</span><span class="kt">char</span><span class="o">*</span><span class="p">)</span><span class="o">&amp;</span><span class="n">treasure</span><span class="p">)</span> <span class="o">+</span> <span class="mi">2</span><span class="p">;</span>
+<span class="n">printf</span><span class="p">(</span><span class="s">&#34;value by char_treasure_map+2: %d</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="o">*</span><span class="n">char_treasure_map_2</span><span class="p">);</span>
+<span class="c1">// value by char_treasure_map+2: 0
+</span><span class="c1">// А могу ещё вот так на 1 вперёд сдвинуть
+</span><span class="c1"></span><span class="n">char_treasure_map_2</span><span class="o">++</span><span class="p">;</span>
+<span class="n">printf</span><span class="p">(</span><span class="s">&#34;value by char_treasure_map+3: %d</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="o">*</span><span class="n">char_treasure_map_2</span><span class="p">);</span>
+<span class="c1">// value by char_treasure_map+3: 0
+</span><span class="c1">// А могу в обратную сторону сдвинуть
+</span><span class="c1"></span><span class="n">char_treasure_map_2</span> <span class="o">-=</span> <span class="mi">3</span><span class="p">;</span>
+<span class="n">printf</span><span class="p">(</span><span class="s">&#34;value by char_treasure_map+0: %d</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="o">*</span><span class="n">char_treasure_map_2</span><span class="p">);</span>
+<span class="c1">// value by char_treasure_map+0: 9
+</span></code></pre></div><p><img src="/assets/images/c-pointers-arithmetic.png" alt="Адресная арифметика"></p>
 <p>Если ты прибавляешь/отнимаешь от указателя на char единицу, то адрес изменится на 1, а если ты прибавишь/отнимешь единицу от указателю на int, то адрес изменится на 4. Почему так происходит?</p>
 <p>Тут как раз вступают типы указателей &ndash; в зависимости от типа указателя, смещение происходит на число байт, равное размеру значения этого типа. То есть, для:</p>
 <ul>
@@ -294,17 +294,17 @@
 </ul>
 <h1 id="сравнение-адресов">Сравнение адресов</h1>
 <p>Ещё их можно между собой сравнивать:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="kt">int</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="o">*</span><span class="n">p_a</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">a</span><span class="p">,</span> <span class="o">*</span><span class="n">p_b</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">b</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="n">printf</span><span class="p">(</span><span class="s">&#34;a: %p</span><span class="se">\n</span><span class="s">b: %p</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">p_a</span><span class="p">,</span> <span class="n">p_b</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="p">(</span><span class="n">p_a</span> <span class="o">&lt;</span> <span class="n">p_b</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">	<span class="n">printf</span><span class="p">(</span><span class="s">&#34;Variable &#39;b&#39; has bigger address</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl"><span class="k">else</span>
-</span></span><span class="line"><span class="cl">	<span class="nf">printf</span><span class="p">(</span><span class="s">&#34;Variable &#39;a&#39; has bigger address</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
-</span></span></code></pre></div><p>У получается такой вывод:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="kt">int</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">;</span>
+<span class="kt">int</span> <span class="o">*</span><span class="n">p_a</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">a</span><span class="p">,</span> <span class="o">*</span><span class="n">p_b</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">b</span><span class="p">;</span>
+<span class="n">printf</span><span class="p">(</span><span class="s">&#34;a: %p</span><span class="se">\n</span><span class="s">b: %p</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">p_a</span><span class="p">,</span> <span class="n">p_b</span><span class="p">);</span>
+<span class="k">if</span> <span class="p">(</span><span class="n">p_a</span> <span class="o">&lt;</span> <span class="n">p_b</span><span class="p">)</span>
+	<span class="n">printf</span><span class="p">(</span><span class="s">&#34;Variable &#39;b&#39; has bigger address</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
+<span class="k">else</span>
+	<span class="nf">printf</span><span class="p">(</span><span class="s">&#34;Variable &#39;a&#39; has bigger address</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
+</code></pre></div><p>У получается такой вывод:</p>
 <pre tabindex="0"><code>a: 0x7ffca02f6860
 b: 0x7ffca02f6864
-Variable &#39;b&#39; has bigger address
+Variable 'b' has bigger address
 </code></pre><p>Попробуй запустить у себя, скорее всего у тебя будет наоборот &ndash; адрес &ldquo;a&rdquo; будет больше адреса &ldquo;b&rdquo;.</p>
 <p>Почему? У меня стоит операционная система Linux, а на ней адреса, при создании новых переменных, растут от меньших к большим. То есть сначала в памяти выделются ячейки для переменной &ldquo;a&rdquo;, а затем для переменной &ldquo;b&rdquo; новые ячейки выделяется справа от &ldquo;a&rdquo;.</p>
 <p>У тебя же скорее всего стоит Windows &ndash; в ней адреса при создании переменных растут в обратном направлении, от больших к меньшим. То есть сначала в памяти выделяются ячейки для переменной &ldquo;a&rdquo;, а затем для переменной &ldquo;b&rdquo; новые ячейки выделяются слева от ячейки &ldquo;a&rdquo;.</p>
@@ -347,8 +347,8 @@ Variable &#39;b&#39; has bigger address
     <hr>
     <div align="center">
         Home server: Raspberry Pi 4<br>
-        Temperature: 51<br>
-Uptime: 5 hours, 12 minutes
+        Temperature: <br>
+Uptime: 
     </div>
 </footer>
 

@@ -9,7 +9,7 @@
 	<meta name="theme-color" content="#ffffff">
 
     
-    <link rel="stylesheet" href="/sass/main.min.css">
+    <link rel="stylesheet" href="/sass/main.scss">
     <title> IT простым языком </title>
 </head>
 
@@ -20,14 +20,14 @@
         +---------------------------+<br>
         |.-------------------------.|<br>
         ||&nbsp;<a href="/">kee_reel@blog</a>:~$ cd&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;||<br>
-        ||&nbsp;<a href="/c">c</a>&nbsp;&nbsp;<a href="/cpp">c++</a>&nbsp;&nbsp;<a href="/python">python</a>&nbsp;&nbsp;<a href="/linux">linux</a>&nbsp;&nbsp;&nbsp;||<br>
-        ||&nbsp;<a href="/opengl">opengl</a>&nbsp;&nbsp;<a href="/sql">sql</a>&nbsp;&nbsp;<a href="/network">networks</a>&nbsp;&nbsp;&nbsp;||<br>
+        ||&nbsp;<a href="/c.html">c</a>&nbsp;&nbsp;<a href="/cpp.html">c++</a>&nbsp;&nbsp;<a href="/python.html">python</a>&nbsp;&nbsp;<a href="/linux.html">linux</a>&nbsp;&nbsp;&nbsp;||<br>
+        ||&nbsp;<a href="/opengl.html">opengl</a>&nbsp;&nbsp;<a href="/sql.html">sql</a>&nbsp;&nbsp;<a href="/network.html">networks</a>&nbsp;&nbsp;&nbsp;||<br>
         ||&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;||<br>
-        ||&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/about">обо_мне</a>&nbsp;||<br>
+        ||&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/about.html">обо_мне</a>&nbsp;||<br>
         |.-------------------------.|<br>
         +-::---------------------::-+<br>
         .---------------------------.<br>
-        &nbsp;//&nbsp;/o<a href="/links">o</a>oooooooooooooooooooo\\&nbsp;\\&nbsp;<br>
+        &nbsp;//&nbsp;/o<a href="/links.html">o</a>oooooooooooooooooooo\\&nbsp;\\&nbsp;<br>
         &nbsp;//&nbsp;/oooooooooooooooooooooooo\\&nbsp;\\&nbsp;<br>
         //-------------------------------\\<br>
         \\-------------------------------//<br>
@@ -60,133 +60,133 @@
 <p>Я буду основываться на коде, приведённом в основной <a href="../classes">статье</a> про классы.</p>
 </blockquote>
 <p>В основной статье я показал как создать класс и конструктор для него:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">Coffee</span>
-</span></span><span class="line"><span class="cl"><span class="p">{</span>
-</span></span><span class="line"><span class="cl"><span class="k">public</span><span class="o">:</span>
-</span></span><span class="line"><span class="cl">	<span class="n">Coffee</span><span class="p">(</span><span class="k">const</span> <span class="kt">char</span> <span class="o">*</span><span class="n">type</span><span class="p">,</span> <span class="kt">int</span> <span class="n">temperature</span><span class="p">,</span> <span class="kt">int</span> <span class="n">volume</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">	<span class="p">{</span> 
-</span></span><span class="line"><span class="cl">		<span class="n">m_temperature</span> <span class="o">=</span> <span class="n">temperature</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">		<span class="n">m_volume</span> <span class="o">=</span> <span class="n">volume</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">		<span class="c1">// Выделяем память под строку
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>		<span class="n">m_type</span> <span class="o">=</span> <span class="p">(</span><span class="kt">char</span><span class="o">*</span><span class="p">)</span><span class="n">malloc</span><span class="p">(</span><span class="n">strlen</span><span class="p">(</span><span class="n">type</span><span class="p">));</span>
-</span></span><span class="line"><span class="cl">		<span class="c1">// Копируем type в m_type
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>		<span class="n">strcpy</span><span class="p">(</span><span class="n">m_type</span><span class="p">,</span> <span class="n">type</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">	<span class="p">}</span>
-</span></span><span class="line"><span class="cl">    <span class="p">...</span>
-</span></span></code></pre></div><h3 id="разница-между-инициализацией-и-присваиванием">Разница между инициализацией и присваиванием</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">class</span> <span class="nc">Coffee</span>
+<span class="p">{</span>
+<span class="k">public</span><span class="o">:</span>
+	<span class="n">Coffee</span><span class="p">(</span><span class="k">const</span> <span class="kt">char</span> <span class="o">*</span><span class="n">type</span><span class="p">,</span> <span class="kt">int</span> <span class="n">temperature</span><span class="p">,</span> <span class="kt">int</span> <span class="n">volume</span><span class="p">)</span>
+	<span class="p">{</span> 
+		<span class="n">m_temperature</span> <span class="o">=</span> <span class="n">temperature</span><span class="p">;</span>
+		<span class="n">m_volume</span> <span class="o">=</span> <span class="n">volume</span><span class="p">;</span>
+		<span class="c1">// Выделяем память под строку
+</span><span class="c1"></span>		<span class="n">m_type</span> <span class="o">=</span> <span class="p">(</span><span class="kt">char</span><span class="o">*</span><span class="p">)</span><span class="n">malloc</span><span class="p">(</span><span class="n">strlen</span><span class="p">(</span><span class="n">type</span><span class="p">));</span>
+		<span class="c1">// Копируем type в m_type
+</span><span class="c1"></span>		<span class="n">strcpy</span><span class="p">(</span><span class="n">m_type</span><span class="p">,</span> <span class="n">type</span><span class="p">);</span>
+	<span class="p">}</span>
+    <span class="p">...</span>
+</code></pre></div><h3 id="разница-между-инициализацией-и-присваиванием">Разница между инициализацией и присваиванием</h3>
 <p>Прежде чем мы пойдём дальше, я хочу показать один принципиальный момент. Видишь ли ты разницу между заданием значений для переменной &ldquo;a&rdquo; и &ldquo;b&rdquo;?</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="c1">// Создание переменной (хранит неизвестное значение)
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kt">int</span> <span class="n">a</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="c1">// Присваивание значения
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">a</span> <span class="o">=</span> <span class="mi">5</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="c1">// Инициализация переменной значением 5
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kt">int</span> <span class="n">b</span> <span class="o">=</span> <span class="mi">5</span><span class="p">;</span>
-</span></span></code></pre></div><p>Для переменной &ldquo;a&rdquo; мы выполняем две операции: создание и присваивание. Для переменной &ldquo;b&rdquo; только одну &ndash; создание переменной со значением 5.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="c1">// Создание переменной (хранит неизвестное значение)
+</span><span class="c1"></span><span class="kt">int</span> <span class="n">a</span><span class="p">;</span>
+<span class="c1">// Присваивание значения
+</span><span class="c1"></span><span class="n">a</span> <span class="o">=</span> <span class="mi">5</span><span class="p">;</span>
+<span class="c1">// Инициализация переменной значением 5
+</span><span class="c1"></span><span class="kt">int</span> <span class="n">b</span> <span class="o">=</span> <span class="mi">5</span><span class="p">;</span>
+</code></pre></div><p>Для переменной &ldquo;a&rdquo; мы выполняем две операции: создание и присваивание. Для переменной &ldquo;b&rdquo; только одну &ndash; создание переменной со значением 5.</p>
 <blockquote>
 <p>С примитивными типами (int, double и т.д.) это не даёт сильного прироста, но при инициализации объектов это реально даёт выигрыш в производительности.</p>
 </blockquote>
 <p>Сейчас в классе у нас все переменные заполняются как переменная &ldquo;a&rdquo; &ndash; давай поправим это, и будем их сразу инициализировать:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">Coffee</span>
-</span></span><span class="line"><span class="cl"><span class="p">{</span>
-</span></span><span class="line"><span class="cl"><span class="k">public</span><span class="o">:</span>
-</span></span><span class="line"><span class="cl">	<span class="n">Coffee</span><span class="p">(</span><span class="k">const</span> <span class="kt">char</span> <span class="o">*</span><span class="n">type</span><span class="p">,</span> <span class="kt">int</span> <span class="n">temperature</span><span class="p">,</span> <span class="kt">int</span> <span class="n">volume</span><span class="p">)</span> <span class="o">:</span>
-</span></span><span class="line"><span class="cl">        <span class="n">m_temperature</span><span class="p">(</span><span class="n">temperature</span><span class="p">),</span>
-</span></span><span class="line"><span class="cl">        <span class="n">m_volume</span><span class="p">(</span><span class="n">volume</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">	<span class="p">{</span> 
-</span></span><span class="line"><span class="cl">		<span class="c1">// Выделяем память под строку
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>		<span class="n">m_type</span> <span class="o">=</span> <span class="p">(</span><span class="kt">char</span><span class="o">*</span><span class="p">)</span><span class="n">malloc</span><span class="p">(</span><span class="n">strlen</span><span class="p">(</span><span class="n">type</span><span class="p">));</span>
-</span></span><span class="line"><span class="cl">		<span class="c1">// Копируем type в m_type
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>		<span class="n">strcpy</span><span class="p">(</span><span class="n">m_type</span><span class="p">,</span> <span class="n">type</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">	<span class="p">}</span>
-</span></span><span class="line"><span class="cl">    <span class="p">...</span>
-</span></span></code></pre></div><p>Пишем двоеточие после сигнатуры конструктора, и перечисляем через запятую все конструкторы, которые хотим вызвать для наших полей (да, у обычных полей тоже есть что-то вроде конструктора).</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">class</span> <span class="nc">Coffee</span>
+<span class="p">{</span>
+<span class="k">public</span><span class="o">:</span>
+	<span class="n">Coffee</span><span class="p">(</span><span class="k">const</span> <span class="kt">char</span> <span class="o">*</span><span class="n">type</span><span class="p">,</span> <span class="kt">int</span> <span class="n">temperature</span><span class="p">,</span> <span class="kt">int</span> <span class="n">volume</span><span class="p">)</span> <span class="o">:</span>
+        <span class="n">m_temperature</span><span class="p">(</span><span class="n">temperature</span><span class="p">),</span>
+        <span class="n">m_volume</span><span class="p">(</span><span class="n">volume</span><span class="p">)</span>
+	<span class="p">{</span> 
+		<span class="c1">// Выделяем память под строку
+</span><span class="c1"></span>		<span class="n">m_type</span> <span class="o">=</span> <span class="p">(</span><span class="kt">char</span><span class="o">*</span><span class="p">)</span><span class="n">malloc</span><span class="p">(</span><span class="n">strlen</span><span class="p">(</span><span class="n">type</span><span class="p">));</span>
+		<span class="c1">// Копируем type в m_type
+</span><span class="c1"></span>		<span class="n">strcpy</span><span class="p">(</span><span class="n">m_type</span><span class="p">,</span> <span class="n">type</span><span class="p">);</span>
+	<span class="p">}</span>
+    <span class="p">...</span>
+</code></pre></div><p>Пишем двоеточие после сигнатуры конструктора, и перечисляем через запятую все конструкторы, которые хотим вызвать для наших полей (да, у обычных полей тоже есть что-то вроде конструктора).</p>
 <p>m_type так не проинициализируешь &ndash; ему нужно выделять память, а потом копировать строку.</p>
 <p>Старайся в любой возможности инициализировать переменные при их создании.</p>
 <h3 id="конструктор-с-параметрами">Конструктор с параметрами</h3>
 <p>Так вот, конструктор, который я использовал, называется &ldquo;конструктор с параметрами&rdquo;.</p>
 <p>Чтобы создать объект через конструктор с параметрами, надо при создании объекта указать в параметрах необходимые параметры:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="n">Coffee</span> <span class="nf">params_coffee</span><span class="p">(</span><span class="s">&#34;latte&#34;</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">200</span><span class="p">);</span>
-</span></span></code></pre></div><p>Ладно, поехали дальше. Есть конструктор с параметрами &ndash; наверно есть и без параметров?</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="n">Coffee</span> <span class="nf">params_coffee</span><span class="p">(</span><span class="s">&#34;latte&#34;</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">200</span><span class="p">);</span>
+</code></pre></div><p>Ладно, поехали дальше. Есть конструктор с параметрами &ndash; наверно есть и без параметров?</p>
 <h3 id="конструктор-без-параметров">Конструктор без параметров</h3>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">Coffee</span>
-</span></span><span class="line"><span class="cl"><span class="p">{</span>
-</span></span><span class="line"><span class="cl"><span class="k">public</span><span class="o">:</span>
-</span></span><span class="line"><span class="cl">	<span class="n">Coffee</span><span class="p">()</span> <span class="o">:</span>
-</span></span><span class="line"><span class="cl">        <span class="n">m_temperature</span><span class="p">(</span><span class="mi">70</span><span class="p">),</span>
-</span></span><span class="line"><span class="cl">        <span class="n">m_volume</span><span class="p">(</span><span class="mi">200</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">	<span class="p">{</span> 
-</span></span><span class="line"><span class="cl">		<span class="c1">// Выделяем память под строку
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>		<span class="n">m_type</span> <span class="o">=</span> <span class="p">(</span><span class="kt">char</span><span class="o">*</span><span class="p">)</span><span class="n">malloc</span><span class="p">(</span><span class="n">strlen</span><span class="p">(</span><span class="n">type</span><span class="p">));</span>
-</span></span><span class="line"><span class="cl">		<span class="c1">// Копируем type в m_type
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>		<span class="n">strcpy</span><span class="p">(</span><span class="n">m_type</span><span class="p">,</span> <span class="s">&#34;latte&#34;</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">	<span class="p">}</span>
-</span></span><span class="line"><span class="cl">    <span class="p">...</span>
-</span></span></code></pre></div><p>Из-за того, что в параметрах ничего не передаётся, в поля присваиваются произвольные значения.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">class</span> <span class="nc">Coffee</span>
+<span class="p">{</span>
+<span class="k">public</span><span class="o">:</span>
+	<span class="n">Coffee</span><span class="p">()</span> <span class="o">:</span>
+        <span class="n">m_temperature</span><span class="p">(</span><span class="mi">70</span><span class="p">),</span>
+        <span class="n">m_volume</span><span class="p">(</span><span class="mi">200</span><span class="p">)</span>
+	<span class="p">{</span> 
+		<span class="c1">// Выделяем память под строку
+</span><span class="c1"></span>		<span class="n">m_type</span> <span class="o">=</span> <span class="p">(</span><span class="kt">char</span><span class="o">*</span><span class="p">)</span><span class="n">malloc</span><span class="p">(</span><span class="n">strlen</span><span class="p">(</span><span class="n">type</span><span class="p">));</span>
+		<span class="c1">// Копируем type в m_type
+</span><span class="c1"></span>		<span class="n">strcpy</span><span class="p">(</span><span class="n">m_type</span><span class="p">,</span> <span class="s">&#34;latte&#34;</span><span class="p">);</span>
+	<span class="p">}</span>
+    <span class="p">...</span>
+</code></pre></div><p>Из-за того, что в параметрах ничего не передаётся, в поля присваиваются произвольные значения.</p>
 <p>Такой конструктор вызовется, если при создании объекта ничего не передавать:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="n">Coffee</span> <span class="n">no_params_coffee</span><span class="p">;</span>
-</span></span></code></pre></div><h3 id="множество-конструкторов-в-одном-классе">Множество конструкторов в одном классе</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="n">Coffee</span> <span class="n">no_params_coffee</span><span class="p">;</span>
+</code></pre></div><h3 id="множество-конструкторов-в-одном-классе">Множество конструкторов в одном классе</h3>
 <p>Одновременно в классе может быть определён один конструктор без параметров и множество конструкторов с параметрами:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">Coffee</span>
-</span></span><span class="line"><span class="cl"><span class="p">{</span>
-</span></span><span class="line"><span class="cl"><span class="k">public</span><span class="o">:</span>
-</span></span><span class="line"><span class="cl">	<span class="n">Coffee</span><span class="p">()</span> <span class="p">{...}</span> <span class="c1">// #0
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="n">Coffee</span><span class="p">(</span><span class="k">const</span> <span class="kt">char</span> <span class="o">*</span><span class="n">type</span><span class="p">,</span> <span class="kt">int</span> <span class="n">temperature</span><span class="p">,</span> <span class="kt">int</span> <span class="n">volume</span><span class="p">)</span> <span class="p">{...}</span> <span class="c1">// #1
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="n">Coffee</span><span class="p">(</span><span class="k">const</span> <span class="kt">char</span> <span class="o">*</span><span class="n">type</span><span class="p">)</span> <span class="p">{...}</span> <span class="c1">// #2
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="n">Coffee</span><span class="p">(</span><span class="kt">int</span> <span class="n">temperature</span><span class="p">,</span> <span class="kt">int</span> <span class="n">volume</span><span class="p">)</span> <span class="p">{...}</span> <span class="c1">// #3
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="p">...</span>
-</span></span></code></pre></div><p>Вот как они будут вызываться:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="n">Coffee</span> <span class="n">c0</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="n">Coffee</span> <span class="nf">c1</span><span class="p">(</span><span class="s">&#34;cappucino&#34;</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">150</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl"><span class="n">Coffee</span> <span class="nf">c2</span><span class="p">(</span><span class="s">&#34;cappucino&#34;</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl"><span class="n">Coffee</span> <span class="nf">c3</span><span class="p">(</span><span class="mi">60</span><span class="p">,</span> <span class="mi">150</span><span class="p">);</span>
-</span></span></code></pre></div><blockquote>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">class</span> <span class="nc">Coffee</span>
+<span class="p">{</span>
+<span class="k">public</span><span class="o">:</span>
+	<span class="n">Coffee</span><span class="p">()</span> <span class="p">{...}</span> <span class="c1">// #0
+</span><span class="c1"></span>	<span class="n">Coffee</span><span class="p">(</span><span class="k">const</span> <span class="kt">char</span> <span class="o">*</span><span class="n">type</span><span class="p">,</span> <span class="kt">int</span> <span class="n">temperature</span><span class="p">,</span> <span class="kt">int</span> <span class="n">volume</span><span class="p">)</span> <span class="p">{...}</span> <span class="c1">// #1
+</span><span class="c1"></span>	<span class="n">Coffee</span><span class="p">(</span><span class="k">const</span> <span class="kt">char</span> <span class="o">*</span><span class="n">type</span><span class="p">)</span> <span class="p">{...}</span> <span class="c1">// #2
+</span><span class="c1"></span>	<span class="n">Coffee</span><span class="p">(</span><span class="kt">int</span> <span class="n">temperature</span><span class="p">,</span> <span class="kt">int</span> <span class="n">volume</span><span class="p">)</span> <span class="p">{...}</span> <span class="c1">// #3
+</span><span class="c1"></span>    <span class="p">...</span>
+</code></pre></div><p>Вот как они будут вызываться:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="n">Coffee</span> <span class="n">c0</span><span class="p">;</span>
+<span class="n">Coffee</span> <span class="nf">c1</span><span class="p">(</span><span class="s">&#34;cappucino&#34;</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">150</span><span class="p">);</span>
+<span class="n">Coffee</span> <span class="nf">c2</span><span class="p">(</span><span class="s">&#34;cappucino&#34;</span><span class="p">);</span>
+<span class="n">Coffee</span> <span class="nf">c3</span><span class="p">(</span><span class="mi">60</span><span class="p">,</span> <span class="mi">150</span><span class="p">);</span>
+</code></pre></div><blockquote>
 <p>Такое изобилие конструкторов работает благодаря <a href="../intro#function">перегрузке функций</a>.</p>
 </blockquote>
 <p>Кстати, кроме инициализации полей, мы можем вызывать другие конструкторы:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">Coffee</span>
-</span></span><span class="line"><span class="cl"><span class="p">{</span>
-</span></span><span class="line"><span class="cl"><span class="k">public</span><span class="o">:</span>
-</span></span><span class="line"><span class="cl">    <span class="c1">// Конструктор без параметров
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="n">Coffee</span><span class="p">()</span> <span class="o">:</span>
-</span></span><span class="line"><span class="cl">        <span class="n">Coffee</span><span class="p">(</span><span class="s">&#34;latte&#34;</span><span class="p">,</span> <span class="mi">70</span><span class="p">,</span> <span class="mi">200</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">	<span class="p">{}</span>
-</span></span><span class="line"><span class="cl">    <span class="c1">// Конструктор с параметрами
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="n">Coffee</span><span class="p">(</span><span class="k">const</span> <span class="kt">char</span> <span class="o">*</span><span class="n">type</span><span class="p">,</span> <span class="kt">int</span> <span class="n">temperature</span><span class="p">,</span> <span class="kt">int</span> <span class="n">volume</span><span class="p">)</span> <span class="o">:</span>
-</span></span><span class="line"><span class="cl">        <span class="n">m_temperature</span><span class="p">(</span><span class="n">temperature</span><span class="p">),</span>
-</span></span><span class="line"><span class="cl">        <span class="n">m_volume</span><span class="p">(</span><span class="n">volume</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">	<span class="p">{</span> 
-</span></span><span class="line"><span class="cl">		<span class="c1">// Выделяем память под строку
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>		<span class="n">m_type</span> <span class="o">=</span> <span class="p">(</span><span class="kt">char</span><span class="o">*</span><span class="p">)</span><span class="n">malloc</span><span class="p">(</span><span class="n">strlen</span><span class="p">(</span><span class="n">type</span><span class="p">));</span>
-</span></span><span class="line"><span class="cl">		<span class="c1">// Копируем type в m_type
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>		<span class="n">strcpy</span><span class="p">(</span><span class="n">m_type</span><span class="p">,</span> <span class="n">type</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">	<span class="p">}</span>
-</span></span><span class="line"><span class="cl">    <span class="p">...</span>
-</span></span></code></pre></div><p>Иногда это очень удобно, и позволяет избежать дублирования кода &ndash; в этом примере я описал логику копирования строки только в одном месте.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">class</span> <span class="nc">Coffee</span>
+<span class="p">{</span>
+<span class="k">public</span><span class="o">:</span>
+    <span class="c1">// Конструктор без параметров
+</span><span class="c1"></span>	<span class="n">Coffee</span><span class="p">()</span> <span class="o">:</span>
+        <span class="n">Coffee</span><span class="p">(</span><span class="s">&#34;latte&#34;</span><span class="p">,</span> <span class="mi">70</span><span class="p">,</span> <span class="mi">200</span><span class="p">)</span>
+	<span class="p">{}</span>
+    <span class="c1">// Конструктор с параметрами
+</span><span class="c1"></span>	<span class="n">Coffee</span><span class="p">(</span><span class="k">const</span> <span class="kt">char</span> <span class="o">*</span><span class="n">type</span><span class="p">,</span> <span class="kt">int</span> <span class="n">temperature</span><span class="p">,</span> <span class="kt">int</span> <span class="n">volume</span><span class="p">)</span> <span class="o">:</span>
+        <span class="n">m_temperature</span><span class="p">(</span><span class="n">temperature</span><span class="p">),</span>
+        <span class="n">m_volume</span><span class="p">(</span><span class="n">volume</span><span class="p">)</span>
+	<span class="p">{</span> 
+		<span class="c1">// Выделяем память под строку
+</span><span class="c1"></span>		<span class="n">m_type</span> <span class="o">=</span> <span class="p">(</span><span class="kt">char</span><span class="o">*</span><span class="p">)</span><span class="n">malloc</span><span class="p">(</span><span class="n">strlen</span><span class="p">(</span><span class="n">type</span><span class="p">));</span>
+		<span class="c1">// Копируем type в m_type
+</span><span class="c1"></span>		<span class="n">strcpy</span><span class="p">(</span><span class="n">m_type</span><span class="p">,</span> <span class="n">type</span><span class="p">);</span>
+	<span class="p">}</span>
+    <span class="p">...</span>
+</code></pre></div><p>Иногда это очень удобно, и позволяет избежать дублирования кода &ndash; в этом примере я описал логику копирования строки только в одном месте.</p>
 <h3 id="конструктор-с-параметрами-по-умолчанию">Конструктор с параметрами по умолчанию</h3>
 <p>Также, <a href="../intro#function">из вводной статьи</a> можно вспомнить, что в C++ теперь можно указывать значения по умолчанию для параметров функций. Для методов это тоже работает:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">Coffee</span>
-</span></span><span class="line"><span class="cl"><span class="p">{</span>
-</span></span><span class="line"><span class="cl"><span class="k">public</span><span class="o">:</span>
-</span></span><span class="line"><span class="cl">	<span class="n">Coffee</span><span class="p">(</span><span class="k">const</span> <span class="kt">char</span> <span class="o">*</span><span class="n">type</span><span class="o">=</span><span class="s">&#34;latte&#34;</span><span class="p">,</span> <span class="kt">int</span> <span class="n">temperature</span><span class="o">=</span><span class="mi">70</span><span class="p">,</span> <span class="kt">int</span> <span class="n">volume</span><span class="o">=</span><span class="mi">200</span><span class="p">)</span> <span class="o">:</span>
-</span></span><span class="line"><span class="cl">        <span class="n">m_temperature</span><span class="p">(</span><span class="n">temperature</span><span class="p">),</span>
-</span></span><span class="line"><span class="cl">        <span class="n">m_volume</span><span class="p">(</span><span class="n">volume</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">	<span class="p">{</span> 
-</span></span><span class="line"><span class="cl">		<span class="c1">// Выделяем память под строку
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>		<span class="n">m_type</span> <span class="o">=</span> <span class="p">(</span><span class="kt">char</span><span class="o">*</span><span class="p">)</span><span class="n">malloc</span><span class="p">(</span><span class="n">strlen</span><span class="p">(</span><span class="n">type</span><span class="p">));</span>
-</span></span><span class="line"><span class="cl">		<span class="c1">// Копируем type в m_type
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>		<span class="n">strcpy</span><span class="p">(</span><span class="n">m_type</span><span class="p">,</span> <span class="n">type</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">	<span class="p">}</span>
-</span></span><span class="line"><span class="cl">    <span class="p">...</span>
-</span></span></code></pre></div><p>С помощью одного конструктора с параметрами по умолчанию, можно покрыть сразу множество различных наборов параметров:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="c1">// Вызов конструктора с параметрами - все параметры по умолчанию
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">Coffee</span> <span class="n">params_coffee_0</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="c1">// Вызов конструктора с параметрами - все параметры, кроме type, по умолчанию
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">Coffee</span> <span class="nf">params_coffee_1</span><span class="p">(</span><span class="s">&#34;latte&#34;</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl"><span class="c1">// Вызов конструктора с параметрами - volume по умолчанию
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">Coffee</span> <span class="nf">params_coffee_2</span><span class="p">(</span><span class="s">&#34;latte&#34;</span><span class="p">,</span> <span class="mi">50</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl"><span class="c1">// Вызов конструктора с параметрами - все параметры указаны
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">Coffee</span> <span class="nf">params_coffee_3</span><span class="p">(</span><span class="s">&#34;latte&#34;</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">200</span><span class="p">);</span>
-</span></span></code></pre></div><p>Я показал самые основные и полезные способы использования конструкторов.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">class</span> <span class="nc">Coffee</span>
+<span class="p">{</span>
+<span class="k">public</span><span class="o">:</span>
+	<span class="n">Coffee</span><span class="p">(</span><span class="k">const</span> <span class="kt">char</span> <span class="o">*</span><span class="n">type</span><span class="o">=</span><span class="s">&#34;latte&#34;</span><span class="p">,</span> <span class="kt">int</span> <span class="n">temperature</span><span class="o">=</span><span class="mi">70</span><span class="p">,</span> <span class="kt">int</span> <span class="n">volume</span><span class="o">=</span><span class="mi">200</span><span class="p">)</span> <span class="o">:</span>
+        <span class="n">m_temperature</span><span class="p">(</span><span class="n">temperature</span><span class="p">),</span>
+        <span class="n">m_volume</span><span class="p">(</span><span class="n">volume</span><span class="p">)</span>
+	<span class="p">{</span> 
+		<span class="c1">// Выделяем память под строку
+</span><span class="c1"></span>		<span class="n">m_type</span> <span class="o">=</span> <span class="p">(</span><span class="kt">char</span><span class="o">*</span><span class="p">)</span><span class="n">malloc</span><span class="p">(</span><span class="n">strlen</span><span class="p">(</span><span class="n">type</span><span class="p">));</span>
+		<span class="c1">// Копируем type в m_type
+</span><span class="c1"></span>		<span class="n">strcpy</span><span class="p">(</span><span class="n">m_type</span><span class="p">,</span> <span class="n">type</span><span class="p">);</span>
+	<span class="p">}</span>
+    <span class="p">...</span>
+</code></pre></div><p>С помощью одного конструктора с параметрами по умолчанию, можно покрыть сразу множество различных наборов параметров:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="c1">// Вызов конструктора с параметрами - все параметры по умолчанию
+</span><span class="c1"></span><span class="n">Coffee</span> <span class="n">params_coffee_0</span><span class="p">;</span>
+<span class="c1">// Вызов конструктора с параметрами - все параметры, кроме type, по умолчанию
+</span><span class="c1"></span><span class="n">Coffee</span> <span class="nf">params_coffee_1</span><span class="p">(</span><span class="s">&#34;latte&#34;</span><span class="p">);</span>
+<span class="c1">// Вызов конструктора с параметрами - volume по умолчанию
+</span><span class="c1"></span><span class="n">Coffee</span> <span class="nf">params_coffee_2</span><span class="p">(</span><span class="s">&#34;latte&#34;</span><span class="p">,</span> <span class="mi">50</span><span class="p">);</span>
+<span class="c1">// Вызов конструктора с параметрами - все параметры указаны
+</span><span class="c1"></span><span class="n">Coffee</span> <span class="nf">params_coffee_3</span><span class="p">(</span><span class="s">&#34;latte&#34;</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">200</span><span class="p">);</span>
+</code></pre></div><p>Я показал самые основные и полезные способы использования конструкторов.</p>
 <p>Однако, на этом история про конструкторы не заканичивается &ndash; давай занырнём поглубже.</p>
 <h1 id="методы-генерируемые-компилятором">Методы генерируемые компилятором</h1>
 <p>Компилятор для каждого класса генерирует следующие методы:</p>
@@ -199,23 +199,23 @@
 <p>Если ты определишь хоть какой-то конструктор (с параметрами или без), то конструктор по умолчанию не будет сгенерирован.</p>
 <p>Конструктор копирования, оператор присваивания и деструктор, не будут генерироваться только в случае, если ты сам их определишь.</p>
 <p>Чтобы мы знали врага в лицо, давай представим что в нашем классе Coffee вообще не определён конструктор &ndash; в таком случае:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="c1">// Создаю объект через конструктор по умолчанию
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">Coffee</span> <span class="n">default_coffee</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="c1">// Создаю объект через конструктор копирования (передаю объект в параметры)
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">Coffee</span> <span class="nf">copy_coffee</span><span class="p">(</span><span class="n">default_coffee</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl"><span class="c1">// Другой способ вызова конструктора копирования
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">Coffee</span> <span class="n">another_copy_coffee</span> <span class="o">=</span> <span class="n">default_coffee</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="c1">// Вызов оператора присваивания (вызывается только для уже созданного объекта)
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">Coffee</span> <span class="n">assign_coffee</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="n">assign_coffee</span> <span class="o">=</span> <span class="n">params_coffee</span><span class="p">;</span>
-</span></span></code></pre></div><h3 id="конструктор-по-умолчанию">Конструктор по умолчанию</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="c1">// Создаю объект через конструктор по умолчанию
+</span><span class="c1"></span><span class="n">Coffee</span> <span class="n">default_coffee</span><span class="p">;</span>
+<span class="c1">// Создаю объект через конструктор копирования (передаю объект в параметры)
+</span><span class="c1"></span><span class="n">Coffee</span> <span class="nf">copy_coffee</span><span class="p">(</span><span class="n">default_coffee</span><span class="p">);</span>
+<span class="c1">// Другой способ вызова конструктора копирования
+</span><span class="c1"></span><span class="n">Coffee</span> <span class="n">another_copy_coffee</span> <span class="o">=</span> <span class="n">default_coffee</span><span class="p">;</span>
+<span class="c1">// Вызов оператора присваивания (вызывается только для уже созданного объекта)
+</span><span class="c1"></span><span class="n">Coffee</span> <span class="n">assign_coffee</span><span class="p">;</span>
+<span class="n">assign_coffee</span> <span class="o">=</span> <span class="n">params_coffee</span><span class="p">;</span>
+</code></pre></div><h3 id="конструктор-по-умолчанию">Конструктор по умолчанию</h3>
 <p>Если бы я захотел определить свой конструктор, и чтобы он работал как конструктор по умолчанию, то он бы выглядел так:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="n">Coffee</span><span class="p">()</span> <span class="o">:</span>
-</span></span><span class="line"><span class="cl">        <span class="n">m_type</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">        <span class="n">m_temperature</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span>
-</span></span><span class="line"><span class="cl">        <span class="n">m_volume</span><span class="p">(</span><span class="k">nullptr</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl"><span class="p">{}</span>
-</span></span></code></pre></div><p>Если ты не определишь ни одного конструктора, то вот такой конструктор будет вызываться при создании объекта &ndash; он занулит все поля и вызовет конструкторы по умолчанию для всех полей-объектов.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="n">Coffee</span><span class="p">()</span> <span class="o">:</span>
+        <span class="n">m_type</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+        <span class="n">m_temperature</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span>
+        <span class="n">m_volume</span><span class="p">(</span><span class="k">nullptr</span><span class="p">)</span>
+<span class="p">{}</span>
+</code></pre></div><p>Если ты не определишь ни одного конструктора, то вот такой конструктор будет вызываться при создании объекта &ndash; он занулит все поля и вызовет конструкторы по умолчанию для всех полей-объектов.</p>
 <blockquote>
 <p>На самом деле он вызовет для полей конструкторы по умолчанию через uniform initialization, вроде <code>m_type{}, m_temperature{}, m_volume{}</code>. Я расскажу что это такое в будущем, но можешь глянуть, если интересно.</p>
 </blockquote>
@@ -224,22 +224,22 @@
 <p>По умолчанию у каждого класса существует конструктор копирования &ndash; он полностью копирует все поля объекта в другой.</p>
 <p>Такой способ копирования называется поверхностное копирование (shallow copy) &ndash; увидев указатель, он не будет делать полную копию объекта, на который он указывает. Вместо этого, он только скопирует адрес, который лежит в указателе.</p>
 <p>Вот пример вызова конструктора копирования для нашего класса:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
-</span></span><span class="line"><span class="cl"><span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="n">Coffee</span> <span class="n">c1</span><span class="p">(</span><span class="s">&#34;espresso&#34;</span><span class="p">,</span> <span class="mi">90</span><span class="p">,</span> <span class="mi">50</span><span class="p">);</span> 
-</span></span><span class="line"><span class="cl">    <span class="c1">// Constructed 50ml cup of hot espresso coffee.
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">Coffee</span> <span class="n">c2</span> <span class="o">=</span> <span class="n">c1</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">    <span class="n">c1</span><span class="p">.</span><span class="n">drink</span><span class="p">(</span><span class="mi">15</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">    <span class="c1">// Drank 15ml of espresso.
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">c2</span><span class="p">.</span><span class="n">drink</span><span class="p">(</span><span class="mi">15</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">    <span class="c1">// Drank 15ml of espresso.
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">    <span class="c1">// Destructed espresso.
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="c1">// Destructed ma.
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="c1">// free(): double free detected in tcache 2
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="c1">// Aborted (core dumped)
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">}</span>
-</span></span></code></pre></div><p>Воу, это что произошло!?</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="n">Coffee</span> <span class="n">c1</span><span class="p">(</span><span class="s">&#34;espresso&#34;</span><span class="p">,</span> <span class="mi">90</span><span class="p">,</span> <span class="mi">50</span><span class="p">);</span> 
+    <span class="c1">// Constructed 50ml cup of hot espresso coffee.
+</span><span class="c1"></span>    <span class="n">Coffee</span> <span class="n">c2</span> <span class="o">=</span> <span class="n">c1</span><span class="p">;</span>
+    <span class="n">c1</span><span class="p">.</span><span class="n">drink</span><span class="p">(</span><span class="mi">15</span><span class="p">);</span>
+    <span class="c1">// Drank 15ml of espresso.
+</span><span class="c1"></span>    <span class="n">c2</span><span class="p">.</span><span class="n">drink</span><span class="p">(</span><span class="mi">15</span><span class="p">);</span>
+    <span class="c1">// Drank 15ml of espresso.
+</span><span class="c1"></span>    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="c1">// Destructed espresso.
+</span><span class="c1"></span>    <span class="c1">// Destructed ma.
+</span><span class="c1"></span>    <span class="c1">// free(): double free detected in tcache 2
+</span><span class="c1"></span>    <span class="c1">// Aborted (core dumped)
+</span><span class="c1"></span><span class="p">}</span>
+</code></pre></div><p>Воу, это что произошло!?</p>
 <p>Смотри:</p>
 <ul>
 <li>Через конструктор с параметрами создался объект c1 и выделилась память под массив</li>
@@ -248,77 +248,77 @@
 <li>При вызове деструктора c1 память под массив пытается высвободиться ещё раз, и это вызывает экстренное прерывание</li>
 </ul>
 <p>Чтобы такой проблемы не было, надо создать конструктор копирования:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="n">Coffee</span><span class="p">(</span><span class="n">Coffee</span> <span class="o">&amp;</span><span class="n">other</span><span class="p">)</span> <span class="o">:</span>
-</span></span><span class="line"><span class="cl">        <span class="n">m_temperature</span><span class="p">(</span><span class="n">temperature</span><span class="p">),</span>
-</span></span><span class="line"><span class="cl">        <span class="n">m_volume</span><span class="p">(</span><span class="n">volume</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl"><span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="c1">// Выделяем память под строку
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">m_type</span> <span class="o">=</span> <span class="p">(</span><span class="kt">char</span><span class="o">*</span><span class="p">)</span><span class="n">malloc</span><span class="p">(</span><span class="n">strlen</span><span class="p">(</span><span class="n">other</span><span class="p">.</span><span class="n">m_type</span><span class="p">));</span>
-</span></span><span class="line"><span class="cl">    <span class="c1">// Копируем m_type из other в m_type
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">strcpy</span><span class="p">(</span><span class="n">m_type</span><span class="p">,</span> <span class="n">other</span><span class="p">.</span><span class="n">m_type</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></div><p>В этом случае каждый объект будет хранить свой собственный массив, и освободить два раза его уже не получится&hellip; или получится?</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="n">Coffee</span><span class="p">(</span><span class="n">Coffee</span> <span class="o">&amp;</span><span class="n">other</span><span class="p">)</span> <span class="o">:</span>
+        <span class="n">m_temperature</span><span class="p">(</span><span class="n">temperature</span><span class="p">),</span>
+        <span class="n">m_volume</span><span class="p">(</span><span class="n">volume</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="c1">// Выделяем память под строку
+</span><span class="c1"></span>    <span class="n">m_type</span> <span class="o">=</span> <span class="p">(</span><span class="kt">char</span><span class="o">*</span><span class="p">)</span><span class="n">malloc</span><span class="p">(</span><span class="n">strlen</span><span class="p">(</span><span class="n">other</span><span class="p">.</span><span class="n">m_type</span><span class="p">));</span>
+    <span class="c1">// Копируем m_type из other в m_type
+</span><span class="c1"></span>    <span class="n">strcpy</span><span class="p">(</span><span class="n">m_type</span><span class="p">,</span> <span class="n">other</span><span class="p">.</span><span class="n">m_type</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div><p>В этом случае каждый объект будет хранить свой собственный массив, и освободить два раза его уже не получится&hellip; или получится?</p>
 <h3 id="оператор-присваивания">Оператор присваивания</h3>
 <p>Тут та же история, что и с конструктором копирования &ndash; оператор присваивания делает поверхностную копию объекта, и у нас в объекте оказывается ссылка на чужой массив:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
-</span></span><span class="line"><span class="cl"><span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="n">Coffee</span> <span class="n">c1</span><span class="p">(</span><span class="s">&#34;espresso&#34;</span><span class="p">,</span> <span class="mi">90</span><span class="p">,</span> <span class="mi">50</span><span class="p">);</span> 
-</span></span><span class="line"><span class="cl">    <span class="c1">// Constructed 50ml cup of hot espresso coffee.
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">Coffee</span> <span class="n">c2</span><span class="p">(</span><span class="s">&#34;latte&#34;</span><span class="p">,</span> <span class="mi">60</span><span class="p">,</span> <span class="mi">150</span><span class="p">);</span> 
-</span></span><span class="line"><span class="cl">    <span class="c1">// Constructed 150ml cup of warm latte coffee.
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">c2</span> <span class="o">=</span> <span class="n">c1</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">    <span class="n">c1</span><span class="p">.</span><span class="n">drink</span><span class="p">(</span><span class="mi">15</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">    <span class="c1">// Drank 15ml of espresso.
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">c2</span><span class="p">.</span><span class="n">drink</span><span class="p">(</span><span class="mi">15</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">    <span class="c1">// Drank 15ml of espresso.
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">    <span class="c1">// Destructed espresso.
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="c1">// Destructed }\.
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="c1">// free(): double free detected in tcache 2
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="c1">// Aborted (core dumped)
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">}</span>
-</span></span></code></pre></div><p>Разница лишь в том, что оператор присваивания работает для уже созданного объекта, перезаписывая существующие значения.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="n">Coffee</span> <span class="n">c1</span><span class="p">(</span><span class="s">&#34;espresso&#34;</span><span class="p">,</span> <span class="mi">90</span><span class="p">,</span> <span class="mi">50</span><span class="p">);</span> 
+    <span class="c1">// Constructed 50ml cup of hot espresso coffee.
+</span><span class="c1"></span>    <span class="n">Coffee</span> <span class="n">c2</span><span class="p">(</span><span class="s">&#34;latte&#34;</span><span class="p">,</span> <span class="mi">60</span><span class="p">,</span> <span class="mi">150</span><span class="p">);</span> 
+    <span class="c1">// Constructed 150ml cup of warm latte coffee.
+</span><span class="c1"></span>    <span class="n">c2</span> <span class="o">=</span> <span class="n">c1</span><span class="p">;</span>
+    <span class="n">c1</span><span class="p">.</span><span class="n">drink</span><span class="p">(</span><span class="mi">15</span><span class="p">);</span>
+    <span class="c1">// Drank 15ml of espresso.
+</span><span class="c1"></span>    <span class="n">c2</span><span class="p">.</span><span class="n">drink</span><span class="p">(</span><span class="mi">15</span><span class="p">);</span>
+    <span class="c1">// Drank 15ml of espresso.
+</span><span class="c1"></span>    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="c1">// Destructed espresso.
+</span><span class="c1"></span>    <span class="c1">// Destructed }\.
+</span><span class="c1"></span>    <span class="c1">// free(): double free detected in tcache 2
+</span><span class="c1"></span>    <span class="c1">// Aborted (core dumped)
+</span><span class="c1"></span><span class="p">}</span>
+</code></pre></div><p>Разница лишь в том, что оператор присваивания работает для уже созданного объекта, перезаписывая существующие значения.</p>
 <p>Давайте заменим сгенерированный компилятором оператор присваивания, чтобы ничего не ломалось:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="n">Coffee</span><span class="o">&amp;</span> <span class="k">operator</span><span class="o">=</span><span class="p">(</span><span class="k">const</span> <span class="n">Coffee</span><span class="o">&amp;</span> <span class="n">other</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl"><span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="n">m_temperature</span> <span class="o">=</span> <span class="n">other</span><span class="p">.</span><span class="n">temperature</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">    <span class="n">m_volume</span> <span class="o">=</span> <span class="n">other</span><span class="p">.</span><span class="n">volume</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">    <span class="c1">// Выделяем память под строку
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">m_type</span> <span class="o">=</span> <span class="p">(</span><span class="kt">char</span><span class="o">*</span><span class="p">)</span><span class="n">malloc</span><span class="p">(</span><span class="n">strlen</span><span class="p">(</span><span class="n">other</span><span class="p">.</span><span class="n">m_type</span><span class="p">));</span>
-</span></span><span class="line"><span class="cl">    <span class="c1">// Копируем m_type из other в m_type
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">strcpy</span><span class="p">(</span><span class="n">m_type</span><span class="p">,</span> <span class="n">other</span><span class="p">.</span><span class="n">m_type</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></div><p>Всё, теперь точно ничего не сломается!</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="n">Coffee</span><span class="o">&amp;</span> <span class="k">operator</span><span class="o">=</span><span class="p">(</span><span class="k">const</span> <span class="n">Coffee</span><span class="o">&amp;</span> <span class="n">other</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">m_temperature</span> <span class="o">=</span> <span class="n">other</span><span class="p">.</span><span class="n">temperature</span><span class="p">;</span>
+    <span class="n">m_volume</span> <span class="o">=</span> <span class="n">other</span><span class="p">.</span><span class="n">volume</span><span class="p">;</span>
+    <span class="c1">// Выделяем память под строку
+</span><span class="c1"></span>    <span class="n">m_type</span> <span class="o">=</span> <span class="p">(</span><span class="kt">char</span><span class="o">*</span><span class="p">)</span><span class="n">malloc</span><span class="p">(</span><span class="n">strlen</span><span class="p">(</span><span class="n">other</span><span class="p">.</span><span class="n">m_type</span><span class="p">));</span>
+    <span class="c1">// Копируем m_type из other в m_type
+</span><span class="c1"></span>    <span class="n">strcpy</span><span class="p">(</span><span class="n">m_type</span><span class="p">,</span> <span class="n">other</span><span class="p">.</span><span class="n">m_type</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div><p>Всё, теперь точно ничего не сломается!</p>
 <h3 id="деструктор">Деструктор</h3>
 <p>Ну, тут всё просто &ndash; если мы не определили своего деструктора, то деструктор по умолчанию просто вызовет деструкторы полей-объектов и всё.</p>
 <p>Подчищать за нами память никто не будет &ndash; для этого надо писать свой деструктор.</p>
 <p>К счастью, ещё в основной статье я описал этот деструктор:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="o">~</span><span class="n">Coffee</span><span class="p">()</span>
-</span></span><span class="line"><span class="cl"><span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="c1">// Освобождаем память под строку при удалении объекта
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;Destructed &#34;</span> <span class="o">&lt;&lt;</span> <span class="n">m_type</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;.&#34;</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">    <span class="n">free</span><span class="p">(</span><span class="n">m_type</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></div><p>Как видишь, никаких занулений переменных я не делаю &ndash; это ни к чему, всё равно объект вот-вот будет уничтожен. Главное подчистить за собой динамически выделенную память, чтобы не было утечек.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="o">~</span><span class="n">Coffee</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="c1">// Освобождаем память под строку при удалении объекта
+</span><span class="c1"></span>    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;Destructed &#34;</span> <span class="o">&lt;&lt;</span> <span class="n">m_type</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;.&#34;</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+    <span class="n">free</span><span class="p">(</span><span class="n">m_type</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div><p>Как видишь, никаких занулений переменных я не делаю &ndash; это ни к чему, всё равно объект вот-вот будет уничтожен. Главное подчистить за собой динамически выделенную память, чтобы не было утечек.</p>
 <h3 id="-default--delete">= default; = delete;</h3>
 <p>Ну и напоследок, совсем небольшая ремарочка &ndash; C++ даёт возможность явно указать хочешь ли ты, чтобы компилятор сгенерировал для тебя какой-либо метод по умолчанию.</p>
 <p>Например, чтобы явно указать &ldquo;сгенерируй конструктор и деструктор по умолчанию&rdquo; надо написать:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">Coffee</span>
-</span></span><span class="line"><span class="cl"><span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="n">Coffee</span><span class="p">()</span> <span class="o">=</span> <span class="k">default</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">    <span class="o">~</span><span class="n">Coffee</span><span class="p">()</span> <span class="o">=</span> <span class="k">default</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">    <span class="p">...</span>
-</span></span></code></pre></div><blockquote>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">class</span> <span class="nc">Coffee</span>
+<span class="p">{</span>
+    <span class="n">Coffee</span><span class="p">()</span> <span class="o">=</span> <span class="k">default</span><span class="p">;</span>
+    <span class="o">~</span><span class="n">Coffee</span><span class="p">()</span> <span class="o">=</span> <span class="k">default</span><span class="p">;</span>
+    <span class="p">...</span>
+</code></pre></div><blockquote>
 <p>Зачем это делать &ndash; вопрос для обсуждения. Мне кажется, что это позволяет напомнить программисту, что эти методы существуют. Больше можно прочитать <a href="https://www.fluentcpp.com/2019/04/23/the-rule-of-zero-zero-constructor-zero-calorie/">здесь</a>.</p>
 </blockquote>
 <p>Также, можно явно указать компилятору, что вы не хотите, чтобы он генерировал какой-либо метод.</p>
 <p>Например, чтобы указать &ldquo;не создавай конструктор копирования и оператор присваивания&rdquo; надо написать:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">Coffee</span>
-</span></span><span class="line"><span class="cl"><span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="n">Coffee</span><span class="p">(</span><span class="k">const</span> <span class="n">Coffee</span><span class="o">&amp;</span> <span class="n">other</span><span class="p">)</span> <span class="o">=</span> <span class="k">delete</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">    <span class="n">Coffee</span><span class="o">&amp;</span> <span class="k">operator</span><span class="p">(</span><span class="k">const</span> <span class="n">Coffee</span><span class="o">&amp;</span> <span class="n">other</span><span class="p">)</span> <span class="o">=</span> <span class="k">delete</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">    <span class="p">...</span>
-</span></span></code></pre></div><p>Это позволяет защититься от копирования, если твой класс его не поддерживает.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">class</span> <span class="nc">Coffee</span>
+<span class="p">{</span>
+    <span class="n">Coffee</span><span class="p">(</span><span class="k">const</span> <span class="n">Coffee</span><span class="o">&amp;</span> <span class="n">other</span><span class="p">)</span> <span class="o">=</span> <span class="k">delete</span><span class="p">;</span>
+    <span class="n">Coffee</span><span class="o">&amp;</span> <span class="k">operator</span><span class="p">(</span><span class="k">const</span> <span class="n">Coffee</span><span class="o">&amp;</span> <span class="n">other</span><span class="p">)</span> <span class="o">=</span> <span class="k">delete</span><span class="p">;</span>
+    <span class="p">...</span>
+</code></pre></div><p>Это позволяет защититься от копирования, если твой класс его не поддерживает.</p>
 <h1 id="заключение">Заключение</h1>
 <p>Итого, мы узнали:</p>
 <ul>
@@ -367,8 +367,8 @@
     <hr>
     <div align="center">
         Home server: Raspberry Pi 4<br>
-        Temperature: 51<br>
-Uptime: 5 hours, 12 minutes
+        Temperature: <br>
+Uptime: 
     </div>
 </footer>
 

@@ -9,7 +9,7 @@
 	<meta name="theme-color" content="#ffffff">
 
     
-    <link rel="stylesheet" href="/sass/main.min.css">
+    <link rel="stylesheet" href="/sass/main.scss">
     <title> IT простым языком </title>
 </head>
 
@@ -20,14 +20,14 @@
         +---------------------------+<br>
         |.-------------------------.|<br>
         ||&nbsp;<a href="/">kee_reel@blog</a>:~$ cd&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;||<br>
-        ||&nbsp;<a href="/c">c</a>&nbsp;&nbsp;<a href="/cpp">c++</a>&nbsp;&nbsp;<a href="/python">python</a>&nbsp;&nbsp;<a href="/linux">linux</a>&nbsp;&nbsp;&nbsp;||<br>
-        ||&nbsp;<a href="/opengl">opengl</a>&nbsp;&nbsp;<a href="/sql">sql</a>&nbsp;&nbsp;<a href="/network">networks</a>&nbsp;&nbsp;&nbsp;||<br>
+        ||&nbsp;<a href="/c.html">c</a>&nbsp;&nbsp;<a href="/cpp.html">c++</a>&nbsp;&nbsp;<a href="/python.html">python</a>&nbsp;&nbsp;<a href="/linux.html">linux</a>&nbsp;&nbsp;&nbsp;||<br>
+        ||&nbsp;<a href="/opengl.html">opengl</a>&nbsp;&nbsp;<a href="/sql.html">sql</a>&nbsp;&nbsp;<a href="/network.html">networks</a>&nbsp;&nbsp;&nbsp;||<br>
         ||&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;||<br>
-        ||&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/about">обо_мне</a>&nbsp;||<br>
+        ||&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/about.html">обо_мне</a>&nbsp;||<br>
         |.-------------------------.|<br>
         +-::---------------------::-+<br>
         .---------------------------.<br>
-        &nbsp;//&nbsp;/o<a href="/links">o</a>oooooooooooooooooooo\\&nbsp;\\&nbsp;<br>
+        &nbsp;//&nbsp;/o<a href="/links.html">o</a>oooooooooooooooooooo\\&nbsp;\\&nbsp;<br>
         &nbsp;//&nbsp;/oooooooooooooooooooooooo\\&nbsp;\\&nbsp;<br>
         //-------------------------------\\<br>
         \\-------------------------------//<br>
@@ -43,7 +43,7 @@
     
         <div style="display: flex; justify-content: space-between;">
             
-                <a href="https://kee-reel.com/linux/package-manager.html">◀ Установка и работа с программами</a>
+                <a href="https://kee-reel.com/linux/package-manager.html">◀ Установка и запуск программ</a>
             
             
                 <div></div>
@@ -114,8 +114,8 @@
 </p>
 
 <p>Попробуй сам поиграться со всеми указанными горячими клавишами с этой же командой:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="nb">echo</span> <span class="s1">&#39;this is example of some command&#39;</span>
-</span></span></code></pre></div><p>Эти горячие клавиши впитаются в подкорку только при условии постоянной практики, так что просто старайся с этого дня использовать их как можно чаще.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="nb">echo</span> <span class="s1">&#39;this is example of some command&#39;</span>
+</code></pre></div><p>Эти горячие клавиши впитаются в подкорку только при условии постоянной практики, так что просто старайся с этого дня использовать их как можно чаще.</p>
 <div id="history"/>
 
 <h1 id="перемещение-по-истории-команд">Перемещение по истории команд</h1>
@@ -209,51 +209,51 @@
 <h2 id="переменные">Переменные</h2>
 <p><strong>Переменная</strong> &ndash; это переменная с определённым значением, используемая в рамках текущей сессии.</p>
 <p>Переменная задаётся так:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="nv">ИМЯ_ПЕРЕМЕННОЙ</span><span class="o">=</span>ЗНАЧЕНИЕ_ПЕРЕМЕННОЙ
-</span></span></code></pre></div><p>Например, в своём <code>~/.bashrc</code> ты можешь задать переменную <code>HISTSIZE</code>, которая определяет максимальное количество команд, которое терминал будет помнить (при перемещении по истории команд):</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="nv">HISTSIZE</span><span class="o">=</span><span class="m">10000</span>
-</span></span></code></pre></div><p>Если ты добавишь в свой <code>~/.bashrc</code> эту строчку, то сессия терминала будет &ldquo;помнить&rdquo; 10000 последних команд.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="nv">ИМЯ_ПЕРЕМЕННОЙ</span><span class="o">=</span>ЗНАЧЕНИЕ_ПЕРЕМЕННОЙ
+</code></pre></div><p>Например, в своём <code>~/.bashrc</code> ты можешь задать переменную <code>HISTSIZE</code>, которая определяет максимальное количество команд, которое терминал будет помнить (при перемещении по истории команд):</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="nv">HISTSIZE</span><span class="o">=</span><span class="m">10000</span>
+</code></pre></div><p>Если ты добавишь в свой <code>~/.bashrc</code> эту строчку, то сессия терминала будет &ldquo;помнить&rdquo; 10000 последних команд.</p>
 <p>Существует множество переменных, которыми ты можешь настроить поведение сессии терминала &ndash; я опишу несколько полезных.</p>
 <ul>
 <li>PATH</li>
 </ul>
-<p>Переменная <strong>PATH</strong> содержит пути (разделённые &ldquo;:&rdquo;), которые используются для поиска исполняемых программ.</p>
+<p>Переменная <strong>PATH</strong> содержит пути (разделённые &ldquo;:&quot;), которые используются для поиска исполняемых программ.</p>
 <p>Например, вот так в <strong>PATH</strong> можно добавить директорию <code>~/bin</code>:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="nv">PATH</span><span class="o">=</span><span class="s2">&#34;~/bin:</span><span class="nv">$PATH</span><span class="s2">&#34;</span>
-</span></span></code></pre></div><blockquote>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="nv">PATH</span><span class="o">=</span><span class="s2">&#34;~/bin:</span><span class="nv">$PATH</span><span class="s2">&#34;</span>
+</code></pre></div><blockquote>
 <p>Перед <code>$PATH</code> написан <strong>$</strong>, чтобы вставить значение самой переменной <code>PATH</code> &ndash; таким образом мы склеиваем &ldquo;~/bin:&rdquo; и текущее значение PATH.
 Ещё с помощью <strong>$</strong> ты можешь вывести текущее значение переменной:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="nb">echo</span> <span class="nv">$PATH</span>
-</span></span></code></pre></div></blockquote>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="nb">echo</span> <span class="nv">$PATH</span>
+</code></pre></div></blockquote>
 <p>Так вот, мы добавили директорию &ldquo;~/bin&rdquo; в PATH. Предположим, что в этой директории лежит программа &ldquo;hack-the-planet&rdquo;:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">kee-reel@blog:~/bin$ ls
-</span></span><span class="line"><span class="cl">hack-the-planet
-</span></span></code></pre></div><p>Обычно, если нужно исполнить программу из текущей директории, тебе надо написать &ldquo;./&rdquo;:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">kee-reel@blog:~/bin$ ./hack-the-planet
-</span></span><span class="line"><span class="cl">HACKING FOLDER ~/bin
-</span></span><span class="line"><span class="cl">COMPLETE!
-</span></span></code></pre></div><p>Но, если директория с этой программой находится в PATH, то ты можешь исполнить эту программу откуда угодно (писать &ldquo;./&rdquo; не надо):</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">kee-reel@blog:~/some/other/folder$ hack-the-planet
-</span></span><span class="line"><span class="cl">HACKING FOLDER ~/some/other/folder
-</span></span><span class="line"><span class="cl">COMPLETE!
-</span></span></code></pre></div><blockquote>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">kee-reel@blog:~/bin$ ls
+hack-the-planet
+</code></pre></div><p>Обычно, если нужно исполнить программу из текущей директории, тебе надо написать &ldquo;./&quot;:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">kee-reel@blog:~/bin$ ./hack-the-planet
+HACKING FOLDER ~/bin
+COMPLETE!
+</code></pre></div><p>Но, если директория с этой программой находится в PATH, то ты можешь исполнить эту программу откуда угодно (писать &ldquo;./&rdquo; не надо):</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">kee-reel@blog:~/some/other/folder$ hack-the-planet
+HACKING FOLDER ~/some/other/folder
+COMPLETE!
+</code></pre></div><blockquote>
 <p>Про PATH рассказал больше, чем про остальные, потому что это самая главная переменная окружения</p>
 </blockquote>
 <ul>
 <li>HISTCONTROL</li>
 </ul>
 <p>Не сохранять в истории дублирующиеся команды (если одна и та же команда исполняется несколько раз)</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="nv">HISTCONTROL</span><span class="o">=</span><span class="s1">&#39;ignoredups&#39;</span>
-</span></span></code></pre></div><ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="nv">HISTCONTROL</span><span class="o">=</span><span class="s1">&#39;ignoredups&#39;</span>
+</code></pre></div><ul>
 <li>PS1</li>
 </ul>
 <p>Можно изменить формат приглашения командной строки на более компактный:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="nv">PS1</span><span class="o">=</span><span class="s1">&#39;\[\033[01;32m\]\W\[\033[01;32m\] \$\[\033[00m\] &#39;</span>
-</span></span></code></pre></div><p>Тогда он будет не таким:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">kee-reel@blog:~/some/folder$
-</span></span></code></pre></div><p>А таким:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">folder $
-</span></span></code></pre></div><blockquote>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="nv">PS1</span><span class="o">=</span><span class="s1">&#39;\[\033[01;32m\]\W\[\033[01;32m\] \$\[\033[00m\] &#39;</span>
+</code></pre></div><p>Тогда он будет не таким:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">kee-reel@blog:~/some/folder$
+</code></pre></div><p>А таким:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">folder $
+</code></pre></div><blockquote>
 <p>Можешь поискать в интернете другие примеры изменения переменной PS1 &ndash; в нее можно много всего засунуть.</p>
 </blockquote>
 <div id="alias"/>
@@ -261,27 +261,27 @@
 <h2 id="сокращения-alias">Сокращения (alias)</h2>
 <p>Иногда пользователь терминала выполняет некоторые команды намного чаще других. Чтобы не прописывать их полностью или не искать их каждый раз в истории через <code>Ctrl+R</code>, можно создать <strong>alias</strong>.</p>
 <p>Например, вот команда, которую я часто исполняю:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="nb">cd</span> ~/some/other/folder/with/the-project
-</span></span></code></pre></div><p>Чтобы не мучить клавиатуру, я могу прописать в <code>~/.bashrc</code> <strong>alias</strong>:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="nb">alias</span> <span class="nv">cdpr</span><span class="o">=</span><span class="s1">&#39;cd ~/some/other/folder/with/the-project&#39;</span>
-</span></span></code></pre></div><blockquote>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="nb">cd</span> ~/some/other/folder/with/the-project
+</code></pre></div><p>Чтобы не мучить клавиатуру, я могу прописать в <code>~/.bashrc</code> <strong>alias</strong>:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="nb">alias</span> <span class="nv">cdpr</span><span class="o">=</span><span class="s1">&#39;cd ~/some/other/folder/with/the-project&#39;</span>
+</code></pre></div><blockquote>
 <p>После добавления чего-либо в <code>~/.bashrc</code> необходимо перезагрузить терминал (<code>~/.bashrc</code> считывается на старте). Однако, можно схитрить, и заново считать все содержимое <code>~/.bashrc</code> в текущей сессии терминала через такую команду: <code>source ~/.bashrc</code></p>
 </blockquote>
 <p>Теперь, чтобы перейти в нужную мне директорию, достаточно лишь исполнить команду:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">cdpr
-</span></span></code></pre></div><div id="man"/>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">cdpr
+</code></pre></div><div id="man"/>
 
 <h1 id="мануал-man">Мануал (man)</h1>
 <p>В начале знакомства с терминалом Linux возникают трудности с запоминанием всего этого множества команд и параметров, которые нужно в них передавать.</p>
 <p>Однако, чтобы в этом разобраться, не обязательно каждый раз гуглить &ndash; нужно запомнить только одну команду <strong>man</strong>.</p>
 <p><strong>man</strong> (от слова <strong>man</strong>ual, англ. иструкция к применению) &ndash; программа, отображающая документацию для указанной программы.</p>
 <p>Например, ты хочешь узнать что еще такого может сделать <strong>rm</strong> &ndash; вызови <strong>man</strong>, и передай в параметрах <strong>rm</strong>:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">folder $ man rm
-</span></span></code></pre></div><p>Откроется файл документации, который ты можешь скроллить стрелочками (на одну строчку) и через PageDown/PageUp (на страницу). Закрыть этот файл можно нажатием буквы &ldquo;q&rdquo;.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">folder $ man rm
+</code></pre></div><p>Откроется файл документации, который ты можешь скроллить стрелочками (на одну строчку) и через PageDown/PageUp (на страницу). Закрыть этот файл можно нажатием буквы &ldquo;q&rdquo;.</p>
 <p>Почитав документацию для &ldquo;rm&rdquo; я узнал, что если указать параметр &ldquo;-i&rdquo;, то я должен буду подтверждать удаление каждого файла.</p>
 <p>Так как &ldquo;rm&rdquo; удаляет файл сразу, не помещая его в корзину, это довольно полезный параметр, если ты боишься удалить что-то лишнее. В &ldquo;~/.bashrc&rdquo; можно добавить такой <strong>alias</strong>:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="nb">alias</span> <span class="nv">rm</span><span class="o">=</span><span class="s1">&#39;rm -i&#39;</span>
-</span></span></code></pre></div><p>Таким образом, обычное поведение &ldquo;rm&rdquo; будет переопределено.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="nb">alias</span> <span class="nv">rm</span><span class="o">=</span><span class="s1">&#39;rm -i&#39;</span>
+</code></pre></div><p>Таким образом, обычное поведение &ldquo;rm&rdquo; будет переопределено.</p>
 <blockquote>
 <p>Дальше я покажу много новых команд &ndash; чтобы ознакомиться как с ними работать, ты можешь использовать <strong>man</strong></p>
 </blockquote>
@@ -292,83 +292,83 @@
 <p><strong>Pipe</strong> (англ. труба) &ndash; это механизм ОС Linux, позволяющий передавать вывод одной программы во ввод другой.</p>
 <p>Лучше объяснить это на примере.</p>
 <p>Ты помнишь команду <code>ls</code> &ndash; она просто выводит содержимое текущей папки:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">folder $ ls
-</span></span><span class="line"><span class="cl">file_10.jpg   file_13.jpg   file_14.jpg   file_15.html	file_15.jpg
-</span></span><span class="line"><span class="cl">file_16.html  file_17.html  file_19.html  file_1.txt	file_20.html
-</span></span><span class="line"><span class="cl">file_2.txt    file_3.txt    file_4.txt	  file_5.txt	file_6.cpp
-</span></span><span class="line"><span class="cl">file_7.c      file_8.h	    file_9.py	  folder_1	folder_10
-</span></span><span class="line"><span class="cl">folder_2      folder_3	    folder_4	  folder_5	folder_6
-</span></span><span class="line"><span class="cl">folder_7      folder_8	    folder_9
-</span></span></code></pre></div><p>Предположим, что ты хочешь получить список файлов с расширением &ldquo;.jpg&rdquo; &ndash; можно, конечно искать их в этой мешанине файлов, а можно использовать программу <strong>grep</strong>.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">folder $ ls
+file_10.jpg   file_13.jpg   file_14.jpg   file_15.html	file_15.jpg
+file_16.html  file_17.html  file_19.html  file_1.txt	file_20.html
+file_2.txt    file_3.txt    file_4.txt	  file_5.txt	file_6.cpp
+file_7.c      file_8.h	    file_9.py	  folder_1	folder_10
+folder_2      folder_3	    folder_4	  folder_5	folder_6
+folder_7      folder_8	    folder_9
+</code></pre></div><p>Предположим, что ты хочешь получить список файлов с расширением &ldquo;.jpg&rdquo; &ndash; можно, конечно искать их в этой мешанине файлов, а можно использовать программу <strong>grep</strong>.</p>
 <div id="grep"/>
 
 <h2 id="grep">grep</h2>
 <p><strong>grep</strong> &ndash; программа, которая ищет определенный текст во входном потоке или в файле.</p>
 <p>Эта программа очень часто используется чтобы отфильтровать вывод другой программы &ndash; давай отфильтруем вывод <code>ls</code>:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">folder $ ls <span class="p">|</span> grep jpg
-</span></span><span class="line"><span class="cl">file_10.jpg   file_13.jpg   file_14.jpg file_15.jpg
-</span></span></code></pre></div><p>Как ты видишь, вывелись только имена файлов, содержащие расширение &ldquo;.jpg&rdquo;.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">folder $ ls <span class="p">|</span> grep jpg
+file_10.jpg   file_13.jpg   file_14.jpg file_15.jpg
+</code></pre></div><p>Как ты видишь, вывелись только имена файлов, содержащие расширение &ldquo;.jpg&rdquo;.</p>
 <div id="sed"/>
 
 <h2 id="sed">sed</h2>
 <p><strong>sed</strong> &ndash; программа, которая производит замену одного текста на другой по заданному правилу.</p>
 <p>Эта программа часто используется чтобы массово изменить какие-то наименования &ndash; давай изменим названия всех входных файлов:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">folder $ ls <span class="p">|</span> grep jpg <span class="p">|</span> sed <span class="s1">&#39;s/file/new_file_name/&#39;</span>
-</span></span><span class="line"><span class="cl">new_file_name_10.jpg   new_file_name_13.jpg   new_file_name_14.jpg	new_file_name_15.jpg
-</span></span></code></pre></div><div id="tr"/>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">folder $ ls <span class="p">|</span> grep jpg <span class="p">|</span> sed <span class="s1">&#39;s/file/new_file_name/&#39;</span>
+new_file_name_10.jpg   new_file_name_13.jpg   new_file_name_14.jpg	new_file_name_15.jpg
+</code></pre></div><div id="tr"/>
 
 <h2 id="tr">tr</h2>
 <p><strong>tr</strong> &ndash; программа, которая производит замену заданного символа на другой.</p>
-<p>Используется чтобы изменить формат наименований или избавиться от лишних символов &ndash; давай будем использовать &ldquo;-&rdquo; вместо &ldquo;_&rdquo;:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">folder $ ls <span class="p">|</span> grep jpg <span class="p">|</span> sed <span class="s1">&#39;s/file/new_file_name/&#39;</span> <span class="p">|</span> tr <span class="s1">&#39;_&#39;</span> <span class="s1">&#39;-&#39;</span>
-</span></span><span class="line"><span class="cl">new-file-name-10.jpg   new-file-name-13.jpg   new-file-name-14.jpg	new-file-name-15.jpg
-</span></span></code></pre></div><div id="cat"/>
+<p>Используется чтобы изменить формат наименований или избавиться от лишних символов &ndash; давай будем использовать &ldquo;-&rdquo; вместо &ldquo;_&quot;:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">folder $ ls <span class="p">|</span> grep jpg <span class="p">|</span> sed <span class="s1">&#39;s/file/new_file_name/&#39;</span> <span class="p">|</span> tr <span class="s1">&#39;_&#39;</span> <span class="s1">&#39;-&#39;</span>
+new-file-name-10.jpg   new-file-name-13.jpg   new-file-name-14.jpg	new-file-name-15.jpg
+</code></pre></div><div id="cat"/>
 
 <h2 id="cat">cat</h2>
 <p><strong>cat</strong> &ndash; программа, выводящая содержимое файла.</p>
 <p>Очень часто используется для передачи содержимого файла в другие программы через <strong>pipe</strong> (конвейер).</p>
 <p>Давай соберем новый конвейер, чтобы он работал с содержимым файла. Для начала, я создам файл с &ldquo;контактами&rdquo; каких-то людей через редактор <strong>nano</strong> (<a href="/linux/basics">описывал как с ним работать в первой статье</a>):</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">folder $ nano contacts.txt
-</span></span></code></pre></div><p>С помощью <strong>cat</strong> я могу вывести содержимое этого файла:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">folder $ cat contacts.txt
-</span></span><span class="line"><span class="cl">Ivan +123456 Omsk
-</span></span><span class="line"><span class="cl">Mary +234561 Moscow
-</span></span><span class="line"><span class="cl">Lena +345612 Saint-Petersburg
-</span></span><span class="line"><span class="cl">Gera +456123 Kazan
-</span></span><span class="line"><span class="cl">Nick +561234 Saint-Petersburg
-</span></span><span class="line"><span class="cl">Alex +612345 Moscow
-</span></span></code></pre></div><p>Ну, а теперь давай выведем все московские контакты:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">folder $ cat contacts.txt <span class="p">|</span> grep Moscow
-</span></span><span class="line"><span class="cl">Alex +234561 Moscow
-</span></span><span class="line"><span class="cl">Mary +612345 Moscow
-</span></span></code></pre></div><div id="cut"/>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">folder $ nano contacts.txt
+</code></pre></div><p>С помощью <strong>cat</strong> я могу вывести содержимое этого файла:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">folder $ cat contacts.txt
+Ivan +123456 Omsk
+Mary +234561 Moscow
+Lena +345612 Saint-Petersburg
+Gera +456123 Kazan
+Nick +561234 Saint-Petersburg
+Alex +612345 Moscow
+</code></pre></div><p>Ну, а теперь давай выведем все московские контакты:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">folder $ cat contacts.txt <span class="p">|</span> grep Moscow
+Alex +234561 Moscow
+Mary +612345 Moscow
+</code></pre></div><div id="cut"/>
 
 <h2 id="cut">cut</h2>
 <p><strong>cut</strong> &ndash; программа, вычленяющая из текстового потока определенные слова.</p>
 <p>Давай с ее помощью вытащим имена и телефоны людей из Москвы:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">folder $ cat contacts.txt <span class="p">|</span> grep Moscow <span class="p">|</span> cut -d<span class="s1">&#39; &#39;</span> -f 1,2
-</span></span><span class="line"><span class="cl">Mary +234561
-</span></span><span class="line"><span class="cl">Alex +612345
-</span></span></code></pre></div><div id="sort"/>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">folder $ cat contacts.txt <span class="p">|</span> grep Moscow <span class="p">|</span> cut -d<span class="s1">&#39; &#39;</span> -f 1,2
+Mary +234561
+Alex +612345
+</code></pre></div><div id="sort"/>
 
 <h2 id="sort">sort</h2>
 <p><strong>sort</strong> &ndash; сортирует строки из входного потока.</p>
 <p>Давай отсортируем их в алфавитном порядке:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">folder $ cat contacts.txt <span class="p">|</span> grep Moscow <span class="p">|</span> cut -d<span class="s1">&#39; &#39;</span> -f 1,2 <span class="p">|</span> sort
-</span></span><span class="line"><span class="cl">Alex +612345
-</span></span><span class="line"><span class="cl">Mary +234561
-</span></span></code></pre></div><div id="stream"/>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">folder $ cat contacts.txt <span class="p">|</span> grep Moscow <span class="p">|</span> cut -d<span class="s1">&#39; &#39;</span> -f 1,2 <span class="p">|</span> sort
+Alex +612345
+Mary +234561
+</code></pre></div><div id="stream"/>
 
 <h1 id="перенаправление-потока">Перенаправление потока</h1>
 <p>Ну и последняя фишка для настоящего X4K3R4 &ndash; перенаправление потоков вывода.</p>
 <p>В Linux ты можешь перенаправить вывод любой программы в файл &ndash; например, давай выведем контакты москвичей из предыдущего примера в файл:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">folder $ cat contacts.txt <span class="p">|</span> grep Moscow <span class="p">|</span> cut -d<span class="s1">&#39; &#39;</span> -f 1,2 <span class="p">|</span> sort &gt; moscow_contacts.txt
-</span></span></code></pre></div><p>Заметь, что в терминал ничего не вывелось &ndash; весь вывод ушел в файл &ldquo;moscow_contacts.txt&rdquo;.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">folder $ cat contacts.txt <span class="p">|</span> grep Moscow <span class="p">|</span> cut -d<span class="s1">&#39; &#39;</span> -f 1,2 <span class="p">|</span> sort &gt; moscow_contacts.txt
+</code></pre></div><p>Заметь, что в терминал ничего не вывелось &ndash; весь вывод ушел в файл &ldquo;moscow_contacts.txt&rdquo;.</p>
 <p>Можно проверить что записалось в файл:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">folder $ cat moscow_contacts.txt
-</span></span><span class="line"><span class="cl">Alex +612345
-</span></span><span class="line"><span class="cl">Mary +234561
-</span></span></code></pre></div><p>В общем это реально просто, нужно только добавить <code>&gt;</code> в конец команды.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">folder $ cat moscow_contacts.txt
+Alex +612345
+Mary +234561
+</code></pre></div><p>В общем это реально просто, нужно только добавить <code>&gt;</code> в конец команды.</p>
 <p>Иногда, вместо <code>&gt;</code> можно еще увидеть <code>&gt;&gt;</code> &ndash; в чем разница?</p>
 <ul>
 <li><code>&gt;</code> &ndash; заполняет файл текстом из потока (если был &ndash; перезапишет, если не было &ndash; создаст)</li>
@@ -378,8 +378,8 @@
 <p>Внимательно следи за <code>&gt;</code> и <code>&gt;&gt;</code> &ndash; у меня бывали случаи, когда я хотел дописать что-то в конец файла, но перезаписывал его. По умолчанию лучше используй <code>&gt;&gt;</code> &ndash; так, ты избежишь подобных ситуаций.</p>
 </blockquote>
 <p>Вот отличный пример использования <code>&gt;&gt;</code>:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="nb">echo</span> <span class="s2">&#34;alias rm=&#39;rm -i&#39;&#34;</span> &gt;&gt; ~/.bashrc
-</span></span></code></pre></div><p>Дописываем в конец &ldquo;~/.bashrc&rdquo; новый alias, вместо того чтобы лезть в файл через текстовый редактор.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="nb">echo</span> <span class="s2">&#34;alias rm=&#39;rm -i&#39;&#34;</span> &gt;&gt; ~/.bashrc
+</code></pre></div><p>Дописываем в конец &ldquo;~/.bashrc&rdquo; новый alias, вместо того чтобы лезть в файл через текстовый редактор.</p>
 <h1 id="итоги">Итоги</h1>
 <p>Охх, ну и жесть. Мне было очень сложно структурировать эту статью, потому что для продвинутого использования терминала надо сразу знать много вещей. Однако, я постарался привести такие примеры, которые можно понять без глубокого погружения в тему.</p>
 <p>Давай закрепим:</p>
@@ -407,46 +407,46 @@
 <li><a href="#stream">Перенаправление потока</a> &ndash; выводим в файл</li>
 </ul>
 <p>Я не ожидаю, что после прочтения этой статьи ты вдруг начнёшь всё это использовать, а скорее надеюсь, что ты увидишь горизонт знаний, который можно освоить, и примешь для себя решение &ndash; хочешь ли ты следовать за белым кроликом?</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">~ $ wget https://s3.amazonaws.com/vspodtools-images-display/12676318/12682544-5841-b-display.jpg -O rabbit.png
-</span></span><span class="line"><span class="cl">~ $ sudo apt install -y jp2a
-</span></span><span class="line"><span class="cl">~ $ jp2a rabbit.png
-</span></span><span class="line"><span class="cl">.......<span class="p">;</span>,,,,,,,,,<span class="p">;</span><span class="s1">&#39;  .&#39;</span>,<span class="p">;</span>,,,,,,..  ,<span class="p">;</span>.           ,,.           .<span class="s1">&#39;,,,,,,,,&#39;</span>.  .<span class="p">;</span><span class="s1">&#39;      .;;.     .
-</span></span></span><span class="line"><span class="cl"><span class="s1">.......:;&#39;</span>......... .<span class="p">;</span>,<span class="s1">&#39;......;;,  ;;&#39;</span>          .<span class="p">;</span>,<span class="s1">&#39;           ,;,......&#39;</span>,,. ,,<span class="s1">&#39;      .;;.     .
-</span></span></span><span class="line"><span class="cl"><span class="s1">.......:;....       .;;.      ,,,  ;;&#39;</span>          .,,<span class="s1">&#39;           ;;,      .;;. ,;,      .::.     .
-</span></span></span><span class="line"><span class="cl"><span class="s1">.......:;&#39;</span>.......   .<span class="p">;</span>,.      ,,,  ,<span class="p">;</span><span class="s1">&#39;          .;,&#39;</span>           <span class="p">;;</span>,      .,<span class="p">;</span>. ,<span class="p">;</span>,  .<span class="s1">&#39;. .;:.   ...
-</span></span></span><span class="line"><span class="cl"><span class="s1">.......:,,,&#39;&#39;,,,.   .;;.      ,,,  ,,.          .;,&#39;</span>           ,<span class="p">;</span>,      .,<span class="p">;</span>. ,,, .<span class="p">;;</span>, .<span class="p">;</span>:.  ....
-</span></span><span class="line"><span class="cl">.......:<span class="p">;</span>.          .<span class="p">;;</span>.      ,,,  ,<span class="p">;</span><span class="s1">&#39;          .;,&#39;</span>           ,<span class="p">;</span>,      .<span class="p">;;</span>. ,,, .<span class="p">;;</span>, .<span class="p">;</span>:.   ...
-</span></span><span class="line"><span class="cl">.......::.          .<span class="p">;</span>,.......<span class="p">;</span>,,  ,<span class="p">;</span><span class="s1">&#39;........  .;,&#39;</span>........   ,,,......<span class="s1">&#39;,;. ,;,..;,,..,:.   ...
-</span></span></span><span class="line"><span class="cl"><span class="s1">.......cc.           .,;;;;;;;;,.  ;,;;;;;;;;:, .;,,;;;,;,;;,  .,;;;;;;;;;.  .,;;;;,;;;;.   .
-</span></span></span><span class="line"><span class="cl"><span class="s1">...... ..      .&#39;</span>.    .........    ............  ............    .........     .... ....
-</span></span><span class="line"><span class="cl">..           .::dOl.        <span class="s1">&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;.  &#39;</span>,.      .,<span class="s1">&#39;  &#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;
-</span></span></span><span class="line"><span class="cl"><span class="s1">.. ..         .lkXxk,       .&#39;&#39;&#39;&#39;,,&#39;</span>.<span class="s1">&#39;&#39;</span>. .<span class="p">;;</span><span class="s1">&#39;      &#39;</span>,:. <span class="p">;</span>,<span class="s1">&#39;...&#39;</span>.<span class="s1">&#39;&#39;&#39;.
-</span></span></span><span class="line"><span class="cl"><span class="s1">..  .           .,:kko&#39;</span>         .<span class="p">;</span>:.     .<span class="p">;;</span><span class="s1">&#39;      &#39;</span>,<span class="p">;</span>. <span class="p">;</span>,,
-</span></span><span class="line"><span class="cl">..               .<span class="s1">&#39;xO00.        .;:.     .;,&#39;</span>......<span class="s1">&#39;,;. ;,,.......
-</span></span></span><span class="line"><span class="cl"><span class="s1">               .lkkK0K&#39;</span>         .<span class="p">;;</span>.     .<span class="p">;</span><span class="s1">&#39;,;;;;;;&#39;&#39;;. ;&#39;</span>,<span class="p">;;;;;</span>:<span class="s1">&#39;
-</span></span></span><span class="line"><span class="cl"><span class="s1">              ,OKXk00k.         .;;.     .;;&#39;</span>......<span class="s1">&#39;,;. ;,&#39;</span>......
-</span></span><span class="line"><span class="cl">              c0KKO0do.         .<span class="p">;;</span>.     .<span class="p">;;</span><span class="s1">&#39;      &#39;</span>,<span class="p">;</span>. <span class="p">;</span>,<span class="s1">&#39;
-</span></span></span><span class="line"><span class="cl"><span class="s1">              :OKXkd.           .;:.     .:;&#39;</span>      <span class="s1">&#39;;;. ;,,&#39;&#39;&#39;&#39;&#39;&#39;&#39;</span>,<span class="s1">&#39;
-</span></span></span><span class="line"><span class="cl"><span class="s1">               .,::o,           ...       .&#39;</span>.      ...  ............
-</span></span><span class="line"><span class="cl">              ..       ...  ..       ...    ........    ............  ............
-</span></span><span class="line"><span class="cl">             .:<span class="p">;</span>.      <span class="p">;;</span>,  <span class="p">;</span>:.      ,<span class="p">;;</span>    .,<span class="s1">&#39;,,&#39;</span>,.    <span class="s1">&#39;;,,,,,,,,;,  ,,,&#39;</span>,,<span class="s1">&#39;,,,,,
-</span></span></span><span class="line"><span class="cl"><span class="s1">             .:;.      ;,,  ;;.      ,;,      .;;.          .;;.      ,,,
-</span></span></span><span class="line"><span class="cl"><span class="s1">             .;;.      ;,, .;;.      ,;,      .;;.          .;;.      ,,,
-</span></span></span><span class="line"><span class="cl"><span class="s1">             .:;. .;,. ,,,  ;,,,;;,,,,,,      .;;.          .:;.      ,,&#39;</span>,,,,<span class="p">;;</span><span class="s1">&#39;
-</span></span></span><span class="line"><span class="cl"><span class="s1">             .;;. &#39;</span>,<span class="p">;</span>. <span class="p">;</span>,<span class="s1">&#39;  ;;&#39;</span>......,<span class="p">;;</span>      .<span class="p">;;</span>.          .:<span class="p">;</span>.      ,,,.......
-</span></span><span class="line"><span class="cl">             .:<span class="p">;</span>. <span class="s1">&#39;,;. ;,&#39;</span>  <span class="p">;;</span>.      ,<span class="p">;</span>,      .<span class="p">;;</span>.          .:<span class="p">;</span>.      ,,,
-</span></span><span class="line"><span class="cl">     .       .<span class="p">;</span>,<span class="s1">&#39;.,,,..;;.  ;;.      ,;,    ..&#39;</span>,,<span class="s1">&#39;..        .:;.      ,;,.........
-</span></span></span><span class="line"><span class="cl"><span class="s1">     .        ..&#39;&#39;&#39;</span>..<span class="s1">&#39;&#39;&#39;.   &#39;</span>,.      .,<span class="s1">&#39;    .,,&#39;&#39;&#39;</span>,.        .,,.      .,<span class="s1">&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;</span>,,
-</span></span><span class="line"><span class="cl">    .. .........       .......     ..........    ..........       ......      ..........
-</span></span><span class="line"><span class="cl">    ...c<span class="p">;</span>:<span class="p">;;;</span>:<span class="p">;;</span>,<span class="s1">&#39;.  .,;;:;;;;;,.  ;;;;;;;;;;,.  ;;;::;:;;;,.    .c;,,;:,    &#39;</span>:<span class="p">;;;</span>,,,<span class="p">;;;</span>:.
-</span></span><span class="line"><span class="cl">   .. .:<span class="p">;</span>.......,,<span class="s1">&#39; .;;&#39;</span>......,,,  ,<span class="p">;</span><span class="s1">&#39;......,,;  ;,&#39;</span>......<span class="s1">&#39;,,     ..;;..      ....;,&#39;</span>...
-</span></span><span class="line"><span class="cl">   .. .:<span class="p">;</span>.      ,,, .<span class="p">;;</span>.      ,,,  ,<span class="p">;</span>.      <span class="s1">&#39;,;  ;,&#39;</span>      .<span class="p">;</span>,      .<span class="p">;;</span>.           <span class="p">;;</span><span class="s1">&#39;
-</span></span></span><span class="line"><span class="cl"><span class="s1">   .  .:,,&#39;&#39;&#39;&#39;&#39;&#39;&#39;</span>,. .<span class="p">;</span>,<span class="s1">&#39;&#39;&#39;&#39;&#39;&#39;&#39;,,,  ,,,&#39;&#39;&#39;&#39;&#39;&#39;,,&#39;</span>  <span class="p">;</span><span class="s1">&#39;&#39;&#39;&#39;</span>.<span class="s1">&#39;&#39;&#39;&#39;</span>,<span class="s1">&#39;      .;;.           ;;&#39;</span>
-</span></span><span class="line"><span class="cl">  ..  .:<span class="p">;</span>,<span class="s1">&#39;&#39;&#39;..&#39;</span>,<span class="p">;</span>. .<span class="p">;</span>,<span class="s1">&#39;&#39;</span>.....,,,  ,,<span class="s1">&#39;.....&#39;</span>,,<span class="s1">&#39;  ;&#39;&#39;.&#39;</span>.<span class="s1">&#39;..,;&#39;</span>      .<span class="p">;;</span>.           <span class="p">;;</span><span class="s1">&#39;
-</span></span></span><span class="line"><span class="cl"><span class="s1">  ..  .;:.      ,,, .;;.      ,,,  ,;.      &#39;</span>,<span class="p">;</span>  <span class="p">;</span>,<span class="s1">&#39;      .;,      .:;.           ;,.
-</span></span></span><span class="line"><span class="cl"><span class="s1"> ...  .;;.      ,,, .;;.      ,,&#39;</span>  ,<span class="p">;</span><span class="s1">&#39;......&#39;</span>,,  <span class="p">;</span><span class="s1">&#39;&#39;</span>......<span class="s1">&#39;;,     ..;,..          ;;.
-</span></span></span><span class="line"><span class="cl"><span class="s1"> ...  .;;.      &#39;</span><span class="p">;</span><span class="s1">&#39;  ,;.      &#39;</span><span class="p">;</span><span class="s1">&#39;  ,,,;,,;;;,&#39;</span>.  ,,,<span class="p">;;</span>,<span class="p">;</span>,,,<span class="p">;</span>.    .:,,,,<span class="p">;</span>,         ,<span class="p">;</span>.
-</span></span></code></pre></div><p>Если что &ndash; пиши, я помогу и постараюсь объяснить лучше.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">~ $ wget https://s3.amazonaws.com/vspodtools-images-display/12676318/12682544-5841-b-display.jpg -O rabbit.png
+~ $ sudo apt install -y jp2a
+~ $ jp2a rabbit.png
+.......<span class="p">;</span>,,,,,,,,,<span class="p">;</span><span class="s1">&#39;  .&#39;</span>,<span class="p">;</span>,,,,,,..  ,<span class="p">;</span>.           ,,.           .<span class="s1">&#39;,,,,,,,,&#39;</span>.  .<span class="p">;</span><span class="s1">&#39;      .;;.     .
+</span><span class="s1">.......:;&#39;</span>......... .<span class="p">;</span>,<span class="s1">&#39;......;;,  ;;&#39;</span>          .<span class="p">;</span>,<span class="s1">&#39;           ,;,......&#39;</span>,,. ,,<span class="s1">&#39;      .;;.     .
+</span><span class="s1">.......:;....       .;;.      ,,,  ;;&#39;</span>          .,,<span class="s1">&#39;           ;;,      .;;. ,;,      .::.     .
+</span><span class="s1">.......:;&#39;</span>.......   .<span class="p">;</span>,.      ,,,  ,<span class="p">;</span><span class="s1">&#39;          .;,&#39;</span>           <span class="p">;;</span>,      .,<span class="p">;</span>. ,<span class="p">;</span>,  .<span class="s1">&#39;. .;:.   ...
+</span><span class="s1">.......:,,,&#39;&#39;,,,.   .;;.      ,,,  ,,.          .;,&#39;</span>           ,<span class="p">;</span>,      .,<span class="p">;</span>. ,,, .<span class="p">;;</span>, .<span class="p">;</span>:.  ....
+.......:<span class="p">;</span>.          .<span class="p">;;</span>.      ,,,  ,<span class="p">;</span><span class="s1">&#39;          .;,&#39;</span>           ,<span class="p">;</span>,      .<span class="p">;;</span>. ,,, .<span class="p">;;</span>, .<span class="p">;</span>:.   ...
+.......::.          .<span class="p">;</span>,.......<span class="p">;</span>,,  ,<span class="p">;</span><span class="s1">&#39;........  .;,&#39;</span>........   ,,,......<span class="s1">&#39;,;. ,;,..;,,..,:.   ...
+</span><span class="s1">.......cc.           .,;;;;;;;;,.  ;,;;;;;;;;:, .;,,;;;,;,;;,  .,;;;;;;;;;.  .,;;;;,;;;;.   .
+</span><span class="s1">...... ..      .&#39;</span>.    .........    ............  ............    .........     .... ....
+..           .::dOl.        <span class="s1">&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;.  &#39;</span>,.      .,<span class="s1">&#39;  &#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;
+</span><span class="s1">.. ..         .lkXxk,       .&#39;&#39;&#39;&#39;,,&#39;</span>.<span class="s1">&#39;&#39;</span>. .<span class="p">;;</span><span class="s1">&#39;      &#39;</span>,:. <span class="p">;</span>,<span class="s1">&#39;...&#39;</span>.<span class="s1">&#39;&#39;&#39;.
+</span><span class="s1">..  .           .,:kko&#39;</span>         .<span class="p">;</span>:.     .<span class="p">;;</span><span class="s1">&#39;      &#39;</span>,<span class="p">;</span>. <span class="p">;</span>,,
+..               .<span class="s1">&#39;xO00.        .;:.     .;,&#39;</span>......<span class="s1">&#39;,;. ;,,.......
+</span><span class="s1">               .lkkK0K&#39;</span>         .<span class="p">;;</span>.     .<span class="p">;</span><span class="s1">&#39;,;;;;;;&#39;&#39;;. ;&#39;</span>,<span class="p">;;;;;</span>:<span class="s1">&#39;
+</span><span class="s1">              ,OKXk00k.         .;;.     .;;&#39;</span>......<span class="s1">&#39;,;. ;,&#39;</span>......
+              c0KKO0do.         .<span class="p">;;</span>.     .<span class="p">;;</span><span class="s1">&#39;      &#39;</span>,<span class="p">;</span>. <span class="p">;</span>,<span class="s1">&#39;
+</span><span class="s1">              :OKXkd.           .;:.     .:;&#39;</span>      <span class="s1">&#39;;;. ;,,&#39;&#39;&#39;&#39;&#39;&#39;&#39;</span>,<span class="s1">&#39;
+</span><span class="s1">               .,::o,           ...       .&#39;</span>.      ...  ............
+              ..       ...  ..       ...    ........    ............  ............
+             .:<span class="p">;</span>.      <span class="p">;;</span>,  <span class="p">;</span>:.      ,<span class="p">;;</span>    .,<span class="s1">&#39;,,&#39;</span>,.    <span class="s1">&#39;;,,,,,,,,;,  ,,,&#39;</span>,,<span class="s1">&#39;,,,,,
+</span><span class="s1">             .:;.      ;,,  ;;.      ,;,      .;;.          .;;.      ,,,
+</span><span class="s1">             .;;.      ;,, .;;.      ,;,      .;;.          .;;.      ,,,
+</span><span class="s1">             .:;. .;,. ,,,  ;,,,;;,,,,,,      .;;.          .:;.      ,,&#39;</span>,,,,<span class="p">;;</span><span class="s1">&#39;
+</span><span class="s1">             .;;. &#39;</span>,<span class="p">;</span>. <span class="p">;</span>,<span class="s1">&#39;  ;;&#39;</span>......,<span class="p">;;</span>      .<span class="p">;;</span>.          .:<span class="p">;</span>.      ,,,.......
+             .:<span class="p">;</span>. <span class="s1">&#39;,;. ;,&#39;</span>  <span class="p">;;</span>.      ,<span class="p">;</span>,      .<span class="p">;;</span>.          .:<span class="p">;</span>.      ,,,
+     .       .<span class="p">;</span>,<span class="s1">&#39;.,,,..;;.  ;;.      ,;,    ..&#39;</span>,,<span class="s1">&#39;..        .:;.      ,;,.........
+</span><span class="s1">     .        ..&#39;&#39;&#39;</span>..<span class="s1">&#39;&#39;&#39;.   &#39;</span>,.      .,<span class="s1">&#39;    .,,&#39;&#39;&#39;</span>,.        .,,.      .,<span class="s1">&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;</span>,,
+    .. .........       .......     ..........    ..........       ......      ..........
+    ...c<span class="p">;</span>:<span class="p">;;;</span>:<span class="p">;;</span>,<span class="s1">&#39;.  .,;;:;;;;;,.  ;;;;;;;;;;,.  ;;;::;:;;;,.    .c;,,;:,    &#39;</span>:<span class="p">;;;</span>,,,<span class="p">;;;</span>:.
+   .. .:<span class="p">;</span>.......,,<span class="s1">&#39; .;;&#39;</span>......,,,  ,<span class="p">;</span><span class="s1">&#39;......,,;  ;,&#39;</span>......<span class="s1">&#39;,,     ..;;..      ....;,&#39;</span>...
+   .. .:<span class="p">;</span>.      ,,, .<span class="p">;;</span>.      ,,,  ,<span class="p">;</span>.      <span class="s1">&#39;,;  ;,&#39;</span>      .<span class="p">;</span>,      .<span class="p">;;</span>.           <span class="p">;;</span><span class="s1">&#39;
+</span><span class="s1">   .  .:,,&#39;&#39;&#39;&#39;&#39;&#39;&#39;</span>,. .<span class="p">;</span>,<span class="s1">&#39;&#39;&#39;&#39;&#39;&#39;&#39;,,,  ,,,&#39;&#39;&#39;&#39;&#39;&#39;,,&#39;</span>  <span class="p">;</span><span class="s1">&#39;&#39;&#39;&#39;</span>.<span class="s1">&#39;&#39;&#39;&#39;</span>,<span class="s1">&#39;      .;;.           ;;&#39;</span>
+  ..  .:<span class="p">;</span>,<span class="s1">&#39;&#39;&#39;..&#39;</span>,<span class="p">;</span>. .<span class="p">;</span>,<span class="s1">&#39;&#39;</span>.....,,,  ,,<span class="s1">&#39;.....&#39;</span>,,<span class="s1">&#39;  ;&#39;&#39;.&#39;</span>.<span class="s1">&#39;..,;&#39;</span>      .<span class="p">;;</span>.           <span class="p">;;</span><span class="s1">&#39;
+</span><span class="s1">  ..  .;:.      ,,, .;;.      ,,,  ,;.      &#39;</span>,<span class="p">;</span>  <span class="p">;</span>,<span class="s1">&#39;      .;,      .:;.           ;,.
+</span><span class="s1"> ...  .;;.      ,,, .;;.      ,,&#39;</span>  ,<span class="p">;</span><span class="s1">&#39;......&#39;</span>,,  <span class="p">;</span><span class="s1">&#39;&#39;</span>......<span class="s1">&#39;;,     ..;,..          ;;.
+</span><span class="s1"> ...  .;;.      &#39;</span><span class="p">;</span><span class="s1">&#39;  ,;.      &#39;</span><span class="p">;</span><span class="s1">&#39;  ,,,;,,;;;,&#39;</span>.  ,,,<span class="p">;;</span>,<span class="p">;</span>,,,<span class="p">;</span>.    .:,,,,<span class="p">;</span>,         ,<span class="p">;</span>.
+</code></pre></div><p>Если что &ndash; пиши, я помогу и постараюсь объяснить лучше.</p>
 
     <hr>
     <div align="center">
@@ -456,7 +456,7 @@
         <hr>
         <div style="display: flex; justify-content: space-between;">
             
-                <a href="https://kee-reel.com/linux/package-manager.html">◀ Установка и работа с программами</a>
+                <a href="https://kee-reel.com/linux/package-manager.html">◀ Установка и запуск программ</a>
             
             
                 <div></div>
@@ -472,8 +472,8 @@
     <hr>
     <div align="center">
         Home server: Raspberry Pi 4<br>
-        Temperature: 51<br>
-Uptime: 5 hours, 12 minutes
+        Temperature: <br>
+Uptime: 
     </div>
 </footer>
 

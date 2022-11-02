@@ -126,8 +126,6 @@ kee-reel@blog:~$ cd Documents
 kee-reel@blog:~/Documents$ 
 ```
 
-> Можно указывать переход сразу через несколько папок: cd Documents/MyFolder/Programming
-
 Чтобы вернуться в предыдующую директорию, надо написать:
 
 ```bash
@@ -139,6 +137,48 @@ Prompt изменится соответствующе:
 ```bash
 kee-reel@blog:~$ 
 ```
+
+> Можно указывать переход сразу через несколько папок: cd Documents/MyFolder/Programming
+
+Иногда тебе надо пройти несколько директорий, но ты не знаешь точный путь. В этом случае **ТАК НЕ НАДО ДЕЛАТЬ**:
+
+```bash
+kee-reel@blog:~$ cd folder1
+kee-reel@blog:~/folder1$ ls
+folder2
+some_other_folder
+
+kee-reel@blog:~/folder1$ cd folder2
+kee-reel@blog:~/folder1/folder2$ ls
+folder3
+freakn_folder666
+
+kee-reel@blog:~/folder1/folder2$ cd folder3
+kee-reel@blog:~/folder1/folder2/folder3$
+```
+
+В этой ситуации, просто нажми 2 раза клавишу "Tab", когда напишешь имя директории:
+
+```bash
+kee-reel@blog:~$ cd folder1                 # Нажал 2х"Tab"
+folder2                                     # Показались директории в "folder1"
+some_other_folder
+
+kee-reel@blog:~$ cd folder2/f               # Написал "f", нажал 2х"Tab"
+kee-reel@blog:~$ cd folder1/folder2         # "folder2" сам автодополнился, нажимаю 2х"Tab" ещё раз
+folder3
+freakn_folder666
+
+kee-reel@blog:~$ cd folder1/folder2/f       # Написал "f", нажал 2х"Tab"
+folder3                                     # Мне вывалились те же самые директории, 
+freakn_folder666                            # потому что первая буква у них одинаковая
+
+kee-reel@blog:~$ cd folder1/folder2/fo      # Написал "fo", нажал 2х"Tab"
+kee-reel@blog:~$ cd folder1/folder2/folder3 # ???
+kee-reel@blog:~/folder1/folder2/folder3$    # PROFIT!
+```
+
+> В таком формате сложно передать как это работает на деле -- просто попробуй, тебе понравится!
 
 {{< ref mkdir >}}
 ### mkdir - создать директорию

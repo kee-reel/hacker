@@ -9,7 +9,7 @@
 	<meta name="theme-color" content="#ffffff">
 
     
-    <link rel="stylesheet" href="/sass/main.min.css">
+    <link rel="stylesheet" href="/sass/main.scss">
     <title> IT простым языком </title>
 </head>
 
@@ -20,14 +20,14 @@
         +---------------------------+<br>
         |.-------------------------.|<br>
         ||&nbsp;<a href="/">kee_reel@blog</a>:~$ cd&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;||<br>
-        ||&nbsp;<a href="/c">c</a>&nbsp;&nbsp;<a href="/cpp">c++</a>&nbsp;&nbsp;<a href="/python">python</a>&nbsp;&nbsp;<a href="/linux">linux</a>&nbsp;&nbsp;&nbsp;||<br>
-        ||&nbsp;<a href="/opengl">opengl</a>&nbsp;&nbsp;<a href="/sql">sql</a>&nbsp;&nbsp;<a href="/network">networks</a>&nbsp;&nbsp;&nbsp;||<br>
+        ||&nbsp;<a href="/c.html">c</a>&nbsp;&nbsp;<a href="/cpp.html">c++</a>&nbsp;&nbsp;<a href="/python.html">python</a>&nbsp;&nbsp;<a href="/linux.html">linux</a>&nbsp;&nbsp;&nbsp;||<br>
+        ||&nbsp;<a href="/opengl.html">opengl</a>&nbsp;&nbsp;<a href="/sql.html">sql</a>&nbsp;&nbsp;<a href="/network.html">networks</a>&nbsp;&nbsp;&nbsp;||<br>
         ||&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;||<br>
-        ||&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/about">обо_мне</a>&nbsp;||<br>
+        ||&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/about.html">обо_мне</a>&nbsp;||<br>
         |.-------------------------.|<br>
         +-::---------------------::-+<br>
         .---------------------------.<br>
-        &nbsp;//&nbsp;/o<a href="/links">o</a>oooooooooooooooooooo\\&nbsp;\\&nbsp;<br>
+        &nbsp;//&nbsp;/o<a href="/links.html">o</a>oooooooooooooooooooo\\&nbsp;\\&nbsp;<br>
         &nbsp;//&nbsp;/oooooooooooooooooooooooo\\&nbsp;\\&nbsp;<br>
         //-------------------------------\\<br>
         \\-------------------------------//<br>
@@ -70,8 +70,8 @@
 </blockquote>
 <h1 id="открываем-файл">Открываем файл</h1>
 <p><strong>fopen</strong> &ndash; функция, обращающаяся к операционной системе, чтобы получить дескриптор файла с указанными именем. Кроме имени файла, необходимо указать режимом работы с ним.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="n">FILE</span> <span class="o">*</span><span class="n">f</span> <span class="o">=</span> <span class="n">fopen</span><span class="p">(</span><span class="s">&#34;some-file.txt&#34;</span><span class="p">,</span> <span class="s">&#34;r&#34;</span><span class="p">);</span>
-</span></span></code></pre></div><h3 id="имя-файла">Имя файла</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="n">FILE</span> <span class="o">*</span><span class="n">f</span> <span class="o">=</span> <span class="n">fopen</span><span class="p">(</span><span class="s">&#34;some-file.txt&#34;</span><span class="p">,</span> <span class="s">&#34;r&#34;</span><span class="p">);</span>
+</code></pre></div><h3 id="имя-файла">Имя файла</h3>
 <p>Файл всегда ищется в той папке, из которой была запущена программа. Если необходимо указать файл, находящийся в другой папке, то нужно указать его с помощью абсолютного или относительного пути.</p>
 <ul>
 <li>
@@ -157,8 +157,8 @@
 <p>Но если в какой-то ситуации тебе понадобится что-то другое &ndash; не стесняйся экспериментировать.</p>
 <h1 id="закрываем-файл">Закрываем файл</h1>
 <p><strong>fclose</strong> &ndash; функция принимает дескриптор открытого файла, и закрывает его, записывая все данные из буффера.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="n">fclose</span><span class="p">(</span><span class="n">f</span><span class="p">);</span>
-</span></span></code></pre></div><p>Стоп, что за буффер?</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="n">fclose</span><span class="p">(</span><span class="n">f</span><span class="p">);</span>
+</code></pre></div><p>Стоп, что за буффер?</p>
 <h3 id="file----это-не-дескриптор">FILE &ndash; это не дескриптор</h3>
 <p>Я был не до конца честен, когда говорил, что FILE &ndash; это дескриптор файла. На самом деле, FILE это обёртка над настоящим дескриптором.</p>
 <p>Чтобы получить <strong>настоящий</strong> дескриптор, в зависимости от операционной системы, надо использовать функции:</p>
@@ -181,21 +181,21 @@
 <p>Что будет если это не сделать?</p>
 <p>Если программа завершается как обычно, то ничего плохого не произойдёт &ndash; перед закрытием наша программа запишет буффер в файл и закроет дескриптор файла.</p>
 <p>В случае, если программа упадёт до закрытия FILE &ndash; в файл ничего не запишется, так как буффер не успел записаться в файл. Однако дескриптор закроется, но не программой, а операционной системой (потому что получившая его программа умерла). Вот пример такой ситуации:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp">
-</span></span></span><span class="line"><span class="cl"><span class="cp"></span><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
-</span></span><span class="line"><span class="cl"><span class="p">{</span>
-</span></span><span class="line"><span class="cl">	<span class="kt">char</span> <span class="o">*</span><span class="n">text</span> <span class="o">=</span> <span class="s">&#34;Some text to fill the file</span><span class="se">\n</span><span class="s">And some more text&#34;</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">	<span class="n">FILE</span> <span class="o">*</span><span class="n">f</span> <span class="o">=</span> <span class="n">fopen</span><span class="p">(</span><span class="s">&#34;some-file.txt&#34;</span><span class="p">,</span> <span class="s">&#34;w&#34;</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">	<span class="c1">// Записываем текст в FILE
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="n">fprintf</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="s">&#34;%s&#34;</span><span class="p">,</span> <span class="n">text</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">	<span class="kt">char</span> <span class="o">*</span><span class="n">x</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">	<span class="c1">// Обращаемся к нулевому указателю (падаем)
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="o">*</span><span class="n">x</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">	<span class="c1">// Не доходим до закрытия файла, и файл остаётся пустым т.к. мы его открыли через &#34;w&#34;
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="n">fclose</span><span class="p">(</span><span class="n">f</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">	<span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></div><p>Если бы мы закрыли файл до падения, то всё было бы хорошо в этом случае. В общем &ndash; всегда следи за закрытием.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp">
+</span><span class="cp"></span><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+	<span class="kt">char</span> <span class="o">*</span><span class="n">text</span> <span class="o">=</span> <span class="s">&#34;Some text to fill the file</span><span class="se">\n</span><span class="s">And some more text&#34;</span><span class="p">;</span>
+	<span class="n">FILE</span> <span class="o">*</span><span class="n">f</span> <span class="o">=</span> <span class="n">fopen</span><span class="p">(</span><span class="s">&#34;some-file.txt&#34;</span><span class="p">,</span> <span class="s">&#34;w&#34;</span><span class="p">);</span>
+	<span class="c1">// Записываем текст в FILE
+</span><span class="c1"></span>	<span class="n">fprintf</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="s">&#34;%s&#34;</span><span class="p">,</span> <span class="n">text</span><span class="p">);</span>
+	<span class="kt">char</span> <span class="o">*</span><span class="n">x</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
+	<span class="c1">// Обращаемся к нулевому указателю (падаем)
+</span><span class="c1"></span>	<span class="o">*</span><span class="n">x</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+	<span class="c1">// Не доходим до закрытия файла, и файл остаётся пустым т.к. мы его открыли через &#34;w&#34;
+</span><span class="c1"></span>	<span class="n">fclose</span><span class="p">(</span><span class="n">f</span><span class="p">);</span>
+	<span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div><p>Если бы мы закрыли файл до падения, то всё было бы хорошо в этом случае. В общем &ndash; всегда следи за закрытием.</p>
 <blockquote>
 <p>Можно записать буффер в файл до закрытия с помощью функции <a href="https://www.cplusplus.com/reference/cstdio/fflush/">fflush</a>. Если я вызвал бы её до падения в программе выше, то данные бы записались в файл.</p>
 </blockquote>
@@ -217,42 +217,42 @@
 <p>Давайте я напишу программу, которая &ldquo;шифрует&rdquo; все символы в файле, а потом &ldquo;дешифрует&rdquo; их.</p>
 <p>&ldquo;Шифрованием&rdquo; у меня будет смещение кода символа на 1, а &ldquo;дешифрацией&rdquo; &ndash; смещение кода символа на -1.</p>
 <p>При этом, будет необходимое условие &ndash; в начале файла должен стоять символ &lsquo;0&rsquo;.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp">
-</span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;stdlib.h&gt;</span><span class="cp">
-</span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;string.h&gt;</span><span class="cp">
-</span></span></span><span class="line"><span class="cl"><span class="cp"></span><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
-</span></span><span class="line"><span class="cl"><span class="p">{</span>
-</span></span><span class="line"><span class="cl">	<span class="n">FILE</span> <span class="o">*</span><span class="n">f</span> <span class="o">=</span> <span class="n">fopen</span><span class="p">(</span><span class="s">&#34;some-file.txt&#34;</span><span class="p">,</span> <span class="s">&#34;r+&#34;</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">	<span class="k">if</span><span class="p">(</span><span class="n">f</span> <span class="o">==</span> <span class="nb">NULL</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">	<span class="p">{</span>
-</span></span><span class="line"><span class="cl">		<span class="n">printf</span><span class="p">(</span><span class="s">&#34;Can&#39;t open file&#34;</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">		<span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">	<span class="p">}</span>
-</span></span><span class="line"><span class="cl">	<span class="c1">// Если первый символ 0 - файл дешифрован, а если 1 - зашифрован
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="kt">char</span> <span class="n">is_encrypted</span> <span class="o">=</span> <span class="n">fgetc</span><span class="p">(</span><span class="n">f</span><span class="p">)</span> <span class="o">==</span> <span class="sc">&#39;1&#39;</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">	<span class="c1">// Возвращаем указатель позиции файла назад на первый символ
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="c1">// fgetc и fputc смещают указатель позиции на 1 символ
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="n">fseek</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">SEEK_CUR</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">	<span class="kt">char</span> <span class="n">c</span> <span class="o">=</span> <span class="n">fgetc</span><span class="p">(</span><span class="n">f</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">	<span class="c1">// Файл закончился?
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="k">while</span><span class="p">(</span><span class="o">!</span><span class="n">feof</span><span class="p">(</span><span class="n">f</span><span class="p">))</span>
-</span></span><span class="line"><span class="cl">	<span class="p">{</span>
-</span></span><span class="line"><span class="cl">		<span class="c1">// Смещаемся назад из-за fgetc
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>		<span class="n">fseek</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">SEEK_CUR</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">		<span class="c1">// Если зашифрован - расшифровываем, расшифрован - зашифровывааем
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>		<span class="n">c</span> <span class="o">+=</span> <span class="n">is_encrypted</span> <span class="o">?</span> <span class="o">-</span><span class="mi">1</span> <span class="o">:</span> <span class="mi">1</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">		<span class="c1">// Перезаписываем символ, который перед этим прочитали
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>		<span class="c1">// Смещаем указатель позиции на один вперёд
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>		<span class="n">fputc</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="n">f</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">		<span class="c1">// Вызываем fseek, чтобы можно было переключиться с записи на чтение
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>		<span class="n">fseek</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">SEEK_CUR</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">		<span class="c1">// Читаем следующий символ, смещаем указатель позиции вперёд
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>		<span class="n">c</span> <span class="o">=</span> <span class="n">fgetc</span><span class="p">(</span><span class="n">f</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">	<span class="p">}</span>
-</span></span><span class="line"><span class="cl">	<span class="n">fclose</span><span class="p">(</span><span class="n">f</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">	<span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></div><p>Такой файл:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp">
+</span><span class="cp">#include</span> <span class="cpf">&lt;stdlib.h&gt;</span><span class="cp">
+</span><span class="cp">#include</span> <span class="cpf">&lt;string.h&gt;</span><span class="cp">
+</span><span class="cp"></span><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+	<span class="n">FILE</span> <span class="o">*</span><span class="n">f</span> <span class="o">=</span> <span class="n">fopen</span><span class="p">(</span><span class="s">&#34;some-file.txt&#34;</span><span class="p">,</span> <span class="s">&#34;r+&#34;</span><span class="p">);</span>
+	<span class="k">if</span><span class="p">(</span><span class="n">f</span> <span class="o">==</span> <span class="nb">NULL</span><span class="p">)</span>
+	<span class="p">{</span>
+		<span class="n">printf</span><span class="p">(</span><span class="s">&#34;Can&#39;t open file&#34;</span><span class="p">);</span>
+		<span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+	<span class="p">}</span>
+	<span class="c1">// Если первый символ 0 - файл дешифрован, а если 1 - зашифрован
+</span><span class="c1"></span>	<span class="kt">char</span> <span class="n">is_encrypted</span> <span class="o">=</span> <span class="n">fgetc</span><span class="p">(</span><span class="n">f</span><span class="p">)</span> <span class="o">==</span> <span class="sc">&#39;1&#39;</span><span class="p">;</span>
+	<span class="c1">// Возвращаем указатель позиции файла назад на первый символ
+</span><span class="c1"></span>	<span class="c1">// fgetc и fputc смещают указатель позиции на 1 символ
+</span><span class="c1"></span>	<span class="n">fseek</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">SEEK_CUR</span><span class="p">);</span>
+	<span class="kt">char</span> <span class="n">c</span> <span class="o">=</span> <span class="n">fgetc</span><span class="p">(</span><span class="n">f</span><span class="p">);</span>
+	<span class="c1">// Файл закончился?
+</span><span class="c1"></span>	<span class="k">while</span><span class="p">(</span><span class="o">!</span><span class="n">feof</span><span class="p">(</span><span class="n">f</span><span class="p">))</span>
+	<span class="p">{</span>
+		<span class="c1">// Смещаемся назад из-за fgetc
+</span><span class="c1"></span>		<span class="n">fseek</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">SEEK_CUR</span><span class="p">);</span>
+		<span class="c1">// Если зашифрован - расшифровываем, расшифрован - зашифровывааем
+</span><span class="c1"></span>		<span class="n">c</span> <span class="o">+=</span> <span class="n">is_encrypted</span> <span class="o">?</span> <span class="o">-</span><span class="mi">1</span> <span class="o">:</span> <span class="mi">1</span><span class="p">;</span>
+		<span class="c1">// Перезаписываем символ, который перед этим прочитали
+</span><span class="c1"></span>		<span class="c1">// Смещаем указатель позиции на один вперёд
+</span><span class="c1"></span>		<span class="n">fputc</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="n">f</span><span class="p">);</span>
+		<span class="c1">// Вызываем fseek, чтобы можно было переключиться с записи на чтение
+</span><span class="c1"></span>		<span class="n">fseek</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">SEEK_CUR</span><span class="p">);</span>
+		<span class="c1">// Читаем следующий символ, смещаем указатель позиции вперёд
+</span><span class="c1"></span>		<span class="n">c</span> <span class="o">=</span> <span class="n">fgetc</span><span class="p">(</span><span class="n">f</span><span class="p">);</span>
+	<span class="p">}</span>
+	<span class="n">fclose</span><span class="p">(</span><span class="n">f</span><span class="p">);</span>
+	<span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div><p>Такой файл:</p>
 <pre tabindex="0"><code>0Some text to fill the file
 And some more textþ
 </code></pre><p>Программа изменяет так:</p>
@@ -285,20 +285,20 @@ And some more textþ
 <li>SEEK_SET &ndash; начало файла</li>
 <li>SEEK_END &ndash; конец файла</li>
 </ul>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="c1">// На 1 назад
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">fseek</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">SEEK_CUR</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl"><span class="c1">// На начало
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">fseek</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">SEEK_SET</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl"><span class="c1">// В конец
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">fseek</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">SEEK_END</span><span class="p">);</span>
-</span></span></code></pre></div><p><strong>ВАЖНО:</strong> кроме перемещения по файлу, необходимо вызывать fseek, если ты хочешь переключиться с режима чтения на режим записи, в комбинированных режимах, вроде &ldquo;r+&rdquo;, &ldquo;w+&rdquo; и &ldquo;a+&rdquo;. В программе выше я для этого вызываю fseek без смещения.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="c1">// На 1 назад
+</span><span class="c1"></span><span class="n">fseek</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">SEEK_CUR</span><span class="p">);</span>
+<span class="c1">// На начало
+</span><span class="c1"></span><span class="n">fseek</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">SEEK_SET</span><span class="p">);</span>
+<span class="c1">// В конец
+</span><span class="c1"></span><span class="n">fseek</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">SEEK_END</span><span class="p">);</span>
+</code></pre></div><p><strong>ВАЖНО:</strong> кроме перемещения по файлу, необходимо вызывать fseek, если ты хочешь переключиться с режима чтения на режим записи, в комбинированных режимах, вроде &ldquo;r+&rdquo;, &ldquo;w+&rdquo; и &ldquo;a+&rdquo;. В программе выше я для этого вызываю fseek без смещения.</p>
 <blockquote>
 <p>Значение текущего указателя позиции можно получить через функцию ftell</p>
 </blockquote>
 <h3 id="проверяем-что-дошли-до-конца-файла">Проверяем, что дошли до конца файла</h3>
 <p>Для проверки того, что мы дошли до конца файла, необходимо вызвать функцию <strong>feof</strong>.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="k">while</span><span class="p">(</span><span class="o">!</span><span class="n">feof</span><span class="p">(</span><span class="n">f</span><span class="p">))</span>
-</span></span></code></pre></div><p>Эта функция возвращает 1, если указатель позиции дошёл до конца файла.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="k">while</span><span class="p">(</span><span class="o">!</span><span class="n">feof</span><span class="p">(</span><span class="n">f</span><span class="p">))</span>
+</code></pre></div><p>Эта функция возвращает 1, если указатель позиции дошёл до конца файла.</p>
 <p>feof вернёт 1 только в случае, если мы перед этим вызвали функцию чтения, которая дошла до конца файла (fgetc, fgets, fscanf, fread).</p>
 <p>Это происходит из-за того, что функция чтения, при упирании в конец файла, выставляет флажок &ldquo;достигли конца файла&rdquo;, который и проверяет функция feof.</p>
 <p>Также, при вызове функций чтения, по возвращаемому значению можно понять что мы дошли до конца файла:</p>
@@ -308,52 +308,52 @@ And some more textþ
 <blockquote>
 <p>Обычно fget возвращает код символа от 0 до 255</p>
 </blockquote>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="kt">char</span> <span class="n">c</span> <span class="o">=</span> <span class="n">fgetc</span><span class="p">(</span><span class="n">f</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl"><span class="k">if</span><span class="p">(</span><span class="n">c</span> <span class="o">==</span> <span class="n">EOF</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl"><span class="c1">// ...
-</span></span></span></code></pre></div><ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="kt">char</span> <span class="n">c</span> <span class="o">=</span> <span class="n">fgetc</span><span class="p">(</span><span class="n">f</span><span class="p">);</span>
+<span class="k">if</span><span class="p">(</span><span class="n">c</span> <span class="o">==</span> <span class="n">EOF</span><span class="p">)</span>
+<span class="c1">// ...
+</span></code></pre></div><ul>
 <li>fgets &ndash; вернёт NULL</li>
 </ul>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="kt">char</span> <span class="n">str</span><span class="p">[</span><span class="mi">100</span><span class="p">];</span>
-</span></span><span class="line"><span class="cl"><span class="k">if</span><span class="p">(</span><span class="n">fgets</span><span class="p">(</span><span class="n">str</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="n">f</span><span class="p">)</span> <span class="o">==</span> <span class="nb">NULL</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl"><span class="c1">// ...
-</span></span></span></code></pre></div><ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="kt">char</span> <span class="n">str</span><span class="p">[</span><span class="mi">100</span><span class="p">];</span>
+<span class="k">if</span><span class="p">(</span><span class="n">fgets</span><span class="p">(</span><span class="n">str</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="n">f</span><span class="p">)</span> <span class="o">==</span> <span class="nb">NULL</span><span class="p">)</span>
+<span class="c1">// ...
+</span></code></pre></div><ul>
 <li>fscanf &ndash; вернёт количество считанных элементов, отличающееся от требуемого (упёрлись в конец файла)</li>
 </ul>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="kt">char</span> <span class="n">str</span><span class="p">[</span><span class="mi">2</span><span class="p">];</span>
-</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="n">x</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="n">count</span> <span class="o">=</span> <span class="n">fscanf</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="s">&#34;%c %c %d&#34;</span><span class="p">,</span> <span class="n">str</span><span class="p">,</span> <span class="n">str</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">x</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl"><span class="k">if</span><span class="p">(</span><span class="n">count</span> <span class="o">!=</span> <span class="mi">3</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl"><span class="c1">// ...
-</span></span></span></code></pre></div><ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="kt">char</span> <span class="n">str</span><span class="p">[</span><span class="mi">2</span><span class="p">];</span>
+<span class="kt">int</span> <span class="n">x</span><span class="p">;</span>
+<span class="kt">int</span> <span class="n">count</span> <span class="o">=</span> <span class="n">fscanf</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="s">&#34;%c %c %d&#34;</span><span class="p">,</span> <span class="n">str</span><span class="p">,</span> <span class="n">str</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">x</span><span class="p">);</span>
+<span class="k">if</span><span class="p">(</span><span class="n">count</span> <span class="o">!=</span> <span class="mi">3</span><span class="p">)</span>
+<span class="c1">// ...
+</span></code></pre></div><ul>
 <li>fread &ndash; вернёт количество считанных элементов, отличающееся от требуемого (упёрлись в конец файла)</li>
 </ul>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="kt">char</span> <span class="n">str</span><span class="p">[</span><span class="mi">100</span><span class="p">];</span>
-</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="n">count</span> <span class="o">=</span> <span class="n">fread</span><span class="p">(</span><span class="n">str</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="kt">char</span><span class="p">),</span> <span class="mi">100</span><span class="p">,</span> <span class="n">f</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl"><span class="k">if</span><span class="p">(</span><span class="n">count</span> <span class="o">!=</span> <span class="mi">100</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl"><span class="c1">// ...
-</span></span></span></code></pre></div><h1 id="бинарные-файлы">Бинарные файлы</h1>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="kt">char</span> <span class="n">str</span><span class="p">[</span><span class="mi">100</span><span class="p">];</span>
+<span class="kt">int</span> <span class="n">count</span> <span class="o">=</span> <span class="n">fread</span><span class="p">(</span><span class="n">str</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="kt">char</span><span class="p">),</span> <span class="mi">100</span><span class="p">,</span> <span class="n">f</span><span class="p">);</span>
+<span class="k">if</span><span class="p">(</span><span class="n">count</span> <span class="o">!=</span> <span class="mi">100</span><span class="p">)</span>
+<span class="c1">// ...
+</span></code></pre></div><h1 id="бинарные-файлы">Бинарные файлы</h1>
 <p>Это последняя тема, которую я хочу объяснить.</p>
 <p>У функции <strong>fopen</strong> есть ещё один режим работы &ndash; бинарный файл.</p>
 <p>Для того, чтобы открыть файл в бинарном виде, надо указать &ldquo;b&rdquo; в конце строки, определяющей режим работы с файлом:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="n">FILE</span> <span class="o">*</span><span class="n">f</span> <span class="o">=</span> <span class="n">fopen</span><span class="p">(</span><span class="s">&#34;some-file.txt&#34;</span><span class="p">,</span> <span class="s">&#34;r+b&#34;</span><span class="p">);</span>
-</span></span></code></pre></div><p>Режим работы при этом может быть любым.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="n">FILE</span> <span class="o">*</span><span class="n">f</span> <span class="o">=</span> <span class="n">fopen</span><span class="p">(</span><span class="s">&#34;some-file.txt&#34;</span><span class="p">,</span> <span class="s">&#34;r+b&#34;</span><span class="p">);</span>
+</code></pre></div><p>Режим работы при этом может быть любым.</p>
 <p>Что это меняет?</p>
 <p>Теперь мы работаем с файлом не как с текстом, а как с набором байт.</p>
 <p>То есть, я могу создать массив int, записать его в файл, а потом считать оттуда:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="kt">int</span> <span class="n">arr</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">16</span><span class="p">};</span>
-</span></span><span class="line"><span class="cl"><span class="n">FILE</span> <span class="o">*</span><span class="n">f</span> <span class="o">=</span> <span class="n">fopen</span><span class="p">(</span><span class="s">&#34;some-file.txt&#34;</span><span class="p">,</span> <span class="s">&#34;wb&#34;</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl"><span class="n">fwrite</span><span class="p">(</span><span class="n">arr</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="kt">int</span><span class="p">),</span> <span class="mi">5</span><span class="p">,</span> <span class="n">f</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl"><span class="n">fclose</span><span class="p">(</span><span class="n">f</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl"><span class="c1">// Представим что я это делаю в другой программе, для эффектности
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kt">int</span> <span class="n">new_arr</span><span class="p">[</span><span class="mi">5</span><span class="p">];</span>
-</span></span><span class="line"><span class="cl"><span class="n">f</span> <span class="o">=</span> <span class="n">fopen</span><span class="p">(</span><span class="s">&#34;some-file.txt&#34;</span><span class="p">,</span> <span class="s">&#34;rb&#34;</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl"><span class="n">fread</span><span class="p">(</span><span class="n">new_arr</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="kt">int</span><span class="p">),</span> <span class="mi">5</span><span class="p">,</span> <span class="n">f</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl"><span class="n">fclose</span><span class="p">(</span><span class="n">f</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl"><span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">5</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">	<span class="n">printf</span><span class="p">(</span><span class="s">&#34;%d &#34;</span><span class="p">,</span> <span class="n">new_arr</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>
-</span></span><span class="line"><span class="cl"><span class="c1">// Вывод программы: 1 2 4 8 16
-</span></span></span></code></pre></div><p>Возможно ты думаешь, что в файле сейчас записано что-то вроде &ldquo;1 2 4 8 16&rdquo;, но нет &ndash; там такое:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="kt">int</span> <span class="n">arr</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">16</span><span class="p">};</span>
+<span class="n">FILE</span> <span class="o">*</span><span class="n">f</span> <span class="o">=</span> <span class="n">fopen</span><span class="p">(</span><span class="s">&#34;some-file.txt&#34;</span><span class="p">,</span> <span class="s">&#34;wb&#34;</span><span class="p">);</span>
+<span class="n">fwrite</span><span class="p">(</span><span class="n">arr</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="kt">int</span><span class="p">),</span> <span class="mi">5</span><span class="p">,</span> <span class="n">f</span><span class="p">);</span>
+<span class="n">fclose</span><span class="p">(</span><span class="n">f</span><span class="p">);</span>
+<span class="c1">// Представим что я это делаю в другой программе, для эффектности
+</span><span class="c1"></span><span class="kt">int</span> <span class="n">new_arr</span><span class="p">[</span><span class="mi">5</span><span class="p">];</span>
+<span class="n">f</span> <span class="o">=</span> <span class="n">fopen</span><span class="p">(</span><span class="s">&#34;some-file.txt&#34;</span><span class="p">,</span> <span class="s">&#34;rb&#34;</span><span class="p">);</span>
+<span class="n">fread</span><span class="p">(</span><span class="n">new_arr</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="kt">int</span><span class="p">),</span> <span class="mi">5</span><span class="p">,</span> <span class="n">f</span><span class="p">);</span>
+<span class="n">fclose</span><span class="p">(</span><span class="n">f</span><span class="p">);</span>
+<span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">5</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+	<span class="n">printf</span><span class="p">(</span><span class="s">&#34;%d &#34;</span><span class="p">,</span> <span class="n">new_arr</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>
+<span class="c1">// Вывод программы: 1 2 4 8 16
+</span></code></pre></div><p>Возможно ты думаешь, что в файле сейчас записано что-то вроде &ldquo;1 2 4 8 16&rdquo;, но нет &ndash; там такое:</p>
 <p><img src="/assets/images/c-binary-file.png" alt="Текст бинарного файла"></p>
 <p>Оно выглядит так странно из-за того, что текстовый редактор не может нормально отобразить бинарные данные &ndash; он пытается прочитать коды символов.</p>
 <p>Чтобы реально узнать что там лежит, необходимо воспользоваться редактором, который может отображать бинарные данные. Вот как содержимое выглядит через такой редактор:</p>
@@ -373,18 +373,18 @@ And some more textþ
 <h1 id="faq">FAQ</h1>
 <h3 id="как-работать-с-русскимим-символами">Как работать с русскимим символами?</h3>
 <p>Надо добавить поддержку русской локализации:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp">
-</span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;locale.h&gt;</span><span class="cp">
-</span></span></span><span class="line"><span class="cl"><span class="cp"></span>
-</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
-</span></span><span class="line"><span class="cl"><span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="n">SetConsoleCP</span><span class="p">(</span><span class="mi">1251</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">    <span class="n">SetConsoleOutputCP</span><span class="p">(</span><span class="mi">1251</span><span class="p">);</span> 
-</span></span><span class="line"><span class="cl">    <span class="n">setlocale</span><span class="p">(</span><span class="n">LC_ALL</span><span class="p">,</span> <span class="s">&#34;Rus&#34;</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">    <span class="c1">// ...
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></div><p>И убедись, что ты сохраняешь файл в кодировке &ldquo;windows 1251&rdquo; &ndash; обычно файлы сохраняются в кодировке UTF-8. Так как кодировка UTF-8 двухбайтная (каждый символ кодируется двумя байтами), ты не сможешь работать с нимми как обычно.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp">
+</span><span class="cp">#include</span> <span class="cpf">&lt;locale.h&gt;</span><span class="cp">
+</span><span class="cp"></span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="n">SetConsoleCP</span><span class="p">(</span><span class="mi">1251</span><span class="p">);</span>
+    <span class="n">SetConsoleOutputCP</span><span class="p">(</span><span class="mi">1251</span><span class="p">);</span> 
+    <span class="n">setlocale</span><span class="p">(</span><span class="n">LC_ALL</span><span class="p">,</span> <span class="s">&#34;Rus&#34;</span><span class="p">);</span>
+    <span class="c1">// ...
+</span><span class="c1"></span>    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div><p>И убедись, что ты сохраняешь файл в кодировке &ldquo;windows 1251&rdquo; &ndash; обычно файлы сохраняются в кодировке UTF-8. Так как кодировка UTF-8 двухбайтная (каждый символ кодируется двумя байтами), ты не сможешь работать с нимми как обычно.</p>
 <h3 id="как-перевести-строку-в-число">Как перевести строку в число?</h3>
 <p><a href="https://www.cplusplus.com/reference/cstdlib/">Здесь</a> можешь посмотреть документацию к различным функциям перевода строки в число:</p>
 <ul>
@@ -403,40 +403,40 @@ And some more textþ
 <li>Создать временный файл, считывать символы/слова из исходного файла, записывать (если символ/слово подходит) во временный файл, в конце <a href="https://www.cplusplus.com/reference/cstdio/remove/">удалить</a> исходный файл и <a href="https://www.cplusplus.com/reference/cstdio/rename/">переименовать</a> временный так, чтобы он назывался как исходный.</li>
 </ul>
 <p>Вот пример использования первого способа, для решения задачи &ldquo;удалить слово mother из файла&rdquo;:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="n">FILE</span> <span class="o">*</span><span class="n">f</span> <span class="o">=</span> <span class="n">fopen</span><span class="p">(</span><span class="s">&#34;input.txt&#34;</span><span class="p">,</span> <span class="s">&#34;r+&#34;</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl"><span class="k">if</span><span class="p">(</span><span class="n">f</span> <span class="o">==</span> <span class="nb">NULL</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">	<span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="kt">char</span> <span class="n">buf</span><span class="p">[</span><span class="mi">1000</span><span class="p">];</span>
-</span></span><span class="line"><span class="cl"><span class="n">size_t</span> <span class="n">len</span> <span class="o">=</span> <span class="n">fread</span><span class="p">(</span><span class="n">buf</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="kt">char</span><span class="p">),</span> <span class="mi">1000</span><span class="p">,</span> <span class="n">f</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl"><span class="n">fclose</span><span class="p">(</span><span class="n">f</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl"><span class="c1">// Открываем с &#34;w&#34;, чтобы отчистить файл
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">f</span> <span class="o">=</span> <span class="n">fopen</span><span class="p">(</span><span class="s">&#34;input.txt&#34;</span><span class="p">,</span> <span class="s">&#34;w&#34;</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl"><span class="kt">char</span> <span class="o">*</span><span class="n">target_word</span> <span class="o">=</span> <span class="s">&#34;mother&#34;</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="n">target_word_len</span> <span class="o">=</span> <span class="n">strlen</span><span class="p">(</span><span class="n">target_word</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="n">target_word_i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">len</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl"><span class="p">{</span>
-</span></span><span class="line"><span class="cl">	<span class="c1">// Если символ не из ключевого слова
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="k">if</span><span class="p">(</span><span class="n">buf</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">!=</span> <span class="n">target_word</span><span class="p">[</span><span class="n">target_word_i</span><span class="p">])</span>
-</span></span><span class="line"><span class="cl">	<span class="p">{</span>
-</span></span><span class="line"><span class="cl">		<span class="c1">// Если до этого были символы, входящие в ключевое символы -- записываем в файл
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>		<span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="n">target_word_i</span><span class="p">;</span> <span class="n">j</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">;</span> <span class="n">j</span><span class="o">--</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">			<span class="n">fputc</span><span class="p">(</span><span class="n">buf</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="n">j</span><span class="p">],</span> <span class="n">f</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">		<span class="c1">// Записываем текущий символ
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>		<span class="n">fputc</span><span class="p">(</span><span class="n">buf</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">f</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">		<span class="n">target_word_i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">		<span class="k">continue</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">	<span class="p">}</span>
-</span></span><span class="line"><span class="cl">	<span class="c1">// Увеличиваем индекс символа в ключевом слове
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="n">target_word_i</span><span class="o">++</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">	<span class="k">if</span><span class="p">(</span><span class="n">target_word_i</span> <span class="o">==</span> <span class="n">target_word_len</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">	<span class="p">{</span>
-</span></span><span class="line"><span class="cl">		<span class="c1">// Если дошли до последнего символа в ключевом слове -- сбрасываем индекс
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>		<span class="n">target_word_i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">	<span class="p">}</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span><span class="line"><span class="cl"><span class="n">fclose</span><span class="p">(</span><span class="n">f</span><span class="p">);</span>
-</span></span></code></pre></div><h3 id="как-изменить-символы-в-файле">Как изменить символы в файле?</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="n">FILE</span> <span class="o">*</span><span class="n">f</span> <span class="o">=</span> <span class="n">fopen</span><span class="p">(</span><span class="s">&#34;input.txt&#34;</span><span class="p">,</span> <span class="s">&#34;r+&#34;</span><span class="p">);</span>
+<span class="k">if</span><span class="p">(</span><span class="n">f</span> <span class="o">==</span> <span class="nb">NULL</span><span class="p">)</span>
+	<span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="kt">char</span> <span class="n">buf</span><span class="p">[</span><span class="mi">1000</span><span class="p">];</span>
+<span class="n">size_t</span> <span class="n">len</span> <span class="o">=</span> <span class="n">fread</span><span class="p">(</span><span class="n">buf</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="kt">char</span><span class="p">),</span> <span class="mi">1000</span><span class="p">,</span> <span class="n">f</span><span class="p">);</span>
+<span class="n">fclose</span><span class="p">(</span><span class="n">f</span><span class="p">);</span>
+<span class="c1">// Открываем с &#34;w&#34;, чтобы отчистить файл
+</span><span class="c1"></span><span class="n">f</span> <span class="o">=</span> <span class="n">fopen</span><span class="p">(</span><span class="s">&#34;input.txt&#34;</span><span class="p">,</span> <span class="s">&#34;w&#34;</span><span class="p">);</span>
+<span class="kt">char</span> <span class="o">*</span><span class="n">target_word</span> <span class="o">=</span> <span class="s">&#34;mother&#34;</span><span class="p">;</span>
+<span class="kt">int</span> <span class="n">target_word_len</span> <span class="o">=</span> <span class="n">strlen</span><span class="p">(</span><span class="n">target_word</span><span class="p">);</span>
+<span class="kt">int</span> <span class="n">target_word_i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">len</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+<span class="p">{</span>
+	<span class="c1">// Если символ не из ключевого слова
+</span><span class="c1"></span>	<span class="k">if</span><span class="p">(</span><span class="n">buf</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">!=</span> <span class="n">target_word</span><span class="p">[</span><span class="n">target_word_i</span><span class="p">])</span>
+	<span class="p">{</span>
+		<span class="c1">// Если до этого были символы, входящие в ключевое символы -- записываем в файл
+</span><span class="c1"></span>		<span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="n">target_word_i</span><span class="p">;</span> <span class="n">j</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">;</span> <span class="n">j</span><span class="o">--</span><span class="p">)</span>
+			<span class="n">fputc</span><span class="p">(</span><span class="n">buf</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="n">j</span><span class="p">],</span> <span class="n">f</span><span class="p">);</span>
+		<span class="c1">// Записываем текущий символ
+</span><span class="c1"></span>		<span class="n">fputc</span><span class="p">(</span><span class="n">buf</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">f</span><span class="p">);</span>
+		<span class="n">target_word_i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+		<span class="k">continue</span><span class="p">;</span>
+	<span class="p">}</span>
+	<span class="c1">// Увеличиваем индекс символа в ключевом слове
+</span><span class="c1"></span>	<span class="n">target_word_i</span><span class="o">++</span><span class="p">;</span>
+	<span class="k">if</span><span class="p">(</span><span class="n">target_word_i</span> <span class="o">==</span> <span class="n">target_word_len</span><span class="p">)</span>
+	<span class="p">{</span>
+		<span class="c1">// Если дошли до последнего символа в ключевом слове -- сбрасываем индекс
+</span><span class="c1"></span>		<span class="n">target_word_i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+	<span class="p">}</span>
+<span class="p">}</span>
+<span class="n">fclose</span><span class="p">(</span><span class="n">f</span><span class="p">);</span>
+</code></pre></div><h3 id="как-изменить-символы-в-файле">Как изменить символы в файле?</h3>
 <p>Открыть файл в режиме &ldquo;r+&rdquo;, считывать, смещаться fseek&rsquo;ом на символ назад, записывать новое значение.</p>
 <p>В главе &ldquo;Чтение/запись в файл&rdquo; есть пример.</p>
 <h1 id="заключение">Заключение</h1>
@@ -479,8 +479,8 @@ And some more textþ
     <hr>
     <div align="center">
         Home server: Raspberry Pi 4<br>
-        Temperature: 51<br>
-Uptime: 5 hours, 12 minutes
+        Temperature: <br>
+Uptime: 
     </div>
 </footer>
 
