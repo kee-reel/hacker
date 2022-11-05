@@ -20,13 +20,6 @@ def someFunctionName():
     # из функции, и продолжит исполнение в месте вызова функции
     print('This will never be printed')
 
-# У функции может быть несколько параметров
-def anotherFunctionName(functionParameter1, functionParameter2):
-    # Внутри функций можно вызывать другие функции
-    value = someFunctionName() # Вернёт 7
-    result = (functionParameter1 + functionParameter2) * 10
-    return result
-
 a = 3
 # Чтобы вызвать функцию необходимо написать её имя, а затем в круглых скобках указать её параметры
 # Количество и позиции параметров должны быть такими же, как в определении функции
@@ -50,6 +43,25 @@ def anotherFunctionName(functionParameter1, functionParameter2):
 
 ```python
 c = anotherFunctionName(a, b)
+```
+
+Также, у функции могут быть укаазаны принимаемые параметры:
+
+```
+# У функции может быть несколько параметров
+def anotherFunctionName(parameter_1, parameter_2):
+    # Внутри функций можно вызывать другие функции
+    result = (parameter_1 + parameter_2) * 10
+    return result
+
+# Чтобы вызвать функцию необходимо написать её имя, а затем в круглых скобках указать её параметры
+# Количество и позиции параметров должны быть такими же, как в определении функции
+a = 2
+b = 5
+c = anotherFunctionName(a, b) # Вернёт 180
+print(c)
+# Вывод:
+# 100
 ```
 
 ### Задание на закрепление
