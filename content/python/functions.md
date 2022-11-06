@@ -23,45 +23,39 @@ def someFunctionName():
 a = 3
 # Чтобы вызвать функцию необходимо написать её имя, а затем в круглых скобках указать её параметры
 # Количество и позиции параметров должны быть такими же, как в определении функции
-b = someFunctionName() # Вернёт 7
-c = anotherFunctionName(a, b) # Вернёт 180
-print(c)
-# Вывод:
-# 100
+b = someFunctionName()
+print(b)
+# 7
 ```
 
 Это называется **определением** функции:
 
 ```python
-def anotherFunctionName(functionParameter1, functionParameter2):
-    value = someFunctionName()
-    result = (functionParameter1 + functionParameter2) * 10
-    return result
+def someFunctionName():
+    value = 5
+    return value + 2
 ```
 
 Это называется **вызовом** функции:
 
 ```python
-c = anotherFunctionName(a, b)
+b = someFunctionName()
 ```
 
-Также, у функции могут быть укаазаны принимаемые параметры:
+Также, у функции могут быть указаны принимаемые параметры:
 
-```
-# У функции может быть несколько параметров
+```python
 def anotherFunctionName(parameter_1, parameter_2):
-    # Внутри функций можно вызывать другие функции
+    # Можно использовать полученные параметры как любые другие переменные
+    # Но только внутри функции -- снаружи переменных с таким именем не будет
     result = (parameter_1 + parameter_2) * 10
     return result
 
-# Чтобы вызвать функцию необходимо написать её имя, а затем в круглых скобках указать её параметры
-# Количество и позиции параметров должны быть такими же, как в определении функции
 a = 2
 b = 5
-c = anotherFunctionName(a, b) # Вернёт 180
+c = anotherFunctionName(a, b)
 print(c)
-# Вывод:
-# 100
+# 70
 ```
 
 ### Задание на закрепление
@@ -174,7 +168,7 @@ print(funcWithManyParams()) # Вывод: 0
 print(funcWithManyParams(10)) # Вывод: 10
 ```
 
-Переменное количество параметров можно комбинировать и с обычными параметрами, но параметр со "*" должен быть в конце списка параметров. Пример:
+Переменное количество параметров можно комбинировать и с обычными параметрами, но параметр со "\*" должен быть в конце списка параметров. Пример:
 
 ```python
 def funcWithCombinedParamTypes(value1, value2, *values):

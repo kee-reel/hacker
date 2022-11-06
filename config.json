@@ -15,5 +15,5 @@
         "taxonomy": ["HTML", "RSS"]
     },
     "uglyURLs": true,
-    "publishdir": "./docs"
+    "publishdir": "/var/www/html/kee-reel"
 }
