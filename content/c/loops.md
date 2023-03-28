@@ -1,80 +1,19 @@
 ---
-title: C. Циклы
+title: C. Cycle
 date: 2021-09-30
-tag: c
-lang: ru
 ---
 
-Цикл (loop) -- это механизм, позволяющий выполнить множество схожих действий.
+A loop is a mechanism that allows you to perform many similar actions.
 
-В языке си есть три вида циклов:
+There are three kinds of loops in the C language:
 
 * for
 * while
 * do while
 
-# Цикл for
+# Cycle for
 
-Вот пример определения цикла для решения задачи "выводим все чётные числа от 1 до n (не включительно)":
-
-```c
-int n;
-scanf("%d", &n);
-for(int i = 1; i < n; i++)
-{
-    if(i % 2 == 0)
-    {
-        printf("%d\n", i);
-    }
-}
-```
-
-Давай разберём из чего состоит цикл.
-
-### Создание временной переменной
-
-```c
-int i = 1;
-```
-
-Этот код выполняется __перед__ стартом цикла -- обычно в нём создаётся временная переменная, которая будет использована внутри цикла.
-
-### Условие завершения
-
-```c
-i < n;
-```
-
-Этот код исполняется перед каждым исполнением тела цикла, и возвращает __булевое__ значение.
-
-В этом примере временная переменная i сравнивается с введённым числом n.
-
-Допустим, мы ввели число 10 -- условие будет верно до тех пор, пока i меньше 10. В момент, когда выражение в условии вернёт значение ложь -- цикл закончится.
-
-### Инкремент временной переменной
-
-```c
-i++
-```
-
-Здесь обычно пишется инкремент временной переменной. Благодаря этому коду цикл изменяет значение i после прохода каждого цикла.
-
-### Тело цикла
-
-```c
-{
-    if(i % 2 == 0)
-    {
-        printf("%d\n", i);
-    }
-}
-```
-
-Обычно, здесь пишется код, который как-то использует временные переменные -- здесь это переменная i, которая используется для проверки на делимость.
-
-### Всё вместе
-
-Ещё раз напишу код с циклом и добавлю дополнительные логи (вывод сообщений), чтобы лучше понять что происходит:
+Here is an example of a loop definition for solving the problem "display all even numbers from 1 to n (not inclusive)":
 
 ```c
 int n;
@@ -88,23 +27,38 @@ for(int i = 1; i < n; i++)
 }
 ```
 
-Таким образом, последовательность применения выражений внутри определения цикла такова:
+Let's see what the cycle consists of.
 
-1. Создание временной переменной:
+### Create a temporary variable
+
 ```c
 int i = 1;
 ```
-Переходим к шагу 2.
 
-2. Проверка условия:
+This code is executed __before__ the loop starts -- it usually creates a temporary variable that will be used inside the loop.
+
+### Termination condition
+
 ```c
 i < n;
 ```
-Если значение равно:
-* истина -- переходим к шагу 3
-* ложь -- переходим к шагу 5.
 
-3. Исполнение тела цикла:
+This code is executed before each execution of the loop body, and returns a __boolean__ value.
+
+In this example, the temporary variable i is compared with the entered number n.
+
+Let's say we entered the number 10 -- the condition will be true as long as i is less than 10. The moment the expression in the condition evaluates to false -- the loop will end.
+
+### Increment of temporary variable
+
+```c
+i++
+```
+
+The increment of a temporary variable is usually written here. Thanks to this code, the loop changes the value of i after each loop.
+
+### Loop body
+
 ```c
 {
     if(i % 2 == 0)
@@ -113,17 +67,61 @@ i < n;
     }
 }
 ```
-Переходим к шагу 4.
 
-4. Инкремент временной переменной:
+Usually, code is written here that somehow uses temporary variables - here it is the variable i, which is used to check for divisibility.
+
+### Together
+
+Once again I will write the code with a loop and add additional logs (message output) to better understand what is happening:
+
+```c
+int n;
+scanf("%d", &n);
+for(int i = 1; i < n; i++)
+{
+    if(i % 2 == 0)
+    {
+        printf("%d\n", i);
+    }
+}
+```
+
+Thus, the sequence of application of expressions inside the loop definition is as follows:
+
+1. Create a temporary variable:
+```c
+int i = 1;
+```
+Let's move on to step 2.
+
+2. Check conditions:
+```c
+i < n;
+```
+If the value is:
+* true -- go to step 3
+* false -- go to step 5.
+
+3. Execution of the loop body:
+```c
+{
+    if(i % 2 == 0)
+    {
+        printf("%d\n", i);
+    }
+}
+```
+Let's move on to step 4.
+
+4. Increment of temporary variable:
 ```c
 i++
 ```
-Переходим к шагу 2.
+Let's move on to step 2.
 
-5. Конец цикла.
+5. End of cycle.
 
-Вот что выведет эта программа (если введём 10 с клавиатуры):
+This is what this program will display (if we enter 10 from the keyboard):
 
 ```
 2
@@ -132,44 +130,44 @@ i++
 8
 ```
 
-Видишь, строка "Проход цикла:" заканчивается на 8-ке, потому что когда i становится 10, условие i < n не выполняется, и цикл завершается.
+You see, the line "Loop through:" ends at 8, because when i becomes 10, the i < n condition is not met, and the loop ends.
 
-# Цикл while
+# While loop
 
-Если ты разобрался с циклом for, то с while у тебя не возникнет проблем -- он намного легче.
+If you understand the for loop, then you won't have any problems with while - it's much easier.
 
-Вот как он выглядит (я описал с его помощью ту же задачу, что и выше):
+Here's what it looks like (I used it to describe the same task as above):
 
 ```c
 int x;
 scanf("%d", &x);
-printf("Поиск делителей числа %d", x);
+printf("Find divisors of %d", x);
 int div = 2;
 while(div < x)
 {
-    printf("Проход цикла: %d\n", div);
+    printf("Loop through: %d\n", div);
     if(x % div == 0)
     {
-        printf("Нашли делитель: %d\n", div);
+        printf("Found divisor: %d\n", div);
     }
     div++;
 }
 ```
 
-Здесь нужно описать только условие, которое будет проверяться перед проходом каждого цикла. Создание временной переменной и инкремент я просто перенёс в соответствующие места.
+Here you need to describe only the condition that will be checked before passing each loop. I simply moved the creation of a temporary variable and the increment to the appropriate places.
 
-Вывод программы будет таким же.
+The output of the program will be the same.
 
-> Очень важно не забывать про инкремент при использовании цикла while! Я уже и не упомню сколько раз у меня получался бесконечный цикл (условие цикла всегда истинно), из-за отсутствия инкремента переменной -- она оставалась на начальном значении, и цикл бесконечно молотил впустую.
+> It's very important to remember to increment when using a while loop! I don’t even remember how many times I got an infinite loop (the loop condition is always true), due to the lack of a variable increment - it remained at the initial value, and the loop endlessly threshed for nothing.
 
-# Цикл do while
+# Do while loop
 
-Те же яйца, только сбоку -- в цикле while проверка условия производится перед исполнением тела цикла, а в цикле do while -- проверка производится после тела цикла.
+The same eggs, only from the side - in the while loop, the condition is checked before the execution of the loop body, and in the do while loop, the check is performed after the loop body.
 
 ```c
 int x;
 scanf("%d", &x);
-printf("Поиск делителей числа %d", x);
+printf("Find divisors of %d", x);
 int div = 2;
 
 if(div >= x)
@@ -179,17 +177,17 @@ if(div >= x)
 
 do
 {
-    printf("Проход цикла: %d\n", div);
+    printf("Loop through: %d\n", div);
     if(x % div == 0)
     {
-        printf("Нашли делитель: %d\n", div);
+        printf("Found divisor: %d\n", div);
     }
     div++;
 }
 while(div < x);
 ```
 
-Вроде бы ничего особо не изменилось, но я зачем-то добавил проверку:
+It seems that nothing much has changed, but for some reason I added a check:
 
 ```c
 if(div >= x)
@@ -198,30 +196,30 @@ if(div >= x)
 }
 ```
 
-Объясняю зачем -- из-за того, что условие цикла проверится только после прохождения тела цикла, мне надо убедиться что введённое пользователем число подходит под условие div < x.
+I explain why - due to the fact that the loop condition will be checked only after passing through the loop body, I need to make sure that the number entered by the user fits the div < x condition.
 
-Представь что этого дополнительного условия нет -- если пользователь введёт -10:
+Imagine that this additional condition is not present -- if the user enters -10:
 
-* Тело цикла начнёт выполняться
-* Мы напишем "Проход цикла: 2"
-* Мы найдём делитель -10 при dev == 2, и напишем "Нашли делитель: 2"
-* И только после этого дойдём до проверки div < x (-10 < 2), которая вернёт ложь
+* Loop body will start executing
+* We will write "Loop pass: 2"
+* We will find divisor -10 with dev == 2, and write "Found divisor: 2"
+* And only after that we get to the check div < x (-10 < 2), which will return false
 
-А это уже баг!
+And this is already a bug!
 
-> Баг (от агл. bug -- жук) -- это жаргонный термин в программировании, обозначающее ошибку при написании программы, которая привела к нежелательному поведению.
-> Есть [версия](https://ru.wikipedia.org/wiki/%D0%9F%D1%80%D0%BE%D0%B3%D1%80%D0%B0%D0%BC%D0%BC%D0%BD%D0%B0%D1%8F_%D0%BE%D1%88%D0%B8%D0%B1%D0%BA%D0%B0#%D0%AD%D1%82%D0%B8%D0%BC%D0%BE%D0%BB%D0%BE%D0%B3%D0%B8%D1%8F_%D1%82%D0%B5%D1%80%D0%BC%D0%B8%D0%BD%D0%B0_%C2%AB%D0%B1%D0%B0%D0%B3%C2%BB), что впервые в отношении программной ошибки это термин применили в 1947 году, когда нашли вполне реального "жука" в реле вычислительной машины:
-> ![Первый баг](/assets/images/first-bug.png)
+> Bug is a slang term in programming, denoting an error in writing a program that led to unwanted behavior.
+> Yes version, that for the first time in relation to a software error this term was used in 1947, when they found a very real "bug" in a computer relay cars:
+> ![First bug](/assets/images/first-bug.png)
 
-# Прерывание цикла и пропуск итерации
+# Break loop and skip iteration
 
-В языке Си (а также в C++, Python, JS, Go и прочих языках) есть способ прервать выполнение цикла и пропустить текущую итерацию.
+In the C language (and also in C++, Python, JS, Go and other languages) there is a way to break the loop and skip the current iteration.
 
 ### break
 
-**break** позволяет **выйти** из цикла раньше времени.
+**break** allows you to **exit** the loop ahead of time.
 
-Например, у нас задача "вывести 10 чётных чисел от 1 до 100":
+For example, we have a task to "print 10 even numbers from 1 to 100":
 
 ```c
 int count = 10;
@@ -239,11 +237,11 @@ for(int i = 1; i < 100; i++)
 
 ### continue
 
-**continue** позволяет пропустить **текущую итерацию**, и сразу начать следующую (произойдёт инкремент временной переменной).
+**continue** allows you to skip the **current iteration** and immediately start the next one (there will be an increment of the temporary variable).
 
-Задача "на заданном промежутке посчитать сумму нечётных чисел и вычесть из неё сумму чисел делящихся на 3":
+The task "on a given interval, calculate the sum of odd numbers and subtract from it the sum of numbers divisible by 3":
 
-Та же задача "вывести 10 чётных чисел от 1 до 100":
+The same task "print 10 even numbers from 1 to 100":
 
 ```c
 int count = 10;
@@ -259,25 +257,25 @@ for(int i = 1; i < 100; i++)
 }
 ```
 
-Обычно continue используется для сокращения уровня вложенности условий в цикле.
+Typically, continue is used to reduce the nesting level of conditions in a loop.
 
-# Вложенные циклы
+# Nested loops
 
-Внутри одного цикла, ты можешь запускать ещё циклы. Задача "вывести N простых чисел":
+Within one loop, you can run more loops. The task is to print N prime numbers:
 
 ```c
 int N;
 scanf("%d", &N);
-// Пока N больше нуля
+// As long as N is greater than zero
 for(int i = 2; N > 0; i++)
 {
     printf("%d\n", i);
     char is_prime_number = 1;
-    // Для всех j от 2 до i
+    // For all j from 2 to i
     for(int j = 2; j < i; j++)
     {
-        // Простое число может делиться только на 1 и на само себя.
-        // Если делится на что-то ещё, то оно не простое.
+        // A prime number can only be divisible by 1 and itself.
+        // If divisible by something else, then it's not prime.
         if(i % j == 0)
         {
             is_prime_number = 0;
@@ -292,25 +290,25 @@ for(int i = 2; N > 0; i++)
 }
 ```
 
-То есть мы для каждого числа i создаём цикл, в котором пытаемся его поделить на все числа от 2 до i.
+That is, for each number i we create a cycle in which we try to divide it by all numbers from 2 to i.
 
-# Задание на закрепление
+# Task for fixing
 
-Для всех числел на промежутке \[2, N\] (N вводится с клавиатуры), найти сумму квадратов чётных чисел и разделить её на их количество.
+For all numbers in the interval \[2, N\] (N is entered from the keyboard), find the sum of squares of even numbers and divide it by their number.
 
-# Заключение
+# Conclusion
 
-Итого, ты изучил:
+In total, you have learned:
 
-* Цикл for
-* Цикл while
-* Цикл do while
-* Прерывание цикла (break)
-* Пропуск итерации (continue)
-* Вложенные циклы
+* Cycle for
+* While loop
+* Do while loop
+* Cycle interruption (break)
+* Skip iteration (continue)
+* Nested Loops
 
-С помощью циклов можно уже решать довольно сложные задачи -- обходить большие массивы данных (про это будет потом), вычислять приближённые значения математических функций, искать числа с определёнными свойствами (например найти 1000 простых числел) и мнооогое другое.
+With the help of loops, you can already solve quite complex tasks - bypass large data arrays (more on that later), calculate approximate values of mathematical functions, look for numbers with certain properties (for example, find 1000 prime numbers) and much more.
 
-Если что -- пиши, я помогу и постараюсь объяснить лучше.
+If anything - write, I will help and try to explain better.
 
-Дальше мы рассмотрим то, как можно структурировать твои программы -- функции.
+Next, we'll look at how you can structure your programs -- functions.

@@ -1,105 +1,103 @@
 ---
-title: C. Условия
+title: C. Conditions
 date: 2021-09-16
-tag: c
-lang: ru
 ---
 
-Условие (condition) -- это механизм, позволяющий выполнить действие, только если выполняется определённое условие. 
+A condition is a mechanism that allows an action to be performed only if a certain condition is met.
 
-Вот пример определения условия:
+Here is an example of a condition definition:
 
 ```c
 int x;
 scanf("%d", &x);
 if(x > 100)
 {
-    printf("Число %d больше 100\n", x);
+    printf("The number %d is greater than 100\n", x);
 }
 else if(x == 100)
 {
-    printf("Число %d равно 100\n", x);
+    printf("The number %d is 100\n", x);
 }
 else
 {
-    printf("Число %d меньше 100\n", x);
+    printf("The number %d is less than 100\n", x);
 }
 ```
 
-Чтобы лучше понять что происходит, я нарисую блок-схему.
+To better understand what's going on, I'll draw a flowchart.
 
-> Блок-схема -- это просто графическая схема, которая описывает какой-то алгоритм. С её помощью можно описать сам алгоритм, не заморачиваясь с написанием программы на каком-либо языке программирования.
+> A flowchart is just a graphic diagram that describes some kind of algorithm. With its help, you can describe the algorithm itself without bothering with writing a program in any programming language.
 
-> Алгоритм -- это последовательность действий.
+> Algorithm is a sequence of actions.
 
-Вот блок-схема для кода выше:
+Here is the block diagram for the code above:
 
-![Блок схема](/assets/images/c-block-scheme.png)
+![Block Scheme](/assets/images/c-block-scheme.png)
 
-> Сделано с помощью [draw.io](https://github.com/jgraph/drawio-desktop/releases/) онлайн редактора блок-схем
+> Made with [draw.io](https://github.com/jgraph/drawio-desktop/releases/) online flowchart editor
 
-В блок-схемах всё очень просто -- нужно просто двигаться по стрелкам от "начала" к "концу" и отвечать на вопросы, если их задают. Вопросы в этих схемах и являются условиями, про которые я говорю.
+In flowcharts, everything is very simple - you just need to follow the arrows from "beginning" to "end" and answer questions if they are asked. The questions in these diagrams are the conditions I'm talking about.
 
-Надеюсь этим я объяснил смысл условий.
+I hope this explained the meaning of the conditions.
 
-Теперь я расскажу, почему на вопросы/условия можно отвечать только "да" или "нет"...
+Now I will explain why questions/conditions can only be answered with "yes" or "no"...
 
-# Булевые операции и операции сравнения
+# Boolean and comparison operations
 
-В математике есть раздел, который называется "булевая алгебра". Из неё в программирование пришли вот такие понятия:
+There is a branch of mathematics called Boolean Algebra. From it, the following concepts came to programming:
 
-* Значение __истина__, которое обозначается числом 1
-* Значение __ложь__, которое обозначается числом 0
-* Оператор __НЕ__ (¬) -- этот унарный оператор инвертирует значение
-* Оператор __ИЛИ__ (∨) -- этот бинарный оператор возвращает __истина__ если хоть один из операндов равен __истина__
-* Оператор __И__ (∧) -- этот бинарный оператор возвращает __истина__ если все операнды равны __истина__
+* The __true__ value, which is denoted by the number 1
+* The value is __false__, which is denoted by the number 0
+* __NOT__ operator (¬) -- this unary operator inverts a value
+* __OR__ operator (∨) -- this binary operator returns __true__ if at least one of its operands is __true__
+* __AND__ operator (∧) -- this binary operator returns __true__ if all operands are __true__
 
-Для описания всевозможных результатов булевых операций используются таблицы истинности:
+Truth tables are used to describe the various results of Boolean operations:
 
-![Булевые операции](/assets/images/bool-operators.png)
+![Boolean operations](/assets/images/bool-operators.png)
 
-### Булевые операции
+### Boolean operations
 
-В языке Си эти понятия обозначаются так:
+In the C language, these concepts are denoted as follows:
 
-* __истина__: любое целое или вещественное значение не равное 0
-* __ложь__: целое или вещественное значение равное 0
-* __НЕ__: ! (символ восклицательного знака)
-* __ИЛИ__: \|\| (два символа вертикальный слеш)
-* __И__: && (два символа имперсант)
+* __true__: any integer or real value not equal to 0
+* __false__: integer or real value equal to 0
+* __NOT__: ! (exclamation point symbol)
+* __OR__: \|\| (two vertical slashes)
+* __AND__: && (two ampersand characters)
 
-Несмотря не то, что значение __истина__ в Си можно обозначить как любое число не равное 0 -- обычно программисты используют значение 1.
+Although the value __true__ in C can be expressed as any number other than 0, programmers usually use the value 1.
 
-Операции __НЕ__, __ИЛИ__, __И__ всегда возвращают или 0 (__ложь__), или 1 (__истина__).
+The operations __NOT__, __OR__, __AND__ always return either 0 (__false__) or 1 (__true__).
 
-Вот пример использования этих операций:
+Here is an example of using these operations:
 
 ```c
-// Использую тип char, чтобы не занимать лишнюю память -- ведь нужны только значения 0 и 1
+// I use the char type so as not to take up extra memory - after all, only the values \u200b\u200bof 0 and 1 are needed
 char thisIsTrue = 1;
 char thisIsFalse = 0;
 
-// Отрицание со значением истина
+// Negate true
 char result = !thisIsTrue;
 printf("!1 = %d\n", result); // !1 = 0
 
-// Отрицание со значением ложь
+// Negate with value false
 result = !thisIsFalse;
 printf("!0 = %d\n", result); // !0 = 1
 
-// Операция ИЛИ
+// OR operation
 result = thisIsFalse || thisIsTrue;
 printf("0 || 1 = %d\n", result); // 0 || 1 = 1
 result = thisIsFalse || 0;
 printf("0 || 0 = %d\n", result); // 0 || 0 = 0
 
-// Операция И
+// Operation I
 result = thisIsFalse && thisIsTrue;
 printf("0 && 1 = %d\n", result); // 0 && 1 = 0
 result = 1 && thisIsTrue;
 printf("1 && 1 = %d\n", result); // 1 && 1 = 1
 
-// Не забываем что всё кроме 1 тоже считается истиной!
+// Don't forget that everything except 1 is also considered true!
 result = !51;
 printf("!51 = %d\n", result); // !51 = 0
 result = 0 || 522;
@@ -108,13 +106,13 @@ result = 62.2 && 23;
 printf("62.2 && 23 = %d\n", result); // 62.2 && 23 = 1
 ```
 
-#### Хитрая задача на собеседовании
+#### Tricky job interview
 
-В связи с тем, что булевые операции всегда возвращают или 1, или 0, программисты придумали хитрую задачку, которую любят задавать на собеседованиях.
+Due to the fact that Boolean operations always return either 1 or 0, programmers have come up with a tricky task that they like to ask at job interviews.
 
-Сейчас я её покажу, объясню, и ты никогда на ней не провалишься :)
+Now I will show it, explain it, and you will never fail on it :)
 
-На собеседовании тебе дают такой код:
+At the interview, they give you the following code:
 
 ```c
 int a = 42;
@@ -122,153 +120,153 @@ a = !!a;
 printf("%d", a);
 ```
 
-И спрашивают -- "Что выведет программа?".
+And they ask - "What will the program output?".
 
-Давай развернём операцию "!!a" на отдельные этапы выполнения:
+Let's break down the "!!a" operation into separate execution steps:
 
-* Сначала выполняем крайний правый "!": !a -> !42 -> 0
-* Затем выполняем оставшийся "!" на то, что получилось после предыдущего этапа: !0 -> 1
+* Do the rightmost "!" first: !a -> !42 -> 0
+* Then execute the remaining "!" to what happened after the previous stage: !0 -> 1
 
-Ответ на собеседовании: выведется 1.
+Answer at the interview: 1 will be displayed.
 
-### Операции сравнения
+### Comparison operations
 
-Ещё в языке Си есть операции сравнения, которые ничем не отличаются от аналогичных в математике:
+Even in the C language there are comparison operations that are no different from those in mathematics:
 
-* Равно: ==
-* Не равно: !=
-* Больше: >
-* Больше или равно: >=
-* Меньше: <
-* Меньше или равно: <=
+* Equals: ==
+* Not equal to: !=
+* More: >
+* Greater than or equal: >=
+* Less than: <
+* Less than or equal to: <=
 
-Эти операции, так же как и булевые операции, возвращают **булевое** значение 0 (__ложь__) или 1 (__истина__).
+These operations, like boolean operations, return a **boolean** value of 0 (__false__) or 1 (__true__).
 
-Вот пример использования этих операций:
+Here is an example of using these operations:
 
 ```c
 char ten = 10;
 char hundred = 100;
-// Равно
+// Equals
 char result = ten == hundred;
 printf("10 == 100 = %d\n", result); // 10 == 100 = 0
-// Не равно
+// Not equal
 result = ten != hundred;
 printf("10 != 100 = %d\n", result); // 10 != 100 = 1
-// Больше
+// More
 result = ten > hundred;
 printf("10 > 100 = %d\n", result); // 10 > 100 = 0
-// Меньше или равно
+// Less or equal
 result = ten <= hundred;
 printf("10 <= 100 = %d\n", result); // 10 <= 100 = 1
 ```
 
-### Комбинируем булевые операции, операции сравнения и арифметические операции
+### Combine boolean, comparison and arithmetic operations
 
-Зачастую тебе нужно будет комбинировать между собой несколько операторов, чтобы описать какую-то логику.
+Often you will need to combine several operators with each other to describe some kind of logic.
 
-Вот пример задания: "Проверить что число чётное и меньше 100". Вот как бы я написал:
+Here is an example of a task: "Check that the number is even and less than 100". Here's how I would write:
 
 ```c
 int x;
 scanf("%d", &x);
 char isOk = !(x % 2) && x < 100;
-printf("Число подходит (1 - да, 0 - нет): %d\n", isOk);
+printf("Number fits (1 - yes, 0 - no): %d\n", isOk);
 ```
 
-Что такое "!(x % 2) && x < 100"? Это
+What is "!(x % 2) && x < 100"? it
 
-* x % 2 -- остаток от деления числа на 2: если число чётное, то остаток будет 0, а если нечётное, то 1
-* !(x % 2) -- булевая операция НЕ над результатом выражения (x % 2): если результат будет 0 (чётное), то результат будет 1
-* x < 100 -- сравнение числа со 100: если число меньше, то результат будет 1, а если больше или равно, то 0
-* !(x % 2) && x < 100 -- булевая операция И над результатами левой и правой части: если число чётное И меньше 100, то вернётся 1
+* x % 2 -- the remainder of dividing a number by 2: if the number is even, the remainder will be 0, and if it is odd, it will be 1
+* !(x % 2) -- boolean operation NOT on the result of the expression (x % 2): if the result is 0 (even), then the result is 1
+* x < 100 -- comparing a number with 100: if the number is less, then the result will be 1, and if greater than or equal, then 0
+* !(x % 2) && x < 100 -- boolean AND operation on the results of the left and right sides: if the number is even AND less than 100, then 1 will be returned
 
-Для ясности, подставлю конкретное число 42, и упрощу его вплоть до результата:
+For clarity, I will substitute the specific number 42, and simplify it down to the result:
 ```c
 !(42 % 2) && 42 < 100
 !(0) && 1
 1 && 1
 ```
 
-Можете тоже подставлять конкретные числа, чтобы проще было понять логику внутри сложных операций.
+You can also substitute specific numbers to make it easier to understand the logic inside complex operations.
 
-# Возвращаемся к тому, с чего начали
+# Back to where we started
 
-...вот поэтому, ответом на условие может быть только ответ "да" или "нет" :)
+...that's why, the answer to the condition can only be the answer "yes" or "no" :)
 
-Ещё раз напишу код с условием из начала статьи:
+Once again I will write the code with the condition from the beginning of the article:
 
 ```c
 int x;
 scanf("%d", &x);
 if(x > 100)
 {
-    printf("Число %d больше 100\n", x);
+    printf("The number %d is greater than 100\n", x);
 }
 else if(x == 100)
 {
-    printf("Число %d равно 100\n", x);
+    printf("The number %d is 100\n", x);
 }
 else
 {
-    printf("Число %d меньше 100\n", x);
+    printf("The number %d is less than 100\n", x);
 }
 ```
 
-В условии пишется выражение, которые возвращает значение 0 (__ложь__) или 1 (__истина__). Далее в фигурных скобках содержится блок кода, который выполнится если выражение будет истинным:
+An expression is written in the condition that returns the value 0 (__false__) or 1 (__true__). The following curly braces contain a block of code that will be executed if the expression evaluates to true:
 
 ```c
-// if(выражение)
+// if(expression)
 if(x > 100)
-// Начало блока
+// Start of the block
 {
-    printf("Число %d больше 100\n", x);
-// Конец блока
+    printf("The number %d is greater than 100\n", x);
 }
+// End of block
 ```
 
-Если выражение внутри равно __истина__ (не равно 0), то мы выполняем блок кода внутри этого условия, и заканчиваем.
+If the expression inside is equal to __true__ (not equal to 0), then we execute the block of code inside this condition, and finish.
 
-Если выражение внутри ложно то надо проверить, идёт ли после этого if конструкция else:
+If the expression inside is false, then you need to check if there is an else construct after this if:
 
-* Если else нет -- мы закончили
-* Если else есть -- **переходим к следующему условию**
+* If there is no else, we are done
+* If there is else -- **go to the next condition**
 
-Предположим, что первое условие у нас не выполнилось -- теперь мы перешли к следующему. Здесь такой же if, но с другим условием:
+Let's assume that the first condition was not fulfilled for us - now we have moved on to the next one. Here is the same if, but with a different condition:
 
 ```c
 else if(x == 100)
 {
-    printf("Число %d равно 100\n", x);
+    printf("The number %d is 100\n", x);
 }
 ```
 
-Проверяем, есть ли после него else -- ага, есть.
+We check if there is an else after it - yeah, there is.
 
-Тут уже нет условия, поэтому мы просто выполняем блок кода внутри:
+There is no longer a condition, so we just execute the block of code inside:
 
 ```c
 else
 {
-    printf("Число %d меньше 100\n", x);
+    printf("The number %d is less than 100\n", x);
 }
 ```
 
-Конструкция else без условия:
+An else construct without conditions:
 
-* Не обязательна (можно оставить только if)
-* Должна находиться после конструкции if
-* После неё нельзя использовать другие конструкции if или else
+* Optional (you can leave only if)
+* Must be placed after the if construct
+* After it, you can not use other if or else constructs
 
-Получается такой вот круговорот if в природе:
+It turns out such a cycle if in nature:
 
-![Круговорот if](/assets/images/c-condition-cycle.png)
+![Circle if](/assets/images/c-condition-cycle.png)
 
-# Вложенные условия
+# Nested conditions
 
-Коротенько, но важно -- **внутри любого условия могут быть другие условия**.
+Short but important -- **inside any condition there can be other conditions**.
 
-Смотри:
+Look:
 
 ```c
 int x;
@@ -277,40 +275,40 @@ if(x != 100)
 {
     if(x > 100)
     {
-        printf("Число %d больше 100\n", x);
+        printf("The number %d is greater than 100\n", x);
     }
     else
     {
-        printf("Число %d меньше 100\n", x);
+        printf("The number %d is less than 100\n", x);
     }
 }
 else
 {
-    printf("Число %d равно 100\n", x);
+    printf("The number %d is 100\n", x);
 }
 ```
 
-Результат выполнения этого кода, идентичен результату выполнения кода из предыдущего раздела -- просто тут я перенёс два условия под первое условие, чем изменил внутреннюю логику программы.
+The result of executing this code is identical to the result of executing the code from the previous section - it's just that I moved two conditions under the first condition, which changed the internal logic of the program.
 
-В твоей практике периодически будут возникать ситуации, когда тебе будет сложно правильно составить конструкцию из условий -- в этом случае нарисуй на бумаге блок-схему алгоритма, который хочешь написать.
+In your practice, situations will periodically arise when it will be difficult for you to correctly compose a construction from conditions - in this case, draw on paper a flowchart of the algorithm that you want to write.
 
 
-# Тернарный оператор
+# Ternary operator
 
-Иногда, если уловие небольшое, его можно записать с помощью тернарного оператора "?:".
+Sometimes, if the condition is small, it can be written using the ternary operator "?:".
 
-> Тернарный он потому, что в нём 3 операнда: A ? B : C.
-> Сложение, например, это бинарный оператор, там 2 операнда: A + B.
+> Ternary because it has 3 operands: A ? B : C
+> Addition, for example, is a binary operator, there are 2 operands: A + B.
 
-Рассмотрю на примере такой задачи:
+Let's look at an example of such a task:
 
-* Создаются две целочисленных переменных X и Y
-* С клавиатуры вводится значение переменной X
-* Если X больше 100, то Y = X * X
-* Если X равен 100, то Y = X
-* В остальных случаях (X меньше 100), то Y = X * 2
+* Two integer variables X and Y are created
+* The value of the variable X is entered from the keyboard
+* If X is greater than 100, then Y = X * X
+* If X is 100 then Y = X
+* In other cases (X is less than 100), then Y = X * 2
 
-Вот как я бы расписал это с помощью if:
+Here's how I would write it with an if:
 
 ```c
 int X, Y;
@@ -330,99 +328,96 @@ else
 printf("Y = %d\n", Y);
 ```
 
-А вот как с помощью тернарного оператора "?:"
+How about using the ternary operator "?:"
 
 ```c
 int X, Y;
 scanf("%d", &X);
-// Если x > 100, то в Y вернётся X * X
-// Иначе мы пойдём в это выражение ( x == 100 ? X : (X * 2) )
-// В нём тот же смысл - если x == 100, то вернётся X
-// Иначе вернётся X * 2
+// If x > 100, then X * X will be returned in Y
+// Else we'll go into this expression ( x == 100 ? X : (X * 2) )
+// It has the same meaning - if x == 100, then X will be returned
+// Else return X * 2
 Y = x > 100 ? (X * X) : ( x == 100 ? X : (X * 2) );
 
 printf("Y = %d\n", Y);
 ```
 
-С этим оператором читать становится сложнее, но запись короче. Используй его по необходимости.
+With this operator, it becomes more difficult to read, but the record is shorter. Use it as needed.
 
-# Условный оператор switch case
+# Conditional statement switch case
 
-В случаях, когда у тебя есть переменная, которая:
+In cases where you have a variable that:
 
-* Может принимать ограниченное множество значений
-* Тебе надо для разных значений, сделать разные действия
+* Can take a limited set of values
+* You need to do different actions for different values
 
-Используй switch case:
+Use switch case:
 
 ```c
 int day_of_week;
-printf("Введите номер дня недели: ");
+printf("Enter the number of the day of the week: ");
 scanf("%d", &day_of_week);
 switch(day_of_week) {
     case 1:
-        printf("Понедельник\n");
+        printf("Monday\n");
         break;
     case 2:
-        printf("Вторник\n");
+        printf("Tuesday\n");
         break;
     case 3:
-        printf("Среда\n");
+        printf("Wednesday\n");
         break;
     case 4:
-        printf("Четверг\n");
+        printf("Thursday\n");
         break;
     case 5:
-        printf("Пятница\n");
+        printf("Friday\n");
         break;
     case 6:
-        printf("Суббота\n");
+        printf("Saturday\n");
         break;
     case 7:
-        printf("Воскресенье\n");
+        printf("Sunday\n");
         break;
     default:
-        printf("Такого дня нет\n");
+        printf("There is no such day\n");
 }
 ```
 
-Здесь в switch пишется выражение, которое будет сравниваться со значениями в описанных case.
+Here, in the switch, an expression is written that will be compared with the values in the described cases.
 
-Если указанное выражение не подходит ни под какой case, то мы попадём в default. default является опциональным, и можно его не указывать.
+If the specified expression does not fit any case, then we will fall into default. default is optional and can be omitted.
 
-Код для каждого случая надо писать между "case X:" и "break;".
+The code for each case must be written between "case X:" and "break;".
 
-# Задания на закрепление
+# Tasks for consolidation
 
-#### Простенькая задачка на условия и выражения внутри них
+#### A simple task on conditions and expressions inside them
 
-С клавиатуры вводится целое число. В ответ программа выводит **один** из ответов:
+An integer is entered from the keyboard. In response, the program displays **one** of the answers:
 
-* "Чётное" -- если число чётное
-* "Нечётное" -- если число нечётное
-* "Ответ на главный вопрос жизни, вселенной и всего такого" -- если это число равно 42
+* "Even" -- if the number is even
+* "Odd" -- if the number is odd
+* "The answer to the ultimate question of life, the universe and all that" -- if this number is 42
 
-П
+#### Block diagram
 
-#### Блок-схема
+Draw on paper or in an online editor a flowchart for the task you just did (you can rely on the flowchart at the beginning of the article).
 
-Нарисуй на бумаге или в онлайн-редакторе блок схему для только что сделанной тобой задачи (можешь опираться на блок-схему в начале статьи).
+# Conclusion
 
+In total, you have learned:
 
-# Заключение
+* Flowcharts
+* Boolean values and operators
+* Truth tables
+* Answering a tricky job interview
+* Comparison operators
+* Conditions
+* Nested conditions
 
-Итого, ты изучил:
+This is a very important stage in your development as a programmer. Conditions are used everywhere, and if you understand them now, then you can easily transfer this knowledge to other programming languages in the future.
 
-* Блок-схемы
-* Булевые значения и операторы
-* Таблицы истинности
-* Ответ на хитрую задачу на собеседовании
-* Операторы сравнения
-* Условия
-* Вложенные условия
+If anything - write, I will help and try to explain better.
 
-Это очень важный этап развития тебя, как программиста. Условия используются везде, и если ты понял их сейчас, то ты сможешь в будущем легко перенести это знание на другие языки программирования.
-
-Если что -- пиши, я помогу и постараюсь объяснить лучше.
-
-Дальше мы рассмотрим основную рабочую силу твоих программ -- циклы.
+Next, we'll look at the main workforce of your programs -- loops.

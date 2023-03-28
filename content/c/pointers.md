@@ -1,38 +1,36 @@
 ---
-title: C. Указатели
+title: C. Indexes
 date: 2021-10-19
-tag: c
-lang: ru
 ---
 
-Указатель (pointer) -- это переменная, в которой хранится адрес на какую-то ячейку памяти.
+A pointer is a variable that stores the address to some memory location.
 
-Обычно, все боятся C и C++ из-за указателей -- они кажутся чем-то непонятным и очень приближённым к тому, как устроен компьютер.
+Usually, everyone is afraid of C and C ++ because of pointers - they seem to be something incomprehensible and very close to how a computer works.
 
-Однако, мне кажется, что даже такую сложную концепцию можно объяснить на аналогиях из реальной жизни, что значительно упростит понимание.
+However, it seems to me that even such a complex concept can be explained with real life analogies, which will greatly simplify understanding.
 
-# Ищем клад
+# Looking for treasure
 
-Представь себе, что ты искатель клада -- без чего не обходится ни один поиск клада? Правильно, без карты!
+Imagine that you are a treasure hunter - without which no treasure hunt can do? That's right, no map!
 
-Ситуация -- у тебя есть карта, на которой отмечены координаты клада, например: 59.606067, 30.441917.
+Situation - you have a map on which the coordinates of the treasure are marked, for example: 59.606067, 30.441917.
 
-А теперь проводим аналогию с языком Си:
+And now we draw an analogy with the C language:
 
-* Клад -- переменная
-* Карта -- указатель
-* Координаты -- адрес
+* Treasure -- variable
+* Map -- Pointer
+* Coordinates -- address
 
-То есть, карта с координатами клада -- это указатель с адресом переменной.
+That is, a map with the coordinates of the treasure is a pointer with the address of a variable.
 
-Давай создадим указатель на переменную:
+Let's create a pointer to a variable:
 
 ```c
-// Обычная int переменная
+// Ordinary int variable
 int treasure = 777;
-// Указатель на int переменную (на это указывает * после типа int)
+// Pointer to an int variable (this is indicated by * after the int type)
 int* treasure_map;
-// Записываем адрес int переменной treasure в указатель treasure_map
+// Write the address of the int variable treasure to the treasure_map pointer
 treasure_map = &treasure;
 printf("treasure: %d\n", treasure);
 // treasure: 777
@@ -42,87 +40,87 @@ printf("coordinates in treasure_map: %p\n", treasure_map);
 // coordinates in treasure_map: 0x7ffe461b4bec
 ```
 
-Давай разберём что вывела программа:
+Let's see what the program outputs:
 
-* "treasure: 777" -- значение нашей переменной (клад)
-* "coordinates of treasure: 0x7ffe461b4bec" -- адрес переменной (координаты клада)
-* "coordinates in treasure\_map: 0x7ffe461b4bec" -- значение указателя (координаты, записанные в карте)
+* "treasure: 777" -- the value of our variable (treasure)
+* "coordinates of treasure: 0x7ffe461b4bec" -- address of variable (hoard coordinates)
+* "coordinates in treasure\_map: 0x7ffe461b4bec" -- pointer value (coordinates written in the map)
 
-А почему адрес так выглядит?
+Why does the address look like this?
 
-# Адрес и представление числа в памяти
+# Address and number representation in memory
 
-Адрес это номер ячейки в оперативной памяти. Записывается этот адрес в шеснадцатеричной системе счисления.
+An address is a cell number in RAM. This address is written in hexadecimal number system.
 
-![Указатель на переменную](/assets/images/c-pointer-to-variable.png)
+![Pointer to variable](/assets/images/c-pointer-to-variable.png)
 
-Ты можешь представить адрес, как номер ячейки внутри своей плашки оперативной памяти. Каждая ячейка там занимает ровно 1 байт.
+You can think of an address as a cell number inside your stick of RAM. Each cell there occupies exactly 1 byte.
 
-Например, у меня 16 Гб оперативной памяти -- значит будет 16(Гб) * 1024(Мб) * 1024(Кб) = 16777216 байт. Это значит что возможные адреса находятся на промежутке от 0 до 16777215, или в шеснадцатеричной от 0x0 до 0xFFFFFF.
+For example, I have 16 GB of RAM, which means 16(GB) * 1024(MB) * 1024(KB) = 16777216 bytes. This means that the possible addresses are between 0 and 16777215, or in hexadecimal between 0x0 and 0xFFFFFF.
 
-> У меня в примере адрес больше чем 0xFFFFFF, потому что на самом деле всё чуть сложнее. Я не буду объяснять про виртуализацию памяти, поэтому воспринимай этот момент пока в упрощённом виде, как я объснил выше. Но если очень интересно, то вот страница на [википедии](https://ru.wikipedia.org/wiki/%D0%92%D0%B8%D1%80%D1%82%D1%83%D0%B0%D0%BB%D1%8C%D0%BD%D0%B0%D1%8F_%D0%BF%D0%B0%D0%BC%D1%8F%D1%82%D1%8C).
+> In my example, the address is greater than 0xFFFFFF, because in fact everything is a little more complicated. I will not explain about memory virtualization, so take this point for now in a simplified form, as I explained above. But if you are very interested, then here is the page on [wikipedia] (https://ru.wikipedia.org/wiki/%D0%92%D0%B8%D1%80%D1%82%D1%83%D0%B0% D0%BB%D1%8C%D0%BD%D0%B0%D1%8F_%D0%BF%D0%B0%D0%BC%D1%8F%D1%82%D1%8C).
 
-Ещё, ты возможно заметил, что в моём примере число в ячейках записано как-то задом наперёд -- сначала идут значения, а затем нули, хотя на листочке мы бы записали это двоичное число наоборот.
+Also, you may have noticed that in my example, the number in the cells is written somehow backwards - first there are values, and then zeros, although on a piece of paper we would write this binary number the other way around.
 
-Всё дело в порядке байт в записи числа:
+It's all about the byte order in the number entry:
 
-![Порядок байт](/assets/images/c-little-big-endian.png)
+![Big endian](/assets/images/c-little-big-endian.png)
 
-В зависимости от процессора, порядок записи байт у тебя может быть:
+Depending on the processor, the byte order you can have is:
 
-* От старшего к младшему (big-endian) -- первый байт числа хранит старшие биты, а последний младшие
-* От младшего к старшему (little-endian) -- первый байт числа хранит младшие биты, а последний старшие
+* From high to low (big-endian) -- the first byte of the number stores the high bits, and the last low bits
+* Low to high (little-endian) -- the first byte of the number stores the low bits, and the last high bits
 
-Чуть позже в статье мы увидим вживую как это проявляется.
+A little later in the article we will see live how this manifests itself.
 
-### Размер указателя
+### Pointer size
 
-Ты наверно помнишь, что:
+You probably remember that:
 
-* char занимает 1 байт
-* short int занимает 2 байта
-* float занимает 4 байта
-* double занимает 8 байт
+* char takes 1 byte
+* short int takes 2 bytes
+* float takes 4 bytes
+* double takes 8 bytes
 
-Так вот -- любые указатели занимают 4 байта или 8 байт:
+So - any pointers take 4 bytes or 8 bytes:
 
 ```c
 int* x;
 printf("size of pointer: %d\n", sizeof(x));
-// Вывод: size of pointer: 8
+// Output: size of pointer: 8
 ```
 
-У меня он занимает 8 байт. От чего зависит сколько байт будет занимать указатель?
+It takes 8 bytes for me. What determines how many bytes a pointer will occupy?
 
-В 32-х битных операционных системах, поддерживается работа с оперативной памятью до 4-х гигабайт -- это адреса от 0 до 4294967295. Такое количество адресов идеально вмещается в 4 байта -- поэтому указатель занимает 4 байта, чтобы туда влез адрес на любую ячейку в памяти.
+In 32-bit operating systems, working with RAM up to 4 gigabytes is supported - these are addresses from 0 to 4294967295. This number of addresses fits perfectly into 4 bytes - therefore, the pointer takes 4 bytes to fit the address to any cell in mind.
 
-В 64-x битных системах указатель вмещается в 8 байт -- тут уже можно раздать адреса на петабайты памяти.
+In 64-bit systems, the pointer fits into 8 bytes - here you can already distribute addresses to petabytes of memory.
 
-# Вытаскиваем клад
+# Pull out the treasure
 
-Чего смотреть на эту карту -- давай пойдём по координатам, указанным в карте, и выкопаем клад.
+Why look at this map - let's go to the coordinates indicated on the map and dig up the treasure.
 
-Применяя эту аналогию к Си -- мы можем получить значение переменной, адрес которой хранится в указателе:
+Applying this analogy to C, we can get the value of a variable whose address is stored in a pointer:
 
 ```c
 int treasure = 777;
 int* treasure_map = &treasure;
 printf("coordinates in treasure_map: %p\n", treasure_map);
 printf("treasure by coordinates in treasure_map: %d\n", *treasure_map);
-/* Вывод:
-cooridnates in treasure_map: 0x7ffe461b4bec
+/* Conclusion:
+coordinates in treasure map: 0x7ffe461b4bec
 treasure by coordinates in treasure_map: 777 */
 ```
 
-То есть, чтобы получить значение по адресу, который хранится в указателе, надо указать звёздочку "\*" перед именем указателя.
+That is, to get the value at the address stored in the pointer, you must specify an asterisk "\*" in front of the pointer name.
 
-> Операция получения значения по указателю называется разыменованием.
+> The operation of obtaining a value by a pointer is called dereferencing.
 
-# Закапываем новый клад
+# Bury a new treasure
 
-У тебя есть карта с координатами клада -- ты можешь пойти на это место, выкопать старый клад и закопать новый.
+You have a map with the coordinates of the treasure - you can go to this place, dig up the old treasure and bury the new one.
 
-Применяя аналогию к Си -- можно заменить значение в переменной, адрес которой хранится в указателе:
+Applying the C analogy -- you can replace the value in a variable whose address is stored in a pointer:
 
 ```c
 int treasure = 777;
@@ -134,11 +132,11 @@ printf("new treasure: %d\n", treasure);
 // new treasure: 666
 ```
 
-# Карта, которая является сокровищем
+# A card that is a treasure
 
-Безумный искатель сокровищ нарисовал карту, в которой записаны координаты, где лежит эта карта.
+A mad treasure hunter has drawn a map that contains the coordinates where this map lies.
 
-Проводя аналогию с языком Си -- безумный программист присвоил указателю адрес на этот же указатель.
+Drawing an analogy with the C language, a mad programmer assigned a pointer the address of the same pointer.
 
 ```c
 int* p_x;
@@ -149,19 +147,19 @@ printf("%p %d\n", p_x, *p_x);
 *p_x = 255;
 printf("%p %d\n", p_x);
 // 0x7ffd000000ff 255
-// Теперь нельзя выводить значение через *p_x, потому что
-// он указывает на несуществующий адрес FF.
+// Now you can't output value via *p_x, because
+// it points to a non-existent FF address.
 ```
 
-Ситуация, в которой указатель указывает сам на себя опасна, если ты попытаешься присвоить туда не адрес, а какое-то значение.
+The situation in which the pointer points to itself is dangerous if you try to assign there not an address, but some value.
 
-Это очень экзотическая ситуация -- просто будь в курсе, что это возможно.
+It's a very exotic situation -- just be aware that it's possible.
 
-# Переписываем координаты из одной карты в другую
+# Rewrite coordinates from one map to another
 
-Представь, что у тебя ещё есть друг искатель клада, с которым то хочешь поделиться координатами клада. Для этого ты возьмёшь его карту, и запишешь в неё координаты из своей карты.
+Imagine that you still have a treasure hunter friend with whom you want to share the coordinates of the treasure. To do this, you take his map, and write down the coordinates from your map into it.
 
-Применяем аналогию к Си -- ты можешь из одного указателя, записать значение в другой указатель:
+Applying an analogy to C - you can write a value from one pointer to another pointer:
 
 ```c
 int treasure = 777;
@@ -179,18 +177,18 @@ printf("treasure by friend_map: %d\n", *friend_map);
 // treasure by friend_map: 777
 ```
 
-# Карта с координатами другой карты
+# Map with coordinates of another map
 
-Представь, что кто-то захотел очень хорошо спрятать клад, и он сделал две карты:
+Imagine that someone wanted to hide the treasure very well, and he made two cards:
 
-* В карте "А" записаны координаты клада
-* В карте "В" записаны координаты карты "А"
+* The map "A" contains the coordinates of the treasure
+* Map "B" contains the coordinates of map "A"
 
-Если у тебя есть карта "В", то тебе надо по ней найти карту "А", чтобы по ней уже найти клад.
+If you have a card "B", then you need to find the card "A" on it in order to find the treasure using it.
 
-![Карта с координатами карты](/assets/images/c-pointer-to-pointer.png)
+![Map with map coordinates](/assets/images/c-pointer-to-pointer.png)
 
-Применяем аналогию к Си -- ты можешь создать указатель, в котором лежит адрес указателя на переменную:
+Applying the analogy to C - you can create a pointer that contains the address of a pointer to a variable:
 
 ```c
 int treasure = 777;
@@ -208,22 +206,22 @@ printf("treasure: %d\n", **map_B);
 // treasure: 777
 ```
 
-Вот эта последняя строчка, где написано "\*\*map\_B" -- самая сложная. Здесь, мы идём по координатам из карты "В", находим карту "А", и уже по карте "А", достаём клад.
+This last line, where "\*\*map\_B" is written, is the hardest one. Here, we go to the coordinates from the map "B", we find the map "A", and already on the map "A", we get the treasure.
 
-# Разные типы указателей
+# Different types of pointers
 
-Тут уже мои аналогии начнут трещать по швам, потому что в языке Си указатели могут быть разных типов.
+Here already my analogies will start to crack at the seams, because in the C language pointers can be of different types.
 
-Поэтому давай я тут объясню без аналогий, но с визуальным пояснением.
+Therefore, let me explain here without analogies, but with a visual explanation.
 
-### Кусочек переменной
+### Variable piece
 
-Допустим у тебя есть int указатель на int переменную -- а что, если у тебя будет char указатель на int переменную?
+Let's say you have an int pointer to an int variable -- what if you have a char pointer to an int variable?
 
 ```c
 int treasure = 777;
 int* int_treasure_map = &treasure;
-// Явное приведение int* к char*, чтобы компилятор не ругался
+// Explicit casting of int* to char* so that the compiler doesn't swear
 char* char_treasure_map = (char*)&treasure;
 printf("treasure: %d\n", treasure);
 // treasure: 777
@@ -237,17 +235,17 @@ printf("value by char_treasure_map: %d\n", *char_treasure_map);
 // value by char_treasure_map: 9
 ```
 
-![Разные типы указателей](/assets/images/c-pointers-different-types.png)
+![Different types of pointers](/assets/images/c-pointers-different-types.png)
 
-Помнишь, я упомянал до этого про порядок байт? В этом примере мы увидели вживую что это такое.
+Remember how I mentioned byte order before? In this example, we saw live what it is.
 
-У меня получилось, что char\_treasure\_map вернул нам значение первого байта int переменной treasure. Почему только первый байт? Потому что это указатель на char, а char занимает 1 байт.
+It turned out that char\_treasure\_map returned us the value of the first byte of the int variable treasure. Why only the first byte? Because it's a pointer to char, and char takes 1 byte.
 
-Если бы у меня был порядок байт не "от младшего к старшему", а "от старшего к младшему", то мне вернулось бы значение 0, так как первыми байтами числа были старшие байты (а там первые два байта это нули).
+If I had the byte order not "from low to high", but "from high to low", then the value 0 would be returned to me, since the first bytes of the number were high bytes (and there the first two bytes are zeros).
 
-### Не тот тип переменной
+### Wrong variable type
 
-Ещё ты можешь взять float переменную, создать указатель на int, и указать его на float переменную:
+You can also take a float variable, create a pointer to an int, and point it to a float variable:
 
 ```c
 float x = 777;
@@ -262,41 +260,41 @@ printf("Interpret x as float: %f\nInterpret x as int: %d\n", x, *p_x);
 // Interpret x as int: 777
 ```
 
-Изначально мы присвоили в переменную "x" значение 777 как во float переменную -- в память оно и записалось в вещественном представлении. Затем, мы присвоили значение 777 по int указателю "p\_x" -- туда, куда указывает "p\_x" (в переменную "x") мы записали его в целочисленном представлении. 
+Initially, we assigned the value 777 to the "x" variable as a float variable - it was written into memory in the real representation. Then, we assigned the value 777 to the int pointer "p\_x" -- to where "p\_x" points (to the variable "x") we wrote it in integer representation.
 
-Вот наглядная демострация того, как выглядят разные представления числа 777:
+Here is a visual demonstration of what different representations of the number 777 look like:
 
-![Разное представление типов](/assets/images/c-pointer-data-representation.png)
+![Different type representation](/assets/images/c-pointer-data-representation.png)
 
-Если мы будем интерпретировать вещественную запись числа как целую, или целую как вещественную -- мы не сможем нормально прочитать нужное нам значение. Это как если бы мы начали читать книгу на чешском по-русски, и наоборот -- что-то мы поймём, но значение слов будет разным.
+If we interpret the real record of a number as an integer, or an integer as a real one, we will not be able to read the value we need normally. It is as if we started reading a book in Czech in Russian, and vice versa - we will understand something, but the meaning of the words will be different.
 
-То, что я показал является экзотическими случаями и на практике нигде не встречается. Не делай так никогда-никогда!
+What I have shown are exotic cases and are not found anywhere in practice. Don't ever do that!
 
-**Всегда следи, что типы указателей и переменных совпадают, а в указателях записаны корректные адреса.**
+**Always make sure that the types of pointers and variables match, and the correct addresses are written in the pointers.**
 
-### Тип void
+### Type void
 
-Кроме уже известных тебе типов (char, short int, int, float, double), указатель может быть ещё и типом void. Его особенности:
+In addition to the types already known to you (char, short int, int, float, double), a pointer can also be a void type. Its features:
 
-* Нужен для хранения ардеса переменной, независимо от её типа
-* Указатель типа void нельзя разыменовать -- можно только считывать адрес
+* Needed to store the ardes of a variable, regardless of its type
+* A void pointer cannot be dereferenced -- you can only read the address
 
-Вот пример использования void:
+Here is an example using void:
 
 ```c
 int x = 777;
 void* p = (void*)&x;
 printf("address in void pointer: %p\n", p);
-// Разыменовывать его нельзя, но мы можем его сначала
-// привести к нужному типу, а потом разыменовать
+// You can't dereference it, but we can first
+// cast to the desired type, and then dereference
 printf("value by void pointer: %d\n", *((int*)p));
 ```
 
-# Адресная арифметика
+# Address arithmetic
 
-Адреса в указателях можно не только хранить, то и как-то изменять -- например сдвигать указатель на соседние ячейки.
+Addresses in pointers can be not only stored, but also somehow changed - for example, to shift the pointer to adjacent cells.
 
-Давай я возьму предыдущий пример, и покажу как это выглядит:
+Let me take the previous example and show you what it looks like:
 
 ```c
 int treasure = 777;
@@ -314,46 +312,46 @@ printf("value by char_treasure_map+0: %d\n", *char_treasure_map);
 // value by char_treasure_map+0: 9
 printf("value by char_treasure_map+1: %d\n", *(char_treasure_map+1));
 // value by char_treasure_map+1: 3
-// А могу ещё и в переменную засунуть
+// And I can also shove it into a variable
 char* char_treasure_map_2 = ((char*)&treasure) + 2;
 printf("value by char_treasure_map+2: %d\n", *char_treasure_map_2);
 // value by char_treasure_map+2: 0
-// А могу ещё вот так на 1 вперёд сдвинуть
+// And I can also move forward 1 like this
 char_treasure_map_2++;
 printf("value by char_treasure_map+3: %d\n", *char_treasure_map_2);
 // value by char_treasure_map+3: 0
-// А могу в обратную сторону сдвинуть
+// And I can move in the opposite direction
 char_treasure_map_2 -= 3;
 printf("value by char_treasure_map+0: %d\n", *char_treasure_map_2);
 // value by char_treasure_map+0: 9
 ```
 
-![Адресная арифметика](/assets/images/c-pointers-arithmetic.png)
+![Address arithmetic](/assets/images/c-pointers-arithmetic.png)
 
-Если ты прибавляешь/отнимаешь от указателя на char единицу, то адрес изменится на 1, а если ты прибавишь/отнимешь единицу от указателю на int, то адрес изменится на 4. Почему так происходит?
+If you add/subtract one from the pointer to char, then the address will change to 1, and if you add/subtract one from the pointer to int, then the address will change to 4. Why is this happening?
 
-Тут как раз вступают типы указателей -- в зависимости от типа указателя, смещение происходит на число байт, равное размеру значения этого типа. То есть, для:
+This is where pointer types come in - depending on the pointer type, the offset occurs by a number of bytes equal to the size of the value of this type. That is, for:
 
-* void и char смещаемся на 1 байт
-* short int смещаемся на 2 байта
-* int и float смещаемся на 4 байт
-* double смещаемся на 8 байт
+* void and char are shifted by 1 byte
+* short int shift by 2 bytes
+* int and float are shifted by 4 bytes
+* double shifted by 8 bytes
 
-# Сравнение адресов
+# Address comparison
 
-Ещё их можно между собой сравнивать:
+You can also compare them with each other:
 
 ```c
 int a, b;
 int *p_a = &a, *p_b = &b;
 printf("a: %p\nb: %p\n", p_a, p_b);
 if (p_a < p_b)
-	printf("Variable 'b' has bigger address\n");
+printf("Variable 'b' has bigger address\n");
 else
-	printf("Variable 'a' has bigger address\n");
+printf("Variable 'a' has bigger address\n");
 ```
 
-У получается такой вывод:
+We get this output:
 
 ```
 a: 0x7ffca02f6860
@@ -361,25 +359,25 @@ b: 0x7ffca02f6864
 Variable 'b' has bigger address
 ```
 
-Попробуй запустить у себя, скорее всего у тебя будет наоборот -- адрес "a" будет больше адреса "b".
+Try to run on your own, most likely you will have the opposite - the address "a" will be greater than the address "b".
 
-Почему? У меня стоит операционная система Linux, а на ней адреса, при создании новых переменных, растут от меньших к большим. То есть сначала в памяти выделются ячейки для переменной "a", а затем для переменной "b" новые ячейки выделяется справа от "a".
+Why? I have a Linux operating system, and on it the addresses, when creating new variables, grow from smaller to larger. That is, first, cells for the variable "a" are allocated in memory, and then for the variable "b", new cells are allocated to the right of "a".
 
-У тебя же скорее всего стоит Windows -- в ней адреса при создании переменных растут в обратном направлении, от больших к меньшим. То есть сначала в памяти выделяются ячейки для переменной "a", а затем для переменной "b" новые ячейки выделяются слева от ячейки "a".
+You most likely have Windows - in it, when creating variables, addresses grow in the opposite direction, from large to small. That is, first the cells for the variable "a" are allocated in memory, and then for the variable "b", new cells are allocated to the left of the cell "a".
 
-# Заключение
+# Conclusion
 
-Итого, ты узнал что такое:
+In total, you learned what is:
 
-* Указатель (карта)
-* Адрес (координаты)
-* Порядок байт (от большего к меньшему, от меньшего к большему)
-* Разыменование (получение значения переменной, на которую указывает указатель)
-* Указатель на указатель (карта, на которой указаны координаты другой карты)
-* Тип указателя (если тип не совпадает, то можно что-то сломать; странный тип void)
-* Адресная арифметика (перемещаемся туда-сюда относительно текущего адреса на кол-во байт, зависящее от размера типа)
-* Сравнение адресов (сравниваем адреса; адреса выделяются по-разному в разных ОС)
+* Index (map)
+* Address (coordinates)
+* Byte order (largest to smallest, smallest to largest)
+* Dereferencing (getting the value of the variable pointed to by the pointer)
+* Pointer to pointer (a map that shows the coordinates of another map)
+* Pointer type (if the type does not match, then you can break something; strange void type)
+* Address arithmetic (we move back and forth relative to the current address by the number of bytes, depending on the size of the type)
+* Address comparison (compare addresses; addresses are allocated differently in different operating systems)
 
-Ты отлично постарался! Это очень сложная тема, и ничего страшного, если с первого раза что-то не понятно. На реальных задачах эта тема уже усвоится окончательно.
+You did great! This is a very complex topic, and it's okay if something is not clear the first time. On real tasks, this topic will be completely mastered.
 
-А реальные задачи появятся в следующей статье, в которой мы рассмотрим массивы.
+And real tasks will appear in the next article, in which we will consider arrays.

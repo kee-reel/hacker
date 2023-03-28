@@ -1,103 +1,101 @@
 ---
-title: Linux. Основы работы с командной строкой
+title: Linux. Command line basics
 date: 2021-08-11
-tag: linux
-lang: ru
 ---
 
-Скорее всего ты читаешь этот текст в окне браузера, а значит используешь графическую оболочку при работе с операционной системой. Сейчас ты открываешь окна и кликаешь курсором на кнопки и иконки приложений, но так было не всегда.
+Most likely you are reading this text in a browser window, which means you are using a graphical shell when working with the operating system. Now you open windows and click the cursor on the buttons and application icons, but this was not always the case.
 
-50 лет назад все пользователи компьютера видели перед собой примерно такую картину:
+50 years ago, all computer users saw something like this in front of them:
 
-![Старый компьютер с коммандной строкой](/assets/images/old-computer-cli.png)
+![Old computer with command line](/assets/images/old-computer-cli.png)
 
-Представь, например, что даже какая-нибудь Евлампия Сергеевна из отдела бухгалтерии работала через командную строку, чтобы сформировать квартальный отчёт. 
+Imagine, for example, that even some Evlampia Sergeevna from the accounting department worked through the command line to generate a quarterly report.
 
-Окей, раньше просто не было графических интерфейсов, и у Евлампии Сергеевны не было альтернатив -- сейчас то зачем с этим заморачиваться? Отвечаю: 
+Okay, before there were simply no graphical interfaces, and Evlampia Sergeevna had no alternatives - now why bother with this? I answer:
 
-* Если ты будешь настраивать сервер, который может находиться на другом конце Земного шара, у тебя не будет альтернатив, кроме как удалённо подключиться к его консоли
-* Если ты хочешь автоматизировать какой-то сценарий работы с компьютером -- самым быстрым способом будет написать скрипт, который будет исполнять прописанные тобой команды
-* Если ты хочешь лучше понять как работает твой компьютер и что-то в нём улучшить -- для командной строки существует огромное множество программ, позволяющих заглянуть в самые глубинные аспекты работы твоего компьютера
-* Если ты хочешь научиться комфортно работать даже на самом слабом компьютере -- командная строка на несколько порядков производительнее графического интерфейса
+* If you set up a server that may be on the other side of the globe, you will have no alternative but to remotely connect to its console
+* If you want to automate some scenario of working with a computer, the fastest way is to write a script that will execute the commands you have prescribed
+* If you want to better understand how your computer works and improve something in it, there are a huge number of programs for the command line that allow you to look into the deepest aspects of your computer
+* If you want to learn how to work comfortably even on the weakest computer - the command line is several orders of magnitude more productive than the graphical interface
 
-Если я тебя убедил, то подключай свой нейроинтерфейс, кибер-ниндзя -- сейчас ты узнаешь как:
+If I convinced you, then connect your neural interface, cyber ninja - now you will learn how to:
 
-* [Смотреть содержимое директории](#ls)
-* [Переходить по директориям](#cd)
-* [Создавать директории](#mkdir)
-* [Создавать и редактировать файлы](#nano)
-* [Копировать файлы/директории](#cp)
-* [Перемещать и переименовывать файлы/директории](#mv)
-* [Удалять файлы/директории](#rm)
+* [View directory contents](#ls)
+* [Browse directories](#cd)
+* [Create directories](#mkdir)
+* [Create and edit files](#nano)
+* [Copy files/directories](#cp)
+* [Move and rename files/directories](#mv)
+* [Delete files/directories](#rm)
 
-Это является **базой**, на основе которой ты будешь управлять своим компьютером через командную строку.
+This is the **base** from which you will control your computer through the command line.
 
-# Открываем командную строку
+# Open command line
 
-> В английском языке есть устоявшиеся сокращения:
-> * Графическая оболочка -- GUI (Graphic User Interface), графический пользовательский интерфейс
-> * Командная строка -- CLI (Command Line Interface), интерфейс командной строки
+> In English there are well-established abbreviations:
+> * Graphical shell -- GUI (Graphic User Interface), graphical user interface
+> * Command line -- CLI (Command Line Interface), command line interface
 >
-> Также, командную строку называют "Терминал" ("Terminal") и "Консоль" ("Console").
+> Also, the command line is called "Terminal" and "Console".
 
-Независимо от того, сидишь ты на MacOS, Windows или Linux, "под капотом" графическая оболочка и командная строка делают одно и то же -- взаимодействуют с операционной системой.
+Regardless of whether you're on MacOS, Windows, or Linux, under the hood, the graphical shell and command line do the same thing - they interact with the operating system.
 
-![Графическая оболочка и командная строка делают одно и то же](/assets/images/gui-cli-os.png)
+![GUI and command line do the same thing](/assets/images/gui-cli-os.png)
 
-Окей, как двигать курсор и нажимать на кнопки ты уже знаешь, а вот какие команды надо в этой консоли писать совершенно не ясно. Тут никакого волшебства -- придётся запоминать команды. Это не так сложно как может показаться на первый взгляд, и через пару-десятков повторений ты будешь писать их на автомате.
+Okay, you already know how to move the cursor and press the buttons, but what commands you need to write in this console is completely unclear. There is no magic here - you have to remember the commands. This is not as difficult as it might seem at first glance, and after a couple of dozen repetitions, you will write them automatically.
 
-Чтобы открыть командную строку нужно нажать комбинацию `Ctrl+Alt+T` или найти приложение "Terminal" среди установленных приложений.
+To open the command line, you need to press the `Ctrl+Alt+T` combination or find the "Terminal" application among the installed applications.
 
-# Приглашение командной строки и домашняя директория
+# Command line prompt and home directory
 
-Появится окно командной строки, в котором ты увидишь надпись вроде:
+A command prompt window will appear, in which you will see an inscription like:
 
 ```bash
 kee-reel@blog:~$
 ```
-Вот как она расшифровывается:
+Here is how it is deciphered:
 
-| Символ | Значение |
+| Symbol | Meaning |
 |---|---|
-| kee-reel | имя пользователя, указанное при установке ОС
-| @ | разделяющий символ
-| home-computer | имя компьютера, указанное при установке ОС
-| : | разделяющий символ |
-| ~ | текущая директория |
-| $ | текущий режим доступа ($ - обычный пользователь, # - администратор) |
+| kee-reel | username specified during OS installation
+| @ | separator character
+| home computer | computer name specified during OS installation
+| : | separating symbol |
+| ~ | current directory |
+| $ | current access mode ($ - normal user, # - administrator) |
 
-Эта надпись называется Prompt (на русский можно перевести как "приглашение", но такой термин не используется, а просто говорят "промт").
+This inscription is called Prompt (it can be translated into Russian as "invitation", but such a term is not used, but they simply say "promt").
 
-Самой важной информацией тут является то, что находится на месте `~` -- так как нам необходимо как-то понимать где мы сейчас находимся в файловой системе.
+The most important information here is what is in place `~` -- because we need to somehow understand where we are now in the file system.
 
-Вот, например, как текущая директория выглядит в графической оболочке ОС Windows:
+For example, here is how the current directory looks in the graphical shell of Windows OS:
 
 ![Windows Explorer](/assets/images/windows-explorer.png)
 
-А в командной строке это выглядело бы так:
+On the command line it would look like this:
 
 ```bash
-kee-reel@blog:~/Documents/Андрей/Моя Работа$
+kee-reel@blog:~/Documents/Andrey/My Work$
 ```
 
-По-умолчанию, когда ты открываешь командную строку, ты находишься в "домашней" директории текущего пользователя. В ней ещё лежат всякие папки, вроде "Documents", "Downloads" и прочее.
+By default, when you open a command prompt, you are in the "home" directory of the current user. It still contains all sorts of folders, like "Documents", "Downloads" and so on.
 
-Чтобы сократить запись в Prompt'е, домашняя директория обозначается символом "~" (тильда). На самом деле домашняя директория "~" находится в "/home/kee-reel" (у каждого пользователя будет своя папка в "/home").
+To shorten the notation in Prompt, the home directory is denoted by the character "~" (tilde). Actually the "~" home directory is in "/home/kee-reel" (each user will have their own folder in "/home").
 
-> Если ты не понял что значат все эти "/home", то поищи статью про структуру файловой системы в Linux.
+> If you do not understand what all these "/home" mean, then look for an article about the structure of the file system in Linux.
 
-# Выполняем команды
+# Execute commands
 
-Если ты захочешь написать какую-то команду, то она будет дописываться после Prompt'а:
+If you want to write some command, then it will be added after Prompt:
 
 ```bash
-kee-reel@blog:~$ моя-команда
+kee-reel@blog:~$ my-command
 ```
 
 {{< ref ls >}}
-### ls - содержимое директории
+### ls - directory contents
 
-`ls` (от `LiSt`) -- узнать какие папки/файлы у нас есть в текущей директории:
+`ls` (from `LiSt`) -- find out what folders/files we have in the current directory:
 
 ```bash
 kee-reel@blog:~$ ls
@@ -107,89 +105,51 @@ Downloads
 Music
 ```
 
-> Также, можно указать путь до директории, в которой надо вывести список файлов: `ls Documents/OtherFolder/`
+> Also, you can specify the path to the directory in which you want to display a list of files: `ls Documents/OtherFolder/`
 
 {{< ref cd >}}
-### cd - сменить директорию
+### cd - change directory
 
-`cd` (от `Change Directory`) -- сменить директорию относительно текущей:
+`cd` (from `Change Directory`) -- change directory relative to the current one:
 
-Давай перейдём в папку `Documents`:
+Let's go to the `Documents` folder:
 
 ```bash
 kee-reel@blog:~$ cd Documents
 ```
 
-Можно увидеть, что текущая в директория в prompt тоже изменилась:
+You can see that the current directory in the prompt has also changed:
 
 ```bash
-kee-reel@blog:~/Documents$ 
+kee-reel@blog:~/Documents$
 ```
 
-Чтобы вернуться в предыдующую директорию, надо написать:
+[33mDid you mean: [1m\u003e Можно указывать переход сразу через несколько папок: cd Documents/Folder/Programming[22m[0m
+> You can specify the transition through several folders at once: cd Documents/MyFolder/Programming
+
+[33mDid you mean: [1mЧтобы вернуться в предыдущую директорию, надо написать:[22m[0m
+To return to the previous directory, write:
 
 ```bash
 kee-reel@blog:~$ cd ..
 ```
 
-Prompt изменится соответствующе:
+Prompt will change accordingly:
 
 ```bash
-kee-reel@blog:~$ 
+kee-reel@blog:~$
 ```
-
-> Можно указывать переход сразу через несколько папок: cd Documents/MyFolder/Programming
-
-Иногда тебе надо пройти несколько директорий, но ты не знаешь точный путь. В этом случае **ТАК НЕ НАДО ДЕЛАТЬ**:
-
-```bash
-kee-reel@blog:~$ cd folder1
-kee-reel@blog:~/folder1$ ls
-folder2
-some_other_folder
-
-kee-reel@blog:~/folder1$ cd folder2
-kee-reel@blog:~/folder1/folder2$ ls
-folder3
-freakn_folder666
-
-kee-reel@blog:~/folder1/folder2$ cd folder3
-kee-reel@blog:~/folder1/folder2/folder3$
-```
-
-В этой ситуации, просто нажми 2 раза клавишу "Tab", когда напишешь имя директории:
-
-```bash
-kee-reel@blog:~$ cd folder1                 # Нажал 2х"Tab"
-folder2                                     # Показались директории в "folder1"
-some_other_folder
-
-kee-reel@blog:~$ cd folder2/f               # Написал "f", нажал 2х"Tab"
-kee-reel@blog:~$ cd folder1/folder2         # "folder2" сам автодополнился, нажимаю 2х"Tab" ещё раз
-folder3
-freakn_folder666
-
-kee-reel@blog:~$ cd folder1/folder2/f       # Написал "f", нажал 2х"Tab"
-folder3                                     # Мне вывалились те же самые директории, 
-freakn_folder666                            # потому что первая буква у них одинаковая
-
-kee-reel@blog:~$ cd folder1/folder2/fo      # Написал "fo", нажал 2х"Tab"
-kee-reel@blog:~$ cd folder1/folder2/folder3 # ???
-kee-reel@blog:~/folder1/folder2/folder3$    # PROFIT!
-```
-
-> В таком формате сложно передать как это работает на деле -- просто попробуй, тебе понравится!
 
 {{< ref mkdir >}}
-### mkdir - создать директорию
+### mkdir - create directory
 
-`mkdir` (от `MaKe DIRectory`) -- создать новую папку в текущей директории:
+`mkdir` (from `MaKe DIRectory`) -- create a new folder in the current directory:
 
 ```bash
 kee-reel@blog:~$ mkdir ultra
 ```
 
-Её можно увидеть через команду `ls`:
+It can be seen with the `ls` command:
 
 ```bash
 kee-reel@blog:~$ ls
@@ -201,23 +161,23 @@ ultra
 ```
 
 {{< ref nano >}}
-### nano - текстовый редактор
+### nano - text editor
 
-Скорее всего у тебя уже установлен редактор `nano` -- это консольный текстовый редактор.
+You probably already have the `nano` editor installed -- it's a console-based text editor.
 
-Давай создадим с его помощью файл `test.txt` в папке `~/ultra`:
+Let's use it to create a `test.txt` file in the `~/ultra` folder:
 
 ```bash
 kee-reel@blog:~/ultra$ nano test.txt
 ```
 
-Откроется окно редактора:
+An editor window will open:
 
-![Редактор nano](/assets/images/nano-editor.png)
+![Nano Editor](/assets/images/nano-editor.png)
 
-Попробуй написать там что угодно. Ввод работает как в любом другом редакторе -- печатаем буквы, создаём новую строку через `Enter`, перемещаем курсор стрелочками клавиатуры, стираем через `Backspace` и `Delete`.
+Try to write anything there. The input works like in any other editor - we type letters, create a new line with `Enter`, move the cursor with the keyboard arrows, erase with `Backspace` and `Delete`.
 
-Когда наиграишься с файлом, закрой его -- для этого надо нажать комбинацию `Ctrl+X`. При этом тебя спросят:
+When you've played enough with the file, close it by pressing `Ctrl+X`. In doing so, you will be asked:
 
 ```bash
 Save modified buffer?
@@ -225,15 +185,15 @@ Y Yes
 N No        ^X Cancel
 ```
 
-Нажми `Y`, чтобы сохранить, `N` -- закрыть, но не сохранять, `Ctrl+X` -- отменить закрытие.
+Press `Y` to save, `N` to close but don't save, `Ctrl+X` to cancel closing.
 
-Допустим ты нажал `Y` -- тебя спросят про имя файла, с которым ты хочешь его сохранить:
+Let's say you pressed `Y` - you will be asked for the name of the file with which you want to save it:
 
 `File name to Write: test.txt`
 
-Вроде всё устраивает -- жми `Enter`.
+It seems that everything suits - press `Enter`.
 
-Всё, файл сохранён -- попробуй вывести список файлов:
+That's it, the file is saved - try to display a list of files:
 
 ```bash
 kee-reel@blog:~/ultra$ ls
@@ -241,15 +201,15 @@ test.txt
 ```
 
 {{< ref cp >}}
-### cp - копировать файл или папку
+### cp - copy file or folder
 
-`cp` (от `CoPy`) -- скопировать файл или папку:
+`cp` (from `CoPy`) -- copy a file or folder:
 
 ```bash
 kee-reel@blog:~/ultra$ cp test.txt test_1.txt
 ```
 
-Можно проверить:
+You can check:
 
 ```bash
 kee-reel@blog:~/ultra$ ls
@@ -257,76 +217,76 @@ test_1.txt
 test.txt
 ```
 
-Чтобы скопировать папку, надо добавить опцию `-r`:
+To copy a folder, add the `-r` option:
 
 ```bash
-kee-reel@blog:~$ cp -r ultra mega # сделал копию папки ultra с названием mega
-kee-reel@blog:~$ cd mega          # перешёл в папку mega
-kee-reel@blog:~/mega$ ls          # вывел содержимое папки mega
+kee-reel@blog:~$ cp -r ultra mega # made a copy of the ultra folder called mega
+kee-reel@blog:~$ cd mega # moved to mega folder
+kee-reel@blog:~/mega$ ls # list the contents of the mega folder
 test_1.txt
 test.txt
 ```
 
-Опции программы, вроде `-r`, встречаются довольно часто -- это просто дополнительные спецификаторы, которые позволяют управлять поведением программы. В дальнейшем мы познакомимся с нимим поближе.
+Program options like `-r` are quite common -- they're just additional specifiers that allow you to control how the program behaves. In the future, we will get to know them better.
 
 {{< ref mv >}}
-### mv - переместить файл или папку
+### mv - move file or folder
 
-`mv` (от `MoVe`) -- переместить файл или папку:
+`mv` (from `MoVe`) -- move a file or folder:
 
 ```bash
-kee-reel@blog:~/ultra$ mv test.txt ../    # переместил файл test.txt в вышестоящую папку (там домашняя папка)
+kee-reel@blog:~/ultra$ mv test.txt ../ # moved the file test.txt to the parent folder (home folder there)
 ```
 
-Кроме перемещения эта команда может ещё переименовывать файлы:
+In addition to moving, this command can also rename files:
 
 ```bash
-kee-reel@blog:~/ultra$ mv test_1.txt test_666.txt    # переименовал файл test.txt в файл test_666.txt
+kee-reel@blog:~/ultra$ mv test_1.txt test_666.txt # renamed test.txt to test_666.txt
 ```
 
-Если надо переместить папку, то опцию `-r` указывать не надо (в отличии от `cp`):
+If you need to move a folder, then you do not need to specify the `-r` option (unlike `cp`):
 
 ```bash
-kee-reel@blog:~$ mv mega super-mega    # переименовал папку mega в папку super-mega
+kee-reel@blog:~$ mv mega super-mega # renamed mega folder to super-mega folder
 ```
 
 {{< ref rm >}}
-### rm - удалить файл или папку
+### rm - delete file or folder
 
-`rm` (от `ReMove`) -- удалить файл или папку:
-
-```bash
-kee-reel@blog:~/ultra$ rm test_666.txt    # удалил файл test_666.txt
-```
-
-Чтобы удалить папку **со всеми файлами в ней**, надо указать опцию `-r`:
+`rm` (from `ReMove`) -- remove file or folder:
 
 ```bash
-kee-reel@blog:~$ rm -r ultra    # удалил папку ultra
+kee-reel@blog:~/ultra$ rm test_666.txt # deleted file test_666.txt
 ```
 
-# **НИКОГДА** не исполняй команду "rm" для директории, начинающейся со "/" -- так ты удалишь все файлы на компьютере
+To delete a folder **with all the files in it**, you need to specify the `-r` option:
 
-# Вот так **НЕЛЬЗЯ** делать: "rm -rf /"
-> Флаг "-f" позволяет не вызывать запрос подтверждения при удалении системных файлов.
+```bash
+kee-reel@blog:~$ rm -r ultra # deleted the ultra folder
+```
+
+# **NEVER** do a "rm" command on a directory that starts with "/" -- this will delete all files on the computer
+
+# Do NOT do this: "rm -rf /"
+> The "-f" flag allows you to skip the confirmation prompt when deleting system files.
 
 ![rm rf](/assets/images/rmrf.png)
 
 
-# [](#header-1)Вывод
+# [](#header-1)Output
 
-Итого, ты выучил 7 команд:
+In total, you learned 7 commands:
 
-* ls - содержимое директории
-* cd - сменить директорию
-* mkdir - создать директорю
-* nano - текстовый редактор
-* cp - копировать файл/директорию
-* mv - переместить или переименовать файл/директорию
-* rm - удалить файл/директорию
+* ls - directory contents
+* cd - change directory
+* mkdir - create a directory
+* nano - text editor
+* cp - copy file/directory
+* mv - move or rename a file/directory
+* rm - delete file/directory
 
-Если ты всё понял, то это супер-круто, если нет -- попробуй ещё поиграться с командами.
+If you understand everything, then it's super-cool, if not, try to play with the commands again.
 
-Дальше мы посмотрим какие вообще директории существуют в Linux -- это не займёт много времени, и положительно скажется общем понимании работы операционной системы.
+Next, we will see what directories generally exist in Linux - this will not take much time, and will have a positive effect on the general understanding of the operation of the operating system.
 
-Если что -- пиши, я помогу и постараюсь объяснить лучше.
+If anything - write, I will help and try to explain better.

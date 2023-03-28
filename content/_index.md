@@ -1,21 +1,13 @@
 ---
 type: single
-layout: single
-draft: false
+layout: plain
 ---
-# Привет (＾◡＾)っ
+# Hi (＾◡＾)っ
 
-Это мой личный сайт, на котором я выкладываю различные обучающие статьи по темам, в которых разбираюсь. Я активно работаю над ним, и периодически добавляю новые материалы.
+This is my personal website where I post various tutorial articles on topics I know about.
 
-Если ты хочешь что-то спросить, то ты можешь:
-* написать мне по контактам из раздела [обо\_мне](/about)
-* написать в [ВК группу](https://vk.com/kee_reel_blog) или [Telegram канал](https://t.me/kee_reel_blog)
+If you want to ask something, you can write to me by contacts from [about](/about.html) section.
 
-Очень сложно работать над сайтом, не зная нужен ли он кому-то, поэтому без стеснений пиши мне в личку, вк или телегу -- я буду рад ответить на любой твой вопрос или помочь чем-то!
+The transition between sections of the site is made through the "laptop" in the header of the site.
 
-Переход между разделами сайта производится через "ноутбук" в шапке сайта.
-
-# Развлекайся! (ﾉ> ◇ \<)ﾉ
-
-> Если есть возможность, то можно поддержать рублём на [Boosty](https://boosty.to/kee-reel) -- буду очень благодарен тебе за это!
-
+# Have fun! (ﾉ> ◇ \<)ﾉ

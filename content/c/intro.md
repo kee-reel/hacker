@@ -1,283 +1,282 @@
 ---
-title: C. Введение
+title: C. Introduction
 date: 2021-09-07
 tag: c
 lang: ru
 ---
 
-В этой статье я расскажу что такое языки программирования и в частности про C.
+In this article I will tell you what programming languages are and in particular about C.
 
-Сразу скажу, я сторонник обучения сверху-вниз -- сначала объясняю глобально, а потом перехожу к частностям. Это помогает построить в голове карту предметной области, при помощи которой тебе будет проще в будущем систематизировать свои знания.
+I must say right away that I am a supporter of top-down learning - first I explain globally, and then I turn to particulars. This helps to build a map of the subject area in your head, with the help of which it will be easier for you to systematize your knowledge in the future.
 
-![Карта IT](/assets/images/it-map-c.png)
+![IT Map](/assets/images/it-map-c.png)
 
-# Что такое язык программирования
+# What is a programming language
 
-Язык программирования -- это язык на котором можно описать последовательность инструкций в том виде, в котором его сможет прочитать компьютер. В каждом языке программирования есть чёткий набор правил, которые необходимо соблюдать.
+A programming language is a language in which a sequence of instructions can be described in a way that a computer can read. Every programming language has a clear set of rules that must be followed.
 
-> Можешь провести параллель, и вспомнить как ты в школе изучал русский язык -- нужно заучить разные правила, писать много сочинений и диктантов. Язык программирования придётся учить так же, только вместо сочинений и диктантов -- задания на решение задач.
+> Can you draw a parallel, and remember how you studied Russian at school-you need to memorize different rules, write a lot of essays and dictations. The programming language will have to be taught in the same way, only instead of essays and dictations - assignments for solving problems.
 
-Давай представим, что ты знаешь все описанные правила, и можешь без ошибок писать на языке программирования C (как на русском). Что такого ты ещё можешь узнать о языке, что позволит тебе лучше понимать написанное?
+Let's imagine that you know all the described rules, and you can write without errors in the C programming language (as in Russian). What else can you learn about the language that will allow you to better understand what is written?
 
-# Особенности реализации языка программирования
+# Features of the implementation of the programming language
 
-Так как языки программирования созданы для того, чтобы описывать последовательность инструкций, которые должен выполнить компьютер, важно понимать как именно компьютер будет их исполнять.
+Since programming languages are designed to describe the sequence of instructions that a computer must execute, it is important to understand exactly how the computer will execute them.
 
-> На самом деле, ты можешь писать программный код и без этих знаний, но тогда ты с большей вероятностью напишешь то, что будет работать ненадёжно или неэффективно. Надёжность и эффективность кода являются ключевыми показателями качества, и если они будут сильно хромать, то ты не поднимешься выше позиции Middle.
+> In fact, you can write code without this knowledge, but then you are more likely to write something that will work unreliably or inefficiently. Reliability and efficiency of the code are key indicators of quality, and if they are very lame, then you will not rise above the position of Middle.
 
-Существует множество классификаций языков программирования, давай рассмотрим самые важные:
-* Декларативный или императивный язык программирования
-* Динамическая или статическая типизация
-* Интерпретируемый или компилируемый язык программирования
-* Язык программирования со сборщиком мусора и без него
+There are many classifications of programming languages, let's look at the most important ones:
+* Declarative or imperative programming language
+* Dynamic or static typing
+* Interpreted or compiled programming language
+* Programming language with and without garbage collector
 
-## Декларативный или императивный язык программирования
+## Declarative or imperative programming language
 
-![Декларативный или императивный язык программирования](/assets/images/declarative-imperative-programming.png)
+![Declarative or imperative programming language](/assets/images/declarative-imperative-programming.png)
 
-Декларативный язык программирования описывает результат, а императивный описывает последовательность инструкций, выполнение которых приведёт к какому-то результату.
+A declarative programming language describes a result, while an imperative language describes a sequence of instructions whose execution will lead to some result.
 
-Сначала пример на русском -- допустим мы хотим свежего хлеба. Так бы выглядела программа на декларативном языке:
-
-```
-Хочу: свежий хлеб
-Откуда: из магазина
-Если нет: вчерашний хлеб
-```
-
-Так бы выглядела программа на императивном языке:
+First, an example in Russian - let's say we want fresh bread. This is what a program would look like in a declarative language:
 
 ```
-если(сейчас зима) то
-	надеть верхнюю одежду
-открыть дверь
-выйти
-закрыть дверь
-спуститься
-<место> = магазин "Булочная" по адресу ул. Ленина 1
-до тех пор, пока не (прибыл на <место>) делать
-	идти к <место>
-
-достать кошелёк
-<свежий хлеб есть> = спросить "Есть свежий хлеб?"
-если (<свежий хлеб есть>) то
-	<выбранный хлеб> = свежий хлеб
-иначе
-	<выбранный хлеб> = вчерашний хлеб
-
-попросить <выбранный хлеб>
-передать кассиру стоимость за <выбранный хлеб>
-забрать <выбранный хлеб>
-вернуться домой
-подняться
-открыть дверь
-зайти
-закрыть дверь
-если(сейчас зима) то
-	снять верхнюю одежду
+I want fresh bread
+From: from the store
+If not: yesterday's bread
 ```
 
-Намного сложнее, да? Однако, вместе со сложностью, мы можем очень точно определить всю последовательность действий, которые приведут к результату. На декларативном языке тоже можно определять некоторые аспекты выполнения, однако такой же точности достигнуть нельзя.
+This is what a program in an imperative language would look like:
 
-Приведу примеры декларативного и императивного подхода в программированнии. Задача -- вывести имя и зарплату работников, у которых зарплата выше 30 тысяч.
+```
+if (it's winter) then
+    put on outerwear
+open the door
+log off
+close the door
+come down
+<location> = Bakery store at st. Lenina 1
+until (arrived at <location>) do
+    go to <place>
 
-Декларативный язык SQL (для описания запросов в базу данных):
+get the wallet
+<fresh bread to eat> = ask "Is there fresh bread?"
+if (<fresh bread is>) then
+    <selected bread> = fresh bread
+otherwise
+    <selected bread> = yesterday's bread
+
+ask for <chosen bread>
+give the cashier the price for <selected bread>
+pick up <selected bread>
+come back home
+climb
+open the door
+come in
+close the door
+if (it's winter) then
+    take off outerwear
+```
+
+A little harder, right? However, along with the complexity, we can very accurately determine the entire sequence of actions that will lead to the result. A declarative language can also define some aspects of execution, but the same precision cannot be achieved.
+
+I will give examples of the declarative and imperative approach in programming. The task is to display the name and salary of employees whose salary is above 30 thousand.
+
+Declarative SQL language (for describing database queries):
 
 ```sql
 SELECT name, salary FROM workers WHERE salary > 30000;
 ```
 
-Императивный язык C:
+Imperative language C:
 
 ```c
-// Подключаем заголовочные файлы
+// Include header files
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-// Функция main -- точка входа в программу
+// The main function is the entry point to the program
 int main()
 {
-    char *path = "/home/keereel/workers_salary.txt";
-    // Открываем файл на чтение
+    char *path = "./workers_salary.txt";
+    // Open file for reading
     FILE *file = fopen(path, "r");
-    // Проверяем что файл открылся
+    // Check if the file is open
     if (!file)
     {
-        printf("Файл не найден\n");
+        printf("File not found\n");
         return EXIT_FAILURE;
     }
-    // Создаём переменные, в которые будем считывать значения из файла
+    // Create variables into which we will read values from the file
     char firstName[50], middleName[50], lastName[50];
     int salary;
-    // Считываем первую строчку из файла
+    // Read the first line from the file
     int bytesRead = fscanf(file, "%s %s %s %d", firstName, middleName, lastName, &salary);
-    // Если что-то получилось считать, то...
+    // If something was counted, then...
     while (bytesRead > 0)
     {
-        // Если salary больше 3000, то выводим эти данные
+        // If salary is greater than 3000, then output this data
         if(salary > 30000)
-            printf("Имя: %s %s %s; Зарплата: %d\n", firstName, middleName, lastName, salary);
-        // Читаем следующую строчку
+            printf("Name: %s %s %s; Salary: %d\n", firstName, middleName, lastName, salary);
+        // Read next line
         bytesRead = fscanf(file, "%s %s %s %d", firstName, middleName, lastName, &salary);
     }
-    // Закрываем файл
+    // Close the file
     if (fclose(file))
     {
         return EXIT_FAILURE;
     }
 }
-
 ```
 
-Примеры декларативных языков: HTML, CSS, SQL, Haskell
+Examples of declarative languages: HTML, CSS, SQL, Haskell
 
-Примеры императивных языков: Python, **C**, C++, Java
+Examples of imperative languages: Python, **C**, C++, Java
 
-## Динамическая или статическая типизация
+## Dynamic or static typing
 
-![Динамическая или статическая типизация](/assets/images/dynamic-static-typing.png)
+![Dynamic or static typing](/assets/images/dynamic-static-typing.png)
 
-Эту классификацию сложнее объяснить тем, у кого нет существующего опыта программирования, но я постараюсь. Представь, что ты убираешься в комнате, и у тебя есть много коробок, в которые ты будешь складывать вещи.
+This classification is harder to explain to those with no existing programming experience, but I'll try. Imagine that you are cleaning the room and you have a lot of boxes in which you will put things.
 
-Динамическая типизация -- это когда ты можшь положить в любую коробку всё что угодно.
+Dynamic typing is when you can put anything in any box.
 
-Статическая типизация -- это когда ты можешь складывать в одну коробку только определённый тип предметов.
+Static typing is when you can only put a certain type of item in one box.
 
-У обоих подходов есть свои плюсы и минусы:
+Both approaches have their pros and cons:
 
-**Динамическая типизация**
+**Dynamic typing**
 
-\+ Можно быстро всё раскидать по коробкам
+\+ You can quickly scatter everything in boxes
 
-\- Если типов вещей очень много, то рано или поздно ты начнёшь путаться в какой коробке что лежит
+\- If there are a lot of types of things, then sooner or later you will start to get confused in which box what lies
 
-**Статическая типизация**
+**Static typing**
 
-\+ Благодаря систематизации того, в каких коробках что лежит, запутаться сложнее
+\+ Thanks to the systematization of which boxes what is in, it is more difficult to get confused
 
-\- Необходимо подписывать тип каждой коробки, и систематизировать уже не сами вещи, а типы коробок
+\- It is necessary to sign the type of each box, and to systematize not the things themselves, but the types of boxes
 
-Приведу примеры динамической и статической типизации.
+I will give examples of dynamic and static typing.
 
-Динамическая типизация в Python:
+Dynamic typing in Python:
 
 ```python
 a = 5
 b = 6.1
 c = a + b
-print(f'{a} + {b} = {c}') # Выведет: 5 + 6.1 = 11.1
+print(f'{a} + {b} = {c}') # Prints: 5 + 6.1 = 11.1
 ```
 
-Статическая типизация в C:
+Static typing in C:
 
 ```c
 int a = 5;
 float b = 6.1;
 float c = a + b;
-printf("%d + %f = %f\n", a, b, c); // Выведет: 5 + 6.1 = 11.1
+printf("%d + %f = %f\n", a, b, c); // Output: 5 + 6.1 = 11.1
 ```
 
-Примеры языков с динамической типизацией: Python, Java Script, PHP, Ruby
+Examples of languages with dynamic typing: Python, Java Script, PHP, Ruby
 
-Примеры языков со статической типизацией: **C**, C++, Java, C#
+Examples of languages with static typing: **C**, C++, Java, C#
 
-## Интерпретируемый или компилируемый язык программирования
+## An interpreted or compiled programming language
 
-![Интерпретируемый или компилируемый язык программирования](/assets/images/interpreted-compiled-languages.png)
+![Interpreted or compiled programming language](/assets/images/interpreted-compiled-languages.png)
 
-Интерпретируемый язык программирования может исполняться сразу, а компилируемый необходимо сначала перевести в другую форму, которую уже сможет прочитать компьютер.
+An interpreted programming language can be executed immediately, but a compiled language must first be translated into another form that the computer can already read.
 
-И опять же, у каждого подхода есть свои плюсы и минусы:
+Again, each approach has its pros and cons:
 
-**Интерпретируемый язык**
+**Interpreted language**
 
-\+ Можно исполнять (**интерпретировать**) написанный код программы сразу
+\+ You can execute (**interpret**) the written code of the program immediately
 
-\- Есть небольшая задержка перед исполнением кода, что снижает скорость выполнения
+\- There is a slight delay before the code is executed, which reduces the speed of execution
 
-**Компилируемый язык**
+**Compiled language**
 
-\+ Весь код программы исполняется сразу, без задержек
+\+ All program code is executed immediately, without delay
 
-\- Перед исполнением кода программы необходимо перевести (**скомпилировать**) код программы в бинарный файл, который сможет читать компьютер. В зависимости от размера проекта может занимать от секунд, до десятков часов
+\- Before executing the program code, it is necessary to translate (**compile**) the program code into a binary file that can be read by a computer. Depending on the size of the project, it can take from seconds to tens of hours
 
-Примеры интерпретируемых языков: Python, Java Script, PHP, Ruby
+Examples of interpreted languages: Python, Java Script, PHP, Ruby
 
-Примеры компилируемых языков: **C**, Java, C#, Rust
+Compiled language examples: **C**, Java, C#, Rust
 
-## Язык программирования со сборщиком мусора и без него
+## Programming language with and without garbage collector
 
-![Язык программирования со сборщиком мусора и без него](/assets/images/garbage-collector.png)
+![Programming language with and without garbage collector](/assets/images/garbage-collector.png)
 
-Сборщик мусора (GC, Garbage Collector) -- механизм, который автоматически освобождает неиспользуемую память.
+The garbage collector (GC, Garbage Collector) is a mechanism that automatically frees unused memory.
 
-Вернёмся к примеру с коробками из "Динамическая или статическая типизация" -- представь что ты убрался в комнате, и всё у тебя лежит по коробкам. Спустя какое-то время тебе надо что-то оттуда доставать, использовать или перекладывать в новые коробки. В то время, как ты вытаскиваешь предметы из коробок, какие-то из них пустеют, и тебе нужно что-то с ними делать.
+Going back to the box example from "Dynamic vs. Static Typing" -- imagine you've cleaned your room and everything is in boxes. After some time, you need to get something out of there, use it or transfer it to new boxes. While you are taking items out of the boxes, some of them are empty and you need to do something with them.
 
-Проводя параллель с компьютером -- каждая коробка это какой-то участок памяти, который использует твоя программа. Если ты не будешь (выбрасывать коробки)/(освобождать память), то у тебя рано или поздно закончится (место в доме)/(свободная оперативная память компьютера).
+Drawing a parallel with a computer, each box is some piece of memory that your program uses. If you don't (throw away the boxes)/(free up memory), then sooner or later you will run out of (house space)/(free computer RAM).
 
-Сборщик мусора позволяет тебе не думать про (выбрасывание коробок)/(освобождение памяти), и сам следит какие (коробки)/(участки памяти) больше не используются.
+The garbage collector lets you not think about (discarding boxes)/(deallocating memory), and keeps track of which (boxes)/(memory locations) are no longer in use.
 
-Ты возможно спросишь:
+You might ask:
 
-### А почему бы тогда не использовать сборщик мусора во всех языках программирования?
-Вопрос этот справедливый, и вот ответ -- потому что сборщик мусора не бесплатный, и тебе нужно выделять какую-то часть ресурсов на его работу. Если ты сам за собой (выбрасываешь коробки)/(освобождаешь память), то это будет более эффективным решением.
+### And why not use the garbage collector in all programming languages?
+This question is fair, and here is the answer - because the garbage collector is not free, and you need to allocate some of the resources for its work. If you are on your own (throw away boxes)/(free memory), then this will be a more efficient solution.
 
-**ОДНАКО**, если ты не будешь пользоваться сборщиком мусора, то тебе нужно о-о-о-о-о-очень внимательно следить за тем, что ты действительно (выбрасываешь коробки)/(освобождаешь память) за собой, а то твоя программа может просто упасть из-за недостатка (места в доме)/(свободной оперативной памяти компьютера).
+**HOWEVER**, if you're not going to be using the garbage collector, then you'll need to oooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo very careful to make sure you are really (throw away boxes)/(free memory) behind you otherwise your program may simply crash due to a lack of (space in the house) / (free computer RAM).
 
-> Ситуация, когда разработчик не уследил за освобождением памяти называется **"утечка памяти"**.
+> The situation when the developer did not keep track of the release of memory is called **"memory leak"**.
 
-Приведу примеры написания программы на языке, в котором есть сборщик мусора и в котором его нет. Задача -- создать список значений от 1 до N (N - может изменяться).
+I will give examples of writing a program in a language in which there is a garbage collector and in which it is not. The task is to create a list of values from 1 to N (N - can change).
 
-Программа на языке Python, в котором есть сборщик мусора:
+Python program with garbage collector:
 
 ```python
 N = 7
-# Создаём список со значениями от 1 до N
+# Create a list with values from 1 to N
 numbers = []
 for i in range(1, N+1):
-    numbers.append(i) # Дополнительная память автоматически выделяется при вставке нового значения
-print(numbers) # Выведет: [1, 2, 3, 4, 5, 6, 7]
-# Память высвобождать не надо -- при выходе она сама освободится
+    numbers.append(i) # Additional memory is automatically allocated when a new value is inserted
+print(numbers) # Prints: [1, 2, 3, 4, 5, 6, 7]
+# No need to release the memory - it will free itself when exiting
 ```
 
-Программа на языке C, в котором нет сборщика мусора:
+A C program that does not have a garbage collector:
 
 ```c
 int N = 7;
-// Выдляем память под N целочисленных значений
+// Allocate memory for N integer values
 int* numbers = malloc(sizeof(int) * N);
-// Заполняем массив значениями от 1 до 7
+// Fill the array with values from 1 to 7
 for(int i = 0; i < N; ++i)
 {
     numbers[i] = i + 1;
 }
-// Выводим значения массива
+// Display array values
 for(int i = 0; i < N; ++i)
 {
     printf("%d", numbers[i]);
 }
-// Высвобождаем память
+// Free up memory
 free(numbers);
 ```
 
-Примеры языков со сборщиком мусора: **Python**, Java Script, Java, C#
+Examples of languages with a garbage collector: **Python**, Java Script, Java, C#
 
-Примеры языков без сборщика мусора: **C**, C++, Rust
+Examples of languages without a garbage collector: **C**, C++, Rust
 
-# Итог
+# Total
 
-* Ты узнал что язык программирования это язык, в котором есть строгие правила
-* Если все эти правила удовлетворяются, то язык программирования может быть прочитан компьютером, и исполнен
-* Кроме правил у языка программирования есть особенности его реализации
-* Есть декларативные (простые и общие) и императивные (сложные и детальные) языки
-* Есть динамическая (всё в одну коробку) и статическая (много разных коробок по типам) типизация
-* Есть интерпертируемые (моментально по чуть-чуть) и компилируемые (после компиляции всё сразу) языки
-* Есть языки со сборщиком мусора (сам забирает коробки) и без него (надо самим заботиться о выбрасывании коробок)
+* You learned that a programming language is a language that has strict rules
+* If all these rules are satisfied, then the programming language can be read by the computer and executed
+* In addition to the rules, the programming language has features of its implementation
+* There are declarative (simple and general) and imperative (complex and detailed) languages
+* There are dynamic (everything in one box) and static (many different boxes by type) typing
+* There are interpreted (instantly a little bit) and compiled (after compilation all at once) languages
+* There are languages with a garbage collector (he picks up the boxes) and without it (you have to take care of throwing the boxes yourself)
 
-Теперь ты настолько крут, что можешь понять это предложение:
+Now you're so cool that you can understand this sentence:
 
-### Си это компилируемый императивный язык программирования со статической типизацией и без сборщика мусора
+### C is a compiled imperative programming language with static typing and no garbage collector
 
-Дальше мы с тобой будем изучать сами правила написания программ на языке C -- начнём с переменных.
+Next, you and I will study the very rules for writing programs in the C language - let's start with variables.
 
-Если что -- пиши, я помогу и постараюсь объяснить лучше.
+If anything - write, I will help and try to explain better.

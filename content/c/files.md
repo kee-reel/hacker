@@ -1,57 +1,55 @@
 ---
-title: C. Файлы
+title: C. Files
 date: 2021-12-13
-tag: c
-lang: ru
 ---
 
-Файл (file) -- это абстракция, поддерживаемая операционной системой, позволяющая работать с данными, записанными на внешних носителях (магнитная запись на жёстком диске, флеш память на SSD или флешке).
+A file (file) is an abstraction supported by the operating system that allows you to work with data recorded on external media (magnetic recording on a hard disk, flash memory on an SSD or flash drive).
 
-Таким образом, работая с файлами, мы работаем с операционной системой, которая, в свою очередь, работает с драйверами физического устройства.
+Thus, when working with files, we work with the operating system, which, in turn, works with physical device drivers.
 
-![Дескриптор файла](/assets/images/c-file-descriptor.png)
+![File descriptor](/assets/images/c-file-descriptor.png)
 
-> Я очень упрощаю что там происходит -- если хочешь понять как это на самом деле устроено, можешь почитать Э. Танненбаум "Операционные системы", глава "Файловые системы".
+> I'm oversimplifying what's going on there - if you want to understand how it actually works, you can read E. Tannenbaum "Operating Systems", chapter "File Systems".
 
-На картинке, между файлом и драйвером я указал некий **дескриптор**.
+In the picture, between the file and the driver, I indicated a certain **descriptor**.
 
-**Дескриптор** -- идентификатор, предоставляемый операционной системой, при указании которого можно производить операции чтения/записи в определённый файл.
+**Descriptor** -- an identifier provided by the operating system, when specified, it is possible to perform read / write operations to a specific file.
 
-А как производить эти операции чтения/записи? Сначала надо открыть файл.
+And how to make these read/write operations? First you need to open the file.
 
-> Описание ВСЕХ функций, которые я буду тут использовать, можно найти [здесь](https://www.cplusplus.com/reference/cstdio/) или в любой другой части интернета.
+> A description of ALL the functions that I will use here can be found [here] (https://www.cplusplus.com/reference/cstdio/) or in any other part of the Internet.
 
-# Открываем файл
+# Open file
 
-**fopen** -- функция, обращающаяся к операционной системе, чтобы получить дескриптор файла с указанными именем. Кроме имени файла, необходимо указать режимом работы с ним.
+**fopen** is a function that calls the operating system to obtain a handle to a file with the given name. In addition to the file name, you must specify the mode of working with it.
 
 ```c
 FILE *f = fopen("some-file.txt", "r");
 ```
 
-### Имя файла
+### File name
 
-Файл всегда ищется в той папке, из которой была запущена программа. Если необходимо указать файл, находящийся в другой папке, то нужно указать его с помощью абсолютного или относительного пути.
+The file is always searched for in the folder from which the program was launched. If you need to specify a file located in another folder, then you need to specify it using an absolute or relative path.
 
-* Абсолютный (полный) путь: "D:/some-folder/some-file.txt" -- указание диска и всех папок
+* Absolute (full) path: "D:/some-folder/some-file.txt" -- indicating the drive and all folders
 
-* Относительный путь: "../some-folder/some-file.txt" -- используя символ ".." можно подняться на уровень выше (выйти из текущей папки). Обычно используется если необходимый файл находится на том же диске в соседней/родительской папке. Символов ".." можно указывать столько, сколько необходимо: "../../../../some-file.txt"
+* Relative path: "../some-folder/some-file.txt" -- using the symbol ".." you can go up one level (exit the current folder). Usually used if the required file is located on the same drive in the adjacent / parent folder. You can use as many ".." characters as you need: "../../../../some-file.txt"
 
-> Знание про абсолютный и относительный пути пригодится тебе в любом языке и любой операционной системе -- запомни это.
+> Knowing about absolute and relative paths will be useful to you in any language and any operating system - remember this.
 
-### Режим работы с файлом
+### File mode
 
-Всего есть 3 основных режима:
+There are 3 main modes in total:
 
-* "r" -- чтение. Открываем существующий файл и вычитываем оттуда данные.
-* "w" -- запись. Создаём новый файл (если такой уже есть, то перезаписываем его) и записываем туда данные.
-* "a" -- запись в конец. Открываем существующий файл (если файла ещё нет, то создаём его) и записываем данные в конец файла.
+* "r" -- reading. Open an existing file and read data from there.
+* "w" is a record. We create a new file (if one already exists, then overwrite it) and write the data there.
+* "a" -- write to the end. Open an existing file (if the file doesn't exist yet, create it) and write the data to the end of the file.
 
-К этим режимам можно дописать "+", чтобы разблокировать возможность чтения для "w" и "a", и возможность записи для "r".
+These modes can be appended with a "+" to unlock readability for "w" and "a", and writeability for "r".
 
-Вот табличка, в которой я собрал все комбинации
+Here is the table in which I collected all the combinations
 
-| Режим | Чтение | Запись | Создать новый файл (если нет) | Очистить содержимое |
+| Mode | Reading | Entry | Create a new file (if not) | Clear content |
 |------|---|---|---|---|
 | "r"  | + | - | - | - |
 | "w"  | - | + | + | + |
@@ -60,52 +58,52 @@ FILE *f = fopen("some-file.txt", "r");
 | "w+" | + | + | + | + |
 | "a+" | + | + | + | - |
 
-Их не нужно запоминать -- обычно все пользуются:
+They do not need to be memorized - usually everyone uses:
 
-* "r" при чтении
-* "w" при записи
-* "r+" при чтении/записи
+* "r" when reading
+* "w" in entries
+* "r+" when reading/writing
 
-Но если в какой-то ситуации тебе понадобится что-то другое -- не стесняйся экспериментировать.
+But if in some situation you need something else, feel free to experiment.
 
-# Закрываем файл
+# Close the file
 
-**fclose** -- функция принимает дескриптор открытого файла, и закрывает его, записывая все данные из буффера.
+**fclose** -- the function accepts an open file descriptor, and closes it, writing all the data from the buffer.
 
 ```c
 fclose(f);
 ```
 
-Стоп, что за буффер?
+Wait, what's a buffer?
 
-### FILE -- это не дескриптор
+### FILE is not a handle
 
-Я был не до конца честен, когда говорил, что FILE -- это дескриптор файла. На самом деле, FILE это обёртка над настоящим дескриптором.
+I was not completely honest when I said that FILE is a file descriptor. In fact, FILE is a wrapper around a real handle.
 
-Чтобы получить **настоящий** дескриптор, в зависимости от операционной системы, надо использовать функции:
+To get the **real** handle, depending on the operating system, you need to use the following functions:
 
 * Linux: [open](https://www.tutorialspoint.com/unix_system_calls/open.htm) из "fcntl.h"
 * Windows: [\_open](https://www.digitalmars.com/rtl/io.html#_open) из "io.h"
 
-Обёртка над дескриптором FILE поддерживает:
+The FILE descriptor wrapper supports:
 
-* Буфферизацию -- то есть не сразу записывает все данные в файл, а ждёт пока накопится достаточное количество данных во временном буффере (который хранится в оперативной памяти)
-* Отслеживание позиции -- благодаря этому мы можем удобно узнать дошли ли мы до конца файла при чтении
-* Обработку ошибок -- можно узнать произошла ли ошибка при выполнении чтения/записи с помощью функции [ferror](https://www.cplusplus.com/reference/cstdio/ferror/)
+* Buffering - that is, it does not immediately write all the data to the file, but waits until a sufficient amount of data has accumulated in a temporary buffer (which is stored in RAM)
+* Position tracking -- thanks to this, we can conveniently find out if we have reached the end of the file when reading
+* Error handling -- you can find out if an error occurred while performing a read/write using the [ferror] function (https://www.cplusplus.com/reference/cstdio/ferror/)
 
-> Подробнее про разницу между FILE и дескриптором можно прочитать [тут](https://stackoverflow.com/questions/2423628/whats-the-difference-between-a-file-descriptor-and-file-pointer).
+> You can read more about the difference between a FILE and a descriptor [here](https://stackoverflow.com/questions/2423628/whats-the-difference-between-a-file-descriptor-and-file-pointer).
 
-### Закрываем FILE
+### Close FILE
 
-Окей, с закрытием FILE разобрались -- при закрытии в файл записывается буффер.
+Okay, we figured out the closing of FILE - when closing, a buffer is written to the file.
 
-Когда это делать? Когда закончили работать с файлом.
+When to do it? When finished with the file.
 
-Что будет если это не сделать?
+What happens if this is not done?
 
-Если программа завершается как обычно, то ничего плохого не произойдёт -- перед закрытием наша программа запишет буффер в файл и закроет дескриптор файла.
+If the program exits normally, then nothing bad will happen -- before closing, our program will write the buffer to a file and close the file descriptor.
 
-В случае, если программа упадёт до закрытия FILE -- в файл ничего не запишется, так как буффер не успел записаться в файл. Однако дескриптор закроется, но не программой, а операционной системой (потому что получившая его программа умерла). Вот пример такой ситуации:
+If the program crashes before closing FILE, nothing will be written to the file, since the buffer did not have time to write to the file. However, the handle will be closed, not by the program, but by the operating system (because the program that received it has died). Here is an example of such a situation:
 
 ```c
 #include <stdio.h>
@@ -113,42 +111,42 @@ int main()
 {
 	char *text = "Some text to fill the file\nAnd some more text";
 	FILE *f = fopen("some-file.txt", "w");
-	// Записываем текст в FILE
-	fprintf(f, "%s", text);
-	char *x = NULL;
-	// Обращаемся к нулевому указателю (падаем)
+    // Write text to FILE
+    fprintf(f, "%s", text);
+    char *x = NULL;
+    // Refer to null pointer (fall)
 	*x = 1;
-	// Не доходим до закрытия файла, и файл остаётся пустым т.к. мы его открыли через "w"
+    // We don't get to closing the file, and the file remains empty. we opened it with "w"
 	fclose(f);
 	return 0;
 }
 ```
 
-Если бы мы закрыли файл до падения, то всё было бы хорошо в этом случае. В общем -- всегда следи за закрытием.
+If we closed the file before the fall, then everything would be fine in this case. In general - always follow the closure.
 
-> Можно записать буффер в файл до закрытия с помощью функции [fflush](https://www.cplusplus.com/reference/cstdio/fflush/). Если я вызвал бы её до падения в программе выше, то данные бы записались в файл.
+> You can write the buffer to the file before closing with the [fflush](https://www.cplusplus.com/reference/cstdio/fflush/) function. If I would call it before the crash in the program above, then the data would be written to the file.
 
-# Чтение/запись в файл
+# Read/write to file
 
-Для записи в файл в библиотеке "stdio.h" есть ряд функций:
+There are a number of functions in the "stdio.h" library for writing to a file:
 
-* fprintf -- записываем текст в файл, указывая строку форматирования (как в обычном printf)
-* fputc -- записать один char в файл
-* fputs -- записать строку (всё до '\0') в файл
-* fwrite -- записать массив значений (с указанным размером элемента и количеством элементов) в файл
+* fprintf -- write text to a file, specifying a format string (as in normal printf)
+* fputc -- write one char to file
+* fputs -- write a string (everything up to '\0') to a file
+* fwrite -- write an array of values (with the specified element size and number of elements) to a file
 
-Для записи там есть альтер-эго таких же функции:
+For the record, there are alter egos of the same functions:
 
-* fscanf -- считываем текст из файла, указывая строку форматирования (как в обычном scanf)
-* fgetc -- считать один char из файла
-* fgets -- считать строку из файла. Считывается всё до конца файла или символа переноса строки '\n'. Символ переноса строки включается в результирующую строку
-* fread -- считать массив значений (с указанным размером элемента и количеством элементов) из файла
+* fscanf -- read text from a file, specifying a format string (as in normal scanf)
+* fgetc -- read one char from file
+* fgets -- read a line from a file. Everything is read up to the end of the file or the line break character '\n'. The line break character is included in the resulting string
+* fread -- read an array of values (with the specified element size and number of elements) from a file
 
-Давайте я напишу программу, которая "шифрует" все символы в файле, а потом "дешифрует" их.
+Let me write a program that "encrypts" all the characters in a file and then "decrypts" them.
 
-"Шифрованием" у меня будет смещение кода символа на 1, а "дешифрацией" -- смещение кода символа на -1.
+"Encryption" will be the offset of the character code by 1, and "decryption" will be the offset of the character code by -1.
 
-При этом, будет необходимое условие -- в начале файла должен стоять символ '0'.
+In this case, there will be a necessary condition - the character '0' must be at the beginning of the file.
 
 ```c
 #include <stdio.h>
@@ -156,117 +154,117 @@ int main()
 #include <string.h>
 int main()
 {
-	FILE *f = fopen("some-file.txt", "r+");
-	if(f == NULL)
-	{
-		printf("Can't open file");
-		return 0;
-	}
-	// Если первый символ 0 - файл дешифрован, а если 1 - зашифрован
-	char is_encrypted = fgetc(f) == '1';
-	// Возвращаем указатель позиции файла назад на первый символ
-	// fgetc и fputc смещают указатель позиции на 1 символ
-	fseek(f, -1, SEEK_CUR);
-	char c = fgetc(f);
-	// Файл закончился?
-	while(!feof(f))
-	{
-		// Смещаемся назад из-за fgetc
-		fseek(f, -1, SEEK_CUR);
-		// Если зашифрован - расшифровываем, расшифрован - зашифровывааем
-		c += is_encrypted ? -1 : 1;
-		// Перезаписываем символ, который перед этим прочитали
-		// Смещаем указатель позиции на один вперёд
-		fputc(c, f);
-		// Вызываем fseek, чтобы можно было переключиться с записи на чтение
-		fseek(f, 0, SEEK_CUR);
-		// Читаем следующий символ, смещаем указатель позиции вперёд
-		c = fgetc(f);
-	}
-	fclose(f);
-	return 0;
+    FILE *f = fopen("some-file.txt", "r+");
+    if(f == NULL)
+    {
+        printf("Can't open file");
+        return 0;
+    }
+    // If the first character is 0 - the file is decrypted, and if 1 - it is encrypted
+    char is_encrypted = fgetc(f) == '1';
+    // Return the file position pointer back to the first character
+    // fgetc and fputc shift the position pointer by 1 character
+    fseek(f, -1, SEEK_CUR);
+    char c = fgetc(f);
+    // File ended?
+    while(!feof(f))
+    {
+        // Moving back due to fgetc
+        fseek(f, -1, SEEK_CUR);
+        // If encrypted - decrypt, decrypted - encrypt
+        c += is_encrypted ? -1 : 1;
+        // Overwrite the character that was previously read
+        // Shift the position pointer forward by one
+        fputc(c, f);
+        // Call fseek so we can switch from writing to reading
+        fseek(f, 0, SEEK_CUR);
+        // Read the next character, move the position pointer forward
+        c = fgetc(f);
+    }
+    fclose(f);
+    return 0;
 }
 ```
 
-Такой файл:
+File contents:
 
 ```
 0Some text to fill the file
 And some more textþ
 ```
 
-Программа изменяет так:
+The program will change it like this:
 
 ```
 1Tpnf!ufyu!up!gjmm!uif!gjmfBoe!tpnf!npsf!ufyuÿ
 ```
 
-При повторном запуске программы, файл возвращает исходный вид.
+When you restart the program, the file returns to its original form.
 
-> Если что, это "шифрование" сможет защитить только от человека, который не является IT-специалистом. В настоящем шифровании каждый символ шифруется с использованием сложных криптографических алгоритмов и длинного уникального секретного ключа (один из них -- алгоритм [RSA](https://hackernoon.com/how-does-rsa-work-f44918df914b)).
+> If anything, this "encryption" can only protect against a person who is not an IT specialist. In real encryption, each character is encrypted using complex cryptographic algorithms and a long unique secret key (one of them is the [RSA](https://hackernoon.com/how-does-rsa-work-f44918df914b) algorithm).
 
-Так, в этой программе я использовал какие-то функции **feof** и **fseek** -- что это?
+So, in this program, I used some functions **feof** and **fseek** - what is it?
 
-# Навигация по файлу
+# File navigation
 
-Благодаря обёртке FILE, у нас есть возможность перемещаться по файлу, смещая указатель позиции файла.
+Thanks to the FILE wrapper, we have the ability to navigate through the file by shifting the file position pointer.
 
-### Изначальная позиция
+### Initial position
 
-У каждого FILE есть свой указатель позиции файла, изначальная позиция которого зависит от режима работы с файлом, который мы использовали:
+Each FILE has its own file position indicator, the initial position of which depends on the file mode that we used:
 
-* "r" и "w" -- начало файла
-* "a" -- конец файла
+* "r" and "w" -- start of file
+* "a" -- end of file
 
-После этого, при чтении/записи указатель позиции будет смещаться вперёд на:
+After that, when reading / writing, the position indicator will move forward by:
 
-* 1 символ для fgetc и fputc
-* Количество символов строки для fgets и fputs
-* Количество символов форматированного ввода/вывода для fscanf и fprintf
-* (Размер\_элемента * количество\_элементов) символов для fread и fwrite
+* 1 character for fgetc and fputc
+* Number of string characters for fgets and fputs
+* Number of formatted I/O characters for fscanf and fprintf
+* (Size\_element * number of\_elements) characters for fread and fwrite
 
-### Сдвигаем позицию
+### Move position
 
-Также, есть функция **fseek**, которая смещает текущий указатель позиции на указанное количество символов, относительно некоторой позиции.
+Also, there is a function **fseek**, which shifts the current position pointer by the specified number of characters, relative to some position.
 
-"Некоторая позиция" также указывается параметром:
+"Some position" is also indicated by the parameter:
 
-* SEEK\_CUR -- текущая позиция
-* SEEK\_SET -- начало файла
-* SEEK\_END -- конец файла
+* SEEK\_CUR -- current position
+* SEEK\_SET -- start of file
+* SEEK\_END -- end of file
 
 ```c
-// На 1 назад
+// Go back by 1
 fseek(f, -1, SEEK_CUR);
-// На начало
+// At the beginning
 fseek(f, 0, SEEK_SET);
-// В конец
+// To the end
 fseek(f, 0, SEEK_END);
 ```
 
-**ВАЖНО:** кроме перемещения по файлу, необходимо вызывать fseek, если ты хочешь переключиться с режима чтения на режим записи, в комбинированных режимах, вроде "r+", "w+" и "a+". В программе выше я для этого вызываю fseek без смещения.
+**IMPORTANT:** In addition to moving through the file, you must call fseek if you want to switch from read mode to write mode, in combined modes like "r+", "w+" and "a+". In the program above, I do this by calling fseek with no offset.
 
-> Значение текущего указателя позиции можно получить через функцию ftell
+> The value of the current position indicator can be obtained through the function ftell
 
-### Проверяем, что дошли до конца файла
+### Check that we have reached the end of the file
 
-Для проверки того, что мы дошли до конца файла, необходимо вызвать функцию **feof**.
+To check that we have reached the end of the file, we need to call the **feof** function.
 
 ```c
 while(!feof(f))
 ```
 
-Эта функция возвращает 1, если указатель позиции дошёл до конца файла.
+This function returns 1 if the position pointer has reached the end of the file.
 
-feof вернёт 1 только в случае, если мы перед этим вызвали функцию чтения, которая дошла до конца файла (fgetc, fgets, fscanf, fread).
+feof will only return 1 if we previously called a read function that reached the end of the file (fgetc, fgets, fscanf, fread).
 
-Это происходит из-за того, что функция чтения, при упирании в конец файла, выставляет флажок "достигли конца файла", который и проверяет функция feof.
+This is due to the fact that the read function, when resting on the end of the file, sets the flag "reached the end of the file", which the feof function checks.
 
-Также, при вызове функций чтения, по возвращаемому значению можно понять что мы дошли до конца файла:
+Also, when calling the read functions, by the return value you can understand that we have reached the end of the file:
 
-* fgetc -- вернёт -1, если дошли до конца файла; вместо -1 в этом случае используется константа EOF (End Of File)
+* fgetc -- will return -1 if the end of the file is reached; instead of -1, in this case, the EOF (End Of File) constant is used
 
-> Обычно fget возвращает код символа от 0 до 255
+> Usually fget returns a character code from 0 to 255
 
 ```c
 char c = fgetc(f);
@@ -274,7 +272,7 @@ if(c == EOF)
 // ...
 ```
 
-* fgets -- вернёт NULL
+* fgets -- will return NULL
 
 ```c
 char str[100];
@@ -282,7 +280,7 @@ if(fgets(str, 100, f) == NULL)
 // ...
 ```
 
-* fscanf -- вернёт количество считанных элементов, отличающееся от требуемого (упёрлись в конец файла)
+* fscanf -- will return the number of elements read, different from the required (rested at the end of the file)
 
 ```c
 char str[2];
@@ -292,7 +290,7 @@ if(count != 3)
 // ...
 ```
 
-* fread -- вернёт количество считанных элементов, отличающееся от требуемого (упёрлись в конец файла)
+* fread - will return the number of elements read, different from the required one (rested at the end of the file)
 
 ```c
 char str[100];
@@ -301,71 +299,71 @@ if(count != 100)
 // ...
 ```
 
-# Бинарные файлы
+# Binaries
 
-Это последняя тема, которую я хочу объяснить.
+This is the last topic I want to explain.
 
-У функции **fopen** есть ещё один режим работы -- бинарный файл.
+The **fopen** function has another mode of operation - a binary file.
 
-Для того, чтобы открыть файл в бинарном виде, надо указать "b" в конце строки, определяющей режим работы с файлом:
+In order to open a file in binary form, you must specify "b" at the end of the line that determines the mode of working with the file:
 
 ```c
 FILE *f = fopen("some-file.txt", "r+b");
 ```
 
-Режим работы при этом может быть любым.
+The mode of operation in this case can be any.
 
-Что это меняет?
+What does it change?
 
-Теперь мы работаем с файлом не как с текстом, а как с набором байт.
+Now we are working with a file not as a text, but as a set of bytes.
 
-То есть, я могу создать массив int, записать его в файл, а потом считать оттуда:
+That is, I can create an int array, write it to a file, and then read from there:
 
 ```c
 int arr[5] = {1, 2, 4, 8, 16};
 FILE *f = fopen("some-file.txt", "wb");
 fwrite(arr, sizeof(int), 5, f);
 fclose(f);
-// Представим что я это делаю в другой программе, для эффектности
+// Imagine that I'm doing this in another program, for show
 int new_arr[5];
 f = fopen("some-file.txt", "rb");
 fread(new_arr, sizeof(int), 5, f);
 fclose(f);
 for(int i = 0; i < 5; i++)
-	printf("%d ", new_arr[i]);
-// Вывод программы: 1 2 4 8 16
+printf("%d ", new_arr[i]);
+// Program output: 1 2 4 8 16
 ```
 
-Возможно ты думаешь, что в файле сейчас записано что-то вроде "1 2 4 8 16", но нет -- там такое:
+You may think that the file now contains something like "1 2 4 8 16", but no - there is this:
 
-![Текст бинарного файла](/assets/images/c-binary-file.png)
+![Binary file text](/assets/images/c-binary-file.png)
 
-Оно выглядит так странно из-за того, что текстовый редактор не может нормально отобразить бинарные данные -- он пытается прочитать коды символов.
+It looks so weird because the text editor can't display binary data properly -- it's trying to read character codes.
 
-Чтобы реально узнать что там лежит, необходимо воспользоваться редактором, который может отображать бинарные данные. Вот как содержимое выглядит через такой редактор:
+To really find out what lies there, you need to use an editor that can display binary data. Here is how the content looks through such an editor:
 
-![Данные в бинарном файле](/assets/images/c-binary-file-hex.png)
+![Data in binary file](/assets/images/c-binary-file-hex.png)
 
-Обычно они называются hex-editor, потому что отображают данные в шеснадцатеричной системе счисления. Посмотрев на данные в представлении этого редактора, можно заметить что наши 5 int'ов лежат там как ни в чём не бывало.
+They are usually called hex-editors because they display data in hexadecimal notation. Looking at the data in the view of this editor, you can see that our 5 ints are there as if nothing had happened.
 
-Зачем вообще это надо? Почему нельзя хранить всё как текст?
+Why is it needed at all? Why can't everything be stored as text?
 
-Представь, что я захочу сохранить unsigned int число 4294967295:
+Imagine that I want to store the unsigned int number 4294967295:
 
-* В бинарном файле это число всё так же займёт 4 байта (FF FF FF FF)
-* В текстовом файле это число займёт 10 байт (в этом числе 10 символов) + дополнительная нагрузка при чтении данных, так как надо перевести строку в unsigned int
+* In a binary file, this number will still take 4 bytes (FF FF FF FF)
+* In a text file, this number will take 10 bytes (including 10 characters) + additional load when reading data, since you need to convert the string to unsigned int
 
-> Про хранение вещественных чисел я вообще молчу
+> About the storage of real numbers, I generally keep quiet
 
-Если численные данные в базах данных хранились бы текстом, то понадобилось бы в 2+ раз больше дата-центров.
+If numerical data in databases were stored in text, then 2+ times more data centers would be needed.
 
-В общем, если пользователю не надо напрямую взаимодействовать с текстом в файле, то бинарные файлы -- это отличный вариант.
+In general, if the user does not need to directly interact with the text in the file, then binary files are a great option.
 
 # FAQ
 
-### Как работать с русскимим символами?
+### How to work with Russian characters?
 
-Надо добавить поддержку русской локализации:
+We need to add support for Russian localization:
 
 ```c
 #include <stdio.h>
@@ -374,94 +372,94 @@ for(int i = 0; i < 5; i++)
 int main()
 {
     SetConsoleCP(1251);
-    SetConsoleOutputCP(1251); 
+    SetConsoleOutputCP(1251);
     setlocale(LC_ALL, "Rus");
     // ...
     return 0;
 }
 ```
 
-И убедись, что ты сохраняешь файл в кодировке "windows 1251" -- обычно файлы сохраняются в кодировке UTF-8. Так как кодировка UTF-8 двухбайтная (каждый символ кодируется двумя байтами), ты не сможешь работать с нимми как обычно.
+And make sure you save the file in "windows 1251" encoding -- usually files are saved in UTF-8 encoding. Since UTF-8 encoding is double-byte (each character is encoded with two bytes), you won't be able to work with them as usual.
 
-### Как перевести строку в число?
+### How to convert string to number?
 
-[Здесь](https://www.cplusplus.com/reference/cstdlib/) можешь посмотреть документацию к различным функциям перевода строки в число:
+[Here](https://www.cplusplus.com/reference/cstdlib/) you can see the documentation for various string-to-number translation functions:
 
-* atoi() -- строка в int
-* atof() -- строка в double
-* atol() -- строка в long int
+* atoi() -- string to int
+* atof() -- string to double
+* atol() -- string to long int
 
-Функции strtof, strtod, strtol и подобные, тоже переводят строку в число, но обладают расширенной функциональностью -- смотри в документацию.
+The strtof, strtod, strtol and similar functions also convert a string to a number, but have extended functionality - see the documentation.
 
-> Обратное преобразование возможно через sprintf и fprintf.
+> Reverse conversion is possible through sprintf and fprintf.
 
-### Можно ли удалить из файла какие-то символы/слова?
+### Is it possible to remove some symbols/words from the file?
 
-Нет, нельзя -- это можно сделать одним из двух способов:
+No, you can't - you can do it in one of two ways:
 
-* Считать файл во временный буффер, удалить из буффера слова/символы и перезаписать файл с флагом "w" новым содержимым
-* Создать временный файл, считывать символы/слова из исходного файла, записывать (если символ/слово подходит) во временный файл, в конце [удалить](https://www.cplusplus.com/reference/cstdio/remove/) исходный файл и [переименовать](https://www.cplusplus.com/reference/cstdio/rename/) временный так, чтобы он назывался как исходный.
+* Read file into temporary buffer, delete words/characters from buffer and overwrite file with "w" flag with new content
+* Create temporary file, read characters/words from source file, write (if character/word matches) to temporary file, at the end [remove](https://www.cplusplus.com/reference/cstdio/remove/) source file and [rename](https://www.cplusplus.com/reference/cstdio/rename/) temporary so that it is named as original.
 
-Вот пример использования первого способа, для решения задачи "удалить слово mother из файла":
+Here is an example of using the first method to solve the problem "remove the word mother from the file":
 
 ```c
 FILE *f = fopen("input.txt", "r+");
 if(f == NULL)
-	return 0;
+{
+    return 0;
+}
 char buf[1000];
 size_t len = fread(buf, sizeof(char), 1000, f);
 fclose(f);
-// Открываем с "w", чтобы отчистить файл
+// Open with "w" to clean up the file
 f = fopen("input.txt", "w");
 char *target_word = "mother";
 int target_word_len = strlen(target_word);
 int target_word_i = 0;
 for(int i = 0; i < len; i++)
 {
-	// Если символ не из ключевого слова
-	if(buf[i] != target_word[target_word_i])
-	{
-		// Если до этого были символы, входящие в ключевое символы -- записываем в файл
-		for(int j = target_word_i; j > 0; j--)
-			fputc(buf[i-j], f);
-		// Записываем текущий символ
-		fputc(buf[i], f);
-		target_word_i = 0;
-		continue;
-	}
-	// Увеличиваем индекс символа в ключевом слове
-	target_word_i++;
-	if(target_word_i == target_word_len)
-	{
-		// Если дошли до последнего символа в ключевом слове -- сбрасываем индекс
-		target_word_i = 0;
-	}
+    // If the character is not from the keyword
+    if(buf[i] != target_word[target_word_i])
+    {
+        // If before that there were characters included in the key characters -- write to the file
+        for(int j = target_word_i; j > 0; j--)
+            fputc(buf[i-j], f);
+        // Write the current character
+        fputc(buf[i], f);
+        target_word_i = 0;
+        continue;
+    }
+    // Increment the character index in the keyword
+    target_word_i++;
+    if(target_word_i == target_word_len)
+    {
+        // If we reached the last character in the keyword -- reset the index
+        target_word_i = 0;
+    }
 }
 fclose(f);
 ```
 
-### Как изменить символы в файле?
+### How to change characters in a file?
 
-Открыть файл в режиме "r+", считывать, смещаться fseek'ом на символ назад, записывать новое значение.
+Open file in "r+" mode, read, move fseek back a character, write new value.
 
-В главе "Чтение/запись в файл" есть пример.
+There is an example in the "Reading/Writing to File" chapter.
 
+# Conclusion
 
-# Заключение
+In total, you learned what is:
 
-Итого, ты узнал что такое:
+* File
+* Descriptor
+* Opening a file
+* Closing a file
+* FILE is a wrapper over a descriptor
+* Read and write functions
+* Moving the file position pointer
+* End of file detection
+* Binaries
 
-* Файл
-* Дескриптор
-* Открытие файла
-* Закрытие файла
-* FILE -- это обёртка надо дескриптором
-* Функции чтения и записи
-* Перемещение указателя позиции по файлу
-* Определение конца файла
-* Бинарные файлы
+Congrats, that's super cool! This is a complex topic, and most likely everything will not settle down in your head at once - try to write a couple of programs, re-read incomprehensible places and relax.
 
-Поздравляю, это супер-круто! Это сложная тема, и скорее всего всё сразу не уляжется в голове -- попробуй написать пару программ, перечитать непонятные места и отдохнуть.
-
-Дальше будут структуры данных.
-
+Next are the data structures.

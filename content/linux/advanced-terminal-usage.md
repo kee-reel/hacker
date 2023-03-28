@@ -1,183 +1,183 @@
 ---
-title: Linux. Продвинутое использование терминала
+title: Linux. Advanced terminal usage
 date: 2022-09-15
 tag: linux
 draft: false
 ---
 
 
-В этой статье я постарался показать различные приёмы, которые помогут поднять твой навык владения терминалом на новый уровень.
+In this article, I tried to show various tricks that will help you take your terminal skills to the next level.
 
-Что будет в этой статье:
+What will be in this article:
 
-* [Редактирование команд](#edit)
-* [Перемещение по истории команд](#history)
-* [Что такое Bash](#bash)
-    * [Конфигурация .bashrc](#bashrc)
-    * [Переменные](#variables)
-    * [Сокращения (alias)](#alias)
-* [Мануал (man)](#man)
-* [Конвейер (pipe)](#pipe)
+* [Edit commands](#edit)
+* [Move through command history](#history)
+* [What is Bash](#bash)
+    * [Config .bashrc](#bashrc)
+    * [Variables](#variables)
+    * [Aliases](#alias)
+* [Manual (man)](#man)
+* [Conveyor (pipe)](#pipe)
     * [grep](#grep)
     * [sed](#sed)
     * [tr](#tr)
     * [cat](#cat)
     * [cut](#cut)
     * [sort](#sort)
-* [Перенаправление потока](#stream)
+* [Stream redirect](#stream)
 
-> Не бойся объёма -- запомни только то, что захочешь. Главная цель этой статьи -- дать тебе возможность взглянуть на продвинутые возможности терминала.
+> Do not be afraid of information amount -- remember only what you want. The main purpose of this article is to give you a look at the advanced features of the terminal.
 
 {{< ref edit >}}
-# Редактирование команд
+# Edit commands
 
-При работе с терминалом часто приходится редактировать уже написанные команды.
+When working with the terminal, you often have to edit already written commands.
 
-Чтобы изменить какое-то слово в команде, все новички зажимают стрелку вправо/влево, и ждут пока курсор до туда доползёт, чтобы потом зажать `Delete` или `Backspace` для удаления слова:
+To change a word in a command, all beginners hold down the right/left arrow, and wait until the cursor crawls there, then hold down `Delete` or `Backspace` to delete the word:
 
 {{< gif "common editing" "/assets/gifs/linux-common-editing.gif" >}}
 
-Так вот, забудь про зажимание стрелок на клавиатуре -- каждый раз, когда ты это делаешь, у тебя отнимается 10 очков стиля.
+Now, forget about holding down the arrows on your keyboard -- every time you do that, you lose 10 style points.
 
-Вместо стрелок, `Delete` и `Backspace`, используй следующие горячие клавиши:
+Instead of arrows, `Delete` and `Backspace`, use the following hotkeys:
 
-* `Alt+F` -- сдвинуться на слово вперёд (F - forward)
-* `Alt+B` -- сдвинуться на слово назад (B - backward)
-* `Ctrl+A` -- переместиться в начало строки (я запомнил как "**A**АААА...)
-* `Ctrl+E` -- переместиться в конец строки ("...**Е**ЕЕЕЕ РОККК!")
-* `Ctrl+W` -- удалить предыдущее слово
+* `Alt+F` -- move one word forward (F - forward)
+* `Alt+B` -- move back a word (B - backward)
+* `Ctrl+A` -- move to the beginning of the line (I remember it as "**A**AAAAWWW...)
+* `Ctrl+E` -- move to the end of the line ("...Y**E**EEEEAH ROCKKK!")
+* `Ctrl+W` -- delete previous word
 
-Вот тебе, для сравнения, то же самое редактирование команды, что и выше, но с помощью `Alt+B`, `Alt+B`, `Ctrl+W`, `Ctrl+W`:
+Here, for comparison, is the same command editing as above, but with `Alt+B`, `Alt+B`, `Ctrl+W`, `Ctrl+W`:
 
 {{< gif "pro editing" "/assets/gifs/linux-pro-editing.gif" >}}
 
-Попробуй сам поиграться со всеми указанными горячими клавишами с этой же командой:
+Try to play around with all the specified hot keys with the same command:
 
 ```bash
 echo 'this is example of some command'
 ```
 
-Эти горячие клавиши впитаются в подкорку только при условии постоянной практики, так что просто старайся с этого дня использовать их как можно чаще.
+You'll know these hotkeys by heart only with constant practice, so just try to use them as often as you can from this day forward.
 
 {{< ref history >}}
-# Перемещение по истории команд
+# Move through command history
 
-Иногда тебе надо ещё раз исполнить команду, которую ты исполнял до этого -- для этого в терминале существует история команд.
+Sometimes you need to re-execute a command that you have executed before - for this there is a history of commands in the terminal.
 
-Для работы с историей команд тебе надо знать 3 основных комбинации:
+To work with command history, you need to know 3 basic combinations:
 
-* `Ctrl+P` -- предыдущая команда
-* `Ctrl+N` -- следующая команда
-* `Ctrl+R` -- поиск в истории команд (поиск идёт в направлении от новых команд к старым)
+* `Ctrl+P` -- previous command
+* `Ctrl+N` -- next command
+* `Ctrl+R` -- search in command history (search goes from new commands to old ones)
 
-Вот тебе пример, как можно перемещаться взад/вперёд по истории с помощью `Ctrl+P`/`Ctrl+N`:
+Here's an example of how you can navigate back/forward through history with `Ctrl+P`/`Ctrl+N`:
 
 {{< gif "history navigation" "/assets/gifs/linux-history-navigation.gif" >}}
 
-> Обрати внимание что я перемещаюсь по словам через `Alt+B` и удаляю их через `Ctrl+W`
+> Note that I move through words with `Alt+B` and delete them with `Ctrl+W`
 
-Вот пример поиска в истории команд -- нажимаешь `Ctrl+R`, пишешь слово и оно появляется в строке. Ты можешь нажать `Enter` чтобы исполнить команду, а стрелочку чтобы начать редактировать выбранную команду:
+Here's an example of searching through the command history -- you press `Ctrl+R`, you write a word, and it appears on the line. You can press `Enter` to execute the command, and the arrow to start editing the selected command:
 
 {{< gif "history search" "/assets/gifs/linux-history-search.gif" >}}
 
-Ещё можно искать определённое слово во всех подходящих командах -- нажимаешь `Ctrl+R`, пишешь слово, нажимаешь `Ctrl+R` чтобы перейти на следующую подходящую команду (`Enter` чтобы исполнить команду):
+You can also search for a specific word in all matching commands -- press `Ctrl+R`, write the word, press `Ctrl+R` to go to the next matching command (`Enter` to execute the command):
 
 {{< gif "history search repeat" "/assets/gifs/linux-history-search-repeat.gif" >}}
 
-> Вся история команд хранится в файле `~/.bash_history` -- терминал берёт её оттуда.
+> All command history is stored in `~/.bash_history` -- the terminal takes it from there.
 
-Попробуй воспользоваться этими горячими клавишами прямо сейчас:
+Try these hotkeys right now:
 
-* Пройдись туда-сюда с помощью `Ctrl+P` и `Ctrl+N`
-* Поищи какую-нибудь команду с помощью `Ctrl+R`
-* Понажимай `Ctrl+R` несколько раз, чтобы найти несколько подходящих команд
+* Walk back and forth with `Ctrl+P` and `Ctrl+N`
+* Search for some command with `Ctrl+R`
+* Press `Ctrl+R` several times to find some matching commands
 
-> Да, для навигации по истории можно использовать стрелочки клавиатуры (вверх/вниз), но я не рекомендую привыкать к этому методу -- чтобы нажать на стрелочку, тебе надо убрать руки с основной части клавиатуры, а это заметно снижает скорость работы. Стрелочки привычнее и легче для запоминания, но комбинации `Ctrl+N` и `Ctl+P` правда удобнее, если к ней привыкнуть.
+> Yes, you can use up/down keyboard arrows to navigate through the history, but I do not recommend getting used to this method - to press the arrow, you have to remove your hands from the main part of the keyboard, and this significantly reduces the speed of work. The arrows are more familiar and easier to remember, but the `Ctrl+N` and `Ctl+P` combinations are really more convenient if you get used to it.
 
 {{< ref bash >}}
-# Что такое Bash
+# What is bash
 
-Сейчас будет небольшое откровение -- терминал в Linux это тоже программа, которая называется **bash**.
+Now there will be a little revelation - the terminal in Linux is also a program called **bash**.
 
-> Bash расшифровывается как "**B**ourn **A**gain **Sh**ell", типо "Перерожденный Shell". "Shell" (англ. "Оболочка") -- это одновременно и синоним слова "терминал", и отслылка к более древнему терминалу "sh".
+> Bash stands for "**B**ourn **A**gain **Sh**ell", like "Shell Reborn". "Shell" is both a synonym for "terminal" and a reference to the older "sh" terminal.
 
-> Кроме Bash есть еще терминалы zsh, fish, sh.
+> In addition to Bash, there are also terminals zsh, fish, sh.
 
-Как ты мог уже понять, терминал передает твои команды операционной системе, однако он не передает их напрямую -- он интерпретирует твою команду, и делает соответствующий запрос в операционную систему (системный вызов).
+As you can already understand, the terminal passes your commands to the operating system, but it does not pass them directly - it interprets your command, and makes the appropriate request to the operating system (system call).
 
-Однако Bash это не просто программа, которая исполняет твои команды -- это интерпретатор языка программирования Bash, который предоставляет следующие, вполне базовые для любого языка, возможности:
-* Переменные
-* Условия
-* Циклы
-* Массивы
-* Функции
+However, Bash is not just a program that executes your commands - it is an interpreter of the Bash programming language, which provides the following features, quite basic for any language:
+* Variables
+* Conditions
+* Cycle
+* Arrays
+* Functions
 
-> Если ты не знаком с этими базовыми понятиями, то рекомендую сначала освоить какой-либо язык программирования (например [Python](/python/))
+> If you are not familiar with these basic concepts, then I recommend that you first master some programming language (for example, [Python](/python/))
 
-Кроме этого, он еще предоставляет в некоторой степени уникальные возможности:
-* Сокращения (alias)
-* Конвейеры (pipe)
-* Перенаправление вывода
+In addition, it also provides somewhat unique features:
+* Aliases
+* Pipes
+* Output redirection
 
-Если ты освоишь хотя бы базовые возможности Bash, то ты сможешь писать программы, способные автоматизировать любую задачу, которую ты мог бы решить вручную!
+If you master at least the basic features of Bash, then you will be able to write programs that can automate any task that you could solve manually!
 
-Полноценный разбор Bash я вынесу в отдельную статью, а здесь я опишу только самое основное.
+I will make a full analysis of Bash in a separate article, but here I will describe only the most basic.
 
 {{< ref bashrc >}}
-## Конфигурация .bashrc
+## config .bashrc
 
-Каждый раз, когда ты запускаешь Bash, он сначала исполняет файл `~/.bashrc`, который как раз написан на языке Bash.
+Every time you start Bash, it first executes the `~/.bashrc` file, which is written in the Bash language.
 
-Все что ты пропишешь в этом файле, будет применено к новосозданной сессии терминала.
+Everything you write in this file will be applied to the newly created terminal session.
 
-> Скорее всего в твоём файле `~/.bashrc` уже что-то есть -- почти во всех дистрибутивах Linux `.bashrc` содержит набор полезных переменных/функций/команд.
+> Most likely there is already something in your `~/.bashrc` file -- in almost all Linux distributions `.bashrc` contains a set of useful variables/functions/commands.
 
-Давай прикинем что такого можно там прописать.
+Let's figure out what it is possible to prescribe there.
 
 {{< ref variables >}}
 ## Переменные
 
-**Переменная** -- это переменная с определённым значением, используемая в рамках текущей сессии.
+**Variable** is a variable with a specific value used within the current session.
 
-Переменная задаётся так:
+The variable is set like this:
 
 ```bash
-ИМЯ_ПЕРЕМЕННОЙ=ЗНАЧЕНИЕ_ПЕРЕМЕННОЙ
+VARIABLE_NAME=VARIABLE_VALUE
 ```
 
-Например, в своём `~/.bashrc` ты можешь задать переменную `HISTSIZE`, которая определяет максимальное количество команд, которое терминал будет помнить (при перемещении по истории команд):
+For example, in your `~/.bashrc` you can set the `HISTSIZE` variable, which specifies the maximum number of commands that the terminal will remember (when moving through the command history):
 
 ```bash
 HISTSIZE=10000
 ```
 
-Если ты добавишь в свой `~/.bashrc` эту строчку, то сессия терминала будет "помнить" 10000 последних команд.
+If you add this line to your `~/.bashrc`, then the terminal session will "remember" the last 10,000 commands.
 
-Существует множество переменных, которыми ты можешь настроить поведение сессии терминала -- я опишу несколько полезных.
+There are many variables that you can use to customize the behavior of a terminal session -- I'll list a few useful ones.
 
-* PATH
+### PATH
 
-Переменная **PATH** содержит пути (разделённые ":"), которые используются для поиска исполняемых программ.
+The **PATH** variable contains the paths (separated by ":") that are used to find executable programs.
 
-Например, вот так в **PATH** можно добавить директорию `~/bin`:
+For example, you can add the `~/bin` directory to **PATH** like this:
 ```bash
 PATH="~/bin:$PATH"
 ```
 
-> Перед `$PATH` написан **$**, чтобы вставить значение самой переменной `PATH` -- таким образом мы склеиваем "~/bin:" и текущее значение PATH.
-> Ещё с помощью **$** ты можешь вывести текущее значение переменной:
+> **$** is written before `$PATH` to insert the value of the `PATH` variable itself -- this way we glue "~/bin:" and the current value of PATH.
+> With **$** you can also display the current value of a variable:
 > ```bash
 > echo $PATH
 > ```
 
-Так вот, мы добавили директорию "~/bin" в PATH. Предположим, что в этой директории лежит программа "hack-the-planet":
+So, we have added the "~/bin" directory to PATH. Suppose this directory contains the "hack-the-planet" program:
 
 ```bash
 kee-reel@blog:~/bin$ ls
 hack-the-planet
 ```
 
-Обычно, если нужно исполнить программу из текущей директории, тебе надо написать "./":
+Usually, if you want to execute a program from the current directory, you would write "./":
 
 ```bash
 kee-reel@blog:~/bin$ ./hack-the-planet
@@ -185,7 +185,7 @@ HACKING FOLDER ~/bin
 COMPLETE!
 ```
 
-Но, если директория с этой программой находится в PATH, то ты можешь исполнить эту программу откуда угодно (писать "./" не надо):
+But, if the directory with this program is in PATH, then you can execute this program from anywhere (no need to write "./"):
 
 ```bash
 kee-reel@blog:~/some/other/folder$ hack-the-planet
@@ -193,92 +193,95 @@ HACKING FOLDER ~/some/other/folder
 COMPLETE!
 ```
 
-> Про PATH рассказал больше, чем про остальные, потому что это самая главная переменная окружения
+> I told more about PATH than about the rest, because it is the most important environment variable
 
-* HISTCONTROL
+### HISTCONTROL
 
-Не сохранять в истории дублирующиеся команды (если одна и та же команда исполняется несколько раз)
+Do not save duplicate commands in the history (if the same command is executed several times)
 
 ```bash
 HISTCONTROL='ignoredups'
 ```
 
-* PS1
+### PS1
 
-Можно изменить формат приглашения командной строки на более компактный:
+You can change the format of the command line prompt to be more compact:
 
 ```bash
 PS1='\[\033[01;32m\]\W\[\033[01;32m\] \$\[\033[00m\] '
 ```
-Тогда он будет не таким:
+
+Then it won't look like this:
 ```bash
 kee-reel@blog:~/some/folder$
 ```
-А таким:
+
+And like this:
 ```bash
 folder $
 ```
 
-> Можешь поискать в интернете другие примеры изменения переменной PS1 -- в нее можно много всего засунуть.
+> You can search the Internet for other examples of changing the PS1 variable - you can put a lot of things into it.
 
 {{< ref alias >}}
-## Сокращения (alias)
+## Alias
 
-Иногда пользователь терминала выполняет некоторые команды намного чаще других. Чтобы не прописывать их полностью или не искать их каждый раз в истории через `Ctrl+R`, можно создать **alias**.
+Sometimes a terminal user executes certain commands much more frequently than others. In order not to prescribe them completely or not to look for them every time in the history via `Ctrl+R`, you can create **alias**.
 
-Например, вот команда, которую я часто исполняю:
+For example, here is a command that I often run:
 ```bash
 cd ~/some/other/folder/with/the-project
 ```
-Чтобы не мучить клавиатуру, я могу прописать в `~/.bashrc` **alias**:
+
+In order not to torment the keyboard, I can write **alias** in `~/.bashrc`:
 ```bash
 alias cdpr='cd ~/some/other/folder/with/the-project'
 ```
 
-> После добавления чего-либо в `~/.bashrc` необходимо перезагрузить терминал (`~/.bashrc` считывается на старте). Однако, можно схитрить, и заново считать все содержимое `~/.bashrc` в текущей сессии терминала через такую команду: `source ~/.bashrc`
+> After adding something to `~/.bashrc`, you need to restart the terminal (`~/.bashrc` is read at startup). However, you can cheat and re-read all the contents of `~/.bashrc` in the current terminal session with this command: `source ~/.bashrc`
 
-Теперь, чтобы перейти в нужную мне директорию, достаточно лишь исполнить команду:
+Now, to go to the directory I need, just execute the command:
 ```bash
 cdpr
 ```
 
 {{< ref man >}}
-# Мануал (man)
+# Manual (man)
 
-В начале знакомства с терминалом Linux возникают трудности с запоминанием всего этого множества команд и параметров, которые нужно в них передавать.
+At the beginning of acquaintance with the Linux terminal, it is difficult to remember all this many commands and parameters that need to be passed to them.
 
-Однако, чтобы в этом разобраться, не обязательно каждый раз гуглить -- нужно запомнить только одну команду **man**.
+However, you don't have to google every time to figure it out - you only need to remember one **man** command.
 
-**man** (от слова **man**ual, англ. иструкция к применению) -- программа, отображающая документацию для указанной программы.
+**man** (from the word **man**ual, English instructions for use) -- a program that displays documentation for the specified program.
 
-Например, ты хочешь узнать что еще такого может сделать **rm** -- вызови **man**, и передай в параметрах **rm**:
+For example, if you want to know what else **rm** can do, call **man**, and pass in parameters to **rm**:
 ```bash
 folder $ man rm
 ```
 
-Откроется файл документации, который ты можешь скроллить стрелочками (на одну строчку) и через PageDown/PageUp (на страницу). Закрыть этот файл можно нажатием буквы "q".
+A documentation file will open, which you can scroll with arrows (one line) and through PageDown / PageUp (per page). You can close this file by pressing the letter "q".
 
-Почитав документацию для "rm" я узнал, что если указать параметр "-i", то я должен буду подтверждать удаление каждого файла.
+After reading the documentation for "rm" I found out that if you specify the "-i" option, then I will have to confirm the deletion of each file.
 
-Так как "rm" удаляет файл сразу, не помещая его в корзину, это довольно полезный параметр, если ты боишься удалить что-то лишнее. В "~/.bashrc" можно добавить такой **alias**:
+Since "rm" deletes the file immediately without putting it in the recycle bin, this is a pretty useful option if you're afraid of deleting something you don't need. In "~/.bashrc" you can add this **alias**:
 ```bash
 alias rm='rm -i'
 ```
 
-Таким образом, обычное поведение "rm" будет переопределено.
+So the normal behavior of "rm" will be overridden.
 
-> Дальше я покажу много новых команд -- чтобы ознакомиться как с ними работать, ты можешь использовать **man**
+> Next, I will show many new commands -- you can use **man** to learn how to work with them
 
 {{< ref pipe >}}
-# Конвейер (pipe)
+# Pipes
 
-Многие люди считают терминал намного более удобным иструментом именно из-за возможности использовать ковейер -- **pipe**.
+Many people find the terminal to be a much more convenient tool precisely because of the ability to use the pipeline -- **pipe**.
 
-**Pipe** (англ. труба) -- это механизм ОС Linux, позволяющий передавать вывод одной программы во ввод другой.
+**Pipe** is a Linux OS mechanism that allows you to pipe the output of one program into the input of another.
 
-Лучше объяснить это на примере.
+It is better to explain this with an example.
 
-Ты помнишь команду `ls` -- она просто выводит содержимое текущей папки:
+Do you remember the `ls` command -- it simply lists the contents of the current folder:
 
 ```bash
 folder $ ls
@@ -290,27 +293,27 @@ folder_2      folder_3	    folder_4	  folder_5	folder_6
 folder_7      folder_8	    folder_9
 ```
 
-Предположим, что ты хочешь получить список файлов с расширением ".jpg" -- можно, конечно искать их в этой мешанине файлов, а можно использовать программу **grep**.
+Suppose you want to get a list of files with the extension ".jpg" -- you can, of course, look for them in this mess of files, or you can use the **grep** program.
 
 {{< ref grep >}}
 ## grep
 
-**grep** -- программа, которая ищет определенный текст во входном потоке или в файле.
+**grep** is a program that searches for specific text in the input stream or in a file.
 
-Эта программа очень часто используется чтобы отфильтровать вывод другой программы -- давай отфильтруем вывод `ls`:
+This program is very often used to filter the output of another program -- let's filter the output of `ls`:
 ```bash
 folder $ ls | grep jpg
 file_10.jpg   file_13.jpg   file_14.jpg file_15.jpg
 ```
 
-Как ты видишь, вывелись только имена файлов, содержащие расширение ".jpg".
+As you can see, only filenames containing the ".jpg" extension were displayed.
 
 {{< ref sed >}}
 ## sed
 
-**sed** -- программа, которая производит замену одного текста на другой по заданному правилу.
+**sed** is a program that replaces one text with another according to a given rule.
 
-Эта программа часто используется чтобы массово изменить какие-то наименования -- давай изменим названия всех входных файлов:
+This program is often used to change the names in bulk -- let's change the names of all input files:
 ```bash
 folder $ ls | grep jpg | sed 's/file/new_file_name/'
 new_file_name_10.jpg   new_file_name_13.jpg   new_file_name_14.jpg	new_file_name_15.jpg
@@ -319,9 +322,9 @@ new_file_name_10.jpg   new_file_name_13.jpg   new_file_name_14.jpg	new_file_name
 {{< ref tr >}}
 ## tr
 
-**tr** -- программа, которая производит замену заданного символа на другой.
+**tr** is a program that replaces a given character with another.
 
-Используется чтобы изменить формат наименований или избавиться от лишних символов -- давай будем использовать "-" вместо "_":
+Used to change the format of names or get rid of extra characters -- let's use "-" instead of "_":
 ```bash
 folder $ ls | grep jpg | sed 's/file/new_file_name/' | tr '_' '-'
 new-file-name-10.jpg   new-file-name-13.jpg   new-file-name-14.jpg	new-file-name-15.jpg
@@ -330,16 +333,16 @@ new-file-name-10.jpg   new-file-name-13.jpg   new-file-name-14.jpg	new-file-name
 {{< ref cat >}}
 ## cat
 
-**cat** -- программа, выводящая содержимое файла.
+**cat** is a program that displays the contents of a file.
 
-Очень часто используется для передачи содержимого файла в другие программы через **pipe** (конвейер).
+Very often used to transfer the contents of a file to other programs via **pipe** (pipeline).
 
-Давай соберем новый конвейер, чтобы он работал с содержимым файла. Для начала, я создам файл с "контактами" каких-то людей через редактор **nano** ([описывал как с ним работать в первой статье](/linux/basics)):
+Let's build a new pipeline to work with the contents of a file. First, I will create a file with "contacts" of some people using the **nano** editor ([described how to work with it in the first article](/linux/basics)):
 ```bash
 folder $ nano contacts.txt
 ```
 
-С помощью **cat** я могу вывести содержимое этого файла:
+With **cat** I can output the contents of this file:
 ```bash
 folder $ cat contacts.txt
 Ivan +123456 Omsk
@@ -350,7 +353,7 @@ Nick +561234 Saint-Petersburg
 Alex +612345 Moscow
 ```
 
-Ну, а теперь давай выведем все московские контакты:
+Well, now let's display all Moscow contacts:
 ```bash
 folder $ cat contacts.txt | grep Moscow
 Alex +234561 Moscow
@@ -360,9 +363,9 @@ Mary +612345 Moscow
 {{< ref cut >}}
 ## cut
 
-**cut** -- программа, вычленяющая из текстового потока определенные слова.
+**cut** is a program that extracts certain words from a text stream.
 
-Давай с ее помощью вытащим имена и телефоны людей из Москвы:
+Let's use it to pull out the names and phone numbers of people from Moscow:
 ```bash
 folder $ cat contacts.txt | grep Moscow | cut -d' ' -f 1,2
 Mary +234561
@@ -372,9 +375,9 @@ Alex +612345
 {{< ref sort >}}
 ## sort
 
-**sort** -- сортирует строки из входного потока.
+**sort** -- sorts lines from the input stream.
 
-Давай отсортируем их в алфавитном порядке:
+Let's sort them alphabetically:
 ```bash
 folder $ cat contacts.txt | grep Moscow | cut -d' ' -f 1,2 | sort
 Alex +612345
@@ -382,18 +385,18 @@ Mary +234561
 ```
 
 {{< ref stream >}}
-# Перенаправление потока
+# Stream redirect
 
-Ну и последняя фишка для настоящего X4K3R4 -- перенаправление потоков вывода.
+Well, the last feature for the real X4K3R4 is the redirection of output streams.
 
-В Linux ты можешь перенаправить вывод любой программы в файл -- например, давай выведем контакты москвичей из предыдущего примера в файл:
+On Linux, you can redirect the output of any program to a file -- for example, let's print the Muscovite contacts from the previous example to a file:
 ```bash
 folder $ cat contacts.txt | grep Moscow | cut -d' ' -f 1,2 | sort > moscow_contacts.txt
 ```
 
-Заметь, что в терминал ничего не вывелось -- весь вывод ушел в файл "moscow_contacts.txt".
+Note that nothing was output to the terminal - all output went to the "moscow_contacts.txt" file.
 
-Можно проверить что записалось в файл:
+You can check what was written to the file:
 
 ```bash
 folder $ cat moscow_contacts.txt
@@ -401,45 +404,45 @@ Alex +612345
 Mary +234561
 ```
 
-В общем это реально просто, нужно только добавить `>` в конец команды.
+In general, it's really simple, you just need to add `>` to the end of the command.
 
-Иногда, вместо `>` можно еще увидеть `>>` -- в чем разница?
+Sometimes, instead of `>`, you can also see `>>` -- what's the difference?
 
-* `>` -- заполняет файл текстом из потока (если был -- перезапишет, если не было -- создаст)
-* `>>` -- дописывает в конец файла текст из потока (если был -- допишет, если не было -- создаст)
+* `>` -- fills the file with text from the stream (if it was, it will overwrite it; if it wasn't, it will create it)
+* `>>` -- appends text from the stream to the end of the file (if it was, it will append it; if it didn't exist, it will create it)
 
-> Внимательно следи за `>` и `>>` -- у меня бывали случаи, когда я хотел дописать что-то в конец файла, но перезаписывал его. По умолчанию лучше используй `>>` -- так, ты избежишь подобных ситуаций.
+> Pay close attention to `>` and `>>` -- I've had occasions when I wanted to append something to the end of a file, but ended up overwriting it. By default, it's best to use `>>` -- this way you'll avoid situations like this.
 
-Вот отличный пример использования `>>`:
+Here is a great example of using `>>`:
 ```bash
 echo "alias rm='rm -i'" >> ~/.bashrc
 ```
 
-Дописываем в конец "~/.bashrc" новый alias, вместо того чтобы лезть в файл через текстовый редактор.
+We add a new alias to the end of "~/.bashrc" instead of going into the file through a text editor.
 
 # Итоги
 
-Охх, ну и жесть. Мне было очень сложно структурировать эту статью, потому что для продвинутого использования терминала надо сразу знать много вещей. Однако, я постарался привести такие примеры, которые можно понять без глубокого погружения в тему.
+Ohh, well, tin. It was very difficult for me to structure this article, because for advanced use of the terminal, you need to know a lot of things right away. However, I tried to give examples that can be understood without a deep dive into the topic.
 
-Давай закрепим:
+Let's fix it:
 
-* [Редактирование команд](#edit) -- `Ctrl+A` (начало), `Ctrl+E` (конец), `Alt+B` (предыдущее), `Alt+F` (следующее), `Ctrl+W` (удалить)
-* [Перемещение по истории команд](#history) -- `Ctrl+P` (предыдущаяя), `Ctrl+N` (Следующая), `Ctrl+R` (поиск)
-* [Что такое Bash](#bash) -- программа, интерпретирующая команды в системные вызовы
-    * [Конфигурация .bashrc](#bashrc) -- считывается при создании сессии терминала
-    * [Переменные](#variables) -- хранят значения для текущей сессии
-    * [Сокращения (alias)](#alias) -- сокращаем большие команды
-* [Мануал (man)](#man) -- документация ко всем программам
-* [Конвейер (pipe)](#pipe) -- последовательно обрабатываем поток текста
-    * [grep](#grep) -- поиск
-    * [sed](#sed) -- замена символа/слова
-    * [tr](#tr) -- замена символа
-    * [cat](#cat) -- вывод файла
-    * [cut](#cut) -- вычленение слова
-    * [sort](#sort) -- сортировка
-* [Перенаправление потока](#stream) -- выводим в файл
+* [Edit commands](#edit) -- `Ctrl+A` (start), `Ctrl+E` (end), `Alt+B` (previous), `Alt+F` (next), `Ctrl+ W` (delete)
+* [Navigate history](#history) -- `Ctrl+P` (previous), `Ctrl+N` (Next), `Ctrl+R` (search)
+* [What is Bash](#bash) -- a program that interprets commands into system calls
+    * [Configuration .bashrc](#bashrc) -- read when creating a terminal session
+    * [Variables](#variables) -- store values for the current session
+    * [Alias](#alias) -- shorten large commands
+* [Manual (man)](#man) -- documentation for all programs
+* [Pipeline (pipe)](#pipe) -- sequentially process the text stream
+    * [grep](#grep) -- search
+    * [sed](#sed) -- character/word replacement
+    * [tr](#tr) -- character replacement
+    * [cat](#cat) -- file output
+    * [cut](#cut) -- word cut
+    * [sort](#sort) -- sort
+* [Stream redirection](#stream) -- output to file
 
-Я не ожидаю, что после прочтения этой статьи ты вдруг начнёшь всё это использовать, а скорее надеюсь, что ты увидишь горизонт знаний, который можно освоить, и примешь для себя решение -- хочешь ли ты следовать за белым кроликом?
+I do not expect that after reading this article you will suddenly start using all this, but rather I hope that you will see a horizon of knowledge that can be mastered and make a decision for yourself - do you want to follow the white rabbit?
 
 ```bash
 ~ $ wget https://s3.amazonaws.com/vspodtools-images-display/12676318/12682544-5841-b-display.jpg -O rabbit.png

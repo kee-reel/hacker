@@ -1,243 +1,241 @@
 ---
-title: C. Массивы
+title: C. Arrays
 date: 2021-11-04
-tag: c
-lang: ru
 ---
 
-Массив (array) -- это непрерывная последовательность байт, хранящих множество значений определённого типа.
+An array (array) is a continuous sequence of bytes that store a set of values of a certain type.
 
-Проще -- переменная хранит какое-то значение, а массив хранит множество переменных.
+Simply put, a variable holds a value, while an array holds a set of variables.
 
-В прошлой статье мы со всех сторон рассмотрели указатели -- тут то они нам и пригодятся!
+In the last article, we examined pointers from all sides - then they will come in handy for us!
 
-Массив объявляется так:
+The array is declared like this:
 
 ```c
 int arr[3];
 ```
 
-Здесь:
+Here:
 
-* int -- это тип значений, которые хранятся в массиве
-* arr -- указатель на первый элемент массива
-* \[3\] -- размер массива
+* int is the type of values that are stored in the array
+* arr -- pointer to the first element of the array
+* \[3\] -- array size
 
-Прежде чем мы начнём заполнять значения, давай посмотрим как переменная и массив хранятся в памяти:
+Before we start filling in the values, let's see how the variable and array are stored in memory:
 
-![Переменная и массив в памяти](/assets/images/c-array-vs-variable.png)
+![Variable and array in memory](/assets/images/c-array-vs-variable.png)
 
-То есть, по сути, массив это просто набор переменных, которые расположены рядом в памяти.
+That is, in fact, an array is just a set of variables that are located side by side in memory.
 
-Как ты помнишь из [статьи](../pointers) про указатели, к ним можно прибавлять числа, чтобы сдвигать их туда-сюда в памяти.
+As you remember from [article](../pointers) about pointers, you can add numbers to them to move them back and forth in memory.
 
-На иллюстрации я показал, что прибавляя число, можно сдвигаться на первый, второй или третий элемент массива.
+In the illustration, I showed that by adding a number, you can shift to the first, second or third element of the array.
 
-# Заполняем массив
+# Fill the array
 
-Давай попробуем что-то записать в этот массив и вывести его значения:
+Let's try to write something to this array and display its values:
 
 ```c
 int arr[3];
 for(int i = 0; i < 3; i++)
 {
-	// Заполняем массив: в нулевой элемент записываем 1, в первый двойку, во второй тройку.
-	*(arr+i) = i+1;
+    // Fill in the array: write 1 to the zero element, two to the first element, and three to the second.
+    *(arr+i) = i+1;
 }
 for(int i = 0; i < 3; i++)
 {
-	printf("Element %d: %d\n", i, *(arr+i));
+    printf("Element %d: %d\n", i, *(arr+i));
 }
-/* Вывод:
-Element 0: 1
-Element 1: 2
-Element 2: 3 */
+/* Conclusion:
+   Element 0: 1
+   Element 1: 2
+   Element 2: 3 */
 ```
 
-Опа, смотри как циклы классно сочетаются с указателями -- они просто созданы друг для друга!
+Wow, look how great loops are with pointers - they're just made for each other!
 
-# Индексы
+# Indices
 
-Чтобы с массивами было проще работать, в язык введены индексы -- ои позволяют сократить запись обращения к элементу массива:
+To make it easier to work with arrays, indexes have been introduced into the language - and they allow you to shorten the record of accessing an array element:
 
 ```c
 int arr[3];
-// Записыаем 3 в последний элемент массива
+// Write 3 to the last element of the array
 *(arr+2) = 3;
-// Делаем то же самое
+// Do the same
 arr[2] = 3;
 ```
 
-Тут никаких хитростей нет -- нужно просто помнить 3 правила:
+There are no tricks here - you just need to remember 3 rules:
 
-* Указывай только индексы в пределах первого и последнего элемента массива
-* Индекс первого элемента массива это 0 (нулевое смещение указателя)
-* Индекс последнего элемента массива это N-1 (N это размер массива)
+* Specify only indexes within the first and last element of the array
+* The index of the first array element is 0 (zero pointer offset)
+* The index of the last element of the array is N-1 (N is the size of the array)
 
-> Если ты нарушишь эти правила, то ты будешь считывать или записывать значения в ячейки памяти, которые могут содержать что угодно.
+> If you break these rules, then you will read or write values to memory cells, which can contain anything.
 
-# Пример использования массивов
+# An example of using arrays
 
-Задача "Месячная температура"
+Task "Monthly temperature"
 
-* Считать размер массива и заполнить его целочисленными значениями
-* Посчитать среднее арифметическое элементов массива (средняя температура)
-* Вывести максимальный и минимальный элементы массива (максимальная и минимальная температура)
+* Read the size of an array and fill it with integer values
+* Calculate the arithmetic mean of the array elements (average temperature)
+* Display the maximum and minimum elements of the array (maximum and minimum temperature)
 
 ```c
-// 31 потому что это максимально возможное количество дней в месяце
+// 31 because that's the maximum possible number of days in a month
 int temperature[31];
 int days;
 scanf("%d", &days);
 if(days < 1 || days > 31)
 {
-	printf("Incorrect days amount!\n");
-	return 0;
+    printf("Incorrect days amount!\n");
+    return 0;
 }
 for(int i = 0; i < days; i++)
 {
-	// Сообщаем для какого дня вводим значение (+1 чтобы дни начинались с 1)
-	printf("Day %d temperature: ", i+1);
-	// Ничего не разыменовываем, потому что в scanf нам нужно указывать адрес
-	scanf("%d", temperature+i);
-	// Ещё это можно записать так (этот вариант даже предпочтительнее):
-	// scanf("%d", &temperature[i]);
+    // We tell you for which day we enter the value (+1 so that the days start from 1)
+    printf("Day %d temperature: ", i+1);
+    // Don't dereference anything because we need to specify an address in scanf
+    scanf("%d", temperature+i);
+    // It can also be written like this (this option is even preferable):
+    // scanf("%d", &temperature[i]);
 }
 double average = 0;
 int min, max;
-// Заполняем первым значением из массива, чтобы потом уже с ним сравнивать
+// Fill with the first value from the array, so that later we can compare with it
 min = max = temperature[0];
 for(int i = 0; i < days; i++)
 {
-	// Временная переменная, чтобы сократить запись в следующих операциях
-	int temp = temperature[i];
-	// Ищем минимальное и максимальное значение
-	min = min > temp ? temp : min;
-	max = max < temp ? temp : max;
-	// Суммируем среднюю температуру...
-	average += temp;
+    // Temporary variable to shorten the entry in the following operations
+    int temp = temperature[i];
+    // Look for the minimum and maximum value
+    min = min > temp ? temp : min;
+    max = max < temp ? temp : max;
+    // Sum the average temperature...
+    average += temp;
 }
-// ... чтобы поделить её на количество дней
+// ... to divide it by the number of days
 average /= days;
 printf("Average temperature: %.1lf\nMin temperature: %d\nMax temperature: %d\n",
-	average, min, max);
+        average, min, max);
 ```
 
-# Многомерные массивы
+# Multidimensional arrays
 
-До этого я показывал работу только с одномерным массивом, но вообще они бывают двух-, трёх-, четырёх- и сколькохочешь-мерными.
+So far, I have only shown working with a one-dimensional array, but in general they are two-, three-, four-, and as many as you like-dimensional.
 
-А зачем? Иногда возникают задачи, когда тебе необходимо хранить сразу несолько наборов данных.
+What for? Sometimes tasks arise when you need to store several data sets at once.
 
-Вот например -- в задаче выше мне надо было хранить температуру по каждому дню месяца. А что, если мне надо было бы хранить температуру по каждому дню месяца в течении года -- то есть 12 массивов на каждый месяц? Вот в этой ситуации мне бы и пригодился двумерный массив.
+For example, in the task above, I had to store the temperature for each day of the month. But what if I needed to store the temperature for each day of the month for a year - that is, 12 arrays for each month? Here in this situation the two-dimensional array also would be useful to me.
 
-Чуть ниже я напишу изменённую программу, которая работает со всеми месяцами, а пока покажу как работать с многомерными массивами:
+A little lower I will write a modified program that works with all months, but for now I will show how to work with multidimensional arrays:
 
 ```c
 int arr[3][2];
 for(int i = 0; i < 3; i++)
 {
-	for(int j = 0; j < 2; j++)
-	{
-		scanf("%d", &arr[i][j]);
-	}
+    for(int j = 0; j < 2; j++)
+    {
+        scanf("%d", &arr[i][j]);
+    }
 }
 for(int i = 0; i < 3; i++)
 {
-	for(int j = 0; j < 2; j++)
-	{
-		printf("Element [%d][%d]: %d = %d = %d = %d\n", i, j, 
-				arr[i][j],
-				*(arr[i] + j),
-				*(*(arr + i) + j),
-				*((int*)arr + 2*i + j));
-	}
+    for(int j = 0; j < 2; j++)
+    {
+        printf("Element [%d][%d]: %d = %d = %d = %d\n", i, j,
+                arr[i][j],
+                *(arr[i] + j),
+                *(*(arr + i) + j),
+                *((int*)arr + 2*i + j));
+    }
 }
-/* Вывод (я ввёл значения 1 2 3 4 5 6):
-Element [0][0]: 1 = 1 = 1 = 1
-Element [0][1]: 2 = 2 = 2 = 2
-Element [1][0]: 3 = 3 = 3 = 3
-Element [1][1]: 4 = 4 = 4 = 4
-Element [2][0]: 5 = 5 = 5 = 5
-Element [2][1]: 6 = 6 = 6 = 6 */
+/* Output (I entered the values 1 2 3 4 5 6):
+   Element [0][0]: 1 = 1 = 1 = 1
+   Element [0][1]: 2 = 2 = 2 = 2
+   Element [1][0]: 3 = 3 = 3 = 3
+   Element [1][1]: 4 = 4 = 4 = 4
+   Element [2][0]: 5 = 5 = 5 = 5
+   Element [2][1]: 6 = 6 = 6 = 6 */
 ```
 
-Эмммм... Что это за чёрная магия там в выводе?
+Ummm... What is this black magic there in the output?
 
-Сейчас объясню!
+I'll explain now!
 
-По сути, многомерные массивы в памяти выглядят точно так же, как и одномерные:
+In fact, multidimensional arrays in memory look exactly the same as one-dimensional ones:
 
-![Многомерный массив](/assets/images/c-arrays-dimensions.png)
+![Multidimensional array](/assets/images/c-arrays-dimensions.png)
 
-Вся разница лишь в том, что ты можешь первым индексом перескакивать между массивами, а вторым индексом перескакивать между элементами массивов.
+The only difference is that you can jump between arrays with the first index, and jump between array elements with the second index.
 
-А на счёт чёрной магии -- ты же не забыл что индекс это просто сокращённая запись разыменования?
+And at the expense of black magic - you didn't forget that the index is just an abbreviated notation of dereferencing?
 
 ```c
 int arr[3][2];
 arr[i][j] == *( *(arr + i) + j )
 ```
 
-Окей, а почему мы к arr прибавляем число, а потом разыменовываем его?
+Okay, why do we add a number to arr and then dereference it?
 
-Прикол в том, что arr -- это не простой указатель, как в случае с одномерным массивом -- arr это указатель на массив с размером 2.
+The trick is that arr is not a simple pointer, as in the case of a one-dimensional array - arr is a pointer to an array with size 2.
 
-Поэтому, когда мы прибавляем число к этому указателю, он смещается на (размер массива * размер элемента массива) байт:
+So when we add a number to this pointer, it is shifted by (array size * array element size) bytes:
 
 ```c
-// Смещаем arr на 8 байт вправо = 2 (размер массива) * 4 (размер int)
+// Shift arr right 8 bytes = 2 (array size) * 4 (int size)
 arr + 1
 ```
 
-Если мы разыменуем его, то получим второй массив -- указатель на его первый элемент:
+If we dereference it, we get a second array -- a pointer to its first element:
 
 ```c
 *(arr + 1)
-// То же самое что
+// Same as
 arr[1]
 ```
 
-А чтобы получить значение элемента массива, мы уже вспоминаем как работали с одномерными массивами:
+And to get the value of an array element, we already remember how we worked with one-dimensional arrays:
 
 ```c
 *( *(arr + 1) + 1 )
-// То же самое что
+// Same as
 arr[1][1]
 ```
 
-Всё то же самое можно провернуть и с обычным указателем, но тогда нам надо самим следить, что мы правильно переходим между массивами (домножать индекс на размер массива):
+All the same can be done with a regular pointer, but then we ourselves need to make sure that we correctly switch between arrays (multiply the index by the size of the array):
 
 ```c
 *((int*)arr + 2*i + j))
 ```
 
-> Если использовать последний способ с обычным указателем, то можно даже не париться с многомерными массивами, а хранить многомерные данные в одномерном массиве (но так обычно не делают).
+> If you use the latter method with a regular pointer, then you can not even bother with multidimensional arrays, but store multidimensional data in a one-dimensional array (but this is usually not done).
 
-Трёхмерные массивы не сильно отличаются от двумерных -- просто там добавляется ещё один слой указателей:
+Three-dimensional arrays are not much different from two-dimensional ones - they just add another layer of pointers:
 
 ```c
 int arr[3][4][5];
 
-// int элемент
+// int element
 arr[1][2][3] == *( *( *(arr + 1) + 2 ) + 3 )
 
-// Указатель на массив из 5-ти int элементов
+// Pointer to an array of 5 int elements
 arr[1][2] == *( *(arr + 1) + 2 )
 
-// Указатель на массив из 4-х элементов,
-// где каждый из элементов это массив из 5-ти int элементов
+// Pointer to an array of 4 elements,
+// where each element is an array of 5 int elements
 arr[1] == *(arr + 1)
 
-// Указатель на массив из 3-х элементов,
-// где каждый элемент это массив из 4-х элементов,
-// где каждый из элементов это массив из 5-ти int элементов
-arr 
+// Pointer to an array of 3 elements,
+// where each element is an array of 4 elements,
+// where each element is an array of 5 int elements
+arr
 ```
 
-# Пример использования многомерных массивов
+# An example of using multidimensional arrays
 
-Как и обещал -- переписываю программу под многомерный массив:
+As promised, I rewrite the program for a multidimensional array:
 
 ```c
 int temperature[12][31];
@@ -245,66 +243,66 @@ int months, days;
 scanf("%d", &months);
 if(months < 1 || months > 12)
 {
-	printf("Incorrect months amount!\n");
-	return 0;
+    printf("Incorrect months amount!\n");
+    return 0;
 }
 scanf("%d", &days);
 if(days < 1 || days > 31)
 {
-	printf("Incorrect days amount!\n");
-	return 0;
+    printf("Incorrect days amount!\n");
+    return 0;
 }
 for(int i = 0; i < months; i++)
 {
-	printf("Month %d\n", i+1);
-	for(int j = 0; j < days; j++)
-	{
-		printf("Day %d temperature: ", i+1);
-		scanf("%d", &temperature[i][j]);
-	}
+    printf("Month %d\n", i+1);
+    for(int j = 0; j < days; j++)
+    {
+        printf("Day %d temperature: ", i+1);
+        scanf("%d", &temperature[i][j]);
+    }
 }
 double average = 0;
 int min, max;
 min = max = temperature[0][0];
 for(int i = 0; i < months; i++)
 {
-	for(int j = 0; j < days; j++)
-	{
-		int temp = temperature[i][j];
-		min = min > temp ? temp : min;
-		max = max < temp ? temp : max;
-		average += temp;
-	}
+    for(int j = 0; j < days; j++)
+    {
+        int temp = temperature[i][j];
+        min = min > temp ? temp : min;
+        max = max < temp ? temp : max;
+        average += temp;
+    }
 }
 average /= months * days;
 printf("Average temperature: %.1lf\nMin temperature: %d\nMax temperature: %d\n",
-	average, min, max);
-/* Ввод:
-2
-2
-Month 1
-Day 1 temperature: 4
-Day 1 temperature: 5
-Month 2
-Day 2 temperature: 11
-Day 2 temperature: -10
+        average, min, max);
+/* Input:
+   2
+   2
+   Month 1
+   Day 1 temperature: 4
+   Day 1 temperature: 5
+   Month 2
+   Day 2 temperature: 11
+   Day 2 temperature: -10
 
-Вывод:
-Average temperature: 2.5
-Min temperature: -10
-Max temperature: 11 */
+   Output:
+   Average temperature: 2.5
+   Min temperature: -10
+   Max temperature: 11 */
 ```
 
-# Динамические массивы
+# Dynamic arrays
 
-До этого я показал как работать со статическими массивами -- то есть мы знаем на момент написания программы, сколько максимально он будет занимать памяти.
+Before that, I showed how to work with static arrays - that is, we know at the time of writing the program how much memory it will take maximum.
 
-Однако, иногда ты:
+However, sometimes you:
 
-* Не можешь предположить максимальный размер массива
-* Хочешь сэкономить память и использовать столько, сколько нужно
+* Can't guess the maximum array size
+* Want to save memory and use as much as you need
 
-В этом случае надо использовать динамические массивы:
+In this case, you need to use dynamic arrays:
 
 ```c
 int size;
@@ -312,38 +310,38 @@ scanf("%d", &size);
 int *arr = (int*)malloc(size * sizeof(int));
 if(arr == NULL)
 {
-	printf("Can't allocate %d bytes\n", size);
-	return 0;
+    printf("Can't allocate %d bytes\n", size);
+    return 0;
 }
 for(int i = 0; i < size; i++)
 {
-	scanf("%d", &arr[i]);
+    scanf("%d", &arr[i]);
 }
 ```
 
-В этой программе я считываю размер массива, выделяю под него память и заполняю его значениями.
+In this program, I read the size of an array, allocate memory for it, and fill it with values.
 
-А как я выделяю память, что это за malloc?
+And how do I allocate memory, what kind of malloc is this?
 
 ### malloc
 
-**malloc** -- это функция, содержащаяся в "stdlib.h". Она:
+**malloc** is a function contained in "stdlib.h". She:
 
-* Обращается к операционной системе, и запрашивает выделение указанного количества байт (в программе я указал size * размер int)
-* Если операционная система может выделить такое количество байт, то функция возвращает указатель на первый байт выделенного блока памяти (возвращается указатель типа `void*`, поэтому я его явно привожу к `int*`)
-* Если операционная система не может выделить такое количество байт, то функция возвращает NULL (по сути, это нулевой адрес)
-* **НЕ заполняет** память нулями -- в памяти останется то, что там было перед этим
+* Addresses the operating system, and requests the allocation of the specified number of bytes (in the program, I specified size * int size)
+* If the operating system can allocate that many bytes, then the function returns a pointer to the first byte of the allocated memory block (a pointer of type `void*` is returned, so I explicitly cast it to `int*`)
+* If the operating system cannot allocate such a number of bytes, then the function returns NULL (in fact, this is a zero address)
+* **DOES NOT fill** the memory with zeros - what was there before will remain in memory
 
-> Обычно malloc справляется со своей задачей, и NULL возвращается только в исключительных ситуациях. В учебных целях можешь не проверять результат на NULL, но при разработке серьёзного ПО, от которого могу зависеть жизни людей -- проверка __обязательна__.
+> Usually malloc does its job, and NULL is returned only in exceptional situations. For educational purposes, you don't have to check the result for NULL, but when developing serious software that people's lives may depend on, the check is __required__.
 
 ### calloc
 
-Кроме malloc, есть ещё функция **calloc** -- делает почти то же самое, но со следующими отличиями:
+In addition to malloc, there is also a **calloc** function -- it does almost the same thing, but with the following differences:
 
-* В параметрах отдельно указывается размер массива и размер элемента массива
-* calloc **ЗАПОЛНЯЕТ** нулями выделяемую память
+* The parameters separately indicate the size of the array and the size of the array element
+* calloc **FILL** with zeros allocated memory
 
-Вот пример его использования (не сильно отличается):
+Here is an example of its use (not much different):
 
 ```c
 int size;
@@ -351,22 +349,22 @@ scanf("%d", &size);
 int *arr = (int*)calloc(size, sizeof(int));
 if(arr == NULL)
 {
-	printf("Can't allocate %d bytes\n", size);
-	return 0;
+    printf("Can't allocate %d bytes\n", size);
+    return 0;
 }
 for(int i = 0; i < size; i++)
 {
-	scanf("%d", &arr[i]);
+    scanf("%d", &arr[i]);
 }
 ```
 
 ### free
 
-После того как ты выделил память, её необходимо освободить -- операционная система этого сама не сделает пока программа не завершится.
+Once you've allocated memory, it needs to be freed -- the operating system won't do that until the program terminates.
 
-> Ситуация, в которой выделенная память не освобождается, называется **утечкой памяти**. В большистве случаев это приводит к падению программы, так как запущенная программа захватывает всю оперативную память компьютера, и не может получить больше.
+> The situation in which allocated memory is not freed is called a **memory leak**. In most cases, this leads to a crash of the program, since the running program captures all the computer's RAM, and cannot get more.
 
-Для освобождения памяти есть функция free. Вот как она используется:
+There is a free function to free memory. Here's how it's used:
 
 ```c
 int size;
@@ -374,23 +372,23 @@ scanf("%d", &size);
 int *arr = (int*)calloc(size, sizeof(int));
 if(arr == NULL)
 {
-	printf("Can't allocate %d bytes\n", size);
-	return 0;
+    printf("Can't allocate %d bytes\n", size);
+    return 0;
 }
 for(int i = 0; i < size; i++)
 {
-	scanf("%d", &arr[i]);
+    scanf("%d", &arr[i]);
 }
 free(arr);
 ```
 
-### Всегда-всегда-всегд помни -- операционная система даёт твоей программе оперативную память в долг, а долги надо возвращать.
+### Always-always-always remember - the operating system lends your program RAM, and the debts must be repaid.
 
-# Пример использования динамического многомерного массива
+# An example of using a dynamic multidimensional array
 
-И ещё раз я перепишу программу, чтобы показать как работать с динамической памятью в случае многомерных массивов:
+And once again I will rewrite the program to show how to work with dynamic memory in the case of multidimensional arrays:
 
-> Здесь будут использованы указатели на указатели -- если забыл что это такое, то можешь освежить в памяти [статью](../pointers) по указателям.
+> Pointers to pointers will be used here -- if you forgot what it is, you can refresh your memory [article](../pointers) by pointers.
 
 ```c
 int** temperature;
@@ -398,77 +396,76 @@ int months, days;
 scanf("%d", &months);
 if(months < 1 || months > 12)
 {
-	printf("Incorrect months amount!\n");
-	return 0;
+    printf("Incorrect months amount!\n");
+    return 0;
 }
 scanf("%d", &days);
 if(days < 1 || days > 31)
 {
-	printf("Incorrect days amount!\n");
-	return 0;
+    printf("Incorrect days amount!\n");
+    return 0;
 }
 
-// Выделяем память под массив int* указателей
+// Allocate memory for an array of int* pointers
 temperature = (int**)calloc(months, sizeof(int*));
 if(temperature == NULL)
-	return 0;
-for(int i = 0; i < months; i++)
+    return 0;
+    for(int i = 0; i < months; i++)
 {
-	// Выделяем память под массив int значений, 
-	// и записываем адрес на эту память в указатель
-	temperature[i] = (int*)calloc(days, sizeof(int));
-	if(temperature[i] == NULL)
-	{
-		// Освобождаем все массивы int значений, что успели выделиться
-		for(int j = 0; j < i; j++)
-			free(temperature[j]);
-		// Освобождаем массив int* указателей
-		free(temperature);
-		return 0;
-	}
+    // Allocate memory for an array of int values,
+    // and write the address to this memory in the pointer
+    temperature[i] = (int*)calloc(days, sizeof(int));
+    if(temperature[i] == NULL)
+    {
+        // Free all arrays of int values that have been allocated
+        for(int j = 0; j < i; j++)
+            free(temperature[j]);
+        // Free the array of int* pointers
+        free(temperature);
+        return 0;
+    }
 }
 
 for(int i = 0; i < months; i++)
 {
-	printf("Month %d\n", i+1);
-	for(int j = 0; j < days; j++)
-	{
-		printf("Day %d temperature: ", i+1);
-		scanf("%d", &temperature[i][j]);
-	}
+    printf("Month %d\n", i+1);
+    for(int j = 0; j < days; j++)
+    {
+        printf("Day %d temperature: ", i+1);
+        scanf("%d", &temperature[i][j]);
+    }
 }
 double average = 0;
 int min, max;
 min = max = temperature[0][0];
 for(int i = 0; i < months; i++)
 {
-	for(int j = 0; j < days; j++)
-	{
-		int temp = temperature[i][j];
-		min = min > temp ? temp : min;
-		max = max < temp ? temp : max;
-		average += temp;
-	}
+    for(int j = 0; j < days; j++)
+    {
+        int temp = temperature[i][j];
+        min = min > temp ? temp : min;
+        max = max < temp ? temp : max;
+        average += temp;
+    }
 }
 average /= months * days;
 printf("Average temperature: %.1lf\nMin temperature: %d\nMax temperature: %d\n",
-	average, min, max);
+        average, min, max);
 for(int i = 0; i < months; i++)
 {
-	// Освобождаем память, выделенную под массив int значений
-	free(temperature[i]);
+    // Free the memory allocated for the array of int values
+    free(temperature[i]);
 }
-// Освобождаем память, выделенную под массив int* указателей
+// Free the memory allocated for the array of int* pointers
 free(temperature);
 ```
 
-# Заключение
+# Conclusion
 
-Итого, ты узнал что такое:
+In total, you learned what is:
 
-* Массив (множество переменных)
-* Одномерные массивы
-* Индексы (сокращённая запись разыменования)
-* Многомерный массив (массив массивов)
-* Динамические массивы (выделяем и освобождаем столько памяти, сколько нужно)
-
+* Array (many variables)
+* One-dimensional arrays
+* Indexes (short for dereferencing)
+* Multidimensional array (array of arrays)
+* Dynamic arrays (allocate and deallocate as much memory as needed)
