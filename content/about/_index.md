@@ -26,7 +26,7 @@ title: About
     * Direction: "Software Engineering"
     * Dissertation topic: "Research of the processes of modular development of software components of personality-oriented information systems"
 
-## Опыт
+## Experience
 
 * Worked for 3 years at [JSC NII Sinvent] (http://sinvent.ru/):
     * Project: driver simulator on a mobile platform
@@ -57,7 +57,7 @@ title: About
 | HTML/CSS  | ▂       | Several pet projects |
 | Lua       | ▂       | Solved a bunch of problems on CodeWars to get familiar with the syntax |
 
-## Любимая музыка
+## Favorite music
 
 Genres: Dark Synth, Dub Step, Experimental, Indie, Minimal Techno, Pop
 

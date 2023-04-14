@@ -43,8 +43,8 @@ Instead of arrows, `Delete` and `Backspace`, use the following hotkeys:
 
 * `Alt+F` -- move one word forward (F - forward)
 * `Alt+B` -- move back a word (B - backward)
-* `Ctrl+A` -- move to the beginning of the line (I remember it as "**A**AAAAWWW...)
-* `Ctrl+E` -- move to the end of the line ("...Y**E**EEEEAH ROCKKK!")
+* `Ctrl+A` -- move to the beginning of the line (Mnemonic: **A**PPLE)
+* `Ctrl+E` -- move to the end of the line (Mnemonic: APPL**E**)
 * `Ctrl+W` -- delete previous word
 
 Here, for comparison, is the same command editing as above, but with `Alt+B`, `Alt+B`, `Ctrl+W`, `Ctrl+W`:
@@ -420,9 +420,9 @@ echo "alias rm='rm -i'" >> ~/.bashrc
 
 We add a new alias to the end of "~/.bashrc" instead of going into the file through a text editor.
 
-# Итоги
+# Summing up
 
-Ohh, well, tin. It was very difficult for me to structure this article, because for advanced use of the terminal, you need to know a lot of things right away. However, I tried to give examples that can be understood without a deep dive into the topic.
+Well, it was very difficult for me to structure this article, because for advanced use of the terminal, you need to know a lot of things right away. However, I tried to give examples that can be understood without a deep dive into the topic.
 
 Let's fix it:
 
@@ -486,4 +486,4 @@ I do not expect that after reading this article you will suddenly start using al
  ...  .;;.      ';'  ,;.      ';'  ,,,;,,;;;,'.  ,,,;;,;,,,;.    .:,,,,;,         ,;.
 ```
 
-Если что -- пиши, я помогу и постараюсь объяснить лучше.
+Contact me if you have some questions.

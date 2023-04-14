@@ -10,4 +10,6 @@ If you want to ask something, you can write to me by contacts from [about](/abou
 
 The transition between sections of the site is made through the "laptop" in the header of the site.
 
-# Have fun! (ﾉ> ◇ \<)ﾉ
+# Have fun! \\(> ◇ \<)/
+
+> Some parts of this webside is still in Russian - sorry if you're not understanding it. I'm working on translation...
