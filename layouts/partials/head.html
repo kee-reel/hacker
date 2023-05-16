@@ -1,7 +1,7 @@
 <head>
 	<meta charset="UTF-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5">
-	<meta name="description" content="IT in simple words">
+<title>{{ $language := $.Param "language" }}{{ if eq $language "en" }}IT in simple words{{ else if eq $language "ru" }}IT простыми словами{{ else }}kee-reel{{ end }}</title>
 	<meta name="generator" content="HUGO">
 
 	<meta name="theme-color" content="#ffffff">
@@ -11,5 +11,4 @@
     {{ with .OutputFormats.Get "rss" -}}
         {{ printf `<link rel="%s" type="%s" href="%s" title="%s" />` .Rel .MediaType.Type .Permalink $.Site.Title | safeHTML }}
     {{ end -}}
-    <title> {{ .Site.Title }} </title>
 </head>

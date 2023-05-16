@@ -2,7 +2,7 @@
 <html lang="ru">
 	{{ partial "head.html" . }}
 <body>
-	{{ partial "header.html" . }}
+    {{- block "navigation" .}}{{- end }}
 		
 	<div id="wrapper">
 		<div class="container">

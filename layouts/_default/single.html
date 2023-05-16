@@ -1,3 +1,7 @@
+{{ define "navigation" }}
+	{{ partial "header.html" . }}
+{{ end }}
+
 {{ define "main" }}
     {{ $section_title := printf "%s. " .Parent.Title }}
     {{ if or .PrevInSection .NextInSection }}

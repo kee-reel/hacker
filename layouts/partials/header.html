@@ -3,16 +3,23 @@
     <div align="center">
         +---------------------------+<br>
         |.-------------------------.|<br>
-        ||&nbsp;<a href="/">kee_reel@blog</a>:~$ cd&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;||<br>
-        ||&nbsp;<a href="/c.html">c</a>&nbsp;&nbsp;<a href="/cpp.html">c++</a>&nbsp;&nbsp;<a href="/python.html">python</a>&nbsp;&nbsp;<a href="/linux.html">linux</a>&nbsp;&nbsp;&nbsp;||<br>
-        ||&nbsp;<a href="/opengl.html">opengl</a>&nbsp;&nbsp;<a href="/sql.html">sql</a>&nbsp;&nbsp;<a href="/network.html">networks</a>&nbsp;&nbsp;&nbsp;||<br>
+        ||&nbsp;kee_reel@blog:<a href="/{{ $.Param "language" }}.html">{{ $.Param "language" }}</a> $ cd&nbsp;&nbsp;&nbsp;||<br>
+{{ $language := $.Param "language" }}
+{{ if eq $language "en" }}
+        ||&nbsp;<a href="/">~</a>&nbsp;<a href="/{{ $.Param "language" }}/links.html">links</a>&nbsp;<a href="/{{ $.Param "language" }}/about.html">about</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;||<br>
+        ||&nbsp;<a href="/en/linux.html">linux</a>&nbsp;<a href="/en/c.html">c</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;||<br>
         ||&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;||<br>
-        ||&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/about.html">about</a>&nbsp;||<br>
+{{ else }}
+        ||&nbsp;<a href="/">~</a>&nbsp;<a href="/{{ $.Param "language" }}/links.html">ссылки</a>&nbsp;<a href="/{{ $.Param "language" }}/about.html">контакты</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;||<br>
+        ||&nbsp;<a href="/ru/c.html">c</a>&nbsp;<a href="/ru/cpp.html">c++</a>&nbsp;<a href="/ru/linux.html">linux</a>&nbsp;<a href="/ru/opengl.html">opengl</a>&nbsp;<a href="/ru/sql.html">sql</a>&nbsp;&nbsp;||<br>
+        ||&nbsp;<a href="/ru/python.html">python</a>&nbsp;<a href="/ru/network.html">networks</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;||<br>
+{{ end }}
+        ||&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;||<br>
         |.-------------------------.|<br>
         +-::---------------------::-+<br>
         .---------------------------.<br>
-        &nbsp;//&nbsp;/■<a href="/links.html">■</a>■■■■■■■■■■■■■■■■■■■■\\&nbsp;\\&nbsp;<br>
-        &nbsp;//&nbsp;/■■■■■■■■■■■■■■■■■■■■■■■■\\&nbsp;\\&nbsp;<br>
+        &nbsp;//&nbsp;/oooooooooooooooooooooo\\&nbsp;\\&nbsp;<br>
+        &nbsp;//&nbsp;/oooooooooooooooooooooooo\\&nbsp;\\&nbsp;<br>
         //-------------------------------\\<br>
         \\-------------------------------//<br>
     </div>
