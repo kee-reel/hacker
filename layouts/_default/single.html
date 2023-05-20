@@ -4,6 +4,7 @@
 
 {{ define "main" }}
     {{ $section_title := printf "%s. " .Parent.Title }}
+    {{ $language := $.Param "language" }}
     {{ if or .PrevInSection .NextInSection }}
         <div style="display: flex; justify-content: space-between;">
             {{ if .PrevInSection }}
@@ -22,12 +23,12 @@
     <h1>{{ .Title }}</h1>
     {{ $t := math.Round (div (countwords .Content) 200.0) }}
     {{ if (gt $t 2) }}
-        <h3>Время чтения: {{ $t }} мин</h3>
+        <h3>{{ if eq $language "en" }}Read time{{ else }}Время чтения{{ end }}: {{ $t }} min</h3>
     {{ end }}
     {{ .Content }}
     <hr>
     <div align="center">
-        <a href="{{ .Permalink }}#top">▲ В начало ▲</a>
+        <a href="{{ .Permalink }}#top">▲ {{ if eq $language "en" }}To beginning{{ else }}В начало{{ end }} ▲</a>
     </div>
     {{ if or .PrevInSection .NextInSection }}
         <hr>

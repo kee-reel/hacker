@@ -1,5 +1,4 @@
 ---
 language: ru
-title: SQL
-draft: false
+title: sql
 ---

@@ -1,4 +1,4 @@
 ---
 language: ru
-title: Компьютерные сети
+title: сети
 ---

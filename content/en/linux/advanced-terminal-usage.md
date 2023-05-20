@@ -1,9 +1,8 @@
 ---
 language: en
 title: Linux. Advanced terminal usage
-date: 2022-09-15
-tag: linux
-draft: false
+simple_title: advanced_usage
+date: 2022-08-12
 ---
 
 

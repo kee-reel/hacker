@@ -1,7 +1,8 @@
 ---
 language: en
 title: Linux. Command line basics
-date: 2021-08-11
+simple_title: basics
+date: 2021-08-12
 ---
 
 Most likely you are reading this text in a browser window, which means you are using a graphical shell when working with the operating system. Now you open windows and click the cursor on the buttons and application icons, but this was not always the case.

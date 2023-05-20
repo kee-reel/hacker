@@ -1,7 +1,6 @@
 ---
 language: ru
-type: no-est-time
-title: About
+title: контакты
 ---
 
 ## Контакты

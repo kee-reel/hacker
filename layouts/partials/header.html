@@ -3,14 +3,14 @@
     <div align="center">
         +---------------------------+<br>
         |.-------------------------.|<br>
-        ||&nbsp;kee_reel@blog:<a href="/{{ $.Param "language" }}.html">{{ $.Param "language" }}</a> $ cd&nbsp;&nbsp;&nbsp;||<br>
+        ||&nbsp;kee_reel@blog:<a href="/">~</a>/<a href="/{{ $.Param "language" }}.html">{{ $.Param "language" }}</a> $ cd&nbsp;||<br>
 {{ $language := $.Param "language" }}
 {{ if eq $language "en" }}
-        ||&nbsp;<a href="/">~</a>&nbsp;<a href="/{{ $.Param "language" }}/links.html">links</a>&nbsp;<a href="/{{ $.Param "language" }}/about.html">about</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;||<br>
-        ||&nbsp;<a href="/en/linux.html">linux</a>&nbsp;<a href="/en/c.html">c</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;||<br>
+        ||&nbsp;<a href="/{{ $.Param "language" }}/links.html">links</a>&nbsp;<a href="/{{ $.Param "language" }}/about.html">about</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;||<br>
+        ||&nbsp;<a href="/en/cybersec/index.html">cybersec</a>&nbsp;<a href="/en/linux.html">linux</a>&nbsp;<a href="/en/c.html">c</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;||<br>
         ||&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;||<br>
 {{ else }}
-        ||&nbsp;<a href="/">~</a>&nbsp;<a href="/{{ $.Param "language" }}/links.html">ссылки</a>&nbsp;<a href="/{{ $.Param "language" }}/about.html">контакты</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;||<br>
+        ||&nbsp;<a href="/{{ $.Param "language" }}/links.html">ссылки</a>&nbsp;<a href="/{{ $.Param "language" }}/about.html">контакты</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;||<br>
         ||&nbsp;<a href="/ru/c.html">c</a>&nbsp;<a href="/ru/cpp.html">c++</a>&nbsp;<a href="/ru/linux.html">linux</a>&nbsp;<a href="/ru/opengl.html">opengl</a>&nbsp;<a href="/ru/sql.html">sql</a>&nbsp;&nbsp;||<br>
         ||&nbsp;<a href="/ru/python.html">python</a>&nbsp;<a href="/ru/network.html">networks</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;||<br>
 {{ end }}

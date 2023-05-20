@@ -1,8 +1,8 @@
 ---
 language: en
 title: Linux. Installing and working with programs
+simple_title: package_manager
 date: 2021-09-12
-tag: linux
 ---
 
 If you have read the [previous article](../basics), then you already know how to navigate through different folders and create/edit/delete files.

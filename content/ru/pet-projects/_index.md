@@ -1,5 +1,5 @@
 ---
 language: ru
-title: About
+title: пет-проджект
 ---
 

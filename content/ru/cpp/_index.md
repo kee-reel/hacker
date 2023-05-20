@@ -1,4 +1,4 @@
 ---
 language: ru
-title: "C++"
+title: "c++"
 ---

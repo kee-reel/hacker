@@ -1,5 +1,6 @@
 ---
 language: en
+title: en
 type: single
 layout: plain
 ---

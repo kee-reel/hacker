@@ -1,5 +1,4 @@
 ---
 language: ru
-title: Linux
-draft: false
+title: linux
 ---

@@ -1,5 +1,6 @@
 ---
 language: ru
+title: ru
 layout: plain
 ---
 # Привет (＾◡＾)っ
