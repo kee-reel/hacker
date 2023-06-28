@@ -4,17 +4,19 @@ layout: plain
 title: About
 ---
 
+![Me](/assets/images/me.png)
+
 ## Contacts
 
-* Telegram -- [@kee\_reel](https://t.me/kee_reel)
-* VK -- [/kee\_\_reel](https://vk.com/kee__reel)
 * Mail -- [c4rb0n\_unit@protonmail.com](c4rb0n_unit@protonmail.com)
+* Telegram -- [@kee\_reel](https://t.me/kee_reel)
 * GitHub -- [github.com/kee-reel](https://github.com/kee-reel)
 * Mastodon -- [mastodon.ml/@keereel](https://mastodon.ml/@keereel)
 * Codewars -- [codewars.com/users/kee-reel](https://www.codewars.com/users/kee-reel)
 * Habrahabr -- [habr.com/en/users/curunir/posts](https://habr.com/en/users/curunir/posts)
 * Steam -- [steamcommunity.com/id/keereeel](https://steamcommunity.com/id/keereeel)
 * GOG -- [gog.com/u/kee-reel](https://www.gog.com/u/kee-reel)
+* HackTheBox -- [keereel](https://app.hackthebox.com/profile/1050457)
 
 ## Education
 
