@@ -1,18 +1,22 @@
 {
-    "baseURL": "http://kee-reel.com",
-    "params": {
-        "author": "kee-reel"
-    },
-    "paginate": 10,
-    "pygmentsUseClasses": true,
-    "pygmentsCodefences": true,
-    "outputs": {
-        "page": ["HTML"],
-        "home": ["HTML", "RSS"],
-        "section": ["HTML","RSS"],
-        "taxonomyTerm": ["HTML", "RSS"],
-        "taxonomy": ["HTML", "RSS"]
-    },
-    "uglyURLs": true,
-    "publishdir": "/var/www/html/kee-reel"
+	"baseURL": "http://kee-reel.com",
+	"params": {
+		"author": "kee-reel"
+	},
+	"paginate": 10,
+	"pygmentsUseClasses": true,
+	"pygmentsCodefences": true,
+	"outputs": {
+		"page": ["HTML"],
+		"home": ["HTML", "RSS"],
+		"section": ["HTML","RSS"],
+		"taxonomyTerm": ["HTML", "RSS"],
+		"taxonomy": ["HTML", "RSS"]
+	},
+	"uglyURLs": true,
+	"publishdir": "/var/www/html/kee-reel",
+	"sitemap": {
+		"changefreq": "monthly",
+		"filename": "sitemap.xml"
+	}
 }

@@ -124,10 +124,10 @@ student_marks = sorted(student_marks)
 То есть чтобы получить первый элемент списка, нужно взять элемент по индексу **0**:
 
 ```python
-my_list = [3, 5, 7]
-print(student_marks[0]) # 3
-print(student_marks[1]) # 5
-print(student_marks[2]) # 7
+student_marks = [1, 3, 5]
+print(student_marks[0]) # 1
+print(student_marks[1]) # 3
+print(student_marks[2]) # 5
 ```
 
 **Внимание!** Следи чтобы индекс не выходил за пределы списка -- это приведёт к ошибке при исполнении программы:

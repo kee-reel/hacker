@@ -6,7 +6,7 @@
     {{ $section_title := printf "%s. " .Parent.Title }}
     {{ $language := $.Param "language" }}
     {{ if or .PrevInSection .NextInSection }}
-        <div style="display: flex; justify-content: space-between;">
+    <div class="nav-links">
             {{ if .PrevInSection }}
                 <a href="{{ .PrevInSection.Permalink }}">◀ {{ replace .PrevInSection.Title $section_title "" }}</a>
             {{ else }}
@@ -23,7 +23,7 @@
     <h1>{{ .Title }}</h1>
     {{ $t := math.Round (div (countwords .Content) 200.0) }}
     {{ if (gt $t 2) }}
-        <h3>{{ if eq $language "en" }}Read time{{ else }}Время чтения{{ end }}: {{ $t }} min</h3>
+        <h3>{{ if eq $language "en" }}Read time: {{ $t }} minutes{{ else }}Время чтения: {{ $t }} минут{{ end }}</h3>
     {{ end }}
     {{ .Content }}
     <hr>
@@ -32,7 +32,7 @@
     </div>
     {{ if or .PrevInSection .NextInSection }}
         <hr>
-        <div style="display: flex; justify-content: space-between;">
+	    <div class="nav-links">
             {{ if .PrevInSection }}
                 <a href="{{ .PrevInSection.Permalink }}">◀ {{ replace .PrevInSection.Title $section_title "" }}</a>
             {{ else }}

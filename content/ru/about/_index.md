@@ -1,11 +1,7 @@
 ---
 language: ru
-title: контакты
+title: Контакты
 ---
-
-![Me](/assets/images/me.png)
-
-## Контакты
 
 * Почта -- [c4rb0n\_unit@protonmail.com](c4rb0n_unit@protonmail.com)
 * Telegram -- [@kee\_reel](https://t.me/kee_reel)

@@ -1,4 +1,4 @@
 ---
 language: en
-title: linux
+title: Linux
 ---

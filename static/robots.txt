@@ -1,0 +1,4 @@
+User-agent: *
+Disallow: /en/about.html
+Disallow: /en/cybersec/
+Disallow: /ru/about.html

@@ -27,6 +27,10 @@ body {
   margin: 0 auto;
 }
 
+.nav-links {
+  display: flex;
+  justify-content: space-between;
+}
 
 section {
   display: block;

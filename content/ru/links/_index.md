@@ -1,7 +1,7 @@
 ---
 language: ru
 layout: page
-title: ссылки
+title: Ссылки
 ---
 
 * [https://github.com/danistefanovic/build-your-own-x](https://github.com/danistefanovic/build-your-own-x) -- репозиторий, в котором собрана куча ссылок на материалы, описывающие как с нуля разработать различные системы, от 3D-рендеринга до веб сервера

@@ -4,8 +4,6 @@ layout: plain
 title: About
 ---
 
-![Me](/assets/images/me.png)
-
 ## Contacts
 
 * Mail -- [c4rb0n\_unit@protonmail.com](c4rb0n_unit@protonmail.com)

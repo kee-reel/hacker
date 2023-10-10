@@ -1,4 +1,4 @@
 ---
 language: ru
-title: python
+title: Python
 ---

@@ -1,4 +1,4 @@
 ---
 language: ru
-title: opengl/c++
+title: OpenGL/C++
 ---
