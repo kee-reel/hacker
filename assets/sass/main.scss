@@ -294,3 +294,6 @@ a:active, a:focus {
 .clicktogif input[type=checkbox]:checked + img {
   filter: blur(0);
 }
+.hidden-link {
+  color: rgb(219, 216, 211) !important;
+}
